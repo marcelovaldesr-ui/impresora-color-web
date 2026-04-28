@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p C:/Users/marce/impresora-color-web/app/components)",
+      "Bash(mkdir -p C:/Users/marce/impresora-color-web/public/images)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)"
+    ]
+  }
+}

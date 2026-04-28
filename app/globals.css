@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+:root {
+  --brand-navy:   #0B1B4D;
+  --brand-magenta:#F72585;
+  --brand-yellow: #F9C80E;
+  --brand-cyan:   #25B6F7;
+  --brand-green:  #25D366;
+  --brand-gray:   #F5F7FA;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #ffffff;
+  color: #111827;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Utilidad helper: texto "prensa" en placeholders */
+.placeholder-text { user-select: none; pointer-events: none; }
