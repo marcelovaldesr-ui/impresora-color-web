@@ -8,6 +8,7 @@ function waLink(msg: string) {
 }
 
 const TRABAJOS = [
+  // Publicidad y emprendimientos
   {
     imagen: "flyers",
     bg: "from-[#E91E8F] to-[#2D3E9F]",
@@ -56,6 +57,7 @@ const TRABAJOS = [
     frase: "Tu marca presente todos los días.",
     wa: "Hola, me gustaron los imanes y quiero cotizar.",
   },
+  // Etiquetas y productos
   {
     imagen: "etiquetas-productos",
     bg: "from-[#E91E8F] to-[#2D3E9F]",
@@ -88,6 +90,55 @@ const TRABAJOS = [
     frase: "Adhesivos para bolsas, cajas y empaques de marca.",
     wa: "Hola, quiero cotizar stickers para packaging.",
   },
+  // Oficina, colegios y empresas
+  {
+    imagen: "fotocopias",
+    bg: "from-[#47B7E8] to-[#2D3E9F]",
+    acento: "#47B7E8",
+    nombre: "Fotocopias e impresiones",
+    frase: "Copias e impresiones rápidas para documentos, trabajos y empresas.",
+    wa: "Hola, quiero cotizar fotocopias e impresiones.",
+  },
+  {
+    imagen: "anillados",
+    bg: "from-[#7DBA2F] to-[#2D3E9F]",
+    acento: "#7DBA2F",
+    nombre: "Anillados",
+    frase: "Terminación práctica para trabajos, manuales e informes.",
+    wa: "Hola, quiero cotizar anillados.",
+  },
+  {
+    imagen: "empastados",
+    bg: "from-[#F47A20] to-[#2D3E9F]",
+    acento: "#F47A20",
+    nombre: "Empastados",
+    frase: "Presentación firme y profesional para documentos importantes.",
+    wa: "Hola, quiero cotizar empastados.",
+  },
+  {
+    imagen: "diplomas",
+    bg: "from-[#F5C51B] to-[#F47A20]",
+    acento: "#F5C51B",
+    nombre: "Diplomas",
+    frase: "Para cursos, reconocimientos, colegios y capacitaciones.",
+    wa: "Hola, quiero cotizar diplomas.",
+  },
+  {
+    imagen: "carpetas-corporativas",
+    bg: "from-[#E91E8F] to-[#2D3E9F]",
+    acento: "#E91E8F",
+    nombre: "Carpetas corporativas",
+    frase: "Imagen profesional para propuestas y presentaciones.",
+    wa: "Hola, quiero cotizar carpetas corporativas.",
+  },
+  {
+    imagen: "calendarios",
+    bg: "from-[#F47A20] to-[#E91E8F]",
+    acento: "#F47A20",
+    nombre: "Calendarios",
+    frase: "Personalizados para empresas, regalos y promociones.",
+    wa: "Hola, quiero cotizar calendarios personalizados.",
+  },
 ];
 
 export default function Galeria() {
@@ -103,8 +154,8 @@ export default function Galeria() {
             Trabajos que <span className="text-[#E91E8F]">ayudan a vender</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            Cada impresión está pensada para que tu negocio o producto destaque
-            y genere más ventas.
+            Cada impresión está pensada para que tu negocio, producto o empresa
+            destaque y genere más resultados.
           </p>
         </div>
 

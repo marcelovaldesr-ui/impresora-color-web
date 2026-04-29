@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Impresora Color Ltda en Chillán. Cotiza flyers, stickers, tarjetas, pendones, menús, imanes, etiquetas para productos, etiquetas para cecinas, etiquetas para vinos y material publicitario para tu negocio. Atención rápida por WhatsApp. Ubicados en Arauco 1060, Chillán.",
   keywords:
-    "imprenta chillán, flyers chillán, stickers chillán, tarjetas de presentación chillán, pendones chillán, etiquetas para cecinas, etiquetas para vinos, etiquetas adhesivas, impresión publicitaria, material gráfico chillán",
+    "imprenta chillán, flyers chillán, stickers chillán, tarjetas de presentación chillán, pendones chillán, etiquetas para cecinas, etiquetas para vinos, etiquetas adhesivas, impresión publicitaria, material gráfico chillán, fotocopias chillán, impresiones chillán, anillados chillán, empastados chillán, diplomas chillán, carpetas corporativas chillán, calendarios chillán, anillado de documentos chillán",
   alternates: {
     canonical: "/",
   },

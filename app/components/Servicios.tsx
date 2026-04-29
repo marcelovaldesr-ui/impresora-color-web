@@ -1,4 +1,4 @@
-// EDITABLE: Agrega, quita o cambia servicios en el array SERVICIOS
+// EDITABLE: Agrega, quita o cambia servicios en los arrays de cada categoría
 
 const PHONE = "56998441157";
 function waLink(msg: string) {
@@ -15,7 +15,8 @@ type Servicio = {
   bg: string;
 };
 
-const SERVICIOS: Servicio[] = [
+// ── Categoría 1: Publicidad y emprendimientos ─────────────────────────────────
+const PUBLICIDAD: Servicio[] = [
   {
     imagen: "flyers",
     titulo: "Flyers publicitarios",
@@ -71,13 +72,35 @@ const SERVICIOS: Servicio[] = [
     bg: "from-[#F5C51B] to-[#F47A20]",
   },
   {
+    imagen: "packaging",
+    titulo: "Stickers para packaging",
+    descripcion: "Adhesivos para bolsas, cajas y empaques de marca.",
+    boton: "Cotizar packaging",
+    wa: "Hola, quiero cotizar stickers para packaging.",
+    acento: "#7DBA2F",
+    bg: "from-[#7DBA2F] to-[#47B7E8]",
+  },
+];
+
+// ── Categoría 2: Etiquetas y productos ───────────────────────────────────────
+const ETIQUETAS: Servicio[] = [
+  {
+    imagen: "etiquetas-adhesivas",
+    titulo: "Etiquetas adhesivas",
+    descripcion: "Adhesivos de alta calidad para todo tipo de superficie, envases y packaging.",
+    boton: "Cotizar etiquetas",
+    wa: "Hola, quiero cotizar etiquetas adhesivas.",
+    acento: "#E91E8F",
+    bg: "from-[#E91E8F] to-[#2D3E9F]",
+  },
+  {
     imagen: "etiquetas-productos",
     titulo: "Etiquetas para productos",
     descripcion: "Para alimentos, envases y marcas locales.",
     boton: "Cotizar etiquetas",
     wa: "Hola, quiero cotizar etiquetas para productos. Tengo un emprendimiento y necesito orientación.",
-    acento: "#E91E8F",
-    bg: "from-[#E91E8F] to-[#2D3E9F]",
+    acento: "#7DBA2F",
+    bg: "from-[#7DBA2F] to-[#2D3E9F]",
   },
   {
     imagen: "etiquetas-cecinas",
@@ -98,20 +121,159 @@ const SERVICIOS: Servicio[] = [
     bg: "from-[#2D3E9F] to-[#47B7E8]",
   },
   {
-    imagen: "packaging",
-    titulo: "Stickers para packaging",
-    descripcion: "Adhesivos para bolsas, cajas y empaques de marca.",
-    boton: "Cotizar packaging",
-    wa: "Hola, quiero cotizar stickers para packaging.",
+    imagen: "etiquetas-alimentos",
+    titulo: "Etiquetas para alimentos",
+    descripcion: "Etiquetas para conservas, miel, productos gourmet y marcas locales.",
+    boton: "Cotizar etiquetas alimentos",
+    wa: "Hola, quiero cotizar etiquetas para alimentos.",
     acento: "#7DBA2F",
     bg: "from-[#7DBA2F] to-[#47B7E8]",
   },
 ];
 
+// ── Categoría 3: Oficina, colegios y empresas ─────────────────────────────────
+const OFICINA: Servicio[] = [
+  {
+    imagen: "fotocopias",
+    titulo: "Fotocopias",
+    descripcion: "Copias rápidas y claras para documentos, trabajos y trámites.",
+    boton: "Cotizar fotocopias",
+    wa: "Hola, quiero cotizar fotocopias.",
+    acento: "#47B7E8",
+    bg: "from-[#47B7E8] to-[#2D3E9F]",
+  },
+  {
+    imagen: "impresiones",
+    titulo: "Impresiones",
+    descripcion: "Impresiones para documentos, presentaciones, material de estudio y empresas.",
+    boton: "Cotizar impresiones",
+    wa: "Hola, quiero cotizar impresiones.",
+    acento: "#2D3E9F",
+    bg: "from-[#2D3E9F] to-[#3A4EB0]",
+  },
+  {
+    imagen: "anillados",
+    titulo: "Anillados",
+    descripcion: "Terminación práctica y ordenada para trabajos, manuales, informes y documentos.",
+    boton: "Cotizar anillados",
+    wa: "Hola, quiero cotizar anillados.",
+    acento: "#7DBA2F",
+    bg: "from-[#7DBA2F] to-[#2D3E9F]",
+  },
+  {
+    imagen: "empastados",
+    titulo: "Empastados",
+    descripcion: "Presentación firme y profesional para documentos importantes.",
+    boton: "Cotizar empastados",
+    wa: "Hola, quiero cotizar empastados.",
+    acento: "#F47A20",
+    bg: "from-[#F47A20] to-[#2D3E9F]",
+  },
+  {
+    imagen: "diplomas",
+    titulo: "Diplomas",
+    descripcion: "Diplomas impresos para cursos, reconocimientos, colegios, eventos y capacitaciones.",
+    boton: "Cotizar diplomas",
+    wa: "Hola, quiero cotizar diplomas.",
+    acento: "#F5C51B",
+    bg: "from-[#F5C51B] to-[#F47A20]",
+  },
+  {
+    imagen: "sobres",
+    titulo: "Sobres",
+    descripcion: "Sobres personalizados para empresas, instituciones y presentaciones corporativas.",
+    boton: "Cotizar sobres",
+    wa: "Hola, quiero cotizar sobres personalizados.",
+    acento: "#47B7E8",
+    bg: "from-[#2D3E9F] to-[#47B7E8]",
+  },
+  {
+    imagen: "carpetas-corporativas",
+    titulo: "Carpetas corporativas",
+    descripcion: "Carpetas con imagen profesional para propuestas, documentos y presentaciones.",
+    boton: "Cotizar carpetas",
+    wa: "Hola, quiero cotizar carpetas corporativas.",
+    acento: "#E91E8F",
+    bg: "from-[#E91E8F] to-[#2D3E9F]",
+  },
+  {
+    imagen: "reglamentos",
+    titulo: "Reglamentos internos",
+    descripcion: "Impresión y terminación de reglamentos, manuales y documentos empresariales.",
+    boton: "Cotizar reglamentos",
+    wa: "Hola, quiero cotizar reglamentos internos.",
+    acento: "#2D3E9F",
+    bg: "from-[#47B7E8] to-[#2D3E9F]",
+  },
+  {
+    imagen: "calendarios",
+    titulo: "Calendarios",
+    descripcion: "Calendarios personalizados para empresas, regalos corporativos y promociones.",
+    boton: "Cotizar calendarios",
+    wa: "Hola, quiero cotizar calendarios personalizados.",
+    acento: "#F47A20",
+    bg: "from-[#F47A20] to-[#E91E8F]",
+  },
+];
+
+// ── Componente de tarjeta ─────────────────────────────────────────────────────
+function TarjetaServicio({ s }: { s: Servicio }) {
+  return (
+    <div className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#E91E8F]/40 hover:shadow-xl hover:shadow-[#E91E8F]/8 transition-all duration-300 hover:-translate-y-1 flex flex-col">
+      <div className={`relative h-36 bg-gradient-to-br ${s.bg} overflow-hidden flex items-center justify-center`}>
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
+            backgroundSize: "14px 14px",
+          }}
+        />
+        <p className="relative z-10 text-white/20 font-black text-4xl uppercase tracking-widest text-center px-2 leading-tight placeholder-text">
+          {s.titulo.split(" ")[0]}
+        </p>
+        <span
+          className="absolute bottom-3 left-3 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full text-white"
+          style={{ background: s.acento }}
+        >
+          {s.titulo}
+        </span>
+      </div>
+      <div className="p-4 flex flex-col flex-1 bg-white">
+        <h3 className="text-[#2D3E9F] font-black text-sm mb-1.5 leading-tight">{s.titulo}</h3>
+        <p className="text-gray-500 text-xs leading-relaxed flex-1">{s.descripcion}</p>
+        <a
+          href={waLink(s.wa)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 flex items-center justify-center gap-2 bg-[#2D3E9F] hover:bg-[#E91E8F] text-white font-bold text-xs py-2 px-3 rounded-xl transition-colors duration-200"
+        >
+          <WAIcon />
+          {s.boton}
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// ── Separador de categoría ────────────────────────────────────────────────────
+function CategoriaHeader({ label, color }: { label: string; color: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-6 mt-14 first:mt-0">
+      <span className="h-0.5 w-8 rounded-full" style={{ background: color }} />
+      <span className="font-black text-xs uppercase tracking-widest" style={{ color }}>
+        {label}
+      </span>
+      <span className="h-0.5 flex-1 bg-gray-200 rounded-full" />
+    </div>
+  );
+}
+
+// ── Sección principal ─────────────────────────────────────────────────────────
 export default function Servicios() {
   return (
     <section id="servicios" className="bg-white py-20 px-4">
       <div className="max-w-6xl mx-auto">
+
         {/* Encabezado */}
         <div className="text-center mb-14">
           <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
@@ -119,72 +281,37 @@ export default function Servicios() {
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
             Todo lo que necesitas para{" "}
-            <span className="text-[#E91E8F]">promocionar tu negocio</span> y{" "}
-            <span className="text-[#47B7E8]">presentar mejor tus productos</span>
+            <span className="text-[#E91E8F]">tu negocio,</span>{" "}
+            <span className="text-[#47B7E8]">tus productos</span>{" "}
+            y tu{" "}
+            <span className="text-[#7DBA2F]">empresa</span>
           </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-            También trabajamos con{" "}
-            <strong className="text-[#2D3E9F]">
-              productores locales, marcas de alimentos, cecinas, vinos y conservas
-            </strong>{" "}
-            que necesitan etiquetas y material gráfico para vender mejor.
+          <p className="text-gray-500 max-w-2xl mx-auto text-base">
+            Publicidad, etiquetas, fotocopias, impresiones, anillados y mucho más.
+            Atención rápida por WhatsApp desde Chillán.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {SERVICIOS.map((s) => (
-            <div
-              key={s.titulo}
-              className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#E91E8F]/40 hover:shadow-xl hover:shadow-[#E91E8F]/8 transition-all duration-300 hover:-translate-y-1 flex flex-col"
-            >
-              {/* Área de imagen / placeholder */}
-              <div
-                className={`relative h-44 bg-gradient-to-br ${s.bg} overflow-hidden flex items-center justify-center`}
-              >
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
-                    backgroundSize: "14px 14px",
-                  }}
-                />
-                <p className="relative z-10 text-white/20 font-black text-4xl uppercase tracking-widest text-center px-2 leading-tight placeholder-text">
-                  {s.titulo.split(" ")[0]}
-                </p>
-                <span
-                  className="absolute bottom-3 left-3 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full text-white"
-                  style={{ background: s.acento }}
-                >
-                  {s.titulo}
-                </span>
-              </div>
+        {/* ── Categoría 1 ── */}
+        <CategoriaHeader label="Publicidad y emprendimientos" color="#E91E8F" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {PUBLICIDAD.map((s) => <TarjetaServicio key={s.titulo} s={s} />)}
+        </div>
 
-              {/* Cuerpo */}
-              <div className="p-5 flex flex-col flex-1 bg-white">
-                <h3 className="text-[#2D3E9F] font-black text-base mb-2 leading-tight">
-                  {s.titulo}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed flex-1">
-                  {s.descripcion}
-                </p>
-                <a
-                  href={waLink(s.wa)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 flex items-center justify-center gap-2 bg-[#2D3E9F] hover:bg-[#E91E8F] text-white font-bold text-sm py-2.5 px-4 rounded-xl transition-colors duration-200"
-                >
-                  <WAIcon />
-                  Quiero algo así
-                </a>
-              </div>
-            </div>
-          ))}
+        {/* ── Categoría 2 ── */}
+        <CategoriaHeader label="Etiquetas y productos" color="#7DBA2F" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {ETIQUETAS.map((s) => <TarjetaServicio key={s.titulo} s={s} />)}
+        </div>
+
+        {/* ── Categoría 3 ── */}
+        <CategoriaHeader label="Oficina, colegios y empresas" color="#47B7E8" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {OFICINA.map((s) => <TarjetaServicio key={s.titulo} s={s} />)}
         </div>
 
         {/* CTA inferior */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-14">
           <p className="text-gray-500 mb-4 text-sm">
             ¿No ves lo que necesitas? Escríbenos y te orientamos.
           </p>

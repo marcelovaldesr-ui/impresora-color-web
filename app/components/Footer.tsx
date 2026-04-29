@@ -16,6 +16,8 @@ const INFO = {
 const SERVICIOS_FOOTER = [
   "Flyers", "Stickers", "Tarjetas", "Pendones",
   "Menús", "Imanes", "Etiquetas", "Packaging",
+  "Fotocopias", "Impresiones", "Anillados",
+  "Diplomas", "Calendarios", "Carpetas corporativas",
 ];
 
 export default function Footer() {
