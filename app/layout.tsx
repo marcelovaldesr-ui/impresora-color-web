@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Flyers, stickers, tarjetas, pendones, menús, imanes y etiquetas para productos. Atención por WhatsApp. Arauco 1060, Chillán.",
     type: "website",
     locale: "es_CL",
-    url: "https://www.impresoracolor.cl",
+    url: "https://www.impresoracolor.cl/",
     siteName: "Impresora Color Ltda",
   },
   twitter: {
@@ -35,7 +35,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Impresora Color Ltda",
-  url: "https://www.impresoracolor.cl",
+  url: "https://www.impresoracolor.cl/",
   telephone: "+56998441157",
   address: {
     "@type": "PostalAddress",
