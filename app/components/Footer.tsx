@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 // EDITABLE: Cambia dirección, teléfono, Instagram y links aquí
 const INFO = {
   nombre:       "Impresora Color Ltda",
@@ -45,10 +47,14 @@ export default function Footer() {
         {/* Columna empresa */}
         <div className="lg:col-span-2">
           {/* Logo */}
-          <div className="flex items-center gap-1 mb-5">
-            <span className="text-white font-black text-xl">Impresora</span>
-            <span className="text-[#F72585] font-black text-xl">Color</span>
-            <span className="text-white/40 font-semibold text-xs ml-0.5">Ltda.</span>
+          <div className="mb-5">
+            <Image
+              src="/brand/logo-impresora-color.jpg.jpeg"
+              alt="Impresora Color Ltda"
+              width={60}
+              height={60}
+              className="rounded-xl object-cover"
+            />
           </div>
           <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
             Imprenta en Chillán. Flyers, stickers, tarjetas, pendones, menús,

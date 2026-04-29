@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 // EDITABLE: Cambia textos del hero, links y frase de confianza aquí
 const WHATSAPP_URL =
   "https://wa.me/56998441157?text=Hola%2C%20quiero%20cotizar%20un%20trabajo%20de%20imprenta";
@@ -81,9 +83,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Columna derecha: mockups de productos impresos */}
-        <div className="hidden lg:block relative h-[500px] select-none" aria-hidden>
-          <PrintMockups />
+        {/* Columna derecha: imagen de marca */}
+        <div className="hidden lg:flex items-center justify-center relative h-[500px]">
+          <Image
+            src="/brand/banner-impresora-color.jpg.jpeg"
+            alt="Impresora Color Ltda - Imprenta en Chillán"
+            width={1024}
+            height={682}
+            className="w-full h-full object-contain rounded-2xl drop-shadow-2xl"
+            priority
+          />
         </div>
       </div>
 
@@ -106,122 +115,6 @@ export default function Hero() {
   );
 }
 
-/* Composición visual de productos impresos simulados */
-function PrintMockups() {
-  return (
-    <div className="relative w-full h-full">
-      {/* Luz central */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-[#F72585]/20 rounded-full blur-3xl" />
-
-      {/* FLYER — izquierda arriba */}
-      <div className="absolute top-4 left-8 w-36 h-52 bg-white rounded-xl shadow-2xl shadow-black/50 overflow-hidden"
-        style={{ transform: "rotate(-5deg)" }}>
-        <div className="h-14 bg-gradient-to-r from-[#F72585] to-[#25B6F7]" />
-        <div className="p-3 space-y-2">
-          <div className="h-2.5 bg-[#0B1B4D] rounded w-3/4" />
-          <div className="h-1.5 bg-gray-200 rounded" />
-          <div className="h-1.5 bg-gray-200 rounded w-5/6" />
-          <div className="h-1.5 bg-gray-100 rounded w-2/3" />
-          <div className="mt-4 h-8 bg-[#F9C80E] rounded-full flex items-center justify-center">
-            <div className="h-1.5 bg-[#0B1B4D]/60 rounded w-16" />
-          </div>
-        </div>
-        <div className="absolute bottom-2 right-2 text-[8px] font-bold text-gray-400 uppercase tracking-wider">Flyer</div>
-      </div>
-
-      {/* TARJETA DE PRESENTACIÓN — arriba derecha */}
-      <div className="absolute top-12 right-8 w-44 h-26 bg-[#0B1B4D] rounded-xl shadow-2xl shadow-black/50 p-3.5 border border-[#F72585]/30"
-        style={{ transform: "rotate(5deg)" }}>
-        <div className="flex items-center gap-2.5 mb-2.5">
-          <div className="w-9 h-9 bg-[#F72585] rounded-xl flex items-center justify-center shrink-0">
-            <div className="w-5 h-5 bg-white/90 rounded-md" />
-          </div>
-          <div>
-            <div className="h-2.5 bg-white rounded w-20 mb-1.5" />
-            <div className="h-1.5 bg-[#25B6F7] rounded w-14" />
-          </div>
-        </div>
-        <div className="space-y-1.5 mt-3">
-          <div className="h-1.5 bg-white/20 rounded w-24" />
-          <div className="h-1.5 bg-white/20 rounded w-18" />
-        </div>
-        <div className="absolute bottom-2 right-3 text-[8px] font-bold text-[#25B6F7]/60 uppercase tracking-wider">Tarjeta</div>
-      </div>
-
-      {/* STICKER — centro-derecha */}
-      <div className="absolute top-[38%] right-10 w-28 h-28 bg-[#F9C80E] rounded-full shadow-2xl shadow-black/50 flex items-center justify-center"
-        style={{ transform: "rotate(8deg)" }}>
-        <div className="text-center">
-          <div className="w-10 h-10 bg-[#0B1B4D] rounded-full mx-auto mb-1.5 flex items-center justify-center">
-            <div className="w-5 h-5 bg-[#F72585] rounded-full" />
-          </div>
-          <div className="text-[#0B1B4D] font-black text-[10px] leading-tight tracking-wide">TU MARCA</div>
-        </div>
-        <div className="absolute -bottom-4 text-[8px] font-bold text-[#F9C80E] uppercase tracking-wider">Sticker</div>
-      </div>
-
-      {/* ETIQUETA — centro */}
-      <div className="absolute top-[28%] left-[30%] w-28 h-40 bg-white rounded-2xl shadow-2xl shadow-black/50 overflow-hidden"
-        style={{ transform: "rotate(2deg)" }}>
-        <div className="h-20 bg-[#0B1B4D] flex items-center justify-center relative">
-          <div className="text-center z-10">
-            <div className="text-[#F9C80E] font-black text-sm leading-none">MARCA</div>
-            <div className="text-white/70 text-[9px] mt-1 tracking-widest">PRODUCTO</div>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 h-3 bg-[#F72585]/40" />
-        </div>
-        <div className="p-2.5 space-y-1.5">
-          <div className="h-1.5 bg-gray-200 rounded" />
-          <div className="h-1.5 bg-gray-100 rounded w-4/5" />
-          <div className="h-1.5 bg-gray-100 rounded w-3/5" />
-          <div className="h-4 bg-[#F72585]/20 rounded-full mt-2" />
-        </div>
-        <div className="absolute bottom-1.5 right-2 text-[8px] font-bold text-[#F72585] uppercase tracking-wider">Etiqueta</div>
-      </div>
-
-      {/* PENDÓN — derecha-centro */}
-      <div className="absolute top-[12%] right-[32%] w-16 h-60 bg-white rounded-xl shadow-2xl shadow-black/50 overflow-hidden"
-        style={{ transform: "rotate(3deg)" }}>
-        <div className="h-full bg-gradient-to-b from-[#F72585] via-[#0B1B4D] to-[#0B1B4D] p-2.5 flex flex-col items-center justify-between">
-          <div className="w-full space-y-1.5 mt-2">
-            <div className="h-1.5 bg-white/50 rounded" />
-            <div className="h-1.5 bg-white/50 rounded" />
-            <div className="h-1.5 bg-white/30 rounded w-3/4 mx-auto" />
-          </div>
-          <div className="w-10 h-10 bg-[#F9C80E] rounded-full flex items-center justify-center">
-            <div className="w-5 h-5 bg-[#0B1B4D] rounded-full" />
-          </div>
-          <div className="w-full h-8 bg-[#25B6F7]/60 rounded-lg" />
-        </div>
-        <div className="absolute -bottom-4 text-[8px] font-bold text-[#25B6F7] uppercase tracking-wider text-center w-full">Pendón</div>
-      </div>
-
-      {/* MENÚ — abajo izquierda */}
-      <div className="absolute bottom-16 left-12 w-48 h-28 bg-white rounded-xl shadow-2xl shadow-black/50 overflow-hidden"
-        style={{ transform: "rotate(-3deg)" }}>
-        <div className="h-9 bg-[#25B6F7] flex items-center px-3 gap-2">
-          <div className="w-2 h-2 bg-white rounded-full" />
-          <div className="h-1.5 bg-white/80 rounded w-16" />
-        </div>
-        <div className="p-3 grid grid-cols-2 gap-2">
-          <div className="space-y-1.5">
-            <div className="h-1.5 bg-gray-200 rounded" />
-            <div className="h-1.5 bg-gray-100 rounded w-4/5" />
-            <div className="h-1.5 bg-gray-200 rounded mt-1" />
-            <div className="h-1.5 bg-gray-100 rounded w-3/5" />
-          </div>
-          <div className="space-y-1.5">
-            <div className="h-1.5 bg-gray-200 rounded" />
-            <div className="h-1.5 bg-gray-100 rounded w-3/4" />
-            <div className="h-1.5 bg-gray-200 rounded mt-1" />
-            <div className="h-1.5 bg-gray-100 rounded" />
-          </div>
-        </div>
-        <div className="absolute bottom-1.5 right-2 text-[8px] font-bold text-[#25B6F7] uppercase tracking-wider">Menú</div>
-      </div>
-    </div>
-  );
-}
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (

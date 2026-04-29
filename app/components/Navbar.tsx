@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 // EDITABLE: Cambia los enlaces si cambia el número o redes
 const WHATSAPP_URL =
@@ -25,7 +26,15 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
         {/* Logo / Marca */}
-        <a href="#hero" className="flex items-center gap-1 select-none">
+        <a href="#hero" className="flex items-center gap-2.5 select-none">
+          <Image
+            src="/brand/logo-impresora-color.jpg.jpeg"
+            alt="Impresora Color Ltda"
+            width={40}
+            height={40}
+            className="rounded-md object-cover shrink-0"
+            priority
+          />
           <span
             className={`font-black text-lg tracking-tight transition-colors ${
               scrolled ? "text-[#0B1B4D]" : "text-white"
@@ -33,15 +42,8 @@ export default function Navbar() {
           >
             Impresora
           </span>
-          <span className="font-black text-lg text-[#F72585] tracking-tight">
+          <span className="font-black text-lg text-[#F72585] tracking-tight -ml-1.5">
             Color
-          </span>
-          <span
-            className={`font-semibold text-xs ml-0.5 transition-colors ${
-              scrolled ? "text-gray-400" : "text-white/60"
-            }`}
-          >
-            Ltda.
           </span>
         </a>
 
