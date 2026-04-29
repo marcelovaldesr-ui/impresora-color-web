@@ -3,36 +3,36 @@ const WA_ETIQUETAS =
   "https://wa.me/56998441157?text=Hola%2C%20quiero%20cotizar%20etiquetas%20para%20mi%20producto.%20Necesito%20orientaci%C3%B3n%20sobre%20tama%C3%B1o%2C%20material%20y%20cantidad.";
 
 const TIPOS = [
-  { icon: "🥩", label: "Etiquetas para cecinas",       color: "bg-[#F72585]/10 border-[#F72585]/30 text-[#F72585]" },
-  { icon: "🍷", label: "Etiquetas para vinos",          color: "bg-[#0B1B4D]/10 border-[#0B1B4D]/20 text-[#0B1B4D]" },
-  { icon: "🫙", label: "Etiquetas para conservas",      color: "bg-[#25B6F7]/10 border-[#25B6F7]/30 text-[#25B6F7]" },
-  { icon: "🍯", label: "Etiquetas para miel",           color: "bg-[#F9C80E]/20 border-[#F9C80E]/40 text-[#b8900b]" },
-  { icon: "🥫", label: "Etiquetas para alimentos",      color: "bg-[#F72585]/10 border-[#F72585]/30 text-[#F72585]" },
-  { icon: "🧴", label: "Adhesivos para envases",        color: "bg-[#25B6F7]/10 border-[#25B6F7]/30 text-[#25B6F7]" },
-  { icon: "📦", label: "Stickers para packaging",       color: "bg-[#0B1B4D]/10 border-[#0B1B4D]/20 text-[#0B1B4D]" },
-  { icon: "🌿", label: "Material para productores locales", color: "bg-[#F9C80E]/20 border-[#F9C80E]/40 text-[#b8900b]" },
+  { icon: "🥩", label: "Etiquetas para cecinas",           color: "bg-[#E91E8F]/10 border-[#E91E8F]/30 text-[#E91E8F]" },
+  { icon: "🍷", label: "Etiquetas para vinos",              color: "bg-[#2D3E9F]/10 border-[#2D3E9F]/20 text-[#2D3E9F]" },
+  { icon: "🫙", label: "Etiquetas para conservas",          color: "bg-[#47B7E8]/10 border-[#47B7E8]/30 text-[#47B7E8]" },
+  { icon: "🍯", label: "Etiquetas para miel",               color: "bg-[#F5C51B]/20 border-[#F5C51B]/40 text-[#c49700]" },
+  { icon: "🥫", label: "Etiquetas para alimentos",          color: "bg-[#F47A20]/10 border-[#F47A20]/30 text-[#d4600a]" },
+  { icon: "🧴", label: "Adhesivos para envases",            color: "bg-[#47B7E8]/10 border-[#47B7E8]/30 text-[#47B7E8]" },
+  { icon: "📦", label: "Stickers para packaging",           color: "bg-[#7DBA2F]/10 border-[#7DBA2F]/30 text-[#5d8c23]" },
+  { icon: "🌿", label: "Material para productores locales", color: "bg-[#7DBA2F]/10 border-[#7DBA2F]/30 text-[#5d8c23]" },
 ];
 
 export default function Etiquetas() {
   return (
-    <section id="etiquetas" className="bg-[#F5F7FA] py-20 px-4 relative overflow-hidden">
+    <section id="etiquetas" className="bg-[#F6F8FC] py-20 px-4 relative overflow-hidden">
       {/* Decoración */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#F72585]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#25B6F7]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-64 h-64 bg-[#E91E8F]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#47B7E8]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Encabezado */}
         <div className="text-center mb-14">
-          <span className="text-[#F72585] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
             Productos locales
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0B1B4D] mt-2 mb-5">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-5">
             Etiquetas para productos que{" "}
-            <span className="text-[#F72585]">necesitan verse profesionales</span>
+            <span className="text-[#E91E8F]">necesitan verse profesionales</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
             Trabajamos con{" "}
-            <strong className="text-[#0B1B4D]">
+            <strong className="text-[#2D3E9F]">
               cecinas, vinos, conservas, miel, alimentos, productos gourmet
             </strong>{" "}
             y marcas locales que necesitan etiquetas, adhesivos y packaging con
@@ -48,25 +48,25 @@ export default function Etiquetas() {
               className={`${t.color} border rounded-2xl p-5 text-center hover:-translate-y-0.5 transition-all duration-200 bg-white shadow-sm hover:shadow-md`}
             >
               <div className="text-3xl mb-3">{t.icon}</div>
-              <p className="font-bold text-sm leading-tight text-[#0B1B4D]">{t.label}</p>
+              <p className="font-bold text-sm leading-tight text-[#2D3E9F]">{t.label}</p>
             </div>
           ))}
         </div>
 
         {/* Franja CTA */}
-        <div className="bg-[#0B1B4D] rounded-3xl p-8 sm:p-10 relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#2D3E9F] to-[#1a2880] rounded-3xl p-8 sm:p-10 relative overflow-hidden">
           {/* Decoración */}
-          <div className="absolute top-0 right-0 w-48 h-48 bg-[#F72585]/20 rounded-full blur-2xl pointer-events-none" />
-          <div className="absolute bottom-0 left-10 w-40 h-40 bg-[#25B6F7]/20 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-48 h-48 bg-[#E91E8F]/20 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute bottom-0 left-10 w-40 h-40 bg-[#47B7E8]/20 rounded-full blur-2xl pointer-events-none" />
 
           <div className="relative z-10 text-center">
-            <div className="inline-flex items-center gap-2 bg-[#F9C80E]/20 border border-[#F9C80E]/40 text-[#F9C80E] text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 bg-[#F5C51B]/20 border border-[#F5C51B]/40 text-[#F5C51B] text-xs font-bold px-3 py-1.5 rounded-full mb-5 uppercase tracking-widest">
               Para productores y marcas locales
             </div>
             <p className="text-white text-2xl font-black mb-3">
               Dale mejor presentación a tus productos
             </p>
-            <p className="text-gray-400 mb-8 max-w-lg mx-auto">
+            <p className="text-blue-200 mb-8 max-w-lg mx-auto">
               Vende con una imagen más profesional. Te asesoramos en formato, tamaño,
               cantidad y material.
             </p>
@@ -74,7 +74,7 @@ export default function Etiquetas() {
               href={WA_ETIQUETAS}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#F72585] hover:bg-[#d4166c] active:scale-95 text-white font-black text-lg px-8 py-4 rounded-full shadow-xl shadow-[#F72585]/30 transition-all duration-200"
+              className="inline-flex items-center gap-3 bg-[#E91E8F] hover:bg-[#c8186e] active:scale-95 text-white font-black text-lg px-8 py-4 rounded-full shadow-xl shadow-[#E91E8F]/30 transition-all duration-200"
             >
               <WAIcon />
               Cotizar etiquetas para mi producto

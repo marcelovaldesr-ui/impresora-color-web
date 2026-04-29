@@ -18,10 +18,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white shadow-lg shadow-black/10 border-b border-gray-100"
-          : "bg-[#0B1B4D]"
+      className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${
+        scrolled ? "shadow-md border-b border-gray-100" : "shadow-sm"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
@@ -35,14 +33,10 @@ export default function Navbar() {
             className="rounded-md object-cover shrink-0"
             priority
           />
-          <span
-            className={`font-black text-lg tracking-tight transition-colors ${
-              scrolled ? "text-[#0B1B4D]" : "text-white"
-            }`}
-          >
+          <span className="font-black text-lg tracking-tight text-[#2D3E9F]">
             Impresora
           </span>
-          <span className="font-black text-lg text-[#F72585] tracking-tight -ml-1.5">
+          <span className="font-black text-lg text-[#E91E8F] tracking-tight -ml-1.5">
             Color
           </span>
         </a>
@@ -60,9 +54,7 @@ export default function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className={`hover:text-[#F72585] transition-colors ${
-                scrolled ? "text-gray-600" : "text-white/80"
-              }`}
+              className="text-gray-600 hover:text-[#E91E8F] transition-colors"
             >
               {item.label}
             </a>
@@ -74,7 +66,7 @@ export default function Navbar() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-2 bg-[#F72585] hover:bg-[#d4166c] text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors shadow-lg shadow-[#F72585]/30"
+          className="hidden md:flex items-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25"
         >
           <WhatsAppIcon />
           Cotizar ahora
@@ -82,9 +74,7 @@ export default function Navbar() {
 
         {/* Menú móvil botón */}
         <button
-          className={`md:hidden p-2 rounded-lg ${
-            scrolled ? "text-[#0B1B4D]" : "text-white"
-          }`}
+          className="md:hidden p-2 rounded-lg text-[#2D3E9F]"
           onClick={() => setOpen(!open)}
           aria-label="Abrir menú"
         >
@@ -113,7 +103,7 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="flex items-center py-3.5 text-gray-700 hover:text-[#F72585] border-b border-gray-100 text-sm font-medium transition-colors"
+              className="flex items-center py-3.5 text-gray-700 hover:text-[#E91E8F] border-b border-gray-100 text-sm font-medium transition-colors"
             >
               {item.label}
             </a>
@@ -122,7 +112,7 @@ export default function Navbar() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 mt-4 bg-[#F72585] text-white font-bold py-3.5 rounded-full text-sm"
+            className="flex items-center justify-center gap-2 mt-4 bg-[#E91E8F] text-white font-bold py-3.5 rounded-full text-sm"
           >
             <WhatsAppIcon />
             Cotizar por WhatsApp

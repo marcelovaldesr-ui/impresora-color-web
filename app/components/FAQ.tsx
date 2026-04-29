@@ -45,12 +45,12 @@ export default function FAQ() {
       <div className="max-w-3xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-14">
-          <span className="text-[#F72585] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
             Preguntas frecuentes
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0B1B4D] mt-2 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
             ¿Tienes dudas?{" "}
-            <span className="text-[#F72585]">Aquí las respondemos</span>
+            <span className="text-[#E91E8F]">Aquí las respondemos</span>
           </h2>
         </div>
 
@@ -61,7 +61,7 @@ export default function FAQ() {
               key={i}
               className={`bg-white rounded-2xl overflow-hidden border transition-all duration-200 ${
                 abierto === i
-                  ? "border-[#F72585]/40 shadow-lg shadow-[#F72585]/5"
+                  ? "border-[#E91E8F]/40 shadow-lg shadow-[#E91E8F]/5"
                   : "border-gray-200 hover:border-gray-300"
               }`}
             >
@@ -69,13 +69,13 @@ export default function FAQ() {
                 className="w-full flex items-center justify-between p-5 text-left gap-4"
                 onClick={() => setAbierto(abierto === i ? null : i)}
               >
-                <span className="text-[#0B1B4D] font-bold text-sm sm:text-base leading-snug">
+                <span className="text-[#2D3E9F] font-bold text-sm sm:text-base leading-snug">
                   {item.q}
                 </span>
                 <span
                   className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 ${
                     abierto === i
-                      ? "bg-[#F72585] text-white rotate-180"
+                      ? "bg-[#E91E8F] text-white rotate-180"
                       : "bg-gray-100 text-gray-500"
                   }`}
                 >
@@ -103,7 +103,7 @@ export default function FAQ() {
             href="https://wa.me/56998441157?text=Hola%2C%20tengo%20una%20consulta%20sobre%20sus%20servicios."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#F72585] hover:bg-[#d4166c] text-white font-bold px-8 py-4 rounded-full transition-colors shadow-lg shadow-[#F72585]/25"
+            className="inline-flex items-center gap-2 bg-[#E91E8F] hover:bg-[#d4166c] text-white font-bold px-8 py-4 rounded-full transition-colors shadow-lg shadow-[#E91E8F]/25"
           >
             <WAIcon />
             Preguntarnos por WhatsApp

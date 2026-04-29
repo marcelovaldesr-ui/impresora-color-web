@@ -20,9 +20,9 @@ const SERVICIOS_FOOTER = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0B1B4D]">
+    <footer className="bg-[#2D3E9F]">
       {/* Banda CTA superior */}
-      <div className="bg-[#F72585] py-12 px-4">
+      <div className="bg-[#E91E8F] py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-white font-black text-2xl sm:text-3xl mb-2">
             ¿Listo para mejorar la imagen de tu negocio?
@@ -34,7 +34,7 @@ export default function Footer() {
             href={INFO.waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-white text-[#F72585] hover:bg-gray-100 font-black text-lg px-8 py-4 rounded-full shadow-xl transition-colors"
+            className="inline-flex items-center gap-3 bg-white text-[#E91E8F] hover:bg-gray-100 font-black text-lg px-8 py-4 rounded-full shadow-xl transition-colors"
           >
             <WAIcon className="w-6 h-6" />
             Cotizar por WhatsApp
@@ -81,7 +81,7 @@ export default function Footer() {
               href={INFO.waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 hover:bg-[#F72585] border border-white/10 hover:border-[#F72585] rounded-xl flex items-center justify-center transition-all duration-200"
+              className="w-10 h-10 bg-white/10 hover:bg-[#E91E8F] border border-white/10 hover:border-[#E91E8F] rounded-xl flex items-center justify-center transition-all duration-200"
               aria-label="WhatsApp"
             >
               <WAIcon className="w-5 h-5 text-white" />
@@ -90,7 +90,7 @@ export default function Footer() {
               href={INFO.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 hover:bg-[#F72585] border border-white/10 hover:border-[#F72585] rounded-xl flex items-center justify-center transition-all duration-200"
+              className="w-10 h-10 bg-white/10 hover:bg-[#E91E8F] border border-white/10 hover:border-[#E91E8F] rounded-xl flex items-center justify-center transition-all duration-200"
               aria-label="Instagram"
             >
               <IGIcon className="w-5 h-5 text-white" />
@@ -99,7 +99,7 @@ export default function Footer() {
               href={INFO.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 hover:bg-[#F72585] border border-white/10 hover:border-[#F72585] rounded-xl flex items-center justify-center transition-all duration-200"
+              className="w-10 h-10 bg-white/10 hover:bg-[#E91E8F] border border-white/10 hover:border-[#E91E8F] rounded-xl flex items-center justify-center transition-all duration-200"
               aria-label="Google Maps"
             >
               <MapIcon className="w-5 h-5 text-white" />
@@ -117,9 +117,9 @@ export default function Footer() {
               <li key={s}>
                 <a
                   href="#servicios"
-                  className="text-gray-400 hover:text-[#F72585] text-sm transition-colors flex items-center gap-2"
+                  className="text-gray-400 hover:text-[#E91E8F] text-sm transition-colors flex items-center gap-2"
                 >
-                  <span className="w-1 h-1 bg-[#F72585] rounded-full shrink-0" />
+                  <span className="w-1 h-1 bg-[#E91E8F] rounded-full shrink-0" />
                   {s}
                 </a>
               </li>
@@ -140,7 +140,7 @@ export default function Footer() {
                 href={INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-[#F72585] text-sm transition-colors"
+                className="text-gray-300 hover:text-[#E91E8F] text-sm transition-colors"
               >
                 {INFO.direccion}
               </a>
@@ -151,7 +151,7 @@ export default function Footer() {
                 href={INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#25B6F7] hover:text-[#F72585] text-sm transition-colors font-medium"
+                className="text-[#47B7E8] hover:text-[#E91E8F] text-sm transition-colors font-medium"
               >
                 Encuéntranos en Google Maps →
               </a>
@@ -163,7 +163,7 @@ export default function Footer() {
                 href={INFO.waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-[#F72585] text-sm transition-colors"
+                className="text-gray-300 hover:text-[#E91E8F] text-sm transition-colors"
               >
                 {INFO.whatsapp}
               </a>
@@ -175,7 +175,7 @@ export default function Footer() {
                 href={INFO.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-[#F72585] text-sm transition-colors"
+                className="text-gray-300 hover:text-[#E91E8F] text-sm transition-colors"
               >
                 {INFO.instagram}
               </a>

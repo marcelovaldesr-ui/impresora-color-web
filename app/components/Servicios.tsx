@@ -1,8 +1,4 @@
 // EDITABLE: Agrega, quita o cambia servicios en el array SERVICIOS
-// Para agregar imagen real a una tarjeta:
-//   1. Copia la imagen a public/images/<nombre>.jpg
-//   2. Reemplaza el componente <ProductVisual> de esa tarjeta por:
-//      <img src="/images/<nombre>.jpg" alt="..." className="w-full h-full object-cover" />
 
 const PHONE = "56998441157";
 function waLink(msg: string) {
@@ -10,105 +6,105 @@ function waLink(msg: string) {
 }
 
 type Servicio = {
-  imagen: string;      // Ruta futura: public/images/<imagen>.jpg
+  imagen: string;
   titulo: string;
   descripcion: string;
   boton: string;
   wa: string;
-  acento: string;      // Color de acento del header
-  bg: string;          // Color de fondo del header
+  acento: string;
+  bg: string;
 };
 
 const SERVICIOS: Servicio[] = [
   {
-    imagen: "flyers",                           // → public/images/flyers.jpg
+    imagen: "flyers",
     titulo: "Flyers publicitarios",
     descripcion: "Diseñados para captar atención y generar más ventas.",
     boton: "Cotizar flyers",
     wa: "Hola, quiero cotizar flyers publicitarios.",
-    acento: "#F72585",
-    bg: "from-[#F72585] to-[#0B1B4D]",
+    acento: "#E91E8F",
+    bg: "from-[#E91E8F] to-[#2D3E9F]",
   },
   {
-    imagen: "stickers",                         // → public/images/stickers.jpg
+    imagen: "stickers",
     titulo: "Stickers personalizados",
     descripcion: "Para tu marca, producto o emprendimiento.",
     boton: "Cotizar stickers",
     wa: "Hola, quiero cotizar stickers personalizados.",
-    acento: "#25B6F7",
-    bg: "from-[#25B6F7] to-[#0B1B4D]",
+    acento: "#47B7E8",
+    bg: "from-[#47B7E8] to-[#2D3E9F]",
   },
   {
-    imagen: "tarjetas",                         // → public/images/tarjetas.jpg
+    imagen: "tarjetas",
     titulo: "Tarjetas de presentación",
     descripcion: "Primera impresión profesional para tu negocio.",
     boton: "Cotizar tarjetas",
     wa: "Hola, quiero cotizar tarjetas de presentación.",
-    acento: "#F9C80E",
-    bg: "from-[#0B1B4D] to-[#1a2d6e]",
+    acento: "#2D3E9F",
+    bg: "from-[#2D3E9F] to-[#3A4EB0]",
   },
   {
-    imagen: "pendones",                         // → public/images/pendones.jpg
+    imagen: "pendones",
     titulo: "Pendones",
     descripcion: "Visibilidad total en ferias, locales y eventos.",
     boton: "Cotizar pendones",
     wa: "Hola, quiero cotizar un pendón.",
-    acento: "#F72585",
-    bg: "from-[#0B1B4D] to-[#F72585]/60",
+    acento: "#F47A20",
+    bg: "from-[#F47A20] to-[#E91E8F]",
   },
   {
-    imagen: "menus",                            // → public/images/menus.jpg
+    imagen: "menus",
     titulo: "Menús para locales",
     descripcion: "Presentación profesional para tu restaurante o cafetería.",
     boton: "Cotizar menús",
     wa: "Hola, quiero cotizar menús para mi local.",
-    acento: "#25B6F7",
-    bg: "from-[#25B6F7] to-[#0B1B4D]",
+    acento: "#47B7E8",
+    bg: "from-[#47B7E8] to-[#7DBA2F]",
   },
   {
-    imagen: "imanes",                           // → public/images/imanes.jpg
+    imagen: "imanes",
     titulo: "Imanes publicitarios",
     descripcion: "Tu marca presente todos los días.",
     boton: "Cotizar imanes",
     wa: "Hola, quiero cotizar imanes publicitarios.",
-    acento: "#F9C80E",
-    bg: "from-[#F9C80E] to-[#F72585]",
+    acento: "#F5C51B",
+    bg: "from-[#F5C51B] to-[#F47A20]",
   },
   {
-    imagen: "etiquetas-productos",              // → public/images/etiquetas-productos.jpg
+    imagen: "etiquetas-productos",
     titulo: "Etiquetas para productos",
     descripcion: "Para alimentos, envases y marcas locales.",
     boton: "Cotizar etiquetas",
     wa: "Hola, quiero cotizar etiquetas para productos. Tengo un emprendimiento y necesito orientación.",
-    acento: "#F72585",
-    bg: "from-[#F72585] to-[#0B1B4D]",
+    acento: "#E91E8F",
+    bg: "from-[#E91E8F] to-[#2D3E9F]",
   },
   {
-    imagen: "etiquetas-cecinas",                // → public/images/etiquetas-cecinas.jpg
+    imagen: "etiquetas-cecinas",
     titulo: "Etiquetas para cecinas",
     descripcion: "Presentación profesional para cortes y embutidos.",
     boton: "Cotizar etiquetas cecinas",
     wa: "Hola, quiero cotizar etiquetas para cecinas.",
-    acento: "#F9C80E",
-    bg: "from-[#0B1B4D] to-[#F9C80E]/50",
+    acento: "#F47A20",
+    bg: "from-[#F47A20] to-[#2D3E9F]",
   },
   {
-    imagen: "etiquetas-vinos",                  // → public/images/etiquetas-vinos.jpg
+    imagen: "etiquetas-vinos",
     titulo: "Etiquetas para vinos",
     descripcion: "Diseños que dan valor y carácter a tu botella.",
     boton: "Cotizar etiquetas vinos",
     wa: "Hola, quiero cotizar etiquetas para vinos.",
-    acento: "#25B6F7",
-    bg: "from-[#0B1B4D] to-[#25B6F7]/50",
+    acento: "#47B7E8",
+    bg: "from-[#2D3E9F] to-[#47B7E8]",
   },
   {
-    imagen: "packaging",                        // → public/images/packaging.jpg
+    imagen: "packaging",
     titulo: "Stickers para packaging",
     descripcion: "Adhesivos para bolsas, cajas y empaques de marca.",
     boton: "Cotizar packaging",
     wa: "Hola, quiero cotizar stickers para packaging.",
-    acento: "#F72585",
-    bg: "from-[#F72585] to-[#25B6F7]",
+    acento: "#7DBA2F",
+    bg: "from-[#7DBA2F] to-[#47B7E8]",
   },
 ];
 
@@ -118,17 +114,17 @@ export default function Servicios() {
       <div className="max-w-6xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-14">
-          <span className="text-[#F72585] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
             Servicios
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0B1B4D] mt-2 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
             Todo lo que necesitas para{" "}
-            <span className="text-[#F72585]">promocionar tu negocio</span> y{" "}
-            <span className="text-[#25B6F7]">presentar mejor tus productos</span>
+            <span className="text-[#E91E8F]">promocionar tu negocio</span> y{" "}
+            <span className="text-[#47B7E8]">presentar mejor tus productos</span>
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">
             También trabajamos con{" "}
-            <strong className="text-[#0B1B4D]">
+            <strong className="text-[#2D3E9F]">
               productores locales, marcas de alimentos, cecinas, vinos y conservas
             </strong>{" "}
             que necesitan etiquetas y material gráfico para vender mejor.
@@ -140,22 +136,12 @@ export default function Servicios() {
           {SERVICIOS.map((s) => (
             <div
               key={s.titulo}
-              className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#F72585]/40 hover:shadow-xl hover:shadow-[#F72585]/10 transition-all duration-300 hover:-translate-y-1 flex flex-col"
+              className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#E91E8F]/40 hover:shadow-xl hover:shadow-[#E91E8F]/8 transition-all duration-300 hover:-translate-y-1 flex flex-col"
             >
-              {/* Área de imagen
-                  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                  EDITABLE: Para usar imagen real reemplaza el
-                  div de abajo por:
-                  <img
-                    src="/images/{s.imagen}.jpg"
-                    alt={s.titulo}
-                    className="w-full h-44 object-cover"
-                  />
-                  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+              {/* Área de imagen / placeholder */}
               <div
                 className={`relative h-44 bg-gradient-to-br ${s.bg} overflow-hidden flex items-center justify-center`}
               >
-                {/* Patrón sutil de fondo */}
                 <div
                   className="absolute inset-0 opacity-10"
                   style={{
@@ -164,23 +150,20 @@ export default function Servicios() {
                     backgroundSize: "14px 14px",
                   }}
                 />
-                {/* Nombre del producto como watermark */}
                 <p className="relative z-10 text-white/20 font-black text-4xl uppercase tracking-widest text-center px-2 leading-tight placeholder-text">
                   {s.titulo.split(" ")[0]}
                 </p>
-                {/* Badge del tipo */}
                 <span
-                  className="absolute bottom-3 left-3 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full"
-                  style={{ background: s.acento, color: "#fff" }}
+                  className="absolute bottom-3 left-3 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full text-white"
+                  style={{ background: s.acento }}
                 >
-                  {/* EDITABLE: Archivo imagen → public/images/{s.imagen}.jpg */}
                   {s.titulo}
                 </span>
               </div>
 
               {/* Cuerpo */}
               <div className="p-5 flex flex-col flex-1 bg-white">
-                <h3 className="text-[#0B1B4D] font-black text-base mb-2 leading-tight">
+                <h3 className="text-[#2D3E9F] font-black text-base mb-2 leading-tight">
                   {s.titulo}
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed flex-1">
@@ -190,7 +173,7 @@ export default function Servicios() {
                   href={waLink(s.wa)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 flex items-center justify-center gap-2 bg-[#0B1B4D] hover:bg-[#F72585] text-white font-bold text-sm py-2.5 px-4 rounded-xl transition-colors duration-200"
+                  className="mt-4 flex items-center justify-center gap-2 bg-[#2D3E9F] hover:bg-[#E91E8F] text-white font-bold text-sm py-2.5 px-4 rounded-xl transition-colors duration-200"
                 >
                   <WAIcon />
                   Quiero algo así
@@ -209,7 +192,7 @@ export default function Servicios() {
             href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Hola, quiero cotizar material gráfico para mi negocio.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border-2 border-[#F72585] text-[#F72585] hover:bg-[#F72585] hover:text-white font-bold px-7 py-3 rounded-full transition-all duration-200 text-sm"
+            className="inline-flex items-center gap-2 border-2 border-[#E91E8F] text-[#E91E8F] hover:bg-[#E91E8F] hover:text-white font-bold px-7 py-3 rounded-full transition-all duration-200 text-sm"
           >
             <WAIcon />
             Consultar por WhatsApp

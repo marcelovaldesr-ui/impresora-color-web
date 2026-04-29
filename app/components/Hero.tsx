@@ -8,42 +8,58 @@ const WHATSAPP_URL =
 const MAPS_URL =
   "https://www.google.com/maps/place/Impresora+Color+Ltda./@-36.6124899,-72.1037117,13z/data=!4m6!3m5!1s0x9669282ecbefa02d:0xd52cfa17b8d7d88d!8m2!3d-36.6130779!4d-72.1051356!16s%2Fg%2F12lvg43y1?hl=es&entry=ttu&g_ep=EgoyMDI2MDQyNi4wIKXMDSoASAFQAw%3D%3D";
 
+// EDITABLE: Chips de servicios en la barra inferior
+const PILLS = [
+  { label: "Flyers",     color: "#E91E8F" },
+  { label: "Stickers",   color: "#47B7E8" },
+  { label: "Tarjetas",   color: "#2D3E9F" },
+  { label: "Pendones",   color: "#F47A20" },
+  { label: "Menús",      color: "#7DBA2F" },
+  { label: "Imanes",     color: "#F5C51B" },
+  { label: "Etiquetas",  color: "#E91E8F" },
+  { label: "Packaging",  color: "#47B7E8" },
+];
+
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center bg-[#0B1B4D] pt-16 overflow-hidden"
+      className="relative min-h-screen flex items-center bg-gradient-to-br from-white via-[#F8FAFF] to-[#EEF2FF] pt-16 overflow-hidden"
     >
-      {/* Esferas de luz de fondo */}
-      <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-[#F72585]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-[#25B6F7]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#F9C80E]/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Franja multicolor superior — identidad de marca */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#E91E8F] via-[#47B7E8] via-[#7DBA2F] via-[#F5C51B] to-[#F47A20]" />
+
+      {/* Esferas de luz sutiles */}
+      <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-[#E91E8F]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-[#47B7E8]/6 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-64 h-64 bg-[#7DBA2F]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-20 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
         {/* Columna izquierda: texto */}
         <div>
           {/* Badge */}
-          <div className="inline-flex items-center gap-2.5 bg-[#25B6F7]/20 border border-[#25B6F7]/40 text-[#25B6F7] text-sm font-semibold px-4 py-2 rounded-full mb-7">
-            <span className="w-2 h-2 bg-[#25B6F7] rounded-full animate-pulse shrink-0" />
+          <div className="inline-flex items-center gap-2.5 bg-[#E91E8F]/10 border border-[#E91E8F]/30 text-[#E91E8F] text-sm font-semibold px-4 py-2 rounded-full mb-7">
+            <span className="w-2 h-2 bg-[#E91E8F] rounded-full animate-pulse shrink-0" />
             Imprenta en Chillán · Arauco 1060
           </div>
 
           {/* Título */}
-          <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-[54px] font-black text-white leading-[1.1] mb-6">
-            <span className="text-[#F72585]">Impresos y etiquetas</span>{" "}
+          <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-[54px] font-black text-[#2D3E9F] leading-[1.1] mb-6">
+            <span className="text-[#E91E8F]">Impresos y etiquetas</span>{" "}
             para que{" "}
-            <span className="text-[#F9C80E]">tu negocio</span>{" "}
+            <span className="text-[#7DBA2F]">tu negocio</span>{" "}
             <span className="relative inline-block">
               venda más
-              <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#F72585] rounded-full" />
+              <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#E91E8F] rounded-full" />
             </span>
           </h1>
 
           {/* Subtítulo */}
-          <p className="text-gray-300 text-lg leading-relaxed mb-9 max-w-lg">
+          <p className="text-gray-600 text-lg leading-relaxed mb-9 max-w-lg">
             Flyers, stickers, tarjetas, pendones, menús, imanes y etiquetas
-            adhesivas para <strong className="text-white">emprendedores, productores locales</strong> y
-            negocios de Chillán.
+            adhesivas para{" "}
+            <strong className="text-[#2D3E9F]">emprendedores, productores locales</strong>{" "}
+            y negocios de Chillán.
           </p>
 
           {/* Botones */}
@@ -52,7 +68,7 @@ export default function Hero() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 bg-[#F72585] hover:bg-[#d4166c] active:scale-95 text-white font-black text-lg px-8 py-4 rounded-full shadow-2xl shadow-[#F72585]/30 transition-all duration-200"
+              className="flex items-center justify-center gap-3 bg-[#E91E8F] hover:bg-[#c8186e] active:scale-95 text-white font-black text-lg px-8 py-4 rounded-full shadow-2xl shadow-[#E91E8F]/30 transition-all duration-200"
             >
               <WhatsAppIcon className="w-6 h-6" />
               Cotizar por WhatsApp
@@ -61,7 +77,7 @@ export default function Hero() {
               href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-lg px-8 py-4 rounded-full transition-all duration-200"
+              className="flex items-center justify-center gap-3 bg-[#2D3E9F]/8 hover:bg-[#2D3E9F]/15 border border-[#2D3E9F]/25 text-[#2D3E9F] font-bold text-lg px-8 py-4 rounded-full transition-all duration-200"
             >
               <LocationIcon className="w-5 h-5" />
               Ver ubicación
@@ -75,8 +91,8 @@ export default function Hero() {
               "Arauco 1060, Chillán",
               "Material gráfico para negocios y productos locales",
             ].map((item, i) => (
-              <span key={i} className="flex items-center gap-1.5 text-[#25B6F7] font-medium">
-                {i > 0 && <span className="text-white/20">·</span>}
+              <span key={i} className="flex items-center gap-1.5 text-[#2D3E9F] font-medium">
+                {i > 0 && <span className="text-gray-300">·</span>}
                 {item}
               </span>
             ))}
@@ -90,31 +106,33 @@ export default function Hero() {
             alt="Impresora Color Ltda - Imprenta en Chillán"
             width={1024}
             height={682}
-            className="w-full h-full object-contain rounded-2xl drop-shadow-2xl"
+            className="w-full h-full object-contain rounded-2xl drop-shadow-xl"
             priority
           />
         </div>
       </div>
 
       {/* Barra inferior de servicios */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white/5 border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-4 py-3.5 flex flex-wrap justify-center gap-2.5">
-          {["Flyers", "Stickers", "Tarjetas", "Pendones", "Menús", "Imanes", "Etiquetas", "Packaging"].map(
-            (s) => (
-              <span
-                key={s}
-                className="bg-white/10 text-gray-300 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-white/10"
-              >
-                {s}
-              </span>
-            )
-          )}
+      <div className="absolute bottom-0 left-0 right-0 bg-white/70 backdrop-blur-sm border-t border-gray-200/60">
+        <div className="max-w-6xl mx-auto px-4 py-3.5 flex flex-wrap justify-center gap-2">
+          {PILLS.map((p) => (
+            <span
+              key={p.label}
+              className="text-xs font-bold px-3.5 py-1.5 rounded-full border"
+              style={{
+                color: p.color,
+                borderColor: `${p.color}40`,
+                backgroundColor: `${p.color}10`,
+              }}
+            >
+              {p.label}
+            </span>
+          ))}
         </div>
       </div>
     </section>
   );
 }
-
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (

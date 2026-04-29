@@ -12,37 +12,37 @@ export default function Ubicacion() {
       <div className="max-w-5xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-14">
-          <span className="text-[#F72585] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
             Ubicación
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0B1B4D] mt-2 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
             Estamos en el{" "}
-            <span className="text-[#F72585]">centro de Chillán</span>
+            <span className="text-[#E91E8F]">centro de Chillán</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto text-lg">
             Estamos en{" "}
-            <strong className="text-[#0B1B4D]">Arauco 1060, Chillán</strong>.
+            <strong className="text-[#2D3E9F]">Arauco 1060, Chillán</strong>.
             Escríbenos por WhatsApp y te ayudamos a cotizar tus impresos.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* Tarjeta de ubicación visual */}
-          <div className="bg-[#0B1B4D] rounded-2xl overflow-hidden shadow-xl flex flex-col">
+          <div className="bg-gradient-to-b from-[#2D3E9F] to-[#1a2880] rounded-2xl overflow-hidden shadow-xl flex flex-col">
             {/* Mini mapa decorativo */}
-            <div className="h-52 relative overflow-hidden bg-[#0B1B4D]/80 flex items-center justify-center">
+            <div className="h-52 relative overflow-hidden bg-[#2D3E9F]/80 flex items-center justify-center">
               {/* Cuadrícula estilo mapa */}
               <div
                 className="absolute inset-0 opacity-20"
                 style={{
                   backgroundImage:
-                    "linear-gradient(#25B6F7 1px, transparent 1px), linear-gradient(90deg, #25B6F7 1px, transparent 1px)",
+                    "linear-gradient(#47B7E8 1px, transparent 1px), linear-gradient(90deg, #47B7E8 1px, transparent 1px)",
                   backgroundSize: "32px 32px",
                 }}
               />
               {/* Pin */}
               <div className="relative z-10 text-center">
-                <div className="w-16 h-16 bg-[#F72585] rounded-full flex items-center justify-center mx-auto mb-3 shadow-2xl shadow-[#F72585]/50">
+                <div className="w-16 h-16 bg-[#E91E8F] rounded-full flex items-center justify-center mx-auto mb-3 shadow-2xl shadow-[#E91E8F]/50">
                   <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                   </svg>
@@ -56,8 +56,8 @@ export default function Ubicacion() {
             <div className="p-6 flex-1 flex flex-col justify-between">
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#F72585]/20 rounded-lg flex items-center justify-center shrink-0">
-                    <svg className="w-4 h-4 text-[#F72585]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-8 h-8 bg-[#E91E8F]/20 rounded-lg flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-[#E91E8F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                         d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -89,7 +89,7 @@ export default function Ubicacion() {
                 href={MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-[#F72585] hover:bg-[#d4166c] text-white font-bold py-3 rounded-xl text-sm transition-colors"
+                className="flex items-center justify-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold py-3 rounded-xl text-sm transition-colors"
               >
                 Encuéntranos en Google Maps
               </a>
@@ -100,7 +100,7 @@ export default function Ubicacion() {
           <div className="flex flex-col gap-5">
             {/* Tarjeta principal */}
             <div className="bg-[#F5F7FA] border border-gray-200 rounded-2xl p-7 flex-1">
-              <h3 className="text-[#0B1B4D] font-black text-xl mb-3">
+              <h3 className="text-[#2D3E9F] font-black text-xl mb-3">
                 ¿Cómo cotizar rápido?
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-5">
@@ -116,7 +116,7 @@ export default function Ubicacion() {
                   "Recibe tu cotización rápido",
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-2.5 text-sm text-gray-700">
-                    <span className="w-5 h-5 bg-[#F72585] text-white rounded-full flex items-center justify-center text-[10px] font-black shrink-0">
+                    <span className="w-5 h-5 bg-[#E91E8F] text-white rounded-full flex items-center justify-center text-[10px] font-black shrink-0">
                       {i + 1}
                     </span>
                     {item}
@@ -127,7 +127,7 @@ export default function Ubicacion() {
                 href={WA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-[#F72585] hover:bg-[#d4166c] text-white font-bold py-3.5 rounded-xl text-sm transition-colors"
+                className="flex items-center justify-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold py-3.5 rounded-xl text-sm transition-colors"
               >
                 <WAIcon />
                 Cotizar por WhatsApp ahora
@@ -135,20 +135,20 @@ export default function Ubicacion() {
             </div>
 
             {/* Tarjeta Instagram */}
-            <div className="bg-gradient-to-r from-[#F72585]/10 to-[#25B6F7]/10 border border-[#F72585]/20 rounded-2xl p-5 flex items-center gap-4">
+            <div className="bg-gradient-to-r from-[#E91E8F]/10 to-[#47B7E8]/10 border border-[#E91E8F]/20 rounded-2xl p-5 flex items-center gap-4">
               <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0">
-                <svg className="w-6 h-6 fill-[#F72585]" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 fill-[#E91E8F]" viewBox="0 0 24 24">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                 </svg>
               </div>
               <div>
-                <p className="text-[#0B1B4D] font-black text-sm">Síguenos en Instagram</p>
+                <p className="text-[#2D3E9F] font-black text-sm">Síguenos en Instagram</p>
                 {/* EDITABLE: Cambia el usuario de Instagram aquí */}
                 <a
                   href="https://www.instagram.com/impresoracolorchillan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#F72585] text-sm font-semibold hover:underline"
+                  className="text-[#E91E8F] text-sm font-semibold hover:underline"
                 >
                   @impresoracolorchillan
                 </a>

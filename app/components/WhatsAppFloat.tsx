@@ -23,8 +23,8 @@ export default function WhatsAppFloat() {
         </svg>
 
         {/* Pulso de notificación */}
-        <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-[#F9C80E] rounded-full animate-ping" />
-        <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-[#F9C80E] rounded-full" />
+        <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-[#F5C51B] rounded-full animate-ping" />
+        <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-[#F5C51B] rounded-full" />
       </span>
     </a>
   );

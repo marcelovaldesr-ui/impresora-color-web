@@ -14,7 +14,7 @@ const PACKS = [
     boton: "Cotizar Pack Emprendedor",
     wa: "Hola, quiero cotizar el Pack Emprendedor.",
     destaca: false,
-    acento: "#25B6F7",
+    acento: "#47B7E8",
   },
   {
     emoji: "🍽️",
@@ -25,7 +25,7 @@ const PACKS = [
     boton: "Cotizar Pack Restaurante",
     wa: "Hola, quiero cotizar el Pack Restaurante.",
     destaca: true,
-    acento: "#F72585",
+    acento: "#E91E8F",
   },
   {
     emoji: "🏪",
@@ -36,7 +36,7 @@ const PACKS = [
     boton: "Cotizar Pack Feria",
     wa: "Hola, quiero cotizar el Pack Feria o Evento.",
     destaca: false,
-    acento: "#F9C80E",
+    acento: "#F47A20",
   },
   {
     emoji: "💼",
@@ -47,7 +47,7 @@ const PACKS = [
     boton: "Cotizar Pack Marca",
     wa: "Hola, quiero cotizar el Pack Marca Profesional.",
     destaca: false,
-    acento: "#25B6F7",
+    acento: "#2D3E9F",
   },
   {
     emoji: "🥩",
@@ -59,21 +59,21 @@ const PACKS = [
     boton: "Cotizar Pack Producto Local",
     wa: "Hola, quiero cotizar el Pack Producto Local para etiquetas y packaging.",
     destaca: true,
-    acento: "#F72585",
+    acento: "#7DBA2F",
   },
 ];
 
 export default function Promociones() {
   return (
-    <section id="promociones" className="bg-[#F5F7FA] py-20 px-4">
+    <section id="promociones" className="bg-[#F6F8FC] py-20 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-14">
-          <span className="text-[#F72585] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
             Promociones
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0B1B4D] mt-2 mb-4">
-            Packs <span className="text-[#F72585]">especiales</span> para tu negocio
+          <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
+            Packs <span className="text-[#E91E8F]">especiales</span> para tu negocio
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
             Elige el pack que más se adapta o escríbenos para armar uno a tu medida.
@@ -88,7 +88,7 @@ export default function Promociones() {
               className={`relative bg-white rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 ${
                 p.destaca
                   ? "border-2 shadow-xl"
-                  : "border border-gray-200 hover:border-[#F72585]/30 hover:shadow-lg"
+                  : "border border-gray-200 hover:border-gray-300 hover:shadow-lg"
               }`}
               style={p.destaca ? { borderColor: p.acento, boxShadow: `0 20px 40px ${p.acento}20` } : {}}
             >
@@ -109,7 +109,7 @@ export default function Promociones() {
                   </div>
                   <div>
                     <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{p.badge}</span>
-                    <h3 className="text-[#0B1B4D] font-black text-lg leading-tight">{p.nombre}</h3>
+                    <h3 className="text-[#2D3E9F] font-black text-lg leading-tight">{p.nombre}</h3>
                   </div>
                 </div>
 
@@ -158,7 +158,7 @@ export default function Promociones() {
             href={waLink("Hola, quiero cotizar un pack personalizado para mi negocio.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border-2 border-[#F72585] text-[#F72585] hover:bg-[#F72585] hover:text-white font-bold px-7 py-3 rounded-full transition-all duration-200 text-sm"
+            className="inline-flex items-center gap-2 border-2 border-[#E91E8F] text-[#E91E8F] hover:bg-[#E91E8F] hover:text-white font-bold px-7 py-3 rounded-full transition-all duration-200 text-sm"
           >
             <WAIcon />
             Cotizar pack personalizado
