@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Faltan campos obligatorios." }, { status: 400 });
   }
 
-  const { error } = await resend.emails.send({
+  const { data, error } = await resend.emails.send({
     from: "Cotizaciones <onboarding@resend.dev>",
     to: "impresoracolor3@gmail.com",
     subject: `Nueva solicitud de cotización - ${nombre}`,
@@ -52,8 +52,14 @@ export async function POST(request: NextRequest) {
   });
 
   if (error) {
-    return Response.json({ error: "No se pudo enviar el correo." }, { status: 500 });
+    console.error("[cotizar] Resend error:", JSON.stringify(error));
+    console.error("[cotizar] API key definida:", !!process.env.RESEND_API_KEY);
+    return Response.json(
+      { error: "No se pudo enviar el correo.", detail: error },
+      { status: 500 }
+    );
   }
 
+  console.log("[cotizar] Email enviado:", data?.id);
   return Response.json({ ok: true });
 }
