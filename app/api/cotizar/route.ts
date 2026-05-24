@@ -4,10 +4,10 @@ import { NextRequest } from "next/server";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
-  const { nombre, telefono, producto, cantidadTamano, mensaje } =
+  const { nombre, telefono, email, producto, cantidadTamano, mensaje } =
     await request.json();
 
-  if (!nombre || !telefono || !producto) {
+  if (!nombre || !telefono || !email || !producto) {
     return Response.json({ error: "Faltan campos obligatorios." }, { status: 400 });
   }
 
@@ -29,6 +29,10 @@ export async function POST(request: NextRequest) {
             <tr>
               <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #555;">Teléfono</td>
               <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${telefono}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #555;">Email</td>
+              <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${email}</td>
             </tr>
             <tr>
               <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #555;">Producto</td>

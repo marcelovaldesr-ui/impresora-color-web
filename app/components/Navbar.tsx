@@ -63,12 +63,9 @@ export default function Navbar() {
 
         {/* CTA escritorio */}
         <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#cotizar"
           className="hidden md:flex items-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25"
         >
-          <WhatsAppIcon />
           Cotizar ahora
         </a>
 
@@ -108,15 +105,24 @@ export default function Navbar() {
               {item.label}
             </a>
           ))}
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 mt-4 bg-[#E91E8F] text-white font-bold py-3.5 rounded-full text-sm"
-          >
-            <WhatsAppIcon />
-            Cotizar por WhatsApp
-          </a>
+          <div className="flex flex-col gap-3 mt-4">
+            <a
+              href="#cotizar"
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-center gap-2 bg-[#E91E8F] text-white font-bold py-3.5 rounded-full text-sm"
+            >
+              Cotizar ahora
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-white border border-gray-200 text-gray-700 font-bold py-3.5 rounded-full text-sm"
+            >
+              <WhatsAppIcon />
+              WhatsApp
+            </a>
+          </div>
         </div>
       )}
     </nav>
