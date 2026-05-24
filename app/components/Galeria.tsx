@@ -1,16 +1,27 @@
-// EDITABLE: Para agregar imágenes reales, reemplaza el div del placeholder por:
-//   <img src="/images/<nombre>.jpg" alt="..." className="w-full h-full object-cover" />
-// Los archivos van en: public/images/
+import Image from "next/image";
 
 const PHONE = "56998441157";
 function waLink(msg: string) {
   return `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
 }
 
-const TRABAJOS = [
+type Trabajo = {
+  imagen: string;
+  imagenUrl?: string;
+  imagenAlt?: string;
+  bg: string;
+  acento: string;
+  nombre: string;
+  frase: string;
+  wa: string;
+};
+
+const TRABAJOS: Trabajo[] = [
   // Publicidad y emprendimientos
   {
     imagen: "flyers",
+    imagenUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80",
+    imagenAlt: "Flyers publicitarios impresos a color para publicidad y promociones",
     bg: "from-[#E91E8F] to-[#2D3E9F]",
     acento: "#E91E8F",
     nombre: "Flyers publicitarios",
@@ -19,6 +30,8 @@ const TRABAJOS = [
   },
   {
     imagen: "stickers",
+    imagenUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=80",
+    imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
     bg: "from-[#47B7E8] to-[#2D3E9F]",
     acento: "#47B7E8",
     nombre: "Stickers personalizados",
@@ -27,6 +40,8 @@ const TRABAJOS = [
   },
   {
     imagen: "tarjetas",
+    imagenUrl: "https://images.unsplash.com/photo-1572502742775-c14fa8cbf773?w=600&q=80",
+    imagenAlt: "Tarjetas de presentación profesionales impresas",
     bg: "from-[#2D3E9F] to-[#3A4EB0]",
     acento: "#2D3E9F",
     nombre: "Tarjetas de presentación",
@@ -35,6 +50,8 @@ const TRABAJOS = [
   },
   {
     imagen: "pendones",
+    imagenUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+    imagenAlt: "Pendones y lonas publicitarias para ferias, locales y eventos",
     bg: "from-[#F47A20] to-[#E91E8F]",
     acento: "#F47A20",
     nombre: "Pendones",
@@ -43,6 +60,8 @@ const TRABAJOS = [
   },
   {
     imagen: "menus",
+    imagenUrl: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80",
+    imagenAlt: "Menús impresos para restaurantes, cafeterías y locales gastronómicos",
     bg: "from-[#47B7E8] to-[#7DBA2F]",
     acento: "#47B7E8",
     nombre: "Menús para locales",
@@ -51,6 +70,8 @@ const TRABAJOS = [
   },
   {
     imagen: "imanes",
+    imagenUrl: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80",
+    imagenAlt: "Imanes publicitarios personalizados con logo y datos de contacto",
     bg: "from-[#F5C51B] to-[#F47A20]",
     acento: "#F5C51B",
     nombre: "Imanes publicitarios",
@@ -84,6 +105,8 @@ const TRABAJOS = [
   },
   {
     imagen: "packaging",
+    imagenUrl: "https://images.unsplash.com/photo-1609743522653-52354461eb27?w=600&q=80",
+    imagenAlt: "Stickers adhesivos para packaging, bolsas y empaques de marca",
     bg: "from-[#7DBA2F] to-[#47B7E8]",
     acento: "#7DBA2F",
     nombre: "Stickers para packaging",
@@ -166,22 +189,36 @@ export default function Galeria() {
               key={t.nombre}
               className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#E91E8F]/40 hover:shadow-xl hover:shadow-[#E91E8F]/8 transition-all duration-300 hover:-translate-y-1 flex flex-col"
             >
-              {/* Placeholder visual */}
               <div
                 className={`relative h-40 bg-gradient-to-br ${t.bg} overflow-hidden flex items-center justify-center`}
               >
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
-                    backgroundSize: "12px 12px",
-                  }}
-                />
-                <p className="relative text-white/20 font-black text-3xl uppercase tracking-widest text-center px-2 leading-tight placeholder-text">
-                  {t.nombre.split(" ").slice(0, 2).join("\n")}
-                </p>
-                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {t.imagenUrl ? (
+                  <>
+                    <Image
+                      src={t.imagenUrl}
+                      alt={t.imagenAlt ?? t.nombre}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                    />
+                    <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
+                  </>
+                ) : (
+                  <>
+                    <div
+                      className="absolute inset-0 opacity-10"
+                      style={{
+                        backgroundImage:
+                          "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
+                        backgroundSize: "12px 12px",
+                      }}
+                    />
+                    <p className="relative text-white/20 font-black text-3xl uppercase tracking-widest text-center px-2 leading-tight">
+                      {t.nombre.split(" ").slice(0, 2).join("\n")}
+                    </p>
+                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </>
+                )}
               </div>
 
               {/* Info */}

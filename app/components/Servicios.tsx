@@ -1,4 +1,5 @@
 // EDITABLE: Agrega, quita o cambia servicios en los arrays de cada categoría
+import Image from "next/image";
 
 const PHONE = "56998441157";
 function waLink(msg: string) {
@@ -7,6 +8,8 @@ function waLink(msg: string) {
 
 type Servicio = {
   imagen: string;
+  imagenUrl?: string;
+  imagenAlt?: string;
   titulo: string;
   descripcion: string;
   boton: string;
@@ -19,6 +22,8 @@ type Servicio = {
 const PUBLICIDAD: Servicio[] = [
   {
     imagen: "flyers",
+    imagenUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80",
+    imagenAlt: "Flyers publicitarios impresos a color para publicidad y promociones",
     titulo: "Flyers publicitarios",
     descripcion: "Diseñados para captar atención y generar más ventas.",
     boton: "Cotizar flyers",
@@ -28,6 +33,8 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "stickers",
+    imagenUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=80",
+    imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
     titulo: "Stickers personalizados",
     descripcion: "Para tu marca, producto o emprendimiento.",
     boton: "Cotizar stickers",
@@ -37,6 +44,8 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "tarjetas",
+    imagenUrl: "https://images.unsplash.com/photo-1572502742775-c14fa8cbf773?w=600&q=80",
+    imagenAlt: "Tarjetas de presentación profesionales impresas",
     titulo: "Tarjetas de presentación",
     descripcion: "Primera impresión profesional para tu negocio.",
     boton: "Cotizar tarjetas",
@@ -46,6 +55,8 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "pendones",
+    imagenUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+    imagenAlt: "Pendones y lonas publicitarias para ferias, locales y eventos",
     titulo: "Pendones",
     descripcion: "Visibilidad total en ferias, locales y eventos.",
     boton: "Cotizar pendones",
@@ -55,6 +66,8 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "menus",
+    imagenUrl: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80",
+    imagenAlt: "Menús impresos para restaurantes, cafeterías y locales gastronómicos",
     titulo: "Menús para locales",
     descripcion: "Presentación profesional para tu restaurante o cafetería.",
     boton: "Cotizar menús",
@@ -64,6 +77,8 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "imanes",
+    imagenUrl: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80",
+    imagenAlt: "Imanes publicitarios personalizados con logo y datos de contacto",
     titulo: "Imanes publicitarios",
     descripcion: "Tu marca presente todos los días.",
     boton: "Cotizar imanes",
@@ -73,6 +88,8 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "packaging",
+    imagenUrl: "https://images.unsplash.com/photo-1609743522653-52354461eb27?w=600&q=80",
+    imagenAlt: "Stickers adhesivos para packaging, bolsas y empaques de marca",
     titulo: "Stickers para packaging",
     descripcion: "Adhesivos para bolsas, cajas y empaques de marca.",
     boton: "Cotizar packaging",
@@ -221,18 +238,33 @@ function TarjetaServicio({ s }: { s: Servicio }) {
   return (
     <div className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#E91E8F]/40 hover:shadow-xl hover:shadow-[#E91E8F]/8 transition-all duration-300 hover:-translate-y-1 flex flex-col">
       <div className={`relative h-36 bg-gradient-to-br ${s.bg} overflow-hidden flex items-center justify-center`}>
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
-            backgroundSize: "14px 14px",
-          }}
-        />
-        <p className="relative z-10 text-white/20 font-black text-4xl uppercase tracking-widest text-center px-2 leading-tight placeholder-text">
-          {s.titulo.split(" ")[0]}
-        </p>
+        {s.imagenUrl ? (
+          <>
+            <Image
+              src={s.imagenUrl}
+              alt={s.imagenAlt ?? s.titulo}
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            />
+            <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
+          </>
+        ) : (
+          <>
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
+                backgroundSize: "14px 14px",
+              }}
+            />
+            <p className="relative z-10 text-white/20 font-black text-4xl uppercase tracking-widest text-center px-2 leading-tight">
+              {s.titulo.split(" ")[0]}
+            </p>
+          </>
+        )}
         <span
-          className="absolute bottom-3 left-3 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full text-white"
+          className="absolute bottom-3 left-3 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-full text-white z-10"
           style={{ background: s.acento }}
         >
           {s.titulo}
