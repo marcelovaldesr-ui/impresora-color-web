@@ -7,6 +7,7 @@ import Galeria from "./components/Galeria";
 import Promociones from "./components/Promociones";
 import Ubicacion from "./components/Ubicacion";
 import FAQ from "./components/FAQ";
+import FormularioCotizacion from "./components/FormularioCotizacion";
 import Footer from "./components/Footer";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 
@@ -23,6 +24,7 @@ export default function Home() {
         <Promociones />
         <Ubicacion />
         <FAQ />
+        <FormularioCotizacion />
       </main>
       <Footer />
       <WhatsAppFloat />
