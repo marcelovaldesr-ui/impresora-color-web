@@ -4,25 +4,47 @@ type Cliente = {
   nombre: string;
   logoUrl?: string;
   logoAlt?: string;
+  esExterno?: boolean;
 };
 
 const CLIENTES: Cliente[] = [
   {
     nombre: "Nevados de Chillán",
-    logoUrl: "https://www.nevadosdechillan.com/img/logo.svg",
+    logoUrl: "/logos/nevadoschillan.png",
     logoAlt: "Logo Nevados de Chillán",
   },
   {
-    nombre: "Clínica Andes Salud",
-    logoUrl: "https://www.andessalud.cl/wp-content/uploads/2024/07/tagline-800x224.png",
-    logoAlt: "Logo Clínica Andes Salud",
+    nombre: "Curimapu",
+    logoUrl: "/logos/curimapu.png",
+    logoAlt: "Logo Curimapu",
   },
-  { nombre: "Curimapu" },
-  { nombre: "Fruticola Olmué" },
-  { nombre: "Lácteos San Sebastián" },
+  {
+    nombre: "Rodafreno",
+    logoUrl: "/logos/rodafreno.png",
+    logoAlt: "Logo Rodafreno",
+  },
+  {
+    nombre: "Cecinas Chillán",
+    logoUrl: "/logos/cecinas-chillan.png",
+    logoAlt: "Logo Cecinas Chillán",
+  },
+  {
+    nombre: "Lácteos San Sebastián",
+    logoUrl: "/logos/lacteosebastian.jpg",
+    logoAlt: "Logo Lácteos San Sebastián",
+  },
+  {
+    nombre: "Fruticola Olmué",
+    logoUrl: "/logos/olmue.jpg",
+    logoAlt: "Logo Fruticola Olmué",
+  },
+  {
+    nombre: "Clínica Andes Salud",
+    logoUrl: "https://www.andessalud.cl/wp-content/uploads/2024/07/cropped-cropped-logotipo-andessalud-270x270.png",
+    logoAlt: "Logo Clínica Andes Salud",
+    esExterno: true,
+  },
   { nombre: "Abarrotes San Carlos" },
-  { nombre: "Cecinas Chillán" },
-  { nombre: "Rodafreno" },
 ];
 
 function TextCard({ nombre }: { nombre: string }) {
@@ -38,7 +60,17 @@ function TextCard({ nombre }: { nombre: string }) {
   );
 }
 
-function LogoCard({ logoUrl, logoAlt, nombre }: { logoUrl: string; logoAlt: string; nombre: string }) {
+function LogoCard({
+  logoUrl,
+  logoAlt,
+  nombre,
+  esExterno,
+}: {
+  logoUrl: string;
+  logoAlt: string;
+  nombre: string;
+  esExterno?: boolean;
+}) {
   return (
     <div className="bg-white border border-gray-200 rounded-2xl shadow-sm flex items-center justify-center px-6 py-8 h-28 hover:shadow-md hover:border-[#47B7E8]/20 transition-all duration-200">
       <div className="relative w-full h-12">
@@ -48,7 +80,7 @@ function LogoCard({ logoUrl, logoAlt, nombre }: { logoUrl: string; logoAlt: stri
           fill
           className="object-contain"
           sizes="(max-width: 640px) 45vw, (max-width: 1024px) 22vw, 16vw"
-          unoptimized
+          unoptimized={esExterno}
         />
       </div>
       <span className="sr-only">{nombre}</span>
@@ -81,6 +113,7 @@ export default function EmpresasClientes() {
                 logoUrl={c.logoUrl}
                 logoAlt={c.logoAlt!}
                 nombre={c.nombre}
+                esExterno={c.esExterno}
               />
             ) : (
               <TextCard key={c.nombre} nombre={c.nombre} />
