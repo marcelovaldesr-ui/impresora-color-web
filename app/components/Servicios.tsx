@@ -10,6 +10,7 @@ type Servicio = {
   imagen: string;
   imagenUrl?: string;
   imagenAlt?: string;
+  objectFit?: "cover" | "contain";
   titulo: string;
   descripcion: string;
   boton: string;
@@ -66,8 +67,9 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "pendones",
-    imagenUrl: "/images/roler.png",
+    imagenUrl: "/images/pendon2.png",
     imagenAlt: "Pendones y lonas publicitarias para ferias, locales y eventos",
+    objectFit: "contain",
     titulo: "Pendones",
     descripcion: "Visibilidad total en ferias, locales y eventos.",
     boton: "Cotizar pendones",
@@ -246,11 +248,13 @@ function TarjetaServicio({ s }: { s: Servicio }) {
               src={s.imagenUrl}
               alt={s.imagenAlt ?? s.titulo}
               fill
-              className="object-cover"
+              className={s.objectFit === "contain" ? "object-contain p-3" : "object-cover"}
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               unoptimized={s.imagenUrl.startsWith("http")}
             />
-            <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
+            {s.objectFit !== "contain" && (
+              <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
+            )}
           </>
         ) : (
           <>
