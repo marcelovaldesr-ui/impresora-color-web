@@ -9,7 +9,7 @@ const STATS = [
   },
   {
     icon: "😊",
-    value: "+500",
+    value: "+5000",
     label: "clientes satisfechos",
     color: "#2D3E9F",
     bg: "bg-[#2D3E9F]/10",
