@@ -33,7 +33,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "stickers",
-    imagenUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=80",
+    imagenUrl: "/images/sitkers.png",
     imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
     titulo: "Stickers personalizados",
     descripcion: "Para tu marca, producto o emprendimiento.",
@@ -77,7 +77,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "imanes",
-    imagenUrl: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80",
+    imagenUrl: "/images/imanes-publicitarios.png",
     imagenAlt: "Imanes publicitarios personalizados con logo y datos de contacto",
     titulo: "Imanes publicitarios",
     descripcion: "Tu marca presente todos los días.",
@@ -88,7 +88,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "packaging",
-    imagenUrl: "https://images.unsplash.com/photo-1609743522653-52354461eb27?w=600&q=80",
+    imagenUrl: "/images/100-stickers-cierre-de-caja.jpg",
     imagenAlt: "Stickers adhesivos para packaging, bolsas y empaques de marca",
     titulo: "Stickers para packaging",
     descripcion: "Adhesivos para bolsas, cajas y empaques de marca.",
@@ -96,6 +96,17 @@ const PUBLICIDAD: Servicio[] = [
     wa: "Hola, quiero cotizar stickers para packaging.",
     acento: "#7DBA2F",
     bg: "from-[#7DBA2F] to-[#47B7E8]",
+  },
+  {
+    imagen: "dipticos",
+    imagenUrl: "/images/triptico.png",
+    imagenAlt: "Dípticos y trípticos impresos para empresas, clínicas y eventos",
+    titulo: "Dípticos y trípticos",
+    descripcion: "Material informativo plegado para empresas, eventos, clínicas y negocios que quieren comunicar más.",
+    boton: "Cotizar dípticos",
+    wa: "Hola, quiero cotizar dípticos o trípticos.",
+    acento: "#E91E8F",
+    bg: "from-[#E91E8F] to-[#47B7E8]",
   },
 ];
 
@@ -172,6 +183,8 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "anillados",
+    imagenUrl: "/images/anillados.png",
+    imagenAlt: "Anillados para trabajos, manuales, informes y documentos",
     titulo: "Anillados",
     descripcion: "Terminación práctica y ordenada para trabajos, manuales, informes y documentos.",
     boton: "Cotizar anillados",
@@ -192,6 +205,8 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "empastados",
+    imagenUrl: "/images/empastado.png",
+    imagenAlt: "Empastados para documentos importantes y presentaciones profesionales",
     titulo: "Empastados",
     descripcion: "Presentación firme y profesional para documentos importantes.",
     boton: "Cotizar empastados",
@@ -201,6 +216,8 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "diplomas",
+    imagenUrl: "/images/diplomas.jpg",
+    imagenAlt: "Diplomas impresos para cursos, reconocimientos y eventos",
     titulo: "Diplomas",
     descripcion: "Diplomas impresos para cursos, reconocimientos, colegios, eventos y capacitaciones.",
     boton: "Cotizar diplomas",
@@ -210,6 +227,8 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "sobres",
+    imagenUrl: "/images/Sobres.png",
+    imagenAlt: "Sobres personalizados para empresas e instituciones",
     titulo: "Sobres",
     descripcion: "Sobres personalizados para empresas, instituciones y presentaciones corporativas.",
     boton: "Cotizar sobres",
@@ -219,6 +238,8 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "carpetas-corporativas",
+    imagenUrl: "/images/carpertas.png",
+    imagenAlt: "Carpetas corporativas con imagen profesional",
     titulo: "Carpetas corporativas",
     descripcion: "Carpetas con imagen profesional para propuestas, documentos y presentaciones.",
     boton: "Cotizar carpetas",
@@ -228,6 +249,8 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "reglamentos",
+    imagenUrl: "/images/reglamenot-interno.jpg",
+    imagenAlt: "Reglamentos internos y manuales empresariales impresos",
     titulo: "Reglamentos internos",
     descripcion: "Impresión y terminación de reglamentos, manuales y documentos empresariales.",
     boton: "Cotizar reglamentos",
@@ -237,6 +260,8 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "calendarios",
+    imagenUrl: "/images/calendarios.jpg",
+    imagenAlt: "Calendarios personalizados para empresas y regalos corporativos",
     titulo: "Calendarios",
     descripcion: "Calendarios personalizados para empresas, regalos corporativos y promociones.",
     boton: "Cotizar calendarios",
@@ -259,6 +284,7 @@ function TarjetaServicio({ s }: { s: Servicio }) {
               fill
               className="object-cover"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              unoptimized={s.imagenUrl.startsWith("http")}
             />
             <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
           </>
