@@ -43,6 +43,17 @@ const PUBLICIDAD: Servicio[] = [
     bg: "from-[#47B7E8] to-[#2D3E9F]",
   },
   {
+    imagen: "etiquetas-adhesivas",
+    imagenUrl: "/images/etiquetas.png",
+    imagenAlt: "Etiquetas adhesivas para productos, cecinas, vinos y alimentos",
+    titulo: "Etiquetas adhesivas",
+    descripcion: "Para productos, cecinas, vinos, alimentos, envases y marcas locales. Adhesivos de alta calidad para todo tipo de superficie.",
+    boton: "Cotizar etiquetas",
+    wa: "Hola, quiero cotizar etiquetas para mi producto. Necesito orientación sobre tamaño, material y cantidad.",
+    acento: "#E91E8F",
+    bg: "from-[#E91E8F] to-[#2D3E9F]",
+  },
+  {
     imagen: "tarjetas",
     imagenUrl: "/images/tarjetas.png",
     imagenAlt: "Tarjetas de presentación profesionales impresas",
@@ -110,58 +121,7 @@ const PUBLICIDAD: Servicio[] = [
   },
 ];
 
-// ── Categoría 2: Etiquetas y productos ───────────────────────────────────────
-const ETIQUETAS: Servicio[] = [
-  {
-    imagen: "etiquetas-adhesivas",
-    imagenUrl: "/images/etiquetas.png",
-    imagenAlt: "Etiquetas adhesivas para productos, cecinas, vinos y alimentos",
-    titulo: "Etiquetas adhesivas",
-    descripcion: "Adhesivos de alta calidad para todo tipo de superficie, envases y packaging.",
-    boton: "Cotizar etiquetas",
-    wa: "Hola, quiero cotizar etiquetas adhesivas.",
-    acento: "#E91E8F",
-    bg: "from-[#E91E8F] to-[#2D3E9F]",
-  },
-  {
-    imagen: "etiquetas-productos",
-    titulo: "Etiquetas para productos",
-    descripcion: "Para alimentos, envases y marcas locales.",
-    boton: "Cotizar etiquetas",
-    wa: "Hola, quiero cotizar etiquetas para productos. Tengo un emprendimiento y necesito orientación.",
-    acento: "#7DBA2F",
-    bg: "from-[#7DBA2F] to-[#2D3E9F]",
-  },
-  {
-    imagen: "etiquetas-cecinas",
-    titulo: "Etiquetas para cecinas",
-    descripcion: "Presentación profesional para cortes y embutidos.",
-    boton: "Cotizar etiquetas cecinas",
-    wa: "Hola, quiero cotizar etiquetas para cecinas.",
-    acento: "#F47A20",
-    bg: "from-[#F47A20] to-[#2D3E9F]",
-  },
-  {
-    imagen: "etiquetas-vinos",
-    titulo: "Etiquetas para vinos",
-    descripcion: "Diseños que dan valor y carácter a tu botella.",
-    boton: "Cotizar etiquetas vinos",
-    wa: "Hola, quiero cotizar etiquetas para vinos.",
-    acento: "#47B7E8",
-    bg: "from-[#2D3E9F] to-[#47B7E8]",
-  },
-  {
-    imagen: "etiquetas-alimentos",
-    titulo: "Etiquetas para alimentos",
-    descripcion: "Etiquetas para conservas, miel, productos gourmet y marcas locales.",
-    boton: "Cotizar etiquetas alimentos",
-    wa: "Hola, quiero cotizar etiquetas para alimentos.",
-    acento: "#7DBA2F",
-    bg: "from-[#7DBA2F] to-[#47B7E8]",
-  },
-];
-
-// ── Categoría 3: Oficina, colegios y empresas ─────────────────────────────────
+// ── Categoría 2: Oficina, colegios y empresas ────────────────────────────────
 const OFICINA: Servicio[] = [
   {
     imagen: "fotocopias",
@@ -370,12 +330,6 @@ export default function Servicios() {
         </div>
 
         {/* ── Categoría 2 ── */}
-        <CategoriaHeader label="Etiquetas y productos" color="#7DBA2F" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {ETIQUETAS.map((s) => <TarjetaServicio key={s.titulo} s={s} />)}
-        </div>
-
-        {/* ── Categoría 3 ── */}
         <CategoriaHeader label="Oficina, colegios y empresas" color="#47B7E8" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {OFICINA.map((s) => <TarjetaServicio key={s.titulo} s={s} />)}

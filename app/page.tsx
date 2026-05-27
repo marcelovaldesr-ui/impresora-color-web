@@ -3,7 +3,6 @@ import Hero from "./components/Hero";
 import BandaEstadisticas from "./components/BandaEstadisticas";
 import Servicios from "./components/Servicios";
 import MasProductos from "./components/MasProductos";
-import Etiquetas from "./components/Etiquetas";
 import Beneficios from "./components/Beneficios";
 import Testimonios from "./components/Testimonios";
 import EmpresasClientes from "./components/EmpresasClientes";
@@ -24,7 +23,6 @@ export default function Home() {
         <BandaEstadisticas />
         <Servicios />
         <MasProductos />
-        <Etiquetas />
         <Beneficios />
         <Testimonios />
         <EmpresasClientes />
