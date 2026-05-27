@@ -1,8 +1,11 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import BandaEstadisticas from "./components/BandaEstadisticas";
 import Servicios from "./components/Servicios";
 import Etiquetas from "./components/Etiquetas";
 import Beneficios from "./components/Beneficios";
+import Testimonios from "./components/Testimonios";
+import EmpresasClientes from "./components/EmpresasClientes";
 import Galeria from "./components/Galeria";
 import Promociones from "./components/Promociones";
 import Ubicacion from "./components/Ubicacion";
@@ -17,9 +20,12 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <BandaEstadisticas />
         <Servicios />
         <Etiquetas />
         <Beneficios />
+        <Testimonios />
+        <EmpresasClientes />
         <Galeria />
         <Promociones />
         <Ubicacion />

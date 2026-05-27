@@ -54,6 +54,11 @@ export default function Hero() {
             </span>
           </h1>
 
+          {/* Subtexto de experiencia */}
+          <p className="text-[#47B7E8] font-semibold text-base mb-4">
+            35 años impresionando en Chillán
+          </p>
+
           {/* Subtítulo */}
           <p className="text-gray-600 text-lg leading-relaxed mb-9 max-w-lg">
             Flyers, stickers, tarjetas, pendones, menús, imanes y etiquetas
