@@ -13,6 +13,7 @@ type Trabajo = {
   nombre: string;
   frase: string;
   wa: string;
+  objectFit?: "cover" | "contain";
 };
 
 const TRABAJOS: Trabajo[] = [
@@ -47,6 +48,7 @@ const TRABAJOS: Trabajo[] = [
   {
     imagenUrl: "/images/pendon2.png",
     imagenAlt: "Pendones y lonas publicitarias para ferias, locales y eventos",
+    objectFit: "contain",
     bg: "from-[#F47A20] to-[#E91E8F]",
     acento: "#F47A20",
     nombre: "Pendones",
@@ -197,15 +199,19 @@ export default function Galeria() {
               key={t.nombre}
               className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#E91E8F]/40 hover:shadow-xl hover:shadow-[#E91E8F]/8 transition-all duration-300 hover:-translate-y-1 flex flex-col"
             >
-              <div className={`relative h-40 bg-gradient-to-br ${t.bg} overflow-hidden`}>
+              <div
+                className={`relative h-40 overflow-hidden ${t.objectFit === "contain" ? "bg-[#f8f8f8]" : `bg-gradient-to-br ${t.bg}`}`}
+              >
                 <Image
                   src={t.imagenUrl}
                   alt={t.imagenAlt}
                   fill
-                  className="object-cover"
+                  className={t.objectFit === "contain" ? "object-contain p-3" : "object-cover"}
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 />
-                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
+                {t.objectFit !== "contain" && (
+                  <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
+                )}
               </div>
 
               <div className="p-4 flex flex-col flex-1">
