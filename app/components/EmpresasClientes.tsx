@@ -20,7 +20,7 @@ const CLIENTES: Cliente[] = [
   },
   {
     nombre: "Rodafreno",
-    logoUrl: "/logos/rodafreno.png",
+    logoUrl: "/logos/rodafreno.jpeg",
     logoAlt: "Logo Rodafreno",
   },
   {
@@ -44,21 +44,27 @@ const CLIENTES: Cliente[] = [
     logoAlt: "Logo Clínica Andes Salud",
     esExterno: true,
   },
-  { nombre: "Abarrotes San Carlos" },
+  {
+    nombre: "Abarrotes San Carlos",
+    logoUrl: "/logos/abarrotesancarlos.jpeg",
+    logoAlt: "Logo Abarrotes San Carlos",
+  },
+  {
+    nombre: "Gran Hotel Chillán",
+    logoUrl: "/logos/granhotel.jpeg",
+    logoAlt: "Logo Gran Hotel Chillán",
+  },
+  {
+    nombre: "Hospital Clínico",
+    logoUrl: "/logos/hospitalcl.jpeg",
+    logoAlt: "Logo Hospital Clínico",
+  },
+  {
+    nombre: "Seremi de Salud",
+    logoUrl: "/logos/seremisalud.jpeg",
+    logoAlt: "Logo Seremi de Salud",
+  },
 ];
-
-function TextCard({ nombre }: { nombre: string }) {
-  const primera = nombre.charAt(0);
-  const resto = nombre.slice(1);
-  return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm flex items-center justify-center px-6 py-8 h-28 hover:shadow-md hover:border-[#E91E8F]/20 transition-all duration-200">
-      <p className="text-xl font-black text-center leading-tight">
-        <span className="text-[#E91E8F]">{primera}</span>
-        <span className="text-[#2D3E9F]">{resto}</span>
-      </p>
-    </div>
-  );
-}
 
 function LogoCard({
   logoUrl,
@@ -105,20 +111,20 @@ export default function EmpresasClientes() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {CLIENTES.map((c) =>
-            c.logoUrl ? (
+        <div className="flex flex-wrap justify-center gap-4">
+          {CLIENTES.map((c) => (
+            <div
+              key={c.nombre}
+              className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.667rem)] lg:w-[calc(25%-0.75rem)]"
+            >
               <LogoCard
-                key={c.nombre}
-                logoUrl={c.logoUrl}
+                logoUrl={c.logoUrl!}
                 logoAlt={c.logoAlt!}
                 nombre={c.nombre}
                 esExterno={c.esExterno}
               />
-            ) : (
-              <TextCard key={c.nombre} nombre={c.nombre} />
-            )
-          )}
+            </div>
+          ))}
         </div>
       </div>
     </section>
