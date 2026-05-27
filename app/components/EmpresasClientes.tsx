@@ -64,6 +64,16 @@ const CLIENTES: Cliente[] = [
     logoUrl: "/logos/seremisalud.jpeg",
     logoAlt: "Logo Seremi de Salud",
   },
+  {
+    nombre: "Municipalidad de Chillán",
+    logoUrl: "/logos/municipalidad.png",
+    logoAlt: "Logo Municipalidad de Chillán",
+  },
+  {
+    nombre: "Carabineros de Chile",
+    logoUrl: "/logos/carabineros.png",
+    logoAlt: "Logo Carabineros de Chile",
+  },
 ];
 
 function LogoCard({
