@@ -78,8 +78,8 @@ function LogoCard({
   esExterno?: boolean;
 }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm flex items-center justify-center px-6 py-8 h-28 hover:shadow-md hover:border-[#47B7E8]/20 transition-all duration-200">
-      <div className="relative w-full h-12">
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm flex items-center justify-center px-4 py-5 hover:shadow-md hover:border-[#47B7E8]/20 transition-all duration-200">
+      <div className="relative w-full h-16">
         <Image
           src={logoUrl}
           alt={logoAlt}
