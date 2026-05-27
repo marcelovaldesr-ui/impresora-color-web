@@ -22,7 +22,7 @@ type Servicio = {
 const PUBLICIDAD: Servicio[] = [
   {
     imagen: "flyers",
-    imagenUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80",
+    imagenUrl: "/images/FLYER.jpg",
     imagenAlt: "Flyers publicitarios impresos a color para publicidad y promociones",
     titulo: "Flyers publicitarios",
     descripcion: "Diseñados para captar atención y generar más ventas.",
@@ -77,7 +77,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "menus",
-    imagenUrl: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80",
+    imagenUrl: "/images/Menus.png",
     imagenAlt: "Menús impresos para restaurantes, cafeterías y locales gastronómicos",
     titulo: "Menús para locales",
     descripcion: "Presentación profesional para tu restaurante o cafetería.",
@@ -125,6 +125,8 @@ const PUBLICIDAD: Servicio[] = [
 const OFICINA: Servicio[] = [
   {
     imagen: "fotocopias",
+    imagenUrl: "/images/fotocopias.png",
+    imagenAlt: "Fotocopias rápidas para documentos, trabajos y trámites",
     titulo: "Fotocopias",
     descripcion: "Copias rápidas y claras para documentos, trabajos y trámites.",
     boton: "Cotizar fotocopias",
@@ -134,6 +136,8 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "impresiones",
+    imagenUrl: "/images/IMPRESIONES.png",
+    imagenAlt: "Impresiones para documentos, presentaciones y material de estudio",
     titulo: "Impresiones",
     descripcion: "Impresiones para documentos, presentaciones, material de estudio y empresas.",
     boton: "Cotizar impresiones",
