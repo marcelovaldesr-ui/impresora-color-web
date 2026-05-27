@@ -44,7 +44,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "tarjetas",
-    imagenUrl: "https://images.unsplash.com/photo-1572502742775-c14fa8cbf773?w=600&q=80",
+    imagenUrl: "/images/tarjetas.png",
     imagenAlt: "Tarjetas de presentación profesionales impresas",
     titulo: "Tarjetas de presentación",
     descripcion: "Primera impresión profesional para tu negocio.",
@@ -55,7 +55,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "pendones",
-    imagenUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+    imagenUrl: "/images/roler.png",
     imagenAlt: "Pendones y lonas publicitarias para ferias, locales y eventos",
     titulo: "Pendones",
     descripcion: "Visibilidad total en ferias, locales y eventos.",
@@ -103,6 +103,8 @@ const PUBLICIDAD: Servicio[] = [
 const ETIQUETAS: Servicio[] = [
   {
     imagen: "etiquetas-adhesivas",
+    imagenUrl: "/images/etiquetas.png",
+    imagenAlt: "Etiquetas adhesivas para productos, cecinas, vinos y alimentos",
     titulo: "Etiquetas adhesivas",
     descripcion: "Adhesivos de alta calidad para todo tipo de superficie, envases y packaging.",
     boton: "Cotizar etiquetas",
@@ -176,6 +178,17 @@ const OFICINA: Servicio[] = [
     wa: "Hola, quiero cotizar anillados.",
     acento: "#7DBA2F",
     bg: "from-[#7DBA2F] to-[#2D3E9F]",
+  },
+  {
+    imagen: "timbres",
+    imagenUrl: "/images/timbres.png",
+    imagenAlt: "Timbres personalizados de caucho y automáticos para empresas y profesionales",
+    titulo: "Timbres personalizados",
+    descripcion: "Timbres de caucho y automáticos para empresas, profesionales y uso personal.",
+    boton: "Cotizar timbres",
+    wa: "Hola, quiero cotizar timbres personalizados.",
+    acento: "#2D3E9F",
+    bg: "from-[#2D3E9F] to-[#47B7E8]",
   },
   {
     imagen: "empastados",
