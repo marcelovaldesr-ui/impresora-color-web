@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 
   const { data, error } = await resend.emails.send({
     from: "Cotizaciones <onboarding@resend.dev>",
-    to: "marcelo.valdes.r@mail.pucv.cl",
+    to: "impresoracolor3@gmail.com",
     subject: `Nueva solicitud de cotización - ${nombre}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
