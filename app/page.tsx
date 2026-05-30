@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import BandaEstadisticas from "./components/BandaEstadisticas";
+import OpcionesCotizar from "./components/OpcionesCotizar";
 import Servicios from "./components/Servicios";
 import MasProductos from "./components/MasProductos";
 import Beneficios from "./components/Beneficios";
@@ -10,7 +11,6 @@ import Galeria from "./components/Galeria";
 import Promociones from "./components/Promociones";
 import Ubicacion from "./components/Ubicacion";
 import FAQ from "./components/FAQ";
-import FormularioCotizacion from "./components/FormularioCotizacion";
 import Footer from "./components/Footer";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 
@@ -21,6 +21,7 @@ export default function Home() {
       <main>
         <Hero />
         <BandaEstadisticas />
+        <OpcionesCotizar />
         <Servicios />
         <MasProductos />
         <Beneficios />
@@ -30,7 +31,6 @@ export default function Home() {
         <Promociones />
         <Ubicacion />
         <FAQ />
-        <FormularioCotizacion />
       </main>
       <Footer />
       <WhatsAppFloat />
