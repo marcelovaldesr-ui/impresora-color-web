@@ -67,7 +67,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "pendones",
-    imagenUrl: "/images/pendon2.png",
+    imagenUrl: "/images/roller-producto.jpg",
     imagenAlt: "Pendones y rollers retráctiles para ferias, locales y eventos",
     objectFit: "contain",
     titulo: "Pendones y Rollers",
@@ -75,7 +75,7 @@ const PUBLICIDAD: Servicio[] = [
     boton: "Cotizar pendón o roller",
     wa: "Hola, quiero cotizar un pendón o roller retráctil.",
     acento: "#F47A20",
-    bg: "from-[#F47A20] to-[#E91E8F]",
+    bg: "bg-[#f8f8f8]",
   },
   {
     imagen: "menus",
@@ -241,7 +241,7 @@ const OFICINA: Servicio[] = [
 function TarjetaServicio({ s }: { s: Servicio }) {
   return (
     <div className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#E91E8F]/40 hover:shadow-xl hover:shadow-[#E91E8F]/8 transition-all duration-300 hover:-translate-y-1 flex flex-col">
-      <div className={`relative h-36 bg-gradient-to-br ${s.bg} overflow-hidden flex items-center justify-center`}>
+      <div className={`relative h-36 ${s.bg.startsWith("bg-[") ? s.bg : `bg-gradient-to-br ${s.bg}`} overflow-hidden flex items-center justify-center`}>
         {s.imagenUrl ? (
           <>
             <Image
