@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { trackFormConversion } from "@/app/lib/gtag";
 
 const PRODUCTOS = [
   "Flyer",
@@ -38,6 +39,7 @@ export default function FormularioCotizacion() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      if (res.ok) trackFormConversion();
       setEstado(res.ok ? "ok" : "error");
     } catch {
       setEstado("error");
