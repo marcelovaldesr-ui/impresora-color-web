@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
-import WhatsAppTracker from "./components/WhatsAppTracker";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -96,17 +94,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-434671504"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-434671504');
-        `}</Script>
-        <WhatsAppTracker />
       </body>
     </html>
   );
