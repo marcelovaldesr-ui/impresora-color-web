@@ -46,7 +46,6 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-5 text-sm font-medium">
           {[
             { href: "#servicios", label: "Servicios" },
-            { href: "#etiquetas", label: "Etiquetas" },
             { href: "#promociones", label: "Promociones" },
             { href: "#galeria", label: "Galería" },
             { href: "#ubicacion", label: "Ubicación" },
@@ -106,7 +105,6 @@ export default function Navbar() {
         <div className="md:hidden bg-white border-t border-gray-100 shadow-xl px-4 pb-5">
           {[
             { href: "#servicios", label: "Servicios" },
-            { href: "#etiquetas", label: "Etiquetas" },
             { href: "#promociones", label: "Promociones" },
             { href: "#galeria", label: "Galería" },
             { href: "#ubicacion", label: "Ubicación" },
