@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Impresora Color Ltda",
     images: [
       {
-        url: "/brand/banner-impresora-color.jpg.jpeg",
+        url: "/brand/banner-impresora-color-35años.png",
         width: 1024,
         height: 682,
         alt: "Impresora Color Ltda - Imprenta en Chillán",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Imprenta en Chillán | Impresora Color Ltda",
     description:
       "Flyers, stickers, tarjetas, pendones, menús, imanes y etiquetas para productos. Atención por WhatsApp. Arauco 1060, Chillán.",
-    images: ["/brand/banner-impresora-color.jpg.jpeg"],
+    images: ["/brand/banner-impresora-color-35años.png"],
   },
 };
 

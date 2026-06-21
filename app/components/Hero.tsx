@@ -114,13 +114,13 @@ export default function Hero() {
           {/* Marco decorativo tipo ficha de color */}
           <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#E91E8F]/8 via-[#47B7E8]/6 to-[#2D3E9F]/8" />
 
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#2D3E9F]/10 h-[380px] lg:h-[480px]">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#2D3E9F]/10">
             <Image
-              src="/brand/banner-impresora-color.jpg.jpeg"
+              src="/brand/banner-impresora-color-35años.png"
               alt="Trabajos de imprenta de Impresora Color Ltda — Chillán"
-              fill
-              sizes="(max-width: 1024px) 50vw, 480px"
-              className="object-cover"
+              width={1024}
+              height={682}
+              className="w-full h-auto block"
               priority
             />
             {/* Barra de colores CMYK en el borde inferior de la imagen */}
