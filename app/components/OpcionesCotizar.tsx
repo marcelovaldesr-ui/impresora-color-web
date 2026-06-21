@@ -5,13 +5,20 @@ const PHONE = "56998441157";
 const WHATSAPP_URL = `https://wa.me/${PHONE}?text=${encodeURIComponent("Hola, quiero cotizar un trabajo de imprenta")}`;
 
 const PRODUCTOS = [
-  "Flyer",
-  "Sticker",
+  "Flyer publicitario",
+  "Sticker personalizado",
+  "Etiqueta adhesiva",
   "Tarjeta de presentación",
   "Pendón",
   "Roller retráctil",
   "Lona",
-  "Etiqueta adhesiva",
+  "Menú para local",
+  "Imán publicitario",
+  "Sticker para packaging",
+  "Díptico / Tríptico",
+  "Timbre personalizado",
+  "Diploma",
+  "Carpeta corporativa",
   "Otro",
 ];
 
@@ -120,6 +127,7 @@ export default function OpcionesCotizar() {
                 <strong className="text-[#2D3E9F]">menos de 24 horas</strong>.
               </p>
 
+              <div aria-live="polite">
               {estado === "ok" ? (
                 <div className="text-center py-8">
                   <div className="w-14 h-14 bg-[#E91E8F] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -129,7 +137,8 @@ export default function OpcionesCotizar() {
                   </div>
                   <h4 className="text-[#2D3E9F] font-black text-xl mb-2">¡Solicitud enviada!</h4>
                   <p className="text-gray-500 text-sm">
-                    Recibimos tu cotización. Te contactaremos pronto por teléfono o email.
+                    Recibimos tu cotización. Revisa tu correo — te enviamos una confirmación.
+                    Te contactaremos en menos de 24 horas.
                   </p>
                   <button
                     onClick={() => {
@@ -145,45 +154,45 @@ export default function OpcionesCotizar() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-gray-700 text-xs font-semibold mb-1.5">
+                      <label htmlFor="oc-nombre" className="block text-gray-700 text-xs font-semibold mb-1.5">
                         Nombre <span className="text-[#E91E8F]">*</span>
                       </label>
                       <input
-                        type="text" name="nombre" value={form.nombre} onChange={handleChange}
-                        required placeholder="Tu nombre"
+                        id="oc-nombre" type="text" name="nombre" value={form.nombre} onChange={handleChange}
+                        required placeholder="Tu nombre" autoComplete="name"
                         className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#E91E8F] focus:ring-1 focus:ring-[#E91E8F]/30 transition-colors text-sm"
                       />
                     </div>
                     <div>
-                      <label className="block text-gray-700 text-xs font-semibold mb-1.5">
+                      <label htmlFor="oc-telefono" className="block text-gray-700 text-xs font-semibold mb-1.5">
                         Teléfono <span className="text-[#E91E8F]">*</span>
                       </label>
                       <input
-                        type="tel" name="telefono" value={form.telefono} onChange={handleChange}
-                        required placeholder="+56 9 XXXX XXXX"
+                        id="oc-telefono" type="tel" name="telefono" value={form.telefono} onChange={handleChange}
+                        required placeholder="+56 9 XXXX XXXX" autoComplete="tel"
                         className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#E91E8F] focus:ring-1 focus:ring-[#E91E8F]/30 transition-colors text-sm"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-gray-700 text-xs font-semibold mb-1.5">
+                    <label htmlFor="oc-email" className="block text-gray-700 text-xs font-semibold mb-1.5">
                       Correo electrónico <span className="text-[#E91E8F]">*</span>
                     </label>
                     <input
-                      type="email" name="email" value={form.email} onChange={handleChange}
-                      required placeholder="tu@correo.com"
+                      id="oc-email" type="email" name="email" value={form.email} onChange={handleChange}
+                      required placeholder="tu@correo.com" autoComplete="email" spellCheck={false}
                       className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#E91E8F] focus:ring-1 focus:ring-[#E91E8F]/30 transition-colors text-sm"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-gray-700 text-xs font-semibold mb-1.5">
+                      <label htmlFor="oc-producto" className="block text-gray-700 text-xs font-semibold mb-1.5">
                         Producto <span className="text-[#E91E8F]">*</span>
                       </label>
                       <select
-                        name="producto" value={form.producto} onChange={handleChange} required
+                        id="oc-producto" name="producto" value={form.producto} onChange={handleChange} required
                         className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-gray-800 bg-white focus:outline-none focus:border-[#E91E8F] focus:ring-1 focus:ring-[#E91E8F]/30 transition-colors text-sm appearance-none"
                       >
                         <option value="" disabled>Selecciona...</option>
@@ -191,11 +200,11 @@ export default function OpcionesCotizar() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-gray-700 text-xs font-semibold mb-1.5">
+                      <label htmlFor="oc-cantidad" className="block text-gray-700 text-xs font-semibold mb-1.5">
                         Cantidad / tamaño
                       </label>
                       <input
-                        type="text" name="cantidadTamano" value={form.cantidadTamano} onChange={handleChange}
+                        id="oc-cantidad" type="text" name="cantidadTamano" value={form.cantidadTamano} onChange={handleChange}
                         placeholder="Ej: 500 uds, 10×15 cm"
                         className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#E91E8F] focus:ring-1 focus:ring-[#E91E8F]/30 transition-colors text-sm"
                       />
@@ -203,11 +212,11 @@ export default function OpcionesCotizar() {
                   </div>
 
                   <div>
-                    <label className="block text-gray-700 text-xs font-semibold mb-1.5">
+                    <label htmlFor="oc-mensaje" className="block text-gray-700 text-xs font-semibold mb-1.5">
                       Mensaje adicional
                     </label>
                     <textarea
-                      name="mensaje" value={form.mensaje} onChange={handleChange} rows={3}
+                      id="oc-mensaje" name="mensaje" value={form.mensaje} onChange={handleChange} rows={3}
                       placeholder="Material, colores, archivo, fecha de entrega..."
                       className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#E91E8F] focus:ring-1 focus:ring-[#E91E8F]/30 transition-colors text-sm resize-none"
                     />
@@ -224,7 +233,7 @@ export default function OpcionesCotizar() {
                     disabled={estado === "enviando"}
                     className="w-full bg-[#E91E8F] hover:bg-[#d4166c] disabled:opacity-60 disabled:cursor-not-allowed text-white font-black py-3.5 rounded-xl transition-colors text-sm shadow-lg shadow-[#E91E8F]/25"
                   >
-                    {estado === "enviando" ? "Enviando..." : "Solicitar cotización"}
+                    {estado === "enviando" ? "Enviando…" : "Solicitar cotización"}
                   </button>
 
                   <p className="text-center text-gray-400 text-xs">
@@ -232,6 +241,7 @@ export default function OpcionesCotizar() {
                   </p>
                 </form>
               )}
+              </div>
             </div>
           </div>
 
