@@ -13,6 +13,7 @@ type Servicio = {
   objectFit?: "cover" | "contain";
   titulo: string;
   descripcion: string;
+  entrega?: string;
   boton: string;
   wa: string;
   acento: string;
@@ -27,6 +28,7 @@ const PUBLICIDAD: Servicio[] = [
     imagenAlt: "Flyers publicitarios impresos a color para publicidad y promociones",
     titulo: "Flyers publicitarios",
     descripcion: "Diseñados para captar atención y generar más ventas.",
+    entrega: "1-2 días hábiles",
     boton: "Cotizar flyers",
     wa: "Hola, quiero cotizar flyers publicitarios.",
     acento: "#E91E8F",
@@ -38,6 +40,7 @@ const PUBLICIDAD: Servicio[] = [
     imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
     titulo: "Stickers personalizados",
     descripcion: "Para tu marca, producto o emprendimiento.",
+    entrega: "2-4 días hábiles",
     boton: "Cotizar stickers",
     wa: "Hola, quiero cotizar stickers personalizados.",
     acento: "#47B7E8",
@@ -60,6 +63,7 @@ const PUBLICIDAD: Servicio[] = [
     imagenAlt: "Tarjetas de presentación profesionales impresas",
     titulo: "Tarjetas de presentación",
     descripcion: "Primera impresión profesional para tu negocio.",
+    entrega: "2-3 días hábiles",
     boton: "Cotizar tarjetas",
     wa: "Hola, quiero cotizar tarjetas de presentación.",
     acento: "#2D3E9F",
@@ -72,6 +76,7 @@ const PUBLICIDAD: Servicio[] = [
     objectFit: "contain",
     titulo: "Pendones y Rollers",
     descripcion: "Visibilidad total en ferias, locales y eventos. Disponibles en pendón tradicional y roller retráctil.",
+    entrega: "3-5 días hábiles",
     boton: "Cotizar pendón o roller",
     wa: "Hola, quiero cotizar un pendón o roller retráctil.",
     acento: "#F47A20",
@@ -109,6 +114,17 @@ const PUBLICIDAD: Servicio[] = [
     wa: "Hola, quiero cotizar stickers para packaging.",
     acento: "#7DBA2F",
     bg: "from-[#7DBA2F] to-[#47B7E8]",
+  },
+  {
+    imagen: "bolsas-sublimacion",
+    imagenUrl: "/images/bolsas-sublimacion.jpg",
+    imagenAlt: "Bolsas personalizadas con estampado a color por sublimación para merchandising y eventos en Chillán",
+    titulo: "Bolsas Sublimación",
+    descripcion: "Bolsas personalizadas con estampado a color por sublimación, ideales para merchandising, regalos corporativos y eventos en Chillán.",
+    boton: "Cotiza por WhatsApp",
+    wa: "Hola, quiero cotizar bolsas personalizadas con estampado por sublimación.",
+    acento: "#E91E8F",
+    bg: "from-[#E91E8F] to-[#F47A20]",
   },
   {
     imagen: "dipticos",
@@ -235,6 +251,17 @@ const OFICINA: Servicio[] = [
     acento: "#F47A20",
     bg: "from-[#F47A20] to-[#E91E8F]",
   },
+  {
+    imagen: "credenciales-fargo",
+    imagenUrl: "/images/tarjetaspvc.png",
+    imagenAlt: "Impresión de carnet institucional y credenciales con tecnología Fargo en Chillán, con sobrelaminado de seguridad",
+    titulo: "Tarjetas y Credenciales",
+    descripcion: "Impresión directa con tecnología Fargo: carnet institucional, credenciales de empleado, control de acceso, carnet de socio/gimnasio y credenciales de eventos. Sobrelaminado con marca de agua de seguridad.",
+    boton: "Cotiza por WhatsApp",
+    wa: "Hola, quiero cotizar impresión de carnet o credenciales con tecnología Fargo.",
+    acento: "#2D3E9F",
+    bg: "from-[#2D3E9F] to-[#47B7E8]",
+  },
 ];
 
 // ── Componente de tarjeta ─────────────────────────────────────────────────────
@@ -280,6 +307,14 @@ function TarjetaServicio({ s }: { s: Servicio }) {
       <div className="p-4 flex flex-col flex-1 bg-white">
         <h3 className="text-[#2D3E9F] font-black text-sm mb-1.5 leading-tight">{s.titulo}</h3>
         <p className="text-gray-500 text-xs leading-relaxed flex-1">{s.descripcion}</p>
+        {s.entrega && (
+          <p className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-[#2D3E9F]">
+            <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Entrega {s.entrega}
+          </p>
+        )}
         <a
           href={waLink(s.wa)}
           target="_blank"
