@@ -4,6 +4,7 @@ import { trackConversion, CONV_FORMULARIO } from "./GoogleAds";
 
 const PHONE = "56998441157";
 const WHATSAPP_URL = `https://wa.me/${PHONE}?text=${encodeURIComponent("Hola, quiero cotizar un trabajo de imprenta")}`;
+const waIntent = (msg: string) => `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
 
 const PRODUCTOS = [
   "Flyer publicitario",
@@ -108,15 +109,36 @@ export default function OpcionesCotizar() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 bg-white text-[#128C7E] hover:bg-green-50 font-black text-base px-6 py-4 rounded-2xl transition-all duration-200 shadow-md"
-              >
-                <WAIcon className="w-5 h-5" />
-                Cotizar por WhatsApp
-              </a>
+              <p className="text-white/70 text-xs font-bold uppercase tracking-widest mb-3">
+                Parte con contexto — elige tu caso
+              </p>
+              <div className="flex flex-col gap-2.5">
+                <a
+                  href={waIntent("Hola, tengo mi diseño listo y quiero cotizar la impresión. Ahora les adjunto el archivo.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-3 bg-white text-[#128C7E] hover:bg-green-50 font-black text-base px-6 py-3.5 rounded-2xl transition-colors duration-200 shadow-md"
+                >
+                  <WAIcon className="w-5 h-5" />
+                  Tengo mi diseño listo
+                </a>
+                <a
+                  href={waIntent("Hola, quiero cotizar un trabajo de imprenta y necesito ayuda con el diseño.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 bg-white/15 border border-white/40 text-white hover:bg-white/25 font-bold text-sm px-6 py-3 rounded-2xl transition-colors duration-200"
+                >
+                  Necesito ayuda con el diseño
+                </a>
+                <a
+                  href={waIntent("Hola, quiero repetir un pedido que ya me hicieron antes.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 bg-white/15 border border-white/40 text-white hover:bg-white/25 font-bold text-sm px-6 py-3 rounded-2xl transition-colors duration-200"
+                >
+                  Quiero repetir un pedido
+                </a>
+              </div>
             </div>
           </div>
 
