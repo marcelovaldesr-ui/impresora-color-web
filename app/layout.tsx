@@ -6,7 +6,8 @@ import GoogleAds from "./components/GoogleAds";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.impresoracolor.cl"),
+  // Dominio canónico SIN www — vercel.json redirige www → apex (301)
+  metadataBase: new URL("https://impresoracolor.cl"),
   title: "Imprenta en Chillán | Flyers, Stickers, Credenciales, Pendones y Etiquetas",
   description:
     "Impresora Color Ltda en Chillán. Cotiza flyers, stickers, tarjetas, pendones, menús, imanes, etiquetas, impresión de carnet e credenciales con tecnología Fargo, bolsas personalizadas con estampado por sublimación y material publicitario para tu negocio. Atención rápida por WhatsApp. Arauco 1060, Chillán.",
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
       "Flyers, stickers, tarjetas, pendones, menús, imanes y etiquetas para productos. Atención por WhatsApp. Arauco 1060, Chillán.",
     type: "website",
     locale: "es_CL",
-    url: "https://www.impresoracolor.cl/",
+    url: "https://impresoracolor.cl/",
     siteName: "Impresora Color Ltda",
     images: [
       {
@@ -45,7 +46,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Impresora Color Ltda",
-  url: "https://www.impresoracolor.cl/",
+  url: "https://impresoracolor.cl/",
   telephone: "+56998441157",
   address: {
     "@type": "PostalAddress",

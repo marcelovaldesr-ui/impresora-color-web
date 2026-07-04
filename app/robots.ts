@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://www.impresoracolor.cl/sitemap.xml",
+    sitemap: "https://impresoracolor.cl/sitemap.xml",
   };
 }
