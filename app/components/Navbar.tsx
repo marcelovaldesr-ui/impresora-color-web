@@ -69,12 +69,6 @@ export default function Navbar() {
 
         {/* CTAs escritorio */}
         <div className="hidden md:flex items-center gap-3">
-          <Link
-            href="/tienda"
-            className="text-sm font-semibold text-[#2D3E9F] border border-[#2D3E9F] px-4 py-2 rounded-full hover:bg-[#2D3E9F] hover:text-white transition-colors"
-          >
-            Tienda
-          </Link>
           <a
             href="#cotizar"
             className="flex items-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25"
