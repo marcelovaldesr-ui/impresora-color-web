@@ -13,11 +13,21 @@ const INFO = {
     "https://www.google.com/maps/place/Impresora+Color+Ltda./@-36.6124899,-72.1037117,13z/data=!4m6!3m5!1s0x9669282ecbefa02d:0xd52cfa17b8d7d88d!8m2!3d-36.6130779!4d-72.1051356!16s%2Fg%2F12lvg43y1?hl=es&entry=ttu&g_ep=EgoyMDI2MDQyNi4wIKXMDSoASAFQAw%3D%3D",
 };
 
-const SERVICIOS_FOOTER = [
-  "Flyers", "Stickers", "Tarjetas", "Pendones",
-  "Menús", "Imanes", "Etiquetas", "Packaging",
-  "Fotocopias", "Impresiones", "Anillados",
-  "Diplomas", "Calendarios", "Carpetas corporativas",
+const SERVICIOS_FOOTER: { label: string; href: string }[] = [
+  { label: "Flyers", href: "/#servicios" },
+  { label: "Stickers", href: "/stickers-chillan" },
+  { label: "Tarjetas", href: "/#servicios" },
+  { label: "Pendones", href: "/pendones-chillan" },
+  { label: "Menús", href: "/#servicios" },
+  { label: "Imanes", href: "/#servicios" },
+  { label: "Etiquetas", href: "/etiquetas-cecinas" },
+  { label: "Packaging", href: "/#servicios" },
+  { label: "Fotocopias", href: "/#servicios" },
+  { label: "Impresiones", href: "/#servicios" },
+  { label: "Anillados", href: "/#servicios" },
+  { label: "Diplomas", href: "/#servicios" },
+  { label: "Calendarios", href: "/#servicios" },
+  { label: "Carpetas corporativas", href: "/#servicios" },
 ];
 
 export default function Footer() {
@@ -116,13 +126,13 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2.5">
             {SERVICIOS_FOOTER.map((s) => (
-              <li key={s}>
+              <li key={s.label}>
                 <a
-                  href="#servicios"
+                  href={s.href}
                   className="text-gray-400 hover:text-[#E91E8F] text-sm transition-colors flex items-center gap-2"
                 >
                   <span className="w-1 h-1 bg-[#E91E8F] rounded-full shrink-0" />
-                  {s}
+                  {s.label}
                 </a>
               </li>
             ))}
