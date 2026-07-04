@@ -37,8 +37,8 @@ export default function Home() {
         <Servicios />
         <MasProductos />
         <Beneficios />
-        <Testimonios />
         <EmpresasClientes />
+        <Testimonios />
         <Galeria />
         <Promociones />
         <Ubicacion />
