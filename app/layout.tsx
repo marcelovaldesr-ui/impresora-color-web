@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import GoogleAds from "./components/GoogleAds";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.impresoracolor.cl"),
-  title: "Imprenta en Chillán | Flyers, Stickers, Tarjetas, Pendones y Etiquetas",
+  title: "Imprenta en Chillán | Flyers, Stickers, Credenciales, Pendones y Etiquetas",
   description:
-    "Impresora Color Ltda en Chillán. Cotiza flyers, stickers, tarjetas, pendones, menús, imanes, etiquetas para productos, etiquetas para cecinas, etiquetas para vinos y material publicitario para tu negocio. Atención rápida por WhatsApp. Ubicados en Arauco 1060, Chillán.",
+    "Impresora Color Ltda en Chillán. Cotiza flyers, stickers, tarjetas, pendones, menús, imanes, etiquetas, impresión de carnet e credenciales con tecnología Fargo, bolsas personalizadas con estampado por sublimación y material publicitario para tu negocio. Atención rápida por WhatsApp. Arauco 1060, Chillán.",
   keywords:
-    "imprenta chillán, flyers chillán, stickers chillán, tarjetas de presentación chillán, pendones chillán, etiquetas para cecinas, etiquetas para vinos, etiquetas adhesivas, impresión publicitaria, material gráfico chillán, fotocopias chillán, impresiones chillán, anillados chillán, empastados chillán, diplomas chillán, carpetas corporativas chillán, calendarios chillán, anillado de documentos chillán",
+    "imprenta chillán, flyers chillán, stickers chillán, tarjetas de presentación chillán, pendones chillán, etiquetas para cecinas, etiquetas para vinos, etiquetas adhesivas, impresión publicitaria, material gráfico chillán, fotocopias chillán, impresiones chillán, anillados chillán, empastados chillán, diplomas chillán, carpetas corporativas chillán, calendarios chillán, anillado de documentos chillán, impresión de carnet chillán, credenciales institucionales chillán, credenciales fargo chillán, carnets de socio chillán, control de acceso chillán, bolsas personalizadas chillán, estampado sublimación chillán, merchandising chillán",
   alternates: {
     canonical: "/",
   },
@@ -77,6 +78,9 @@ const jsonLd = {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Etiquetas para vinos" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Etiquetas para alimentos" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Stickers para packaging" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Impresión de carnet y credenciales Chillán" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Credenciales institucionales Fargo Chillán" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bolsas personalizadas sublimación Chillán" } },
     ],
   },
 };
@@ -90,6 +94,7 @@ export default function RootLayout({
     <html lang="es" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
         {children}
+        <GoogleAds />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

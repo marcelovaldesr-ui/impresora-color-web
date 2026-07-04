@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { trackConversion, CONV_FORMULARIO } from "./GoogleAds";
 
 const PHONE = "56998441157";
 const WHATSAPP_URL = `https://wa.me/${PHONE}?text=${encodeURIComponent("Hola, quiero cotizar un trabajo de imprenta")}`;
@@ -50,6 +51,10 @@ export default function OpcionesCotizar() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      if (res.ok) {
+        // Conversión Google Ads: solo cuando el envío fue exitoso
+        trackConversion(CONV_FORMULARIO);
+      }
       setEstado(res.ok ? "ok" : "error");
     } catch {
       setEstado("error");
