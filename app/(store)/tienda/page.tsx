@@ -2,12 +2,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { PRODUCTOS, formatCLP } from '@/lib/productos'
 import type { Metadata } from 'next'
+import { TIENDA_EN_CONSTRUCCION } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: 'Tienda Online | Impresora Color Ltda — Chillán',
   description:
     'Compra online tarjetas, flyers, stickers y pendones en Chillán. Sube tu diseño listo, elige cantidad y paga de forma segura.',
   alternates: { canonical: '/tienda' },
+  // Mientras la tienda esté en construcción, no indexar (contenido "próximamente")
+  robots: TIENDA_EN_CONSTRUCCION ? { index: false, follow: true } : undefined,
 }
 
 export default function TiendaPage() {

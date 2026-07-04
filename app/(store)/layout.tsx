@@ -4,9 +4,7 @@ import { CarritoProvider } from '@/lib/carrito'
 import CarritoIcono from './CarritoIcono'
 import Footer from '@/app/components/Footer'
 import WhatsAppFloat from '@/app/components/WhatsAppFloat'
-
-// Cambiar a false cuando los precios y productos estén listos
-const EN_CONSTRUCCION = true
+import { TIENDA_EN_CONSTRUCCION as EN_CONSTRUCCION } from '@/lib/config'
 
 function ProximamenteScreen() {
   return (
