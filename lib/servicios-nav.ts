@@ -6,25 +6,32 @@ export type NavCategoria = { categoria: string; color: string; items: NavServici
 
 export const NAV_SERVICIOS: NavCategoria[] = [
   {
-    categoria: "Publicidad y emprendimientos",
+    categoria: "Publicidad y marketing",
     color: "#E91E8F",
     items: [
       { label: "Flyers publicitarios", href: "/#servicio-flyers" },
-      { label: "Stickers personalizados", href: "/stickers-chillan" },
-      { label: "Etiquetas adhesivas", href: "/etiquetas-cecinas" },
+      { label: "Bolsas Sublimación", href: "/#servicio-bolsas-sublimacion" },
       { label: "Tarjetas de presentación", href: "/#servicio-tarjetas" },
       { label: "Pendones y Rollers", href: "/pendones-chillan" },
       { label: "Menús para locales", href: "/#servicio-menus" },
       { label: "Imanes publicitarios", href: "/#servicio-imanes" },
-      { label: "Stickers para packaging", href: "/#servicio-packaging" },
-      { label: "Bolsas Sublimación", href: "/#servicio-bolsas-sublimacion" },
       { label: "Dípticos y trípticos", href: "/#servicio-dipticos" },
     ],
   },
   {
-    categoria: "Oficina, colegios y empresas",
+    categoria: "Etiquetas y packaging",
+    color: "#7DBA2F",
+    items: [
+      { label: "Etiquetas adhesivas", href: "/etiquetas-cecinas" },
+      { label: "Stickers personalizados", href: "/stickers-chillan" },
+      { label: "Stickers para packaging", href: "/#servicio-packaging" },
+    ],
+  },
+  {
+    categoria: "Documentos y oficina",
     color: "#47B7E8",
     items: [
+      { label: "Tarjetas y Credenciales", href: "/#servicio-credenciales-fargo" },
       { label: "Fotocopias", href: "/#servicio-fotocopias" },
       { label: "Impresiones", href: "/#servicio-impresiones" },
       { label: "Anillados", href: "/#servicio-anillados" },
@@ -35,7 +42,6 @@ export const NAV_SERVICIOS: NavCategoria[] = [
       { label: "Carpetas corporativas", href: "/#servicio-carpetas-corporativas" },
       { label: "Reglamentos internos", href: "/#servicio-reglamentos" },
       { label: "Calendarios", href: "/#servicio-calendarios" },
-      { label: "Tarjetas y Credenciales", href: "/#servicio-credenciales-fargo" },
     ],
   },
 ];

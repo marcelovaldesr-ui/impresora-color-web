@@ -69,7 +69,7 @@ export default function Navbar() {
               </svg>
             </a>
             {servOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full w-[560px] bg-white border border-gray-100 rounded-2xl shadow-2xl p-6 grid grid-cols-2 gap-x-6 gap-y-4">
+              <div className="absolute left-1/2 -translate-x-1/2 top-full w-[720px] bg-white border border-gray-100 rounded-2xl shadow-2xl p-6 grid grid-cols-3 gap-x-6 gap-y-4">
                 {NAV_SERVICIOS.map((cat) => (
                   <div key={cat.categoria}>
                     <p className="text-[10px] font-black uppercase tracking-widest mb-2.5" style={{ color: cat.color }}>
@@ -93,7 +93,7 @@ export default function Navbar() {
                 <a
                   href="/#servicios"
                   onClick={() => setServOpen(false)}
-                  className="col-span-2 text-center text-xs font-bold text-[#2D3E9F] hover:text-[#E91E8F] border-t border-gray-100 pt-3 transition-colors"
+                  className="col-span-3 text-center text-xs font-bold text-[#2D3E9F] hover:text-[#E91E8F] border-t border-gray-100 pt-3 transition-colors"
                 >
                   Ver todos los servicios →
                 </a>

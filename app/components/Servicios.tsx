@@ -20,7 +20,7 @@ type Servicio = {
   bg: string;
 };
 
-// ── Categoría 1: Publicidad y emprendimientos ─────────────────────────────────
+// ── Categoría 1: Publicidad y marketing ─────────────────────────────────────
 const PUBLICIDAD: Servicio[] = [
   {
     imagen: "flyers",
@@ -35,27 +35,15 @@ const PUBLICIDAD: Servicio[] = [
     bg: "from-[#E91E8F] to-[#2D3E9F]",
   },
   {
-    imagen: "stickers",
-    imagenUrl: "/images/sitkers.png",
-    imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
-    titulo: "Stickers personalizados",
-    descripcion: "Para tu marca, producto o emprendimiento.",
-    entrega: "2-4 días hábiles",
-    boton: "Cotizar stickers",
-    wa: "Hola, quiero cotizar stickers personalizados.",
-    acento: "#47B7E8",
-    bg: "from-[#47B7E8] to-[#2D3E9F]",
-  },
-  {
-    imagen: "etiquetas-adhesivas",
-    imagenUrl: "/images/etiquetas.png",
-    imagenAlt: "Etiquetas adhesivas para productos, cecinas, vinos y alimentos",
-    titulo: "Etiquetas adhesivas",
-    descripcion: "Para productos, cecinas, vinos, alimentos, envases y marcas locales. Adhesivos de alta calidad para todo tipo de superficie.",
-    boton: "Cotizar etiquetas",
-    wa: "Hola, quiero cotizar etiquetas para mi producto. Necesito orientación sobre tamaño, material y cantidad.",
+    imagen: "bolsas-sublimacion",
+    imagenUrl: "/images/bolsas-sublimacion.jpg",
+    imagenAlt: "Bolsas personalizadas con estampado a color por sublimación para merchandising y eventos en Chillán",
+    titulo: "Bolsas Sublimación",
+    descripcion: "Bolsas personalizadas con estampado a color por sublimación, ideales para merchandising, regalos corporativos y eventos en Chillán.",
+    boton: "Cotiza por WhatsApp",
+    wa: "Hola, quiero cotizar bolsas personalizadas con estampado por sublimación.",
     acento: "#E91E8F",
-    bg: "from-[#E91E8F] to-[#2D3E9F]",
+    bg: "from-[#E91E8F] to-[#F47A20]",
   },
   {
     imagen: "tarjetas",
@@ -105,28 +93,6 @@ const PUBLICIDAD: Servicio[] = [
     bg: "from-[#F5C51B] to-[#F47A20]",
   },
   {
-    imagen: "packaging",
-    imagenUrl: "/images/100-stickers-cierre-de-caja.jpg",
-    imagenAlt: "Stickers adhesivos para packaging, bolsas y empaques de marca",
-    titulo: "Stickers para packaging",
-    descripcion: "Adhesivos para bolsas, cajas y empaques de marca.",
-    boton: "Cotizar packaging",
-    wa: "Hola, quiero cotizar stickers para packaging.",
-    acento: "#7DBA2F",
-    bg: "from-[#7DBA2F] to-[#47B7E8]",
-  },
-  {
-    imagen: "bolsas-sublimacion",
-    imagenUrl: "/images/bolsas-sublimacion.jpg",
-    imagenAlt: "Bolsas personalizadas con estampado a color por sublimación para merchandising y eventos en Chillán",
-    titulo: "Bolsas Sublimación",
-    descripcion: "Bolsas personalizadas con estampado a color por sublimación, ideales para merchandising, regalos corporativos y eventos en Chillán.",
-    boton: "Cotiza por WhatsApp",
-    wa: "Hola, quiero cotizar bolsas personalizadas con estampado por sublimación.",
-    acento: "#E91E8F",
-    bg: "from-[#E91E8F] to-[#F47A20]",
-  },
-  {
     imagen: "dipticos",
     imagenUrl: "/images/triptico.png",
     imagenAlt: "Dípticos y trípticos impresos para empresas, clínicas y eventos",
@@ -139,8 +105,57 @@ const PUBLICIDAD: Servicio[] = [
   },
 ];
 
-// ── Categoría 2: Oficina, colegios y empresas ────────────────────────────────
+// ── Categoría 2: Etiquetas y packaging ──────────────────────────────────────
+const ETIQUETAS_PACKAGING: Servicio[] = [
+  {
+    imagen: "etiquetas-adhesivas",
+    imagenUrl: "/images/etiquetas.png",
+    imagenAlt: "Etiquetas adhesivas para productos, cecinas, vinos y alimentos",
+    titulo: "Etiquetas adhesivas",
+    descripcion: "Para productos, cecinas, vinos, alimentos, envases y marcas locales. Adhesivos de alta calidad para todo tipo de superficie.",
+    boton: "Cotizar etiquetas",
+    wa: "Hola, quiero cotizar etiquetas para mi producto. Necesito orientación sobre tamaño, material y cantidad.",
+    acento: "#E91E8F",
+    bg: "from-[#E91E8F] to-[#2D3E9F]",
+  },
+  {
+    imagen: "stickers",
+    imagenUrl: "/images/sitkers.png",
+    imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
+    titulo: "Stickers personalizados",
+    descripcion: "Para tu marca, producto o emprendimiento.",
+    entrega: "2-4 días hábiles",
+    boton: "Cotizar stickers",
+    wa: "Hola, quiero cotizar stickers personalizados.",
+    acento: "#47B7E8",
+    bg: "from-[#47B7E8] to-[#2D3E9F]",
+  },
+  {
+    imagen: "packaging",
+    imagenUrl: "/images/100-stickers-cierre-de-caja.jpg",
+    imagenAlt: "Stickers adhesivos para packaging, bolsas y empaques de marca",
+    titulo: "Stickers para packaging",
+    descripcion: "Adhesivos para bolsas, cajas y empaques de marca.",
+    boton: "Cotizar packaging",
+    wa: "Hola, quiero cotizar stickers para packaging.",
+    acento: "#7DBA2F",
+    bg: "from-[#7DBA2F] to-[#47B7E8]",
+  },
+];
+
+// ── Categoría 3: Documentos y oficina ───────────────────────────────────────
 const OFICINA: Servicio[] = [
+  {
+    imagen: "credenciales-fargo",
+    imagenUrl: "/images/tarjetaspvc.png",
+    imagenAlt: "Impresión de carnet institucional y credenciales con tecnología Fargo en Chillán, con sobrelaminado de seguridad",
+    titulo: "Tarjetas y Credenciales",
+    descripcion: "Impresión directa con tecnología Fargo: carnet institucional, credenciales de empleado, control de acceso, carnet de socio/gimnasio y credenciales de eventos. Sobrelaminado con marca de agua de seguridad.",
+    boton: "Cotiza por WhatsApp",
+    wa: "Hola, quiero cotizar impresión de carnet o credenciales con tecnología Fargo.",
+    acento: "#2D3E9F",
+    bg: "from-[#2D3E9F] to-[#47B7E8]",
+  },
   {
     imagen: "fotocopias",
     imagenUrl: "/images/fotocopias.png",
@@ -251,17 +266,6 @@ const OFICINA: Servicio[] = [
     acento: "#F47A20",
     bg: "from-[#F47A20] to-[#E91E8F]",
   },
-  {
-    imagen: "credenciales-fargo",
-    imagenUrl: "/images/tarjetaspvc.png",
-    imagenAlt: "Impresión de carnet institucional y credenciales con tecnología Fargo en Chillán, con sobrelaminado de seguridad",
-    titulo: "Tarjetas y Credenciales",
-    descripcion: "Impresión directa con tecnología Fargo: carnet institucional, credenciales de empleado, control de acceso, carnet de socio/gimnasio y credenciales de eventos. Sobrelaminado con marca de agua de seguridad.",
-    boton: "Cotiza por WhatsApp",
-    wa: "Hola, quiero cotizar impresión de carnet o credenciales con tecnología Fargo.",
-    acento: "#2D3E9F",
-    bg: "from-[#2D3E9F] to-[#47B7E8]",
-  },
 ];
 
 // ── Componente de tarjeta ─────────────────────────────────────────────────────
@@ -368,9 +372,9 @@ export default function Servicios() {
           {/* Chips de salto por categoría — evita el scroll largo */}
           <div className="flex flex-wrap justify-center gap-2 mt-6">
             {[
-              { label: "Publicidad y emprendimientos", href: "#cat-publicidad", color: "#E91E8F" },
-              { label: "Oficina, colegios y empresas", href: "#cat-oficina", color: "#47B7E8" },
-              { label: "Etiquetas para productos", href: "#etiquetas", color: "#7DBA2F" },
+              { label: "Publicidad y marketing", href: "#cat-publicidad", color: "#E91E8F" },
+              { label: "Etiquetas y packaging", href: "#cat-etiquetas", color: "#7DBA2F" },
+              { label: "Documentos y oficina", href: "#cat-oficina", color: "#47B7E8" },
               { label: "Catálogo completo", href: "#mas-productos", color: "#F47A20" },
             ].map((c) => (
               <a
@@ -386,13 +390,19 @@ export default function Servicios() {
         </div>
 
         {/* ── Categoría 1 ── */}
-        <CategoriaHeader id="cat-publicidad" label="Publicidad y emprendimientos" color="#E91E8F" />
+        <CategoriaHeader id="cat-publicidad" label="Publicidad y marketing" color="#E91E8F" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {PUBLICIDAD.map((s) => <TarjetaServicio key={s.titulo} s={s} />)}
         </div>
 
         {/* ── Categoría 2 ── */}
-        <CategoriaHeader id="cat-oficina" label="Oficina, colegios y empresas" color="#47B7E8" />
+        <CategoriaHeader id="cat-etiquetas" label="Etiquetas y packaging" color="#7DBA2F" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {ETIQUETAS_PACKAGING.map((s) => <TarjetaServicio key={s.titulo} s={s} />)}
+        </div>
+
+        {/* ── Categoría 3 ── */}
+        <CategoriaHeader id="cat-oficina" label="Documentos y oficina" color="#47B7E8" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {OFICINA.map((s) => <TarjetaServicio key={s.titulo} s={s} />)}
         </div>

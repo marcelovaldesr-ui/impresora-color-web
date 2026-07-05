@@ -15,6 +15,8 @@ const PILLS = [
   { label: "Imanes",     href: "#servicios", color: "#F5C51B" },
   { label: "Etiquetas",  href: "#etiquetas", color: "#E91E8F" },
   { label: "Packaging",  href: "#etiquetas", color: "#47B7E8" },
+  { label: "Credenciales", href: "#servicio-credenciales-fargo", color: "#2D3E9F" },
+  { label: "Bolsas",     href: "#servicio-bolsas-sublimacion", color: "#F47A20" },
 ];
 
 export default function Hero() {
