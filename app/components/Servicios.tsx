@@ -330,9 +330,9 @@ function TarjetaServicio({ s }: { s: Servicio }) {
 }
 
 // ── Separador de categoría ────────────────────────────────────────────────────
-function CategoriaHeader({ label, color }: { label: string; color: string }) {
+function CategoriaHeader({ label, color, id }: { label: string; color: string; id?: string }) {
   return (
-    <div className="flex items-center gap-3 mb-6 mt-14 first:mt-0">
+    <div id={id} className="flex items-center gap-3 mb-6 mt-14 first:mt-0 scroll-mt-24">
       <span className="h-0.5 w-8 rounded-full" style={{ background: color }} />
       <span className="font-black text-xs uppercase tracking-widest" style={{ color }}>
         {label}
@@ -364,16 +364,35 @@ export default function Servicios() {
             Publicidad, etiquetas, fotocopias, impresiones, anillados y mucho más.
             Atención rápida por WhatsApp desde Chillán.
           </p>
+
+          {/* Chips de salto por categoría — evita el scroll largo */}
+          <div className="flex flex-wrap justify-center gap-2 mt-6">
+            {[
+              { label: "Publicidad y emprendimientos", href: "#cat-publicidad", color: "#E91E8F" },
+              { label: "Oficina, colegios y empresas", href: "#cat-oficina", color: "#47B7E8" },
+              { label: "Etiquetas para productos", href: "#etiquetas", color: "#7DBA2F" },
+              { label: "Catálogo completo", href: "#mas-productos", color: "#F47A20" },
+            ].map((c) => (
+              <a
+                key={c.href}
+                href={c.href}
+                className="text-xs font-bold px-4 py-2 rounded-full border transition-opacity duration-150 hover:opacity-75"
+                style={{ color: c.color, borderColor: `${c.color}40`, backgroundColor: `${c.color}0D` }}
+              >
+                {c.label}
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* ── Categoría 1 ── */}
-        <CategoriaHeader label="Publicidad y emprendimientos" color="#E91E8F" />
+        <CategoriaHeader id="cat-publicidad" label="Publicidad y emprendimientos" color="#E91E8F" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {PUBLICIDAD.map((s) => <TarjetaServicio key={s.titulo} s={s} />)}
         </div>
 
         {/* ── Categoría 2 ── */}
-        <CategoriaHeader label="Oficina, colegios y empresas" color="#47B7E8" />
+        <CategoriaHeader id="cat-oficina" label="Oficina, colegios y empresas" color="#47B7E8" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {OFICINA.map((s) => <TarjetaServicio key={s.titulo} s={s} />)}
         </div>

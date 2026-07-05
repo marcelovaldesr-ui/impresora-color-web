@@ -3,7 +3,7 @@ const WA_ETIQUETAS =
 
 export default function Etiquetas() {
   return (
-    <section id="etiquetas" className="bg-[#F6F8FC] py-20 px-4 relative overflow-hidden">
+    <section id="etiquetas" className="bg-[#F6F8FC] py-20 px-4 relative overflow-hidden scroll-mt-16">
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#E91E8F]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#47B7E8]/5 rounded-full blur-3xl pointer-events-none" />
 
