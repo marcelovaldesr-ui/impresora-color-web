@@ -151,7 +151,7 @@ export default function Navbar() {
 
       {/* Menú móvil */}
       {open && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-xl px-4 pb-5">
+        <div className="md:hidden bg-white border-t border-gray-100 shadow-xl px-4 pb-5 max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain">
           <button
             onClick={() => setServMovil(!servMovil)}
             aria-expanded={servMovil}
