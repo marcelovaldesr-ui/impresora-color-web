@@ -1,24 +1,28 @@
-const PRODUCTOS = [
-  "Dípticos y trípticos",
-  "Afiches",
-  "Talonarios autocopiativos",
-  "Entradas personalizadas",
-  "Invitaciones",
-  "Carnet veterinarios",
-  "Cuadernos corporativos",
-  "Libretas personalizadas",
-  "Recetarios",
-  "Palomas publicitarias",
-  "Lonas de PVC",
-  "Pendón roller up",
-  "Etiquetas de agua",
-  "Stickers transparente",
-  "Adhesivo por m2",
-  "Señaléticas",
-  "Windows vision one",
-  "Adhesivo en trovicel",
-  "Patente para camión",
+// Sin duplicados con las cards de Servicios (dípticos y pendón roller ya tienen card propia).
+// Cada ítem es cotizable por WhatsApp con mensaje precargado.
+const PRODUCTOS: { label: string; wa: string }[] = [
+  { label: "Afiches", wa: "afiches" },
+  { label: "Talonarios autocopiativos", wa: "talonarios autocopiativos" },
+  { label: "Entradas personalizadas", wa: "entradas personalizadas" },
+  { label: "Invitaciones", wa: "invitaciones" },
+  { label: "Cuadernos corporativos", wa: "cuadernos corporativos" },
+  { label: "Libretas personalizadas", wa: "libretas personalizadas" },
+  { label: "Recetarios", wa: "recetarios" },
+  { label: "Carnets veterinarios", wa: "carnets veterinarios" },
+  { label: "Palomas publicitarias", wa: "palomas publicitarias" },
+  { label: "Lonas de PVC", wa: "lonas de PVC" },
+  { label: "Señaléticas", wa: "señaléticas" },
+  { label: "Etiquetas para botellas de agua", wa: "etiquetas para botellas de agua" },
+  { label: "Stickers transparentes", wa: "stickers transparentes" },
+  { label: "Adhesivo impreso por m²", wa: "adhesivo impreso por metro cuadrado" },
+  { label: "One Way Vision (adhesivo para vidrios)", wa: "adhesivo One Way Vision para vidrios" },
+  { label: "Adhesivo montado en trovicel", wa: "adhesivo montado en trovicel" },
+  { label: "Patentes para camiones", wa: "patentes para camión" },
 ];
+
+const PHONE = "56998441157";
+const waLink = (producto: string) =>
+  `https://wa.me/${PHONE}?text=${encodeURIComponent(`Hola, quiero cotizar ${producto}.`)}`;
 
 const WA_URL =
   "https://wa.me/56998441157?text=Hola%2C%20busco%20un%20producto%20que%20no%20veo%20en%20su%20p%C3%A1gina.%20%C2%BFMe%20pueden%20ayudar%3F";
@@ -41,7 +45,13 @@ export default function MasProductos() {
 
         <ul className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2.5 mb-8">
           {PRODUCTOS.map((producto) => (
-            <li key={producto} className="flex items-center gap-2 text-sm text-gray-700">
+            <li key={producto.label}>
+              <a
+                href={waLink(producto.wa)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-gray-700 hover:text-[#E91E8F] transition-colors"
+              >
               <span className="flex-shrink-0 w-4 h-4 rounded-full bg-[#47B7E8]/15 flex items-center justify-center">
                 <svg
                   className="w-2.5 h-2.5 text-[#47B7E8]"
@@ -55,7 +65,8 @@ export default function MasProductos() {
                   <path d="M1 4l2.5 2.5L9 1" />
                 </svg>
               </span>
-              {producto}
+              {producto.label}
+              </a>
             </li>
           ))}
         </ul>
