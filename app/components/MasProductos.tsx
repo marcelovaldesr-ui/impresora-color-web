@@ -15,7 +15,6 @@ const PRODUCTOS: { label: string; wa: string }[] = [
   { label: "Etiquetas para botellas de agua", wa: "etiquetas para botellas de agua" },
   { label: "Stickers transparentes", wa: "stickers transparentes" },
   { label: "Adhesivo impreso por m²", wa: "adhesivo impreso por metro cuadrado" },
-  { label: "One Way Vision (adhesivo para vidrios)", wa: "adhesivo One Way Vision para vidrios" },
   { label: "Adhesivo montado en trovicel", wa: "adhesivo montado en trovicel" },
   { label: "Patentes para camiones", wa: "patentes para camión" },
 ];
