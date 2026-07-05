@@ -267,7 +267,7 @@ const OFICINA: Servicio[] = [
 // ── Componente de tarjeta ─────────────────────────────────────────────────────
 function TarjetaServicio({ s }: { s: Servicio }) {
   return (
-    <div className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#E91E8F]/40 hover:shadow-xl hover:shadow-[#E91E8F]/8 transition-all duration-300 hover:-translate-y-1 flex flex-col">
+    <div id={`servicio-${s.imagen}`} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#E91E8F]/40 hover:shadow-xl hover:shadow-[#E91E8F]/8 transition-all duration-300 hover:-translate-y-1 flex flex-col scroll-mt-24">
       <div className={`relative h-36 ${s.bg.startsWith("bg-[") ? s.bg : `bg-gradient-to-br ${s.bg}`} overflow-hidden flex items-center justify-center`}>
         {s.imagenUrl ? (
           <>

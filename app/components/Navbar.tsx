@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { NAV_SERVICIOS } from "@/lib/servicios-nav";
 
 // EDITABLE: Cambia los enlaces si cambia el número o redes
 const WHATSAPP_URL =
@@ -9,6 +10,8 @@ const WHATSAPP_URL =
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [servOpen, setServOpen] = useState(false);
+  const [servMovil, setServMovil] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -25,7 +28,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
         {/* Logo / Marca */}
-        <a href="#hero" className="flex items-center gap-2.5 select-none">
+        <a href="/" className="flex items-center gap-2.5 select-none">
           <Image
             src="/brand/logo-impresora-color.jpg.jpeg"
             alt="Impresora Color Ltda"
@@ -44,12 +47,64 @@ export default function Navbar() {
 
         {/* Links escritorio */}
         <div className="hidden md:flex items-center gap-5 text-sm font-medium">
+          {/* Dropdown Servicios — todos los servicios visibles de una */}
+          <div
+            className="relative"
+            onMouseEnter={() => setServOpen(true)}
+            onMouseLeave={() => setServOpen(false)}
+          >
+            <a
+              href="/#servicios"
+              aria-expanded={servOpen}
+              aria-haspopup="true"
+              onFocus={() => setServOpen(true)}
+              className="flex items-center gap-1 text-gray-600 hover:text-[#E91E8F] transition-colors py-5"
+            >
+              Servicios
+              <svg
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${servOpen ? "rotate-180" : ""}`}
+                fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            {servOpen && (
+              <div className="absolute left-1/2 -translate-x-1/2 top-full w-[560px] bg-white border border-gray-100 rounded-2xl shadow-2xl p-6 grid grid-cols-2 gap-x-6 gap-y-4">
+                {NAV_SERVICIOS.map((cat) => (
+                  <div key={cat.categoria}>
+                    <p className="text-[10px] font-black uppercase tracking-widest mb-2.5" style={{ color: cat.color }}>
+                      {cat.categoria}
+                    </p>
+                    <ul className="space-y-0.5">
+                      {cat.items.map((item) => (
+                        <li key={item.label}>
+                          <a
+                            href={item.href}
+                            onClick={() => setServOpen(false)}
+                            className="block text-[13px] text-gray-600 hover:text-[#E91E8F] py-1 transition-colors"
+                          >
+                            {item.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+                <a
+                  href="/#servicios"
+                  onClick={() => setServOpen(false)}
+                  className="col-span-2 text-center text-xs font-bold text-[#2D3E9F] hover:text-[#E91E8F] border-t border-gray-100 pt-3 transition-colors"
+                >
+                  Ver todos los servicios →
+                </a>
+              </div>
+            )}
+          </div>
           {[
-            { href: "#servicios", label: "Servicios" },
-            { href: "#promociones", label: "Promociones" },
-            { href: "#galeria", label: "Galería" },
-            { href: "#ubicacion", label: "Ubicación" },
-            { href: "#faq", label: "FAQ" },
+            { href: "/#promociones", label: "Promociones" },
+            { href: "/#galeria", label: "Galería" },
+            { href: "/#ubicacion", label: "Ubicación" },
+            { href: "/#faq", label: "FAQ" },
           ].map((item) => (
             <a
               key={item.href}
@@ -70,7 +125,7 @@ export default function Navbar() {
         {/* CTAs escritorio */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="#cotizar"
+            href="/#cotizar"
             className="flex items-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25"
           >
             Cotizar ahora
@@ -97,12 +152,45 @@ export default function Navbar() {
       {/* Menú móvil */}
       {open && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-xl px-4 pb-5">
+          <button
+            onClick={() => setServMovil(!servMovil)}
+            aria-expanded={servMovil}
+            className="w-full flex items-center justify-between py-3.5 text-gray-700 border-b border-gray-100 text-sm font-medium"
+          >
+            Servicios
+            <svg
+              className={`w-4 h-4 transition-transform duration-200 ${servMovil ? "rotate-180" : ""}`}
+              fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {servMovil && (
+            <div className="pb-2 border-b border-gray-100">
+              {NAV_SERVICIOS.map((cat) => (
+                <div key={cat.categoria} className="pt-3">
+                  <p className="text-[10px] font-black uppercase tracking-widest mb-1 px-1" style={{ color: cat.color }}>
+                    {cat.categoria}
+                  </p>
+                  {cat.items.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className="block py-2 px-1 text-sm text-gray-600"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
           {[
-            { href: "#servicios", label: "Servicios" },
-            { href: "#promociones", label: "Promociones" },
-            { href: "#galeria", label: "Galería" },
-            { href: "#ubicacion", label: "Ubicación" },
-            { href: "#faq", label: "Preguntas Frecuentes" },
+            { href: "/#promociones", label: "Promociones" },
+            { href: "/#galeria", label: "Galería" },
+            { href: "/#ubicacion", label: "Ubicación" },
+            { href: "/#faq", label: "Preguntas Frecuentes" },
           ].map((item) => (
             <a
               key={item.href}
@@ -122,7 +210,7 @@ export default function Navbar() {
           </Link>
           <div className="flex flex-col gap-3 mt-4">
             <a
-              href="#cotizar"
+              href="/#cotizar"
               onClick={() => setOpen(false)}
               className="flex items-center justify-center gap-2 bg-[#E91E8F] text-white font-bold py-3.5 rounded-full text-sm"
             >
