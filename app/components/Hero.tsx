@@ -46,7 +46,7 @@ export default function Hero() {
       </span>
 
       {/* Grid principal */}
-      <div className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-4 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center py-16 lg:py-24">
+      <div className="relative z-10 flex-1 max-w-7xl mx-auto w-full px-4 grid grid-cols-1 lg:grid-cols-[5fr_6fr] gap-10 items-center py-16 lg:py-24">
 
         {/* Columna izquierda */}
         <div>
@@ -111,8 +111,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Columna derecha — imagen con marco de registro */}
-        <div className="hidden md:block relative">
+        {/* Columna derecha — imagen con marco de registro (visible también en móvil) */}
+        <div className="relative">
           {/* Marco decorativo tipo ficha de color */}
           <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#E91E8F]/8 via-[#47B7E8]/6 to-[#2D3E9F]/8" />
 
@@ -121,7 +121,7 @@ export default function Hero() {
               src="/brand/banner-hero-categorias.png"
               alt="Servicios de Impresora Color Ltda en Chillán: pendones, etiquetas, stickers, flyers, tarjetas, credenciales y más"
               width={1392}
-              height={681}
+              height={855}
               className="w-full h-auto block"
               priority
             />
