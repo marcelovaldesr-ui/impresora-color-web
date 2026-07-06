@@ -118,10 +118,10 @@ export default function Hero() {
 
           <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#2D3E9F]/10">
             <Image
-              src="/brand/banner-impresora-color-35años.png"
-              alt="Trabajos de imprenta de Impresora Color Ltda — Chillán"
-              width={1024}
-              height={682}
+              src="/brand/banner-hero-categorias.png"
+              alt="Servicios de Impresora Color Ltda en Chillán: pendones, etiquetas, stickers, flyers, tarjetas, credenciales y más"
+              width={1392}
+              height={681}
               className="w-full h-auto block"
               priority
             />
