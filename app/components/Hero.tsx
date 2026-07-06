@@ -121,7 +121,7 @@ export default function Hero() {
               src="/brand/banner-hero-categorias.png"
               alt="Servicios de Impresora Color Ltda en Chillán: pendones, etiquetas, stickers, flyers, tarjetas, credenciales y más"
               width={1392}
-              height={855}
+              height={903}
               className="w-full h-auto block"
               priority
             />
