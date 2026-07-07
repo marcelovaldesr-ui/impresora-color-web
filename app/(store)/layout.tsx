@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { cookies } from 'next/headers'
 import { CarritoProvider } from '@/lib/carrito'
 import CarritoIcono from './CarritoIcono'
 import Footer from '@/app/components/Footer'
 import WhatsAppFloat from '@/app/components/WhatsAppFloat'
 import { TIENDA_EN_CONSTRUCCION as EN_CONSTRUCCION } from '@/lib/config'
+import { TIENDA_PREVIEW_COOKIE, buildTiendaPreviewToken } from '@/lib/tiendaPreview'
 
 function ProximamenteScreen() {
   return (
@@ -19,10 +21,10 @@ function ProximamenteScreen() {
           Tienda online
         </p>
         <h1 className="text-3xl font-black text-[#111827] mb-4 leading-tight">
-          Estamos preparando<br />el catálogo
+          Estamos preparando<br />el catalogo
         </h1>
         <p className="text-gray-500 text-base leading-relaxed mb-8">
-          Nuestra tienda online estará disponible muy pronto. Mientras tanto, puedes cotizar directamente por WhatsApp o por email.
+          Nuestra tienda online estara disponible muy pronto. Mientras tanto, puedes cotizar directamente por WhatsApp o por email.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
@@ -40,18 +42,22 @@ function ProximamenteScreen() {
             href="/#cotizar"
             className="inline-flex items-center justify-center gap-2 border border-[#2D3E9F]/25 text-[#2D3E9F] hover:bg-[#2D3E9F]/6 font-medium text-sm px-6 py-3 rounded-full transition-colors"
           >
-            Formulario de cotización
+            Formulario de cotizacion
           </Link>
         </div>
         <Link href="/" className="block mt-8 text-xs text-gray-400 hover:text-[#2D3E9F] transition-colors">
-          ← Volver al inicio
+          Volver al inicio
         </Link>
       </div>
     </main>
   )
 }
 
-export default function StoreLayout({ children }: { children: React.ReactNode }) {
+export default async function StoreLayout({ children }: { children: React.ReactNode }) {
+  const jar = await cookies()
+  const tienePreview = jar.get(TIENDA_PREVIEW_COOKIE)?.value === buildTiendaPreviewToken()
+  const mostrarProximamente = EN_CONSTRUCCION && !tienePreview
+
   return (
     <CarritoProvider>
       <div className="min-h-screen flex flex-col">
@@ -74,7 +80,7 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
                 href="/tienda"
                 className="text-sm font-semibold text-[#2D3E9F] hover:text-[#E91E8F] transition-colors"
               >
-                Catálogo
+                Catalogo
               </Link>
               <Link
                 href="/#cotizar"
@@ -87,7 +93,7 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
           </div>
         </nav>
 
-        {EN_CONSTRUCCION ? <ProximamenteScreen /> : <main className="flex-1 pt-16">{children}</main>}
+        {mostrarProximamente ? <ProximamenteScreen /> : <main className="flex-1 pt-16">{children}</main>}
 
         <Footer />
       </div>

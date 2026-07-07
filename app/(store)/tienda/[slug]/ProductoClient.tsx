@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCarrito } from '@/lib/carrito'
 import { formatCLP, calcularIVA, getProducto } from '@/lib/productos'
+import { TIENDA_COMPRA_HABILITADA } from '@/lib/config'
 
 export default function ProductoClient({ slug }: { slug: string }) {
   const producto = getProducto(slug)!
@@ -51,12 +52,12 @@ export default function ProductoClient({ slug }: { slug: string }) {
         setArchivo(null)
       } else {
         setArchivoBlobUrl(data.url)
-        // Advertencia de resolución solo para imágenes raster
+        // Advertencia de resolucion solo para imagenes raster
         if (file.type.startsWith('image/')) {
           const img = document.createElement('img')
           img.src = URL.createObjectURL(file)
           img.onload = () => {
-            // Heurística simple: si la imagen es pequeña, probablemente baja res para imprenta
+            // Heuristica simple: si la imagen es pequena, probablemente baja res para imprenta
             if (img.width < 1000 || img.height < 1000) setAdvertenciaResolucion(true)
             URL.revokeObjectURL(img.src)
           }
@@ -150,12 +151,13 @@ export default function ProductoClient({ slug }: { slug: string }) {
             </p>
           </div>
 
-          {/* Subida de archivo */}
+          {/* Subida de archivo (solo si la compra esta habilitada) */}
+          {TIENDA_COMPRA_HABILITADA && (
           <div className="mt-5">
             <p className="text-sm font-semibold text-gray-700 mb-1">
-              Archivo de diseño{' '}
+              Archivo de diseno{' '}
               <span className="font-normal text-gray-400">
-                ({producto.formatosAceptados.join(', ')} — máx. 50 MB)
+                ({producto.formatosAceptados.join(', ')} — max. 50 MB)
               </span>
             </p>
 
@@ -181,7 +183,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
                 <p className="text-sm text-gray-500 animate-pulse">Subiendo archivo...</p>
               ) : archivoBlobUrl ? (
                 <div>
-                  <p className="text-green-700 font-semibold text-sm">✅ {archivo?.name}</p>
+                  <p className="text-green-700 font-semibold text-sm">{archivo?.name}</p>
                   <p className="text-xs text-gray-400 mt-1">Haz clic para reemplazar el archivo</p>
                 </div>
               ) : (
@@ -189,8 +191,8 @@ export default function ProductoClient({ slug }: { slug: string }) {
                   <svg className="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
-                  <p className="text-sm text-gray-600 font-medium">Haz clic para subir tu diseño</p>
-                  <p className="text-xs text-gray-400 mt-1">PDF · AI · EPS · PNG · JPG · TIFF</p>
+                  <p className="text-sm text-gray-600 font-medium">Haz clic para subir tu diseno</p>
+                  <p className="text-xs text-gray-400 mt-1">PDF - AI - EPS - PNG - JPG - TIFF</p>
                 </div>
               )}
             </div>
@@ -201,36 +203,47 @@ export default function ProductoClient({ slug }: { slug: string }) {
 
             {advertenciaResolucion && (
               <div role="status" aria-live="polite" className="mt-2 bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
-                ⚠️ La imagen parece de baja resolución. La impresión podría no verse nítida. Si tienes una versión en mayor calidad, úsala.
+                La imagen parece de baja resolucion. La impresion podria no verse nitida. Si tienes una version en mayor calidad, usala.
               </div>
             )}
 
             <p className="text-xs text-gray-500 mt-2">
-              ¿No tienes tu archivo listo?{' '}
+              No tienes tu archivo listo?{' '}
               <a
                 href="https://wa.me/56998441157?text=Hola%2C%20necesito%20ayuda%20con%20dise%C3%B1o"
                 className="text-[#E91E8F] underline"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Cotiza con diseño incluido por WhatsApp
+                Cotiza con diseno incluido por WhatsApp
               </a>
             </p>
           </div>
+          )}
 
-          {/* Botón agregar al carrito */}
-          <button
-            type="button"
-            onClick={handleAgregarAlCarrito}
-            disabled={!archivoBlobUrl || subiendo}
-            className="mt-6 w-full bg-[#E91E8F] hover:bg-[#c8186e] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold py-4 rounded-full text-base transition-colors shadow-lg shadow-[#E91E8F]/20"
-          >
-            {subiendo
-              ? 'Subiendo archivo...'
-              : !archivoBlobUrl
-              ? 'Sube tu archivo para continuar'
-              : 'Agregar al carrito →'}
-          </button>
+          {/* Boton agregar al carrito / aviso de compra en preparacion */}
+          {TIENDA_COMPRA_HABILITADA ? (
+            <button
+              type="button"
+              onClick={handleAgregarAlCarrito}
+              disabled={!archivoBlobUrl || subiendo}
+              className="mt-6 w-full bg-[#E91E8F] hover:bg-[#c8186e] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold py-4 rounded-full text-base transition-colors shadow-lg shadow-[#E91E8F]/20"
+            >
+              {subiendo
+                ? 'Subiendo archivo...'
+                : !archivoBlobUrl
+                ? 'Sube tu archivo para continuar'
+                : 'Agregar al carrito'}
+            </button>
+          ) : (
+            <div className="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4 text-center">
+              <p className="text-sm font-semibold text-gray-500">Compra en preparacion</p>
+              <p className="text-xs text-gray-400 mt-1">
+                Estamos revisando precios y variantes. Por ahora puedes explorar el catalogo; muy
+                pronto podras comprar directamente aqui.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -29,41 +29,47 @@ export function calcularIVA(precioConIVA: number) {
   return { neto, iva, total: precioConIVA }
 }
 
-// ⚠️ PRECIOS DE REFERENCIA CON IVA INCLUIDO — Actualizar antes de publicar
+// Precios cargados desde catalogo_tienda_online.xlsx (filas marcadas "Sí").
+// Precios FINALES con IVA incluido (19%). Actualizar solo desde el Excel maestro.
+
+// TARJETAS DE PRESENTACIÓN — tamaño único 9 x 5 cm, couché 300 grs, cantidad única 100 un.
 const TARJETAS: Record<string, Record<number, number>> = {
-  satinado: { 100: 12000, 250: 20000, 500: 32000, 1000: 50000 },
-  mate: { 100: 14000, 250: 23000, 500: 37000, 1000: 58000 },
+  '1 cara (4x0 color)': { 100: 9520 },
+  '2 caras (4x4 color)': { 100: 16660 },
 }
 
-const FLYERS_BASE: Record<string, Record<number, number>> = {
-  '90g': { 100: 8000, 250: 13000, 500: 20000, 1000: 32000 },
-  '115g couché': { 100: 10000, 250: 16000, 500: 25000, 1000: 40000 },
+// FLYERS / VOLANTES — Couché 90g
+const FLYERS: Record<string, Record<number, number>> = {
+  'A6 (10,5 x 14,8 cm)': { 100: 16660, 200: 38080, 500: 53550, 1000: 80920 },
+  'A5 (14,8 x 21 cm)': { 100: 26180, 200: 45220, 500: 69020, 1000: 92820 },
 }
 
-const FLYERS_FACTOR_TAMANO: Record<string, number> = {
-  A6: 1.0,
-  A5: 1.6,
-  A4: 2.5,
-  Carta: 2.8,
+// STICKERS / CALCOMANÍAS — Vinilo brillante
+// Nota: se dejan fuera "Circular 10 cm" (datos inconsistentes en el Excel, columnas de IVA
+// no calzan) y "Circular 8 cm / 1000 un" (marcado "No" en el Excel) hasta que se confirmen precios.
+const STICKERS: Record<string, Record<number, number>> = {
+  'Circular 5 cm': { 100: 11900, 200: 16660, 500: 38080, 1000: 65450 },
+  'Circular 8 cm': { 100: 14280, 200: 21420, 500: 41650 },
 }
 
-const STICKERS_BASE: Record<number, number> = {
-  50: 6000,
-  100: 10000,
-  250: 20000,
-  500: 35000,
+// PENDÓN ROLLER RETRÁCTIL — cada tamaño viene con un único tipo de estuche en el Excel
+const PENDON: Record<string, number> = {
+  '80 x 200 cm (sin estuche)': 38080,
+  '90 x 200 cm (con estuche)': 42840,
+  '100 x 200 cm (con estuche)': 45220,
 }
 
-const STICKERS_FACTOR_TAMANO: Record<string, number> = {
-  '5cm': 1.0,
-  '8cm': 1.6,
-  '10cm': 2.2,
-  Personalizado: 1.8,
+// TELA PVC IMPRESA (lona) — sin ojetillos
+const TELA_PVC: Record<string, number> = {
+  '100 x 80 cm': 10115,
+  '150 x 100 cm': 14280,
+  '150 x 200 cm': 21420,
 }
 
-const PENDON_PRECIOS: Record<string, Record<string, number>> = {
-  '80x200cm': { 'Sin estuche': 35000, 'Con estuche': 45000 },
-  '100x200cm': { 'Sin estuche': 42000, 'Con estuche': 52000 },
+// ETIQUETAS ADHESIVAS — papel adhesivo mate
+const ETIQUETAS: Record<string, Record<number, number>> = {
+  'Rectangular 8x12 cm': { 1000: 65450, 2000: 104720, 5000: 214200 },
+  'Rectangular 10x15 cm': { 1000: 80920, 2000: 130900, 5000: 249900 },
 }
 
 export const PRODUCTOS: Producto[] = [
@@ -71,80 +77,108 @@ export const PRODUCTOS: Producto[] = [
     slug: 'tarjetas-presentacion',
     nombre: 'Tarjetas de Presentación',
     descripcion:
-      'Tarjetas profesionales para hacer crecer tu red de contactos. Impresión a doble cara, acabado premium.',
+      'Tarjetas profesionales para hacer crecer tu red de contactos. Tamaño 9 x 5 cm, papel couché 300 grs.',
     tiempoEntrega: '2-3 días hábiles',
     imagen: '/images/tarjetas.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
-      { id: 'tamano', nombre: 'Tamaño', valores: ['9x5cm', '9x5.5cm'] },
-      { id: 'papel', nombre: 'Tipo de papel', valores: ['satinado', 'mate'] },
-      { id: 'cantidad', nombre: 'Cantidad', valores: ['100', '250', '500', '1000'] },
+      { id: 'acabado', nombre: 'Impresión', valores: ['1 cara (4x0 color)', '2 caras (4x4 color)'] },
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['100'] },
     ],
     calcularPrecio: (opciones) => {
-      const papel = (opciones.papel ?? 'satinado').toLowerCase()
+      const acabado = opciones.acabado ?? '1 cara (4x0 color)'
       const cantidad = parseInt(opciones.cantidad ?? '100', 10)
-      return TARJETAS[papel]?.[cantidad] ?? 0
+      return TARJETAS[acabado]?.[cantidad] ?? 0
     },
   },
   {
     slug: 'flyers-volantes',
     nombre: 'Flyers / Volantes',
     descripcion:
-      'Volantes de alta calidad para promocionar tu negocio. Impresión a full color, ambas caras.',
+      'Volantes de alta calidad para promocionar tu negocio. Papel couché 90g, impresión full color.',
     tiempoEntrega: '1-2 días hábiles',
     imagen: '/images/FLYER.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
-      { id: 'tamano', nombre: 'Tamaño', valores: ['A6', 'A5', 'A4', 'Carta'] },
-      { id: 'papel', nombre: 'Gramaje', valores: ['90g', '115g couché'] },
-      { id: 'cantidad', nombre: 'Cantidad', valores: ['100', '250', '500', '1000'] },
+      { id: 'tamano', nombre: 'Tamaño', valores: ['A6 (10,5 x 14,8 cm)', 'A5 (14,8 x 21 cm)'] },
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['100', '200', '500', '1000'] },
     ],
     calcularPrecio: (opciones) => {
-      const papel = opciones.papel ?? '90g'
-      const tamano = opciones.tamano ?? 'A6'
+      const tamano = opciones.tamano ?? 'A6 (10,5 x 14,8 cm)'
       const cantidad = parseInt(opciones.cantidad ?? '100', 10)
-      const base = FLYERS_BASE[papel]?.[cantidad] ?? 0
-      const factor = FLYERS_FACTOR_TAMANO[tamano] ?? 1
-      return Math.round((base * factor) / 1000) * 1000
+      return FLYERS[tamano]?.[cantidad] ?? 0
     },
   },
   {
     slug: 'stickers',
     nombre: 'Stickers / Calcomanías',
     descripcion:
-      'Stickers adhesivos de alta calidad para packaging, branding y decoración. Corte de precisión.',
+      'Stickers circulares en vinilo brillante para packaging, branding y decoración. Corte de precisión.',
     tiempoEntrega: '2-4 días hábiles',
     imagen: '/images/sitkers.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
-      { id: 'forma', nombre: 'Forma', valores: ['Circular', 'Cuadrado', 'Rectangular'] },
-      { id: 'tamano', nombre: 'Tamaño', valores: ['5cm', '8cm', '10cm', 'Personalizado'] },
-      { id: 'cantidad', nombre: 'Cantidad', valores: ['50', '100', '250', '500'] },
+      { id: 'tamano', nombre: 'Tamaño', valores: ['Circular 5 cm', 'Circular 8 cm'] },
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['100', '200', '500'] },
     ],
     calcularPrecio: (opciones) => {
-      const tamano = opciones.tamano ?? '5cm'
-      const cantidad = parseInt(opciones.cantidad ?? '50', 10)
-      const base = STICKERS_BASE[cantidad] ?? 0
-      const factor = STICKERS_FACTOR_TAMANO[tamano] ?? 1
-      return Math.round((base * factor) / 1000) * 1000
+      const tamano = opciones.tamano ?? 'Circular 5 cm'
+      const cantidad = parseInt(opciones.cantidad ?? '100', 10)
+      return STICKERS[tamano]?.[cantidad] ?? 0
     },
   },
   {
     slug: 'pendon-roller',
-    nombre: 'Pendón Roller',
+    nombre: 'Pendón Roller Retráctil',
     descripcion:
-      'Pendones de alta calidad con estructura enrollable. Ideales para eventos, ferias y puntos de venta.',
+      'Pendones con estructura enrollable, ideales para eventos, ferias y puntos de venta.',
     tiempoEntrega: '3-5 días hábiles',
     imagen: '/images/roller-producto.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
-      { id: 'tamano', nombre: 'Tamaño', valores: ['80x200cm', '100x200cm'] },
-      { id: 'estuche', nombre: 'Estuche de transporte', valores: ['Sin estuche', 'Con estuche'] },
+      {
+        id: 'tamano',
+        nombre: 'Tamaño',
+        valores: ['80 x 200 cm (sin estuche)', '90 x 200 cm (con estuche)', '100 x 200 cm (con estuche)'],
+      },
     ],
     calcularPrecio: (opciones) => {
-      const tamano = opciones.tamano ?? '80x200cm'
-      const estuche = opciones.estuche ?? 'Sin estuche'
-      return PENDON_PRECIOS[tamano]?.[estuche] ?? 0
+      const tamano = opciones.tamano ?? '80 x 200 cm (sin estuche)'
+      return PENDON[tamano] ?? 0
+    },
+  },
+  {
+    slug: 'tela-pvc-impresa',
+    nombre: 'Tela PVC Impresa (Lona)',
+    descripcion:
+      'Lona impresa en PVC, sin ojetillos, ideal para publicidad exterior y de gran formato.',
+    tiempoEntrega: '3-5 días hábiles',
+    imagen: '/images/IMPRESIONES.png',
+    formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
+    opcionGrupos: [
+      { id: 'tamano', nombre: 'Tamaño', valores: ['100 x 80 cm', '150 x 100 cm', '150 x 200 cm'] },
+    ],
+    calcularPrecio: (opciones) => {
+      const tamano = opciones.tamano ?? '100 x 80 cm'
+      return TELA_PVC[tamano] ?? 0
+    },
+  },
+  {
+    slug: 'etiquetas-adhesivas',
+    nombre: 'Etiquetas Adhesivas',
+    descripcion:
+      'Etiquetas adhesivas rectangulares en papel mate, ideales para packaging y productos.',
+    tiempoEntrega: '2-4 días hábiles',
+    imagen: '/images/etiquetas.png',
+    formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
+    opcionGrupos: [
+      { id: 'tamano', nombre: 'Tamaño', valores: ['Rectangular 8x12 cm', 'Rectangular 10x15 cm'] },
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['1000', '2000', '5000'] },
+    ],
+    calcularPrecio: (opciones) => {
+      const tamano = opciones.tamano ?? 'Rectangular 8x12 cm'
+      const cantidad = parseInt(opciones.cantidad ?? '1000', 10)
+      return ETIQUETAS[tamano]?.[cantidad] ?? 0
     },
   },
 ]

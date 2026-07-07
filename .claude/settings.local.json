@@ -36,7 +36,8 @@
       "Bash(npx skills *)",
       "Bash(grep -v '^[[:space:]]*$')",
       "Bash(del *)",
-      "PowerShell(Remove-Item *)"
+      "PowerShell(Remove-Item *)",
+      "Bash(git *)"
     ]
   }
 }
