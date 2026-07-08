@@ -1,5 +1,6 @@
 // EDITABLE: Servicio de diseño de páginas web para negocios locales (línea nueva de Impresora Color)
-const PHONE = "56998441157";
+// Número personal de Marcelo — este servicio se ofrece a nombre de Impresora Color pero los mensajes deben llegar a él, no al WhatsApp general de la tienda
+const PHONE = "56965950344";
 function waLink(msg: string) {
   return `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
 }
