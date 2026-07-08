@@ -11,7 +11,6 @@ import Beneficios from "./components/Beneficios";
 import Testimonios from "./components/Testimonios";
 import EmpresasClientes from "./components/EmpresasClientes";
 import Galeria from "./components/Galeria";
-import Promociones from "./components/Promociones";
 import Ubicacion from "./components/Ubicacion";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
@@ -49,7 +48,6 @@ export default function Home() {
         <Reveal><EmpresasClientes /></Reveal>
         <Reveal><Testimonios /></Reveal>
         <Reveal><Galeria /></Reveal>
-        <Reveal><Promociones /></Reveal>
         <Reveal><Ubicacion /></Reveal>
         <Reveal><FAQ /></Reveal>
       </main>

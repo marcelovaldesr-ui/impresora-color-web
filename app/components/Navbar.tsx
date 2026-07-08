@@ -23,7 +23,7 @@ export default function Navbar() {
 
   // Scrollspy — resalta el link de la sección visible en el viewport
   useEffect(() => {
-    const ids = ["servicios", "paginas-web", "promociones", "galeria", "ubicacion", "faq"];
+    const ids = ["servicios", "paginas-web", "galeria", "ubicacion", "faq"];
     const elementos = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -127,7 +127,6 @@ export default function Navbar() {
           </div>
           {[
             { href: "/#paginas-web", label: "Páginas Web" },
-            { href: "/#promociones", label: "Promociones" },
             { href: "/#galeria", label: "Galería" },
             { href: "/#ubicacion", label: "Ubicación" },
             { href: "/#faq", label: "FAQ" },
@@ -219,7 +218,6 @@ export default function Navbar() {
           )}
           {[
             { href: "/#paginas-web", label: "Páginas Web" },
-            { href: "/#promociones", label: "Promociones" },
             { href: "/#galeria", label: "Galería" },
             { href: "/#ubicacion", label: "Ubicación" },
             { href: "/#faq", label: "Preguntas Frecuentes" },
