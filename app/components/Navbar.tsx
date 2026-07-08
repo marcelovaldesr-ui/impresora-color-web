@@ -101,6 +101,7 @@ export default function Navbar() {
             )}
           </div>
           {[
+            { href: "/#paginas-web", label: "Páginas Web" },
             { href: "/#promociones", label: "Promociones" },
             { href: "/#galeria", label: "Galería" },
             { href: "/#ubicacion", label: "Ubicación" },
@@ -187,6 +188,7 @@ export default function Navbar() {
             </div>
           )}
           {[
+            { href: "/#paginas-web", label: "Páginas Web" },
             { href: "/#promociones", label: "Promociones" },
             { href: "/#galeria", label: "Galería" },
             { href: "/#ubicacion", label: "Ubicación" },

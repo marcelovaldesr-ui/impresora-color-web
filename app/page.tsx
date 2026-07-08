@@ -4,6 +4,7 @@ import BandaEstadisticas from "./components/BandaEstadisticas";
 import OpcionesCotizar from "./components/OpcionesCotizar";
 import Servicios from "./components/Servicios";
 import MasProductos from "./components/MasProductos";
+import PaginasWeb from "./components/PaginasWeb";
 import Beneficios from "./components/Beneficios";
 import Testimonios from "./components/Testimonios";
 import EmpresasClientes from "./components/EmpresasClientes";
@@ -36,6 +37,7 @@ export default function Home() {
         <OpcionesCotizar />
         <Servicios />
         <MasProductos />
+        <PaginasWeb />
         <Beneficios />
         <EmpresasClientes />
         <Testimonios />
