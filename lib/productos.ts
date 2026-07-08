@@ -86,7 +86,7 @@ export const PRODUCTOS: Producto[] = [
     descripcion:
       'Tarjetas profesionales para hacer crecer tu red de contactos. Tamano 9 x 5 cm, papel couche 300 grs.',
     tiempoEntrega: '2-3 dias habiles',
-    imagen: '/images/tarjetas.png',
+    imagen: '/images/tarjetas-crop.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'acabado', nombre: 'Impresion', valores: ['4x0 color (1 cara)', '4x4 color (2 caras)'] },
@@ -143,7 +143,7 @@ export const PRODUCTOS: Producto[] = [
     descripcion:
       'Pendones con estructura enrollable y estuche de transporte incluido. Ideales para eventos, ferias y puntos de venta.',
     tiempoEntrega: '3-5 dias habiles',
-    imagen: '/images/roller-producto.jpg',
+    imagen: '/images/roller-producto-crop.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'tamano', nombre: 'Tamano', valores: ['80 x 200 cm', '90 x 200 cm', '100 x 200 cm', '120 x 200 cm'] },

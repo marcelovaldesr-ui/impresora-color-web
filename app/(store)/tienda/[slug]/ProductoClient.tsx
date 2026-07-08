@@ -99,7 +99,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
       <div className="grid md:grid-cols-2 gap-10 items-start">
         {/* Imagen */}
         <div className="relative h-72 md:h-96 bg-gray-50 rounded-2xl overflow-hidden">
-          <Image src={producto.imagen} alt={producto.nombre} fill className="object-contain p-8" />
+          <Image src={producto.imagen} alt={producto.nombre} fill className="object-contain p-4" />
         </div>
 
         {/* Opciones */}

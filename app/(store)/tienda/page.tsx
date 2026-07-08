@@ -53,7 +53,7 @@ export default function TiendaPage() {
                   src={producto.imagen}
                   alt={producto.nombre}
                   fill
-                  className="object-contain p-6 group-hover:scale-[1.03] transition-transform duration-300"
+                  className="object-contain p-3 group-hover:scale-[1.03] transition-transform duration-300"
                 />
               </div>
               <div className="p-5">
