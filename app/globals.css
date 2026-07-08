@@ -26,3 +26,36 @@ body {
 }
 
 .placeholder-text { user-select: none; pointer-events: none; }
+
+/* ─────────────────────────────────────────────
+   Animaciones — entrada suave y microinteracciones
+   ───────────────────────────────────────────── */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(233, 30, 143, 0.35); }
+  50%      { box-shadow: 0 0 0 12px rgba(233, 30, 143, 0); }
+}
+
+@keyframes gradient-pan {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

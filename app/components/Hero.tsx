@@ -40,7 +40,7 @@ export default function Hero() {
       {/* "35" como marca de agua tipográfica */}
       <span
         aria-hidden="true"
-        className="absolute right-0 top-1/2 -translate-y-1/2 text-[22rem] font-black text-[#2D3E9F]/[0.04] leading-none select-none pointer-events-none hidden lg:block"
+        className="absolute right-0 top-1/2 -translate-y-1/2 text-[22rem] font-black text-[#2D3E9F]/[0.04] leading-none select-none pointer-events-none hidden lg:block animate-[float-y_7s_ease-in-out_infinite]"
       >
         35
       </span>
@@ -51,12 +51,12 @@ export default function Hero() {
         {/* Columna izquierda */}
         <div>
           {/* Eyebrow — año de fundación como dato estructural */}
-          <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#E91E8F] mb-5">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#E91E8F] mb-5 opacity-0 animate-[fade-in-up_0.7s_ease-out_0.05s_both]">
             Imprenta en Chillán · Desde 1989
           </p>
 
           {/* H1 — un solo color base, un solo acento */}
-          <h1 className="text-4xl sm:text-5xl xl:text-[56px] font-black text-[#111827] leading-[1.08] mb-6 text-balance">
+          <h1 className="text-4xl sm:text-5xl xl:text-[56px] font-black text-[#111827] leading-[1.08] mb-6 text-balance opacity-0 animate-[fade-in-up_0.7s_ease-out_0.15s_both]">
             Flyers, stickers y etiquetas que{" "}
             <span className="relative inline-block text-[#E91E8F]">
               hacen vender
@@ -68,19 +68,19 @@ export default function Hero() {
           </h1>
 
           {/* Subtítulo — específico, no genérico */}
-          <p className="text-gray-600 text-lg leading-relaxed mb-9 max-w-lg text-pretty">
+          <p className="text-gray-600 text-lg leading-relaxed mb-9 max-w-lg text-pretty opacity-0 animate-[fade-in-up_0.7s_ease-out_0.25s_both]">
             Imprimimos para emprendedores, productores locales y negocios de Chillán
             que necesitan materiales de calidad{" "}
             <strong className="text-[#2D3E9F] font-semibold">sin esperar semanas ni gastar de más.</strong>
           </p>
 
           {/* CTAs con jerarquía clara */}
-          <div className="flex flex-col sm:flex-row gap-3 mb-10">
+          <div className="flex flex-col sm:flex-row gap-3 mb-10 opacity-0 animate-[fade-in-up_0.7s_ease-out_0.35s_both]">
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 bg-[#E91E8F] hover:bg-[#c8186e] active:scale-[0.98] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-[background-color,transform] duration-200"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#E91E8F] hover:bg-[#c8186e] active:scale-[0.98] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-[background-color,transform] duration-200 animate-[pulse-glow_2.8s_ease-in-out_infinite] motion-reduce:animate-none hover:scale-[1.03]"
             >
               <WhatsAppIcon className="w-5 h-5" />
               Cotizar por WhatsApp
@@ -97,7 +97,7 @@ export default function Hero() {
           </div>
 
           {/* Trust strip — 3 datos concretos, sin repetición */}
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 opacity-0 animate-[fade-in-up_0.7s_ease-out_0.45s_both]">
             {[
               { n: "35", label: "años en Chillán" },
               { n: "<24h", label: "tiempo de respuesta" },
@@ -112,11 +112,11 @@ export default function Hero() {
         </div>
 
         {/* Columna derecha — imagen con marco de registro (visible también en móvil) */}
-        <div className="relative">
+        <div className="relative opacity-0 animate-[fade-in-up_0.8s_ease-out_0.2s_both] group">
           {/* Marco decorativo tipo ficha de color */}
           <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#E91E8F]/8 via-[#47B7E8]/6 to-[#2D3E9F]/8" />
 
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#2D3E9F]/10">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#2D3E9F]/10 transition-transform duration-500 group-hover:scale-[1.015]">
             <Image
               src="/brand/banner-hero-categorias.png"
               alt="Servicios de Impresora Color Ltda en Chillán: pendones, etiquetas, stickers, flyers, tarjetas, credenciales y más"

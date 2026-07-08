@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import Reveal from "./components/Reveal";
 import Hero from "./components/Hero";
 import BandaEstadisticas from "./components/BandaEstadisticas";
 import OpcionesCotizar from "./components/OpcionesCotizar";
@@ -34,17 +35,17 @@ export default function Home() {
       <main>
         <Hero />
         <BandaEstadisticas />
-        <OpcionesCotizar />
-        <Servicios />
-        <MasProductos />
-        <PaginasWeb />
-        <Beneficios />
-        <EmpresasClientes />
-        <Testimonios />
-        <Galeria />
-        <Promociones />
-        <Ubicacion />
-        <FAQ />
+        <Reveal><OpcionesCotizar /></Reveal>
+        <Reveal><Servicios /></Reveal>
+        <Reveal><MasProductos /></Reveal>
+        <Reveal><PaginasWeb /></Reveal>
+        <Reveal><Beneficios /></Reveal>
+        <Reveal><EmpresasClientes /></Reveal>
+        <Reveal><Testimonios /></Reveal>
+        <Reveal><Galeria /></Reveal>
+        <Reveal><Promociones /></Reveal>
+        <Reveal><Ubicacion /></Reveal>
+        <Reveal><FAQ /></Reveal>
       </main>
       <Footer />
       <WhatsAppFloat />

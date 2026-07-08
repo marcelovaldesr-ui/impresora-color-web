@@ -1,3 +1,5 @@
+import Reveal from "./Reveal";
+
 // EDITABLE: Servicio de diseño de páginas web para negocios locales (línea nueva de Impresora Color)
 // Número personal de Marcelo — este servicio se ofrece a nombre de Impresora Color pero los mensajes deben llegar a él, no al WhatsApp general de la tienda
 const PHONE = "56965950344";
@@ -62,7 +64,7 @@ export default function PaginasWeb() {
   return (
     <section id="paginas-web" className="bg-[#0F1730] py-20 px-4 scroll-mt-16">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <Reveal className="text-center mb-12">
           <span className="text-[#47B7E8] font-bold text-sm uppercase tracking-widest">
             Servicio digital
           </span>
@@ -75,16 +77,16 @@ export default function PaginasWeb() {
             Si imprimimos tus tarjetas o tu pendón, también podemos crear la página web
             de tu negocio. De hecho, este mismo sitio que estás viendo lo diseñamos nosotros.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid sm:grid-cols-3 gap-5">
-          {PLANES.map((p) => (
+          {PLANES.map((p, i) => (
+            <Reveal key={p.nombre} delay={i * 120}>
             <div
-              key={p.nombre}
-              className={`rounded-2xl p-6 flex flex-col ${
+              className={`rounded-2xl p-6 flex flex-col h-full transition-transform duration-300 hover:-translate-y-1 ${
                 p.destacado
-                  ? "bg-white border-2 border-[#47B7E8] shadow-2xl shadow-[#47B7E8]/20 sm:-translate-y-2"
-                  : "bg-white/5 border border-white/10"
+                  ? "bg-white border-2 border-[#47B7E8] shadow-2xl shadow-[#47B7E8]/20 sm:-translate-y-2 animate-[pulse-glow_3s_ease-in-out_infinite] motion-reduce:animate-none"
+                  : "bg-white/5 border border-white/10 hover:bg-white/[0.08]"
               }`}
             >
               {p.destacado && (
@@ -134,6 +136,7 @@ export default function PaginasWeb() {
                 Cotizar por WhatsApp
               </a>
             </div>
+            </Reveal>
           ))}
         </div>
 
