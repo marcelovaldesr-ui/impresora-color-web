@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   // Dominio canónico SIN www — vercel.json redirige www → apex (301)
   metadataBase: new URL("https://impresoracolor.cl"),
-  title: "Imprenta en Chillán | Flyers, Stickers, Credenciales, Pendones y Etiquetas",
+  title: "Impresora Color Ltda | Imprenta en Chillán - Flyers, Stickers y más",
   description:
     "Impresora Color Ltda en Chillán. Cotiza flyers, stickers, tarjetas, pendones, menús, imanes, etiquetas, impresión de carnet e credenciales con tecnología Fargo, bolsas personalizadas con estampado por sublimación y material publicitario para tu negocio. Atención rápida por WhatsApp. Arauco 1060, Chillán.",
   keywords:
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Imprenta en Chillán | Impresora Color Ltda",
+    title: "Impresora Color Ltda | Imprenta en Chillán",
     description:
       "Flyers, stickers, tarjetas, pendones, menús, imanes y etiquetas para productos. Atención por WhatsApp. Arauco 1060, Chillán.",
     type: "website",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Imprenta en Chillán | Impresora Color Ltda",
+    title: "Impresora Color Ltda | Imprenta en Chillán",
     description:
       "Flyers, stickers, tarjetas, pendones, menús, imanes y etiquetas para productos. Atención por WhatsApp. Arauco 1060, Chillán.",
     images: ["/brand/banner-hero-categorias.png"],
