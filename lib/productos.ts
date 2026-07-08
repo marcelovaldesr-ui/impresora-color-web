@@ -159,7 +159,7 @@ export const PRODUCTOS: Producto[] = [
     descripcion:
       'Lona impresa en PVC, sin ojetillos, ideal para publicidad exterior y de gran formato.',
     tiempoEntrega: '3-5 dias habiles',
-    imagen: '/images/IMPRESIONES.png',
+    imagen: '/images/tela-pvc-impresa.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'tamano', nombre: 'Tamano', valores: ['80 x 60 cm', '100 x 80 cm', '150 x 100 cm', '150 x 200 cm'] },
