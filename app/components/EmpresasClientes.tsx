@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 type Cliente = {
   nombre: string;
@@ -88,14 +89,14 @@ function LogoCard({
   esExterno?: boolean;
 }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm flex items-center justify-center px-4 py-5 hover:shadow-md hover:border-[#47B7E8]/20 transition-all duration-200">
+    <div className="w-40 sm:w-48 shrink-0 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-center justify-center px-4 py-5 hover:shadow-md hover:border-[#47B7E8]/20 transition-all duration-200">
       <div className="relative w-full h-16">
         <Image
           src={logoUrl}
           alt={logoAlt}
           fill
           className="object-contain"
-          sizes="(max-width: 640px) 45vw, (max-width: 1024px) 22vw, 16vw"
+          sizes="200px"
           unoptimized={esExterno}
         />
       </div>
@@ -105,10 +106,13 @@ function LogoCard({
 }
 
 export default function EmpresasClientes() {
+  // Se duplica la lista para que el marquee sea un loop continuo sin cortes.
+  const doble = [...CLIENTES, ...CLIENTES];
+
   return (
-    <section className="bg-[#f8f8f8] py-20 px-4">
+    <section className="bg-[#f8f8f8] py-20 px-4 overflow-hidden">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
+        <Reveal className="text-center mb-12">
           <span className="text-[#47B7E8] font-bold text-sm uppercase tracking-widest">
             Clientes
           </span>
@@ -119,21 +123,22 @@ export default function EmpresasClientes() {
           <p className="text-gray-500 max-w-xl mx-auto text-sm">
             Más de 35 años trabajando con empresas, instituciones y negocios de la región
           </p>
-        </div>
+        </Reveal>
+      </div>
 
-        <div className="flex flex-wrap justify-center gap-4">
-          {CLIENTES.map((c) => (
-            <div
-              key={c.nombre}
-              className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.667rem)] lg:w-[calc(25%-0.75rem)]"
-            >
-              <LogoCard
-                logoUrl={c.logoUrl!}
-                logoAlt={c.logoAlt!}
-                nombre={c.nombre}
-                esExterno={c.esExterno}
-              />
-            </div>
+      {/* Marquee infinito — se pausa al pasar el mouse, se detiene si el usuario prefiere menos movimiento */}
+      <div
+        className="group relative w-full [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+      >
+        <div className="flex w-max gap-4 animate-[marquee_38s_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+          {doble.map((c, i) => (
+            <LogoCard
+              key={`${c.nombre}-${i}`}
+              logoUrl={c.logoUrl!}
+              logoAlt={c.logoAlt!}
+              nombre={c.nombre}
+              esExterno={c.esExterno}
+            />
           ))}
         </div>
       </div>

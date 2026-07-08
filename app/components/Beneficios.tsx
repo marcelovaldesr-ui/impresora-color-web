@@ -49,6 +49,9 @@ export default function Beneficios() {
     <section id="beneficios" className="bg-[#F6F8FC] py-20 px-4 relative overflow-hidden">
       {/* Franja superior decorativa */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#E91E8F] via-[#47B7E8] to-[#7DBA2F]" />
+      {/* Blobs de gradiente difuminado de fondo */}
+      <div aria-hidden="true" className="absolute -top-16 -right-16 w-72 h-72 rounded-full bg-[#47B7E8]/10 blur-3xl" />
+      <div aria-hidden="true" className="absolute -bottom-24 -left-16 w-80 h-80 rounded-full bg-[#E91E8F]/8 blur-3xl" />
 
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Encabezado */}

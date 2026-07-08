@@ -13,11 +13,34 @@ export default function Navbar() {
   const [servOpen, setServOpen] = useState(false);
   const [servMovil, setServMovil] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scrollspy — resalta el link de la sección visible en el viewport
+  useEffect(() => {
+    const ids = ["servicios", "paginas-web", "promociones", "galeria", "ubicacion", "faq"];
+    const elementos = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (elementos.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    elementos.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -58,7 +81,9 @@ export default function Navbar() {
               aria-expanded={servOpen}
               aria-haspopup="true"
               onFocus={() => setServOpen(true)}
-              className="flex items-center gap-1 text-gray-600 hover:text-[#E91E8F] transition-colors py-5"
+              className={`flex items-center gap-1 transition-colors py-5 ${
+                activeId === "servicios" ? "text-[#E91E8F] font-bold" : "text-gray-600 hover:text-[#E91E8F]"
+              }`}
             >
               Servicios
               <svg
@@ -106,15 +131,20 @@ export default function Navbar() {
             { href: "/#galeria", label: "Galería" },
             { href: "/#ubicacion", label: "Ubicación" },
             { href: "/#faq", label: "FAQ" },
-          ].map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-gray-600 hover:text-[#E91E8F] transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
+          ].map((item) => {
+            const id = item.href.replace("/#", "");
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`transition-colors ${
+                  activeId === id ? "text-[#E91E8F] font-bold" : "text-gray-600 hover:text-[#E91E8F]"
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
           <Link
             href="/tienda"
             className="text-[#2D3E9F] font-bold hover:text-[#E91E8F] transition-colors border-b-2 border-[#2D3E9F] pb-0.5"

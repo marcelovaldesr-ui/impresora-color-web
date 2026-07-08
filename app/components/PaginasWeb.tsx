@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import ChatDemo from "./ChatDemo";
 
 // EDITABLE: Servicio de diseño de páginas web para negocios locales (línea nueva de Impresora Color)
 // Número personal de Marcelo — este servicio se ofrece a nombre de Impresora Color pero los mensajes deben llegar a él, no al WhatsApp general de la tienda
@@ -62,22 +63,32 @@ const PLANES: Plan[] = [
 
 export default function PaginasWeb() {
   return (
-    <section id="paginas-web" className="bg-[#0F1730] py-20 px-4 scroll-mt-16">
-      <div className="max-w-6xl mx-auto">
-        <Reveal className="text-center mb-12">
-          <span className="text-[#47B7E8] font-bold text-sm uppercase tracking-widest">
-            Servicio digital
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-white mt-2 mb-4">
-            Diseño de{" "}
-            <span className="text-[#47B7E8]">Páginas Web</span>{" "}
-            para tu negocio
-          </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto text-base">
-            Si imprimimos tus tarjetas o tu pendón, también podemos crear la página web
-            de tu negocio. De hecho, este mismo sitio que estás viendo lo diseñamos nosotros.
-          </p>
-        </Reveal>
+    <section id="paginas-web" className="bg-[#0F1730] py-20 px-4 scroll-mt-16 relative overflow-hidden">
+      {/* Blobs de gradiente difuminado — look "mesh gradient" de agencia digital */}
+      <div aria-hidden="true" className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-[#47B7E8]/20 blur-3xl" />
+      <div aria-hidden="true" className="absolute top-1/3 -right-20 w-96 h-96 rounded-full bg-[#E91E8F]/15 blur-3xl" />
+      <div aria-hidden="true" className="absolute -bottom-20 left-1/3 w-72 h-72 rounded-full bg-[#7DBA2F]/10 blur-3xl" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="grid lg:grid-cols-[3fr_2fr] gap-10 items-center mb-16">
+          <Reveal className="text-center lg:text-left">
+            <span className="text-[#47B7E8] font-bold text-sm uppercase tracking-widest">
+              Servicio digital
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-white mt-2 mb-4">
+              Diseño de{" "}
+              <span className="text-[#47B7E8]">Páginas Web</span>{" "}
+              para tu negocio
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto lg:mx-0 text-base">
+              Si imprimimos tus tarjetas o tu pendón, también podemos crear la página web
+              de tu negocio. De hecho, este mismo sitio que estás viendo lo diseñamos nosotros.
+            </p>
+          </Reveal>
+          <Reveal delay={150}>
+            <ChatDemo />
+          </Reveal>
+        </div>
 
         <div className="grid sm:grid-cols-3 gap-5">
           {PLANES.map((p, i) => (

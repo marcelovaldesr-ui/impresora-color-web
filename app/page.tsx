@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import Reveal from "./components/Reveal";
+import SeccionOnda from "./components/SeccionOnda";
 import Hero from "./components/Hero";
 import BandaEstadisticas from "./components/BandaEstadisticas";
 import OpcionesCotizar from "./components/OpcionesCotizar";
@@ -15,6 +16,8 @@ import Ubicacion from "./components/Ubicacion";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import WhatsAppFloat from "./components/WhatsAppFloat";
+import ScrollProgress from "./components/ScrollProgress";
+import BackToTop from "./components/BackToTop";
 import { PREGUNTAS } from "@/lib/faq";
 
 // Rich results de FAQ en Google — mantiene sincronía con el acordeón del home
@@ -31,6 +34,7 @@ const faqJsonLd = {
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
@@ -38,7 +42,9 @@ export default function Home() {
         <Reveal><OpcionesCotizar /></Reveal>
         <Reveal><Servicios /></Reveal>
         <Reveal><MasProductos /></Reveal>
+        <SeccionOnda colorArriba="#f9fafb" colorAbajo="#0F1730" />
         <Reveal><PaginasWeb /></Reveal>
+        <SeccionOnda colorArriba="#0F1730" colorAbajo="#F6F8FC" invertir />
         <Reveal><Beneficios /></Reveal>
         <Reveal><EmpresasClientes /></Reveal>
         <Reveal><Testimonios /></Reveal>
@@ -49,6 +55,7 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <BackToTop />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
