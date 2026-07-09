@@ -29,27 +29,16 @@ export default function Ubicacion() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* Tarjeta de ubicación visual */}
           <div className="bg-gradient-to-b from-[#2D3E9F] to-[#1a2880] rounded-2xl overflow-hidden shadow-xl flex flex-col">
-            {/* Mini mapa decorativo */}
-            <div className="h-52 relative overflow-hidden bg-[#2D3E9F]/80 flex items-center justify-center">
-              {/* Cuadrícula estilo mapa */}
-              <div
-                className="absolute inset-0 opacity-20"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(#47B7E8 1px, transparent 1px), linear-gradient(90deg, #47B7E8 1px, transparent 1px)",
-                  backgroundSize: "32px 32px",
-                }}
+            {/* Mapa real de Google Maps (embed sin API key) */}
+            <div className="h-64 relative overflow-hidden">
+              <iframe
+                src="https://maps.google.com/maps?q=Impresora%20Color%20Ltda%2C%20Arauco%201060%2C%20Chill%C3%A1n%2C%20Chile&hl=es&z=16&output=embed"
+                title="Mapa de Impresora Color Ltda - Arauco 1060, Chillán"
+                className="absolute inset-0 w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
               />
-              {/* Pin */}
-              <div className="relative z-10 text-center">
-                <div className="w-16 h-16 bg-[#E91E8F] rounded-full flex items-center justify-center mx-auto mb-3 shadow-2xl shadow-[#E91E8F]/50">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg>
-                </div>
-                <p className="text-white font-black text-xl">Arauco 1060</p>
-                <p className="text-gray-400 text-sm">Chillán, Ñuble, Chile</p>
-              </div>
             </div>
 
             {/* Info dentro de la tarjeta */}
