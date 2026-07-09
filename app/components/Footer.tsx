@@ -28,6 +28,7 @@ const SERVICIOS_FOOTER: { label: string; href: string }[] = [
   { label: "Diplomas", href: "/#servicios" },
   { label: "Calendarios", href: "/#servicios" },
   { label: "Carpetas corporativas", href: "/#servicios" },
+  { label: "Diseño de Páginas Web", href: "/#paginas-web" },
 ];
 
 export default function Footer() {

@@ -22,6 +22,10 @@ export const PREGUNTAS = [
     a: "Sí, puedes cotizar etiquetas para envases, bolsas, frascos, cajas, botellas y packaging. Te orientamos con tamaño, cantidad y material.",
   },
   {
+    q: "¿Hacen páginas web?",
+    a: "Sí, diseñamos páginas web para negocios locales: sitios de presentación, sitios con varias secciones y tiendas online. Planes desde $150.000 con dominio y hosting incluidos el primer año.",
+  },
+  {
     q: "¿Tienen diseño gráfico?",
     a: "Puedes consultarnos por apoyo en diseño o preparación de archivos para impresión.",
   },

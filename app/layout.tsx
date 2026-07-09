@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://impresoracolor.cl"),
   title: "Impresora Color Ltda | Imprenta en Chillán - Flyers, Stickers y más",
   description:
-    "Impresora Color Ltda en Chillán. Cotiza flyers, stickers, tarjetas, pendones, menús, imanes, etiquetas, impresión de carnet e credenciales con tecnología Fargo, bolsas personalizadas con estampado por sublimación y material publicitario para tu negocio. Atención rápida por WhatsApp. Arauco 1060, Chillán.",
+    "Impresora Color Ltda en Chillán. Cotiza flyers, stickers, tarjetas, pendones, menús, imanes, etiquetas, impresión de carnet e credenciales con tecnología Fargo, bolsas personalizadas con estampado por sublimación, material publicitario y diseño de páginas web para tu negocio. Atención rápida por WhatsApp. Arauco 1060, Chillán.",
   keywords:
-    "imprenta chillán, flyers chillán, stickers chillán, tarjetas de presentación chillán, pendones chillán, etiquetas para cecinas, etiquetas para vinos, etiquetas adhesivas, impresión publicitaria, material gráfico chillán, fotocopias chillán, impresiones chillán, anillados chillán, empastados chillán, diplomas chillán, carpetas corporativas chillán, calendarios chillán, anillado de documentos chillán, impresión de carnet chillán, credenciales institucionales chillán, credenciales fargo chillán, carnets de socio chillán, control de acceso chillán, bolsas personalizadas chillán, estampado sublimación chillán, merchandising chillán",
+    "imprenta chillán, flyers chillán, stickers chillán, tarjetas de presentación chillán, pendones chillán, etiquetas para cecinas, etiquetas para vinos, etiquetas adhesivas, impresión publicitaria, material gráfico chillán, fotocopias chillán, impresiones chillán, anillados chillán, empastados chillán, diplomas chillán, carpetas corporativas chillán, calendarios chillán, anillado de documentos chillán, impresión de carnet chillán, credenciales institucionales chillán, credenciales fargo chillán, carnets de socio chillán, control de acceso chillán, bolsas personalizadas chillán, estampado sublimación chillán, merchandising chillán, diseño de páginas web chillán, páginas web para negocios chillán, diseño web chillán",
   alternates: {
     canonical: "/",
   },
@@ -82,6 +82,7 @@ const jsonLd = {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Impresión de carnet y credenciales Chillán" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Credenciales institucionales Fargo Chillán" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bolsas personalizadas sublimación Chillán" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Diseño de páginas web para negocios Chillán" } },
     ],
   },
 };
