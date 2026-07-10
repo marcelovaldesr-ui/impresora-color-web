@@ -1,5 +1,6 @@
 // EDITABLE: Agrega, quita o cambia servicios en los arrays de cada categoría
 import Image from "next/image";
+import TituloReveal from "./TituloReveal";
 
 const PHONE = "56998441157";
 function waLink(msg: string) {
@@ -357,13 +358,16 @@ export default function Servicios() {
           <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
             Servicios
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
-            Todo lo que necesitas para{" "}
-            <span className="text-[#E91E8F]">tu negocio,</span>{" "}
-            <span className="text-[#47B7E8]">tus productos</span>{" "}
-            y tu{" "}
-            <span className="text-[#7DBA2F]">empresa</span>
-          </h2>
+          <TituloReveal
+            className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4"
+            segmentos={[
+              { t: "Todo lo que necesitas para" },
+              { t: "tu negocio,", c: "text-[#E91E8F]" },
+              { t: "tus productos", c: "text-[#47B7E8]" },
+              { t: "y tu" },
+              { t: "empresa", c: "text-[#7DBA2F]" },
+            ]}
+          />
           <p className="text-gray-500 max-w-2xl mx-auto text-base">
             Publicidad, etiquetas, fotocopias, impresiones, anillados y mucho más.
             Atención rápida por WhatsApp desde Chillán.

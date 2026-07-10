@@ -16,6 +16,7 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import ScrollProgress from "./components/ScrollProgress";
+import CursorGlow from "./components/CursorGlow";
 import BackToTop from "./components/BackToTop";
 import { PREGUNTAS } from "@/lib/faq";
 
@@ -34,6 +35,7 @@ export default function Home() {
   return (
     <>
       <ScrollProgress />
+      <CursorGlow />
       <Navbar />
       <main>
         <Hero />

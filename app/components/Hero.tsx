@@ -1,4 +1,6 @@
 import Image from "next/image";
+import TiltCard from "./TiltCard";
+import Parallax from "./Parallax";
 
 const WHATSAPP_URL =
   "https://wa.me/56998441157?text=Hola%2C%20quiero%20cotizar%20un%20trabajo%20de%20imprenta";
@@ -37,13 +39,16 @@ export default function Hero() {
       {/* Crop marks — esquina inferior derecha */}
       <CropMark className="absolute bottom-16 right-4 text-[#2D3E9F]/20 rotate-180" />
 
-      {/* "35" como marca de agua tipográfica */}
-      <span
-        aria-hidden="true"
-        className="absolute right-0 top-1/2 -translate-y-1/2 text-[22rem] font-black text-[#2D3E9F]/[0.04] leading-none select-none pointer-events-none hidden lg:block animate-[float-y_7s_ease-in-out_infinite]"
+      {/* "35" como marca de agua tipográfica con parallax */}
+      <Parallax
+        ariaHidden
+        speed={0.22}
+        className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none hidden lg:block"
       >
-        35
-      </span>
+        <span className="block text-[22rem] font-black text-[#2D3E9F]/[0.04] leading-none animate-[float-y_7s_ease-in-out_infinite]">
+          35
+        </span>
+      </Parallax>
 
       {/* Grid principal */}
       <div className="relative z-10 flex-1 max-w-7xl mx-auto w-full px-4 grid grid-cols-1 lg:grid-cols-[5fr_6fr] gap-10 items-center py-16 lg:py-24">
@@ -116,7 +121,7 @@ export default function Hero() {
           {/* Marco decorativo tipo ficha de color */}
           <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#E91E8F]/8 via-[#47B7E8]/6 to-[#2D3E9F]/8" />
 
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#2D3E9F]/10 transition-transform duration-500 group-hover:scale-[1.015]">
+          <TiltCard maxTilt={3.5} className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#2D3E9F]/10">
             <Image
               src="/brand/banner-hero-categorias.png"
               alt="Servicios de Impresora Color Ltda en Chillán: pendones, etiquetas, stickers, flyers, tarjetas, credenciales y más"
@@ -134,7 +139,7 @@ export default function Hero() {
                 <span key={c} className="flex-1" style={{ backgroundColor: c }} />
               ))}
             </div>
-          </div>
+          </TiltCard>
         </div>
       </div>
 
