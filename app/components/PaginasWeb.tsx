@@ -24,7 +24,7 @@ type Plan = {
 const PLANES: Plan[] = [
   {
     nombre: "Sitio Básico",
-    precioDesde: "Desde $150.000",
+    precioDesde: "Desde $99.000",
     descripcion: "Una página para presentar tu negocio y que te encuentren en Google.",
     entrega: "5-7 días hábiles",
     incluye: [
@@ -37,7 +37,7 @@ const PLANES: Plan[] = [
   },
   {
     nombre: "Sitio Profesional",
-    precioDesde: "Desde $280.000",
+    precioDesde: "Desde $160.000",
     descripcion: "Varias secciones, formulario de contacto y mejor posicionamiento en buscadores.",
     entrega: "7-10 días hábiles",
     incluye: [
@@ -185,3 +185,4 @@ function WAIcon() {
     </svg>
   );
 }
+ 
