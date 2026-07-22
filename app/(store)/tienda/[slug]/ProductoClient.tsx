@@ -155,7 +155,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
           {TIENDA_COMPRA_HABILITADA && (
           <div className="mt-5">
             <p className="text-sm font-semibold text-gray-700 mb-1">
-              Archivo de diseno{' '}
+              Archivo de diseño{' '}
               <span className="font-normal text-gray-400">
                 ({producto.formatosAceptados.join(', ')} — max. 50 MB)
               </span>
@@ -191,7 +191,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
                   <svg className="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
-                  <p className="text-sm text-gray-600 font-medium">Haz clic para subir tu diseno</p>
+                  <p className="text-sm text-gray-600 font-medium">Haz clic para subir tu diseño</p>
                   <p className="text-xs text-gray-400 mt-1">PDF - AI - EPS - PNG - JPG - TIFF</p>
                 </div>
               )}
@@ -203,19 +203,19 @@ export default function ProductoClient({ slug }: { slug: string }) {
 
             {advertenciaResolucion && (
               <div role="status" aria-live="polite" className="mt-2 bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
-                La imagen parece de baja resolucion. La impresion podria no verse nitida. Si tienes una version en mayor calidad, usala.
+                La imagen parece de baja resolución. La impresión podría no verse nítida. Si tienes una versión en mayor calidad, úsala.
               </div>
             )}
 
             <p className="text-xs text-gray-500 mt-2">
-              No tienes tu archivo listo?{' '}
+              ¿No tienes tu archivo listo?{' '}
               <a
                 href="https://wa.me/56998441157?text=Hola%2C%20necesito%20ayuda%20con%20dise%C3%B1o"
                 className="text-[#E91E8F] underline"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Cotiza con diseno incluido por WhatsApp
+                Cotiza con diseño incluido por WhatsApp
               </a>
             </p>
           </div>
@@ -237,10 +237,10 @@ export default function ProductoClient({ slug }: { slug: string }) {
             </button>
           ) : (
             <div className="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4 text-center">
-              <p className="text-sm font-semibold text-gray-500">Compra en preparacion</p>
+              <p className="text-sm font-semibold text-gray-500">Compra en preparación</p>
               <p className="text-xs text-gray-400 mt-1">
-                Estamos revisando precios y variantes. Por ahora puedes explorar el catalogo; muy
-                pronto podras comprar directamente aqui.
+                Estamos revisando precios y variantes. Por ahora puedes explorar el catálogo; muy
+                pronto podrás comprar directamente aquí.
               </p>
             </div>
           )}

@@ -21,10 +21,10 @@ function ProximamenteScreen() {
           Tienda online
         </p>
         <h1 className="text-3xl font-black text-[#111827] mb-4 leading-tight">
-          Estamos preparando<br />el catalogo
+          Estamos preparando<br />el catálogo
         </h1>
         <p className="text-gray-500 text-base leading-relaxed mb-8">
-          Nuestra tienda online estara disponible muy pronto. Mientras tanto, puedes cotizar directamente por WhatsApp o por email.
+          Nuestra tienda online estará disponible muy pronto. Mientras tanto, puedes cotizar directamente por WhatsApp o por email.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
@@ -42,7 +42,7 @@ function ProximamenteScreen() {
             href="/#cotizar"
             className="inline-flex items-center justify-center gap-2 border border-[#2D3E9F]/25 text-[#2D3E9F] hover:bg-[#2D3E9F]/6 font-medium text-sm px-6 py-3 rounded-full transition-colors"
           >
-            Formulario de cotizacion
+            Formulario de cotización
           </Link>
         </div>
         <Link href="/" className="block mt-8 text-xs text-gray-400 hover:text-[#2D3E9F] transition-colors">
@@ -80,7 +80,7 @@ export default async function StoreLayout({ children }: { children: React.ReactN
                 href="/tienda"
                 className="text-sm font-semibold text-[#2D3E9F] hover:text-[#E91E8F] transition-colors"
               >
-                Catalogo
+                Catálogo
               </Link>
               <Link
                 href="/#cotizar"

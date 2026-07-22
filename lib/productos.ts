@@ -82,14 +82,14 @@ const CREDENCIAL_PVC_UNITARIO = 2500
 export const PRODUCTOS: Producto[] = [
   {
     slug: 'tarjetas-presentacion',
-    nombre: 'Tarjetas de Presentacion',
+    nombre: 'Tarjetas de Presentación',
     descripcion:
-      'Tarjetas profesionales para hacer crecer tu red de contactos. Tamano 9 x 5 cm, papel couche 300 grs.',
-    tiempoEntrega: '2-3 dias habiles',
+      'Tarjetas profesionales para hacer crecer tu red de contactos. Tamaño 9 x 5 cm, papel couché 300 grs.',
+    tiempoEntrega: '2-3 días hábiles',
     imagen: '/images/tarjetas-crop.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
-      { id: 'acabado', nombre: 'Impresion', valores: ['4x0 color (1 cara)', '4x4 color (2 caras)'] },
+      { id: 'acabado', nombre: 'Impresión', valores: ['4x0 color (1 cara)', '4x4 color (2 caras)'] },
       { id: 'cantidad', nombre: 'Cantidad', valores: ['100', '200', '500'] },
     ],
     calcularPrecio: (opciones) => {
@@ -102,13 +102,13 @@ export const PRODUCTOS: Producto[] = [
     slug: 'flyers-volantes',
     nombre: 'Flyers / Volantes',
     descripcion:
-      'Volantes de alta calidad para promocionar tu negocio. Papel couche 90g, 1 o 2 caras.',
-    tiempoEntrega: '1-2 dias habiles',
+      'Volantes de alta calidad para promocionar tu negocio. Papel couché 90g, 1 o 2 caras.',
+    tiempoEntrega: '1-2 días hábiles',
     imagen: '/images/FLYER.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
-      { id: 'tamano', nombre: 'Tamano', valores: ['A6 (10,5 x 14,8 cm)', 'A5 (14,8 x 21 cm)'] },
-      { id: 'caras', nombre: 'Impresion', valores: ['1 cara', '2 caras'] },
+      { id: 'tamano', nombre: 'Tamaño', valores: ['A6 (10,5 x 14,8 cm)', 'A5 (14,8 x 21 cm)'] },
+      { id: 'caras', nombre: 'Impresión', valores: ['1 cara', '2 caras'] },
       { id: 'cantidad', nombre: 'Cantidad', valores: ['100', '200', '500'] },
     ],
     calcularPrecio: (opciones) => {
@@ -120,15 +120,15 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: 'stickers',
-    nombre: 'Stickers / Calcomanias',
+    nombre: 'Stickers / Calcomanías',
     descripcion:
-      'Stickers en vinilo brillante para packaging, branding y decoracion. Mismo precio en forma circular, rectangular o cuadrada.',
-    tiempoEntrega: '2-4 dias habiles',
+      'Stickers en vinilo brillante para packaging, branding y decoración. Mismo precio en forma circular, rectangular o cuadrada.',
+    tiempoEntrega: '2-4 días hábiles',
     imagen: '/images/sitkers.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'forma', nombre: 'Forma', valores: ['Circular', 'Rectangular', 'Cuadrado'] },
-      { id: 'tamano', nombre: 'Tamano', valores: ['3 cm', '5 cm', '8 cm'] },
+      { id: 'tamano', nombre: 'Tamaño', valores: ['3 cm', '5 cm', '8 cm'] },
       { id: 'cantidad', nombre: 'Cantidad', valores: ['100', '200', '500'] },
     ],
     calcularPrecio: (opciones) => {
@@ -139,14 +139,14 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: 'pendon-roller',
-    nombre: 'Pendon Roller Retractil',
+    nombre: 'Pendón Roller Retráctil',
     descripcion:
       'Pendones con estructura enrollable y estuche de transporte incluido. Ideales para eventos, ferias y puntos de venta.',
-    tiempoEntrega: '3-5 dias habiles',
+    tiempoEntrega: '3-5 días hábiles',
     imagen: '/images/roller-producto-crop.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
-      { id: 'tamano', nombre: 'Tamano', valores: ['80 x 200 cm', '90 x 200 cm', '100 x 200 cm', '120 x 200 cm'] },
+      { id: 'tamano', nombre: 'Tamaño', valores: ['80 x 200 cm', '90 x 200 cm', '100 x 200 cm', '120 x 200 cm'] },
     ],
     calcularPrecio: (opciones) => {
       const tamano = opciones.tamano ?? '80 x 200 cm'
@@ -158,11 +158,11 @@ export const PRODUCTOS: Producto[] = [
     nombre: 'Tela PVC Impresa (Lona)',
     descripcion:
       'Lona impresa en PVC, sin ojetillos, ideal para publicidad exterior y de gran formato.',
-    tiempoEntrega: '3-5 dias habiles',
+    tiempoEntrega: '3-5 días hábiles',
     imagen: '/images/tela-pvc-impresa.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
-      { id: 'tamano', nombre: 'Tamano', valores: ['80 x 60 cm', '100 x 80 cm', '150 x 100 cm', '150 x 200 cm'] },
+      { id: 'tamano', nombre: 'Tamaño', valores: ['80 x 60 cm', '100 x 80 cm', '150 x 100 cm', '150 x 200 cm'] },
     ],
     calcularPrecio: (opciones) => {
       const tamano = opciones.tamano ?? '80 x 60 cm'
@@ -173,8 +173,8 @@ export const PRODUCTOS: Producto[] = [
     slug: 'credencial-pvc',
     nombre: 'Credencial PVC',
     descripcion:
-      'Credencial tipo carne en PVC blanco, impresion full color. Tamano estandar 8,5 x 5,5 cm. Valor $2.500 por unidad (hasta 5 unidades); para mayores cantidades, cotiza por privado.',
-    tiempoEntrega: '2-4 dias habiles',
+      'Credencial tipo carne en PVC blanco, impresion full color. Tamaño estándar 8,5 x 5,5 cm. Valor $2.500 por unidad (hasta 5 unidades); para mayores cantidades, cotiza por privado.',
+    tiempoEntrega: '2-4 días hábiles',
     imagen: '/images/tarjetaspvc.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
