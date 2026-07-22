@@ -38,15 +38,15 @@ const TARJETAS: Record<string, Record<number, number>> = {
   '4x4 color (2 caras)': { 100: 14000, 200: 20000, 500: 35000 },
 }
 
-// FLYERS / VOLANTES — Couche 90g. Las de "2 caras" ya vienen con +25% aplicado en el Excel.
+// FLYERS / VOLANTES — Couche 90g. Precios finales por fila (1 y 2 caras fijados a mano en el catalogo).
 const FLYERS: Record<string, Record<string, Record<number, number>>> = {
   'A6 (10,5 x 14,8 cm)': {
-    '1 cara': { 100: 11500, 200: 14000, 500: 32000 },
-    '2 caras': { 100: 14375, 200: 17500, 500: 40000 },
+    '1 cara': { 100: 13000, 200: 17500, 500: 35000 },
+    '2 caras': { 100: 18500, 200: 28000, 500: 52000 },
   },
   'A5 (14,8 x 21 cm)': {
-    '1 cara': { 100: 14000, 200: 22000, 500: 38000 },
-    '2 caras': { 100: 17500, 200: 27500, 500: 47500 },
+    '1 cara': { 100: 14000, 200: 26000, 500: 58000 },
+    '2 caras': { 100: 22000, 200: 35000, 500: 75000 },
   },
 }
 
@@ -54,14 +54,14 @@ const FLYERS: Record<string, Record<string, Record<number, number>>> = {
 // El precio es el mismo sin importar la forma (Circular, Rectangular o Cuadrado); la forma
 // solo se pide como referencia para el diseno.
 const STICKERS: Record<string, Record<number, number>> = {
-  '5 cm': { 100: 10000, 200: 14000, 500: 32000 },
-  '8 cm': { 100: 12000, 200: 18000, 500: 35000 },
-  '10 cm': { 100: 14000, 200: 20000, 500: 42000 },
+  '3 cm': { 100: 8000, 200: 14000, 500: 28000 },
+  '5 cm': { 100: 10000, 200: 16000, 500: 32000 },
+  '8 cm': { 100: 14000, 200: 22000, 500: 45000 },
 }
 
 // PENDON ROLLER RETRACTIL — todos los tamanos incluyen estuche de transporte
 const PENDON: Record<string, number> = {
-  '80 x 200 cm': 38080,
+  '80 x 200 cm': 38000,
   '90 x 200 cm': 40000,
   '100 x 200 cm': 45000,
   '120 x 200 cm': 50000,
@@ -75,8 +75,8 @@ const TELA_PVC: Record<string, number> = {
   '150 x 200 cm': 18000,
 }
 
-// CREDENCIAL PVC — PVC blanco, impresion full color, tamano tipo carne. Precio por unidad;
-// se puede comprar varias manteniendo el mismo precio unitario.
+// CREDENCIAL PVC — PVC blanco, impresion full color, tamano tipo carne.
+// Precio por unidad, fijo hasta 5 unidades. Sobre 5 unidades se cotiza por privado.
 const CREDENCIAL_PVC_UNITARIO = 2500
 
 export const PRODUCTOS: Producto[] = [
@@ -128,11 +128,11 @@ export const PRODUCTOS: Producto[] = [
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'forma', nombre: 'Forma', valores: ['Circular', 'Rectangular', 'Cuadrado'] },
-      { id: 'tamano', nombre: 'Tamano', valores: ['5 cm', '8 cm', '10 cm'] },
+      { id: 'tamano', nombre: 'Tamano', valores: ['3 cm', '5 cm', '8 cm'] },
       { id: 'cantidad', nombre: 'Cantidad', valores: ['100', '200', '500'] },
     ],
     calcularPrecio: (opciones) => {
-      const tamano = opciones.tamano ?? '5 cm'
+      const tamano = opciones.tamano ?? '3 cm'
       const cantidad = parseInt(opciones.cantidad ?? '100', 10)
       return STICKERS[tamano]?.[cantidad] ?? 0
     },
@@ -173,14 +173,15 @@ export const PRODUCTOS: Producto[] = [
     slug: 'credencial-pvc',
     nombre: 'Credencial PVC',
     descripcion:
-      'Credencial tipo carne en PVC blanco, impresion full color. Tamano estandar 8,5 x 5,5 cm.',
+      'Credencial tipo carne en PVC blanco, impresion full color. Tamano estandar 8,5 x 5,5 cm. Valor $2.500 por unidad (hasta 5 unidades); para mayores cantidades, cotiza por privado.',
     tiempoEntrega: '2-4 dias habiles',
     imagen: '/images/tarjetaspvc.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
-      { id: 'cantidad', nombre: 'Cantidad', valores: ['1', '2', '5', '10', '20'] },
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['1', '2', '3', '4', '5'] },
     ],
     calcularPrecio: (opciones) => {
+      // Precio por unidad, fijo hasta 5 unidades. Sobre 5: cotizar por privado.
       const cantidad = parseInt(opciones.cantidad ?? '1', 10)
       return CREDENCIAL_PVC_UNITARIO * cantidad
     },
