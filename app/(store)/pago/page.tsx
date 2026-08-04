@@ -7,7 +7,7 @@ import { useCarrito } from '@/lib/carrito'
 import { formatCLP, calcularIVA } from '@/lib/productos'
 
 export default function PagoPage() {
-  const { items, totalPrecio, limpiarCarrito } = useCarrito()
+  const { items, totalPrecio } = useCarrito()
   const router = useRouter()
   const { neto, iva } = calcularIVA(totalPrecio)
 
@@ -28,9 +28,8 @@ export default function PagoPage() {
     setError(null)
 
     try {
-      // Crear un pedido por item (simplificado: procesamos el primero)
-      const item = items[0]
-
+      // Se mandan TODOS los items del carrito. El precio no viaja: lo calcula
+      // el servidor a partir del producto y las opciones.
       const pedidoRes = await fetch('/api/pedidos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -38,13 +37,12 @@ export default function PagoPage() {
           cliente_nombre: form.nombre,
           cliente_email: form.email,
           cliente_telefono: form.telefono,
-          producto_nombre: item.productoNombre,
-          producto_slug: item.productoSlug,
-          opciones: item.opciones,
-          cantidad: item.cantidad,
-          precio_total: item.precio,
-          archivo_url: item.archivoBlobUrl ?? null,
-          archivo_nombre_original: item.archivoNombre ?? null,
+          items: items.map((item) => ({
+            producto_slug: item.productoSlug,
+            opciones: item.opciones,
+            archivo_url: item.archivoBlobUrl ?? null,
+            archivo_nombre_original: item.archivoNombre ?? null,
+          })),
         }),
       })
 
@@ -54,13 +52,15 @@ export default function PagoPage() {
       const pagoRes = await fetch('/api/pago/iniciar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pedidoId: pedidoData.id }),
+        body: JSON.stringify({ grupoOrden: pedidoData.grupoOrden }),
       })
 
       const pagoData = await pagoRes.json()
       if (!pagoRes.ok) throw new Error(pagoData.error ?? 'Error al iniciar el pago.')
 
-      limpiarCarrito()
+      // Ojo: el carrito NO se vacía acá. Si el cliente se arrepiente en Flow o
+      // le rechazan la tarjeta, vuelve y encuentra su pedido intacto.
+      // Se vacía en /confirmacion, recién cuando el pago está aprobado.
       window.location.href = pagoData.url
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error inesperado. Intenta de nuevo.')

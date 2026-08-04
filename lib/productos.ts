@@ -191,3 +191,46 @@ export const PRODUCTOS: Producto[] = [
 export function getProducto(slug: string): Producto | undefined {
   return PRODUCTOS.find((p) => p.slug === slug)
 }
+
+// ---------------------------------------------------------------------------
+// Cálculo de precio en el SERVIDOR.
+// Regla de oro: el precio que llega desde el navegador NO se usa nunca para
+// cobrar. Se recalcula acá a partir del slug + las opciones, validando que cada
+// opción exista realmente en el catálogo.
+// ---------------------------------------------------------------------------
+export type PrecioServidor =
+  | { ok: true; producto: Producto; opciones: Record<string, string>; cantidad: number; precio: number }
+  | { ok: false; error: string }
+
+export function precioServidor(slug: unknown, opciones: unknown): PrecioServidor {
+  if (typeof slug !== 'string') return { ok: false, error: 'Producto no especificado.' }
+
+  const producto = getProducto(slug)
+  if (!producto) return { ok: false, error: 'Producto no disponible en la tienda.' }
+
+  const entrada = (opciones ?? {}) as Record<string, unknown>
+  const limpias: Record<string, string> = {}
+
+  for (const grupo of producto.opcionGrupos) {
+    const valor = entrada[grupo.id]
+    if (typeof valor !== 'string' || !grupo.valores.includes(valor)) {
+      return { ok: false, error: `Opción inválida en "${grupo.nombre}" para ${producto.nombre}.` }
+    }
+    limpias[grupo.id] = valor
+  }
+
+  const precio = producto.calcularPrecio(limpias)
+  if (!Number.isFinite(precio) || precio <= 0) {
+    return { ok: false, error: `No hay precio publicado para esa combinación de ${producto.nombre}.` }
+  }
+
+  const cantidad = Number.parseInt(limpias.cantidad ?? '1', 10)
+
+  return {
+    ok: true,
+    producto,
+    opciones: limpias,
+    cantidad: Number.isFinite(cantidad) && cantidad > 0 ? cantidad : 1,
+    precio: Math.round(precio),
+  }
+}

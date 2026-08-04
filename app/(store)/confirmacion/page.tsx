@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { formatCLP } from '@/lib/productos'
+import LimpiarCarrito from './LimpiarCarrito'
+
+const WHATSAPP = 'https://wa.me/56998441157'
 
 export default async function ConfirmacionPage({
   searchParams,
@@ -18,7 +21,7 @@ export default async function ConfirmacionPage({
           Si completaste el pago, contáctanos por WhatsApp indicando tu número de orden.
         </p>
         <a
-          href="https://wa.me/56998441157"
+          href={WHATSAPP}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-full transition-colors"
@@ -29,20 +32,30 @@ export default async function ConfirmacionPage({
     )
   }
 
-  let pedido = null
+  let items: Array<{
+    numero_orden: string
+    producto_nombre: string
+    opciones: Record<string, string>
+    precio_total: number
+    pago_confirmado: boolean
+  }> = []
+
   if (orden) {
     const { data } = await supabase
       .from('pedidos')
       .select('numero_orden, producto_nombre, opciones, precio_total, pago_confirmado')
-      .eq('numero_orden', orden)
-      .single()
-    pedido = data
+      .eq('grupo_orden', orden)
+      .order('numero_orden', { ascending: true })
+    items = data ?? []
   }
 
-  const pagoAprobado = Number(estado) === 2 || pedido?.pago_confirmado
+  const total = items.reduce((s, i) => s + Number(i.precio_total), 0)
+  const pagoAprobado = Number(estado) === 2 || items.some((i) => i.pago_confirmado)
 
   return (
     <div className="max-w-lg mx-auto px-4 py-16">
+      {pagoAprobado && <LimpiarCarrito />}
+
       <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-8 text-center">
         {pagoAprobado ? (
           <>
@@ -66,19 +79,28 @@ export default async function ConfirmacionPage({
           </>
         )}
 
-        {pedido && (
-          <div className="bg-gray-50 rounded-xl p-5 text-left mb-6 space-y-2 text-sm">
+        {items.length > 0 && (
+          <div className="bg-gray-50 rounded-xl p-5 text-left mb-6 space-y-3 text-sm">
             <div className="flex justify-between">
               <span className="text-gray-500">Orden</span>
-              <span className="font-bold text-[#2D3E9F]">#{pedido.numero_orden}</span>
+              <span className="font-bold text-[#2D3E9F]">#{orden}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">Producto</span>
-              <span className="font-medium text-right">{pedido.producto_nombre}</span>
+
+            <div className="border-t border-gray-200 pt-3 space-y-2">
+              {items.map((item) => (
+                <div key={item.numero_orden} className="flex justify-between gap-3">
+                  <div>
+                    <p className="font-medium text-gray-900">{item.producto_nombre}</p>
+                    <p className="text-xs text-gray-400">{Object.values(item.opciones ?? {}).join(' · ')}</p>
+                  </div>
+                  <span className="font-medium shrink-0">{formatCLP(item.precio_total)}</span>
+                </div>
+              ))}
             </div>
-            <div className="flex justify-between">
+
+            <div className="flex justify-between border-t border-gray-200 pt-3">
               <span className="text-gray-500">Total</span>
-              <span className="font-bold">{formatCLP(pedido.precio_total)}</span>
+              <span className="font-bold">{formatCLP(total)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-500">Retiro</span>
@@ -95,7 +117,7 @@ export default async function ConfirmacionPage({
             Hacer otro pedido
           </Link>
           <a
-            href="https://wa.me/56998441157"
+            href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-3 rounded-full transition-colors"
