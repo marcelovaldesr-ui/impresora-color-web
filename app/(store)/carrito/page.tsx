@@ -47,9 +47,13 @@ export default function CarritoPage() {
                     </span>
                   ))}
                 </div>
-                {item.archivoNombre && (
+                {item.archivoNombre ? (
                   <p className="text-xs text-green-700 mt-2 flex items-center gap-1">
                     <span>✅</span> {item.archivoNombre}
+                  </p>
+                ) : (
+                  <p className="text-xs text-amber-700 mt-2 flex items-center gap-1">
+                    <span>💬</span> Enviarás tu diseño por WhatsApp
                   </p>
                 )}
               </div>
@@ -112,9 +116,13 @@ export default function CarritoPage() {
           Ir a pagar →
         </button>
 
-        <p className="text-xs text-center text-gray-500 mt-3 flex items-center justify-center gap-2">
-          <span>🔒</span> Pago seguro vía Flow.cl · Tarjetas y transferencia
-        </p>
+        <div className="mt-4 space-y-1.5 text-xs text-center text-gray-500">
+          <p className="flex items-center justify-center gap-2">
+            <span>🔒</span> Pago seguro vía Flow.cl · Tarjetas y transferencia
+          </p>
+          <p>Boleta electrónica · Revisamos tu archivo antes de imprimir</p>
+          <p>Retiro en Arauco 1060, Chillán · Lun a Vie de 9:00 a 18:00</p>
+        </div>
       </div>
 
       <Link href="/tienda" className="block text-center text-sm text-[#2D3E9F] mt-5 hover:underline">

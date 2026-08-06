@@ -99,6 +99,9 @@ export default function PagoPage() {
         {/* Datos de contacto */}
         <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-4">
           <h2 className="font-bold text-gray-900">Tus datos de contacto</h2>
+          <p className="text-xs text-gray-500 -mt-2">
+            Los usamos para avisarte cuando tu pedido esté listo. No los compartimos con nadie.
+          </p>
           {campo('nombre', 'Nombre completo', 'text', 'Juan Pérez', 'name')}
           {campo('email', 'Correo electrónico', 'email', 'juan@ejemplo.cl', 'email')}
           {campo('telefono', 'Teléfono (WhatsApp)', 'tel', '+56 9 1234 5678', 'tel')}
@@ -183,10 +186,13 @@ export default function PagoPage() {
           {loading ? 'Redirigiendo al pago…' : `Pagar ${formatCLP(totalPrecio)} →`}
         </button>
 
-        <p className="text-xs text-center text-gray-500">
-          Serás redirigido a Flow.cl para completar el pago de forma segura.
-          Aceptamos tarjetas de crédito, débito y transferencia bancaria.
-        </p>
+        <div className="space-y-1.5 text-xs text-center text-gray-500">
+          <p>
+            Serás redirigido a Flow.cl para completar el pago de forma segura. Aceptamos tarjetas de
+            crédito, débito y transferencia bancaria.
+          </p>
+          <p>Impresora Color Ltda · 35 años imprimiendo en Chillán · Producción propia.</p>
+        </div>
       </form>
     </div>
   )

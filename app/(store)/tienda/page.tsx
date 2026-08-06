@@ -17,22 +17,41 @@ export default function TiendaPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       {/* Header */}
-      <div className="text-center mb-10">
-        <h1 className="text-3xl md:text-4xl font-black text-[#2D3E9F] mb-3">Tienda Online</h1>
+      <div className="text-center mb-6">
+        <h1 className="text-3xl md:text-4xl font-black text-[#2D3E9F] mb-3">
+          Imprime online en Chillán
+        </h1>
         <p className="text-gray-600 text-lg max-w-xl mx-auto">
-          Sube tu diseño listo, elige las opciones y paga. Tu pedido en días.
+          Elige tu producto, sube el diseño y paga. Lo produces con nosotros y lo retiras en
+          días, sin cotizar ni esperar respuesta.
         </p>
         <p className="text-sm text-gray-500 mt-2">
           ¿Necesitas diseño o algo diferente?{' '}
           <a
             href="https://wa.me/56998441157?text=Hola%2C%20necesito%20cotizar%20un%20trabajo"
-            className="text-[#E91E8F] underline"
+            className="text-[#E91E8F] font-medium underline"
             target="_blank"
             rel="noopener noreferrer"
           >
             Cotiza por WhatsApp
           </a>
         </p>
+      </div>
+
+      {/* Barra de confianza — visible antes de elegir producto */}
+      <div className="mb-9 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-600">
+        {[
+          '35 años imprimiendo en Chillán',
+          'Producción propia, no tercerizamos',
+          'Revisamos tu archivo gratis',
+        ].map((t) => (
+          <span key={t} className="flex items-center gap-1.5">
+            <svg className="w-4 h-4 text-green-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+            </svg>
+            {t}
+          </span>
+        ))}
       </div>
 
       {/* Products grid */}
@@ -74,8 +93,8 @@ export default function TiendaPage() {
                       </svg>
                       {producto.tiempoEntrega}
                     </span>
-                    <span className="bg-[#2D3E9F] group-hover:bg-[#E91E8F] text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors">
-                      Ver opciones →
+                    <span className="bg-[#2D3E9F] group-hover:bg-[#E91E8F] text-white text-sm font-bold px-5 py-2.5 rounded-full transition-colors">
+                      Personalizar →
                     </span>
                   </div>
                 </div>
