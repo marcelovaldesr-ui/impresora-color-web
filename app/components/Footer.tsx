@@ -199,9 +199,16 @@ export default function Footer() {
 
       {/* Pie */}
       <div className="border-t border-white/10 py-6 px-4">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-600">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
           <span>© {new Date().getFullYear()} {INFO.nombre} · Chillán, Chile</span>
-          <span>Imprenta en Chillán · Arauco 1060</span>
+          <div className="flex items-center gap-4">
+            <a href="/terminos" className="hover:text-[#E91E8F] transition-colors">
+              Términos y Condiciones
+            </a>
+            <a href="/privacidad" className="hover:text-[#E91E8F] transition-colors">
+              Política de Privacidad
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -12,6 +12,7 @@ export default function PagoPage() {
   const { neto, iva } = calcularIVA(totalPrecio)
 
   const [form, setForm] = useState({ nombre: '', email: '', telefono: '' })
+  const [aceptaTerminos, setAceptaTerminos] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -134,6 +135,40 @@ export default function PagoPage() {
           </div>
         </div>
 
+        {/* Retiro en tienda */}
+        <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+          <h2 className="font-bold text-gray-900 mb-1.5">Retiro en tienda</h2>
+          <p className="text-sm text-gray-600">
+            Por ahora <strong>no hacemos despachos</strong>. Tu pedido se retira en{' '}
+            <strong>Arauco 1060, Chillán</strong>, de lunes a viernes de 9:00 a 18:00 hrs.
+          </p>
+          <p className="text-xs text-gray-400 mt-2">
+            Te avisamos apenas esté listo. Lo guardamos por 30 días.
+          </p>
+        </div>
+
+        {/* Aceptacion de terminos */}
+        <label className="flex gap-3 items-start cursor-pointer">
+          <input
+            type="checkbox"
+            required
+            checked={aceptaTerminos}
+            onChange={(e) => setAceptaTerminos(e.target.checked)}
+            className="mt-0.5 w-5 h-5 shrink-0 accent-[#E91E8F] cursor-pointer"
+          />
+          <span className="text-sm text-gray-600 leading-relaxed">
+            He revisado mi archivo y acepto los{' '}
+            <Link href="/terminos" target="_blank" className="text-[#2D3E9F] underline hover:text-[#E91E8F]">
+              Términos y Condiciones
+            </Link>{' '}
+            y la{' '}
+            <Link href="/privacidad" target="_blank" className="text-[#2D3E9F] underline hover:text-[#E91E8F]">
+              Política de Privacidad
+            </Link>
+            . Entiendo que se trata de productos personalizados que se imprimen tal como los envío.
+          </span>
+        </label>
+
         {error && (
           <div role="alert" className="bg-red-50 border border-red-200 rounded-xl p-4 text-red-700 text-sm">
             {error}
@@ -142,7 +177,7 @@ export default function PagoPage() {
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={loading || !aceptaTerminos}
           className="w-full bg-[#E91E8F] hover:bg-[#c8186e] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold py-4 rounded-full text-base transition-colors shadow-lg shadow-[#E91E8F]/20"
         >
           {loading ? 'Redirigiendo al pago…' : `Pagar ${formatCLP(totalPrecio)} →`}

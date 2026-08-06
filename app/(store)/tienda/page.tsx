@@ -90,7 +90,7 @@ export default function TiendaPage() {
         {[
           { icon: '📁', title: 'Tu archivo', desc: 'PDF, AI, EPS, PNG o JPG. Hasta 50 MB.' },
           { icon: '🔒', title: 'Pago seguro', desc: 'Tarjetas y transferencia vía Flow.cl.' },
-          { icon: '⚡', title: 'Entrega rápida', desc: 'Listo en 1–5 días hábiles.' },
+          { icon: '🏪', title: 'Retiro en tienda', desc: 'Listo en 1–5 días hábiles. Arauco 1060, Chillán.' },
         ].map((item) => (
           <div key={item.title} className="flex gap-3 items-start">
             <span className="text-2xl">{item.icon}</span>
