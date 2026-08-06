@@ -35,7 +35,14 @@ export async function POST(req: NextRequest) {
     return Response.json({ error: 'Monto del pedido inválido.' }, { status: 400 })
   }
 
-  const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.impresoracolor.cl').replace(/\/$/, '')
+  // OJO con el www: vercel.json redirige www.impresoracolor.cl -> impresoracolor.cl
+  // con un 308 permanente. El navegador sigue esa redireccion, pero Flow NO: si le
+  // pasamos la urlConfirmation con www, su webhook recibe 308, lo da por fallido y
+  // el pedido nunca se marca como pagado ni se envian los correos.
+  // Por eso el host canonico se fuerza aca, sin depender de como este cargada la variable.
+  const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL ?? 'https://impresoracolor.cl')
+    .replace(/\/+$/, '')
+    .replace(/^(https?:\/\/)www\./i, '$1')
   const subject =
     pedidos.length === 1
       ? `Pedido ${grupoOrden} — ${pedidos[0].producto_nombre}`
