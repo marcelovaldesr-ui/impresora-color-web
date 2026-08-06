@@ -26,7 +26,10 @@ export async function POST(req: NextRequest) {
 
   try {
     const nombreBlob = `uploads/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`
-    const blob = await put(nombreBlob, file, { access: 'public' })
+    // addRandomSuffix agrega un texto aleatorio al nombre del archivo. El store es
+    // publico (cualquiera con la URL puede bajar el archivo), asi que esto evita
+    // que alguien adivine la direccion del diseno de otro cliente probando nombres.
+    const blob = await put(nombreBlob, file, { access: 'public', addRandomSuffix: true })
     return Response.json({ url: blob.url, nombre: file.name })
   } catch (err) {
     console.error('[upload]', err)
