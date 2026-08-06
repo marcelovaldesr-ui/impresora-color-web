@@ -28,6 +28,26 @@ export interface ItemCompra {
 }
 
 /**
+ * Eventos de embudo de GA4 (view_item, add_to_cart, begin_checkout).
+ * Solo van a GA4: no son conversiones de Google Ads y no afectan las pujas.
+ * Sirven para responder dónde se cae la gente antes de comprar.
+ */
+export function trackEcommerce(
+  evento: 'view_item' | 'add_to_cart' | 'begin_checkout',
+  datos: { valor: number; items: ItemCompra[] }
+) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  if (!GA4_ID) return;
+
+  window.gtag("event", evento, {
+    send_to: GA4_ID,
+    value: datos.valor,
+    currency: "CLP",
+    items: datos.items,
+  });
+}
+
+/**
  * Registra una compra en GA4 y en Google Ads.
  * Se llama una sola vez por número de orden: la página de confirmación se
  * recarga o se comparte con frecuencia, y sin este control la misma venta se

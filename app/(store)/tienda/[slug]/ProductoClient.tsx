@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useCarrito } from '@/lib/carrito'
 import { formatCLP, calcularIVA, getProducto } from '@/lib/productos'
 import { TIENDA_COMPRA_HABILITADA } from '@/lib/config'
+import { trackEcommerce } from '@/app/components/GoogleAds'
 
 const WA_DISENO =
   'https://wa.me/56998441157?text=Hola%2C%20necesito%20ayuda%20con%20el%20dise%C3%B1o%20de%20mi%20pedido'
@@ -51,6 +52,27 @@ export default function ProductoClient({ slug }: { slug: string }) {
   const zonaArchivoRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => setMontado(true), [])
+
+  // view_item: una sola vez por producto, no en cada cambio de opción —
+  // si no, alguien que prueba cinco combinaciones contaría cinco vistas.
+  useEffect(() => {
+    trackEcommerce('view_item', {
+      valor: producto.calcularPrecio(
+        Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, g.valores[0]]))
+      ),
+      items: [
+        {
+          item_id: producto.slug,
+          item_name: producto.nombre,
+          price: producto.calcularPrecio(
+            Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, g.valores[0]]))
+          ),
+          quantity: 1,
+        },
+      ],
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [producto.slug])
 
   const precio = producto.calcularPrecio(opciones)
   const { neto, iva } = calcularIVA(precio)
@@ -132,6 +154,13 @@ export default function ProductoClient({ slug }: { slug: string }) {
       zonaArchivoRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       return
     }
+    trackEcommerce('add_to_cart', {
+      valor: precio,
+      items: [
+        { item_id: producto.slug, item_name: producto.nombre, price: precio, quantity: 1 },
+      ],
+    })
+
     agregarItem({
       id: crypto.randomUUID(),
       productoSlug: producto.slug,

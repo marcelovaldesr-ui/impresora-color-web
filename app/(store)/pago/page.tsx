@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCarrito } from '@/lib/carrito'
 import { formatCLP, calcularIVA } from '@/lib/productos'
+import { trackEcommerce } from '@/app/components/GoogleAds'
 
 export default function PagoPage() {
   const { items, totalPrecio } = useCarrito()
@@ -20,6 +21,24 @@ export default function PagoPage() {
   useEffect(() => {
     if (items.length === 0) router.replace('/tienda')
   }, [items, router])
+
+  // begin_checkout: al llegar a la pantalla de datos, una sola vez.
+  // La distancia entre este evento y purchase es la que muestra cuánta
+  // gente se cae justo en el último paso.
+  const disparado = useRef(false)
+  useEffect(() => {
+    if (disparado.current || items.length === 0) return
+    disparado.current = true
+    trackEcommerce('begin_checkout', {
+      valor: totalPrecio,
+      items: items.map((i) => ({
+        item_id: i.productoSlug,
+        item_name: i.productoNombre,
+        price: i.precio,
+        quantity: 1,
+      })),
+    })
+  }, [items, totalPrecio])
 
   if (items.length === 0) return null
 
