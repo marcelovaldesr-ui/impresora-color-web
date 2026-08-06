@@ -71,7 +71,7 @@ export default function CarritoPage() {
                     <button
                       type="button"
                       onClick={() => setConfirmandoEliminar(null)}
-                      className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+                      className="text-xs text-gray-500 hover:text-gray-600 transition-colors"
                     >
                       Cancelar
                     </button>

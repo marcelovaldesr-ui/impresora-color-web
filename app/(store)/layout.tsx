@@ -45,7 +45,7 @@ function ProximamenteScreen() {
             Formulario de cotización
           </Link>
         </div>
-        <Link href="/" className="block mt-8 text-xs text-gray-400 hover:text-[#2D3E9F] transition-colors">
+        <Link href="/" className="block mt-8 text-xs text-gray-500 hover:text-[#2D3E9F] transition-colors">
           Volver al inicio
         </Link>
       </div>

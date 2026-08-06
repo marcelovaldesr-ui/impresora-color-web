@@ -82,7 +82,7 @@ export default function PagoPage() {
         autoComplete={autocomplete}
         value={form[id]}
         onChange={(e) => setForm((p) => ({ ...p, [id]: e.target.value }))}
-        className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#2D3E9F] focus:ring-1 focus:ring-[#2D3E9F] transition-colors"
+        className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2D3E9F] focus:ring-1 focus:ring-[#2D3E9F] transition-colors"
       />
     </div>
   )
@@ -117,7 +117,7 @@ export default function PagoPage() {
             >
               <div>
                 <p className="font-medium text-gray-900">{item.productoNombre}</p>
-                <p className="text-xs text-gray-400">{Object.values(item.opciones).join(' · ')}</p>
+                <p className="text-xs text-gray-500">{Object.values(item.opciones).join(' · ')}</p>
               </div>
               <span className="font-semibold ml-4 shrink-0">{formatCLP(item.precio)}</span>
             </div>
@@ -145,7 +145,7 @@ export default function PagoPage() {
             Por ahora <strong>no hacemos despachos</strong>. Tu pedido se retira en{' '}
             <strong>Arauco 1060, Chillán</strong>, de lunes a viernes de 9:00 a 18:00 hrs.
           </p>
-          <p className="text-xs text-gray-400 mt-2">
+          <p className="text-xs text-gray-500 mt-2">
             Te avisamos apenas esté listo. Lo guardamos por 30 días.
           </p>
         </div>

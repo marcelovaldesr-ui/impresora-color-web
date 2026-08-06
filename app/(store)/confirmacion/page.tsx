@@ -91,7 +91,7 @@ export default async function ConfirmacionPage({
                 <div key={item.numero_orden} className="flex justify-between gap-3">
                   <div>
                     <p className="font-medium text-gray-900">{item.producto_nombre}</p>
-                    <p className="text-xs text-gray-400">{Object.values(item.opciones ?? {}).join(' · ')}</p>
+                    <p className="text-xs text-gray-500">{Object.values(item.opciones ?? {}).join(' · ')}</p>
                   </div>
                   <span className="font-medium shrink-0">{formatCLP(item.precio_total)}</span>
                 </div>

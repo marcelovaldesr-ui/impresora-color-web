@@ -164,20 +164,20 @@ export default function ProductoClient({ slug }: { slug: string }) {
 
       <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-start">
         {/* Imagen — más baja en móvil para que el precio entre en pantalla */}
-        <div className="relative h-52 sm:h-64 md:h-96 bg-gray-50 rounded-2xl overflow-hidden md:sticky md:top-24">
+        <div className="relative h-52 sm:h-64 md:h-96 bg-[#F5F6FB] border border-gray-100 rounded-2xl overflow-hidden md:sticky md:top-24">
           <Image
             src={producto.imagen}
             alt={producto.nombre}
             fill
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain p-4"
+            className="object-contain p-6"
           />
         </div>
 
         {/* Opciones */}
         <div>
-          <h1 className="text-2xl md:text-3xl font-black text-gray-900">{producto.nombre}</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">{producto.nombre}</h1>
           <p className="text-gray-600 mt-2 leading-relaxed">{producto.descripcion}</p>
 
           {/* Fecha concreta de retiro: responde "¿cuándo lo tengo?" sin hacer cuentas */}
@@ -205,7 +205,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
                 <p className="text-sm font-semibold text-gray-700 mb-2">
                   {grupo.nombre}
                   {grupo.id === 'cantidad' && precioUnitario !== null && (
-                    <span className="ml-2 font-normal text-gray-400">
+                    <span className="ml-2 font-normal text-gray-500">
                       ({formatCLP(Math.round(precioUnitario))} c/u)
                     </span>
                   )}
@@ -241,12 +241,12 @@ export default function ProductoClient({ slug }: { slug: string }) {
           </div>
 
           {/* Precio */}
-          <div className="mt-6 bg-blue-50 border border-blue-100 rounded-xl p-4">
+          <div className="mt-6 bg-[#2D3E9F]/5 border border-[#2D3E9F]/15 rounded-2xl p-4">
             <div className="flex items-baseline gap-2 flex-wrap">
               <span className="text-3xl font-black text-[#2D3E9F]">{formatCLP(precio)}</span>
               <span className="text-sm text-gray-500">IVA incluido</span>
               {precioUnitario !== null && (
-                <span className="text-sm font-semibold text-[#E91E8F]">
+                <span className="text-sm font-semibold text-[#2D3E9F]/80">
                   · {formatCLP(Math.round(precioUnitario))} c/u
                 </span>
               )}
@@ -261,7 +261,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
             <div className="mt-5" ref={zonaArchivoRef}>
               <p className="text-sm font-semibold text-gray-700 mb-1">
                 Tu diseño{' '}
-                <span className="font-normal text-gray-400">
+                <span className="font-normal text-gray-500">
                   ({producto.formatosAceptados.join(', ')} — máx. 50 MB)
                 </span>
               </p>
@@ -271,7 +271,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
                 tabIndex={0}
                 onClick={() => fileRef.current?.click()}
                 onKeyDown={(e) => e.key === 'Enter' && fileRef.current?.click()}
-                className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-colors ${
+                className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-colors ${
                   archivoBlobUrl
                     ? 'border-green-400 bg-green-50'
                     : 'border-gray-200 bg-gray-50 hover:border-[#2D3E9F] hover:bg-blue-50'
@@ -289,15 +289,15 @@ export default function ProductoClient({ slug }: { slug: string }) {
                 ) : archivoBlobUrl ? (
                   <div>
                     <p className="text-green-700 font-semibold text-sm">✓ {archivo?.name}</p>
-                    <p className="text-xs text-gray-400 mt-1">Toca para reemplazarlo</p>
+                    <p className="text-xs text-gray-500 mt-1">Toca para reemplazarlo</p>
                   </div>
                 ) : (
                   <div>
-                    <svg className="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg className="w-8 h-8 text-gray-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
                     <p className="text-sm text-gray-700 font-semibold">Toca para subir tu diseño</p>
-                    <p className="text-xs text-gray-400 mt-1">PDF · AI · EPS · PNG · JPG · TIFF</p>
+                    <p className="text-xs text-gray-500 mt-1">PDF · AI · EPS · PNG · JPG · TIFF</p>
                   </div>
                 )}
               </div>
@@ -307,7 +307,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
               )}
 
               {advertenciaResolucion && (
-                <div role="status" aria-live="polite" className="mt-2 bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+                <div role="status" aria-live="polite" className="mt-2 bg-yellow-50 border border-yellow-200 rounded-2xl p-3 text-sm text-yellow-800">
                   La imagen parece de baja resolución y podría no verse nítida impresa. Si tienes una
                   versión de mayor calidad, úsala. Ante la duda, la revisamos gratis antes de imprimir.
                 </div>
@@ -325,7 +325,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
                   <span className="text-sm text-gray-600 leading-snug">
                     <strong className="text-gray-800">No tengo el archivo ahora.</strong> Quiero pagar
                     y enviarlo después por WhatsApp.
-                    <span className="block text-xs text-gray-400 mt-0.5">
+                    <span className="block text-xs text-gray-500 mt-0.5">
                       Te escribimos al confirmar el pedido. La producción parte cuando recibimos tu diseño.
                     </span>
                   </span>
@@ -358,7 +358,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
           ) : (
             <div className="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4 text-center">
               <p className="text-sm font-semibold text-gray-500">Compra en preparación</p>
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="text-xs text-gray-500 mt-1">
                 Estamos revisando precios y variantes. Por ahora puedes explorar el catálogo; muy
                 pronto podrás comprar directamente aquí.
               </p>
@@ -409,7 +409,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
           <div className="flex items-center gap-3">
             <div className="shrink-0">
               <p className="text-xl font-black text-[#2D3E9F] leading-none">{formatCLP(precio)}</p>
-              <p className="text-[11px] text-gray-400 mt-0.5">
+              <p className="text-[11px] text-gray-500 mt-0.5">
                 {precioUnitario !== null
                   ? `${formatCLP(Math.round(precioUnitario))} c/u · IVA incl.`
                   : 'IVA incluido'}
