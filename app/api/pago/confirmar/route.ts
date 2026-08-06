@@ -102,6 +102,34 @@ function clp(n: number): string {
   return `$${Number(n).toLocaleString('es-CL')}`
 }
 
+/** Si el cliente compró sin subir su diseño, el pedido queda frenado hasta que lo
+ *  envíe. Este bloque se lo recuerda con un botón de WhatsApp que ya trae escrito
+ *  su número de orden, para que mandarlo le tome segundos. */
+function bloqueFaltaArchivo(items: FilaPedido[], grupo: string): string {
+  const sinArchivo = items.filter((i) => !i.archivo_url)
+  if (sinArchivo.length === 0) return ''
+
+  const texto = encodeURIComponent(
+    `Hola, les envío el archivo de mi pedido ${grupo}.`
+  )
+
+  return `
+    <div style="margin-top:18px;border:2px solid #E91E8F;border-radius:10px;padding:16px;background:#fff">
+      <p style="margin:0 0 6px;font-weight:bold;color:#E91E8F;font-size:15px">Nos falta tu archivo de diseño</p>
+      <p style="margin:0 0 12px;color:#444;font-size:14px">
+        Tu pago está confirmado, pero <strong>no podemos empezar a producir hasta recibir tu diseño</strong>.
+        Envíanoslo por WhatsApp y partimos de inmediato.
+      </p>
+      <a href="${WHATSAPP}?text=${texto}"
+         style="display:inline-block;background:#25D366;color:#fff;font-weight:bold;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:15px">
+        Enviar mi archivo por WhatsApp
+      </a>
+      <p style="margin:12px 0 0;color:#888;font-size:12px">
+        Tu número de orden ya viene escrito en el mensaje. Formatos: PDF, AI, EPS, PNG, JPG o TIFF.
+      </p>
+    </div>`
+}
+
 function filasHtml(items: FilaPedido[]): string {
   return items
     .map((i) => {
@@ -146,6 +174,7 @@ async function enviarEmails(items: FilaPedido[], grupo: string) {
               <td style="padding:12px 0;text-align:right;font-weight:bold;font-size:16px">${clp(total)}</td>
             </tr>
           </table>
+          ${bloqueFaltaArchivo(items, grupo)}
           <p style="margin-top:16px">Tu pedido estará listo en <strong>2 a 5 días hábiles</strong>. Te avisaremos cuando puedas retirarlo en <strong>Arauco 1060, Chillán</strong>.</p>
           <p>¿Tienes dudas? <a href="${WHATSAPP}" style="color:#E91E8F">Escríbenos por WhatsApp</a></p>
         </div>
@@ -186,6 +215,18 @@ async function enviarEmails(items: FilaPedido[], grupo: string) {
           </table>
           <p style="margin:18px 0 6px;font-weight:bold;color:#555">Archivos del cliente</p>
           <ul style="margin:0;padding-left:18px">${archivos}</ul>
+          ${
+            items.some((i) => !i.archivo_url)
+              ? `<p style="margin:16px 0 0">
+                   <a href="https://wa.me/${(cliente.cliente_telefono ?? '').replace(/\D/g, '').replace(/^(?!56)(\d{9})$/, '56$1')}?text=${encodeURIComponent(
+                     `Hola ${cliente.cliente_nombre}, somos Impresora Color. Recibimos tu pedido ${grupo} y ya está pagado. Para empezar la producción necesitamos tu archivo de diseño.`
+                   )}"
+                      style="display:inline-block;background:#25D366;color:#fff;font-weight:bold;text-decoration:none;padding:10px 18px;border-radius:999px;font-size:14px">
+                     Pedirle el archivo por WhatsApp
+                   </a>
+                 </p>`
+              : ''
+          }
         </div>
         <p style="color:#aaa;font-size:12px;margin-top:16px;text-align:center">Recuerda emitir la boleta electrónica de este pedido.</p>
       </div>

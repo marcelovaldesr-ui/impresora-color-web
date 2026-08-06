@@ -15,13 +15,33 @@ const ESTADOS: Record<EstadoPedido, { label: string; color: string }> = {
 
 const FLUJO: EstadoPedido[] = ['pendiente_pago', 'pagado', 'en_produccion', 'listo', 'entregado']
 
+type Filtro = EstadoPedido | 'todos' | 'sin_archivo'
+
+/** Normaliza el telefono del cliente a formato wa.me (56 + 9 digitos). */
+function waLink(telefono: string, mensaje: string): string {
+  const d = (telefono ?? '').replace(/\D/g, '')
+  const numero = d.startsWith('56') ? d : d.length === 9 ? `56${d}` : d
+  return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
+}
+
+/** Un pedido pagado sin archivo esta frenado: no puede entrar a produccion. */
+function faltaArchivo(p: Pedido): boolean {
+  return !p.archivo_url && p.estado !== 'cancelado' && p.estado !== 'pendiente_pago'
+}
+
 export default function AdminPedidosClient({ pedidosIniciales }: { pedidosIniciales: Pedido[] }) {
   const [pedidos, setPedidos] = useState(pedidosIniciales)
-  const [filtro, setFiltro] = useState<EstadoPedido | 'todos'>('todos')
+  const [filtro, setFiltro] = useState<Filtro>('todos')
   const [actualizando, setActualizando] = useState<string | null>(null)
 
   const pedidosFiltrados =
-    filtro === 'todos' ? pedidos : pedidos.filter((p) => p.estado === filtro)
+    filtro === 'todos'
+      ? pedidos
+      : filtro === 'sin_archivo'
+      ? pedidos.filter(faltaArchivo)
+      : pedidos.filter((p) => p.estado === filtro)
+
+  const totalSinArchivo = pedidos.filter(faltaArchivo).length
 
   const avanzarEstado = async (pedido: Pedido) => {
     const idx = FLUJO.indexOf(pedido.estado as EstadoPedido)
@@ -79,6 +99,20 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
         >
           Todos ({pedidos.length})
         </button>
+        {totalSinArchivo > 0 && (
+          <button
+            type="button"
+            onClick={() => setFiltro('sin_archivo')}
+            aria-pressed={filtro === 'sin_archivo'}
+            className={`px-4 py-1.5 rounded-full text-sm font-bold transition-colors ${
+              filtro === 'sin_archivo'
+                ? 'bg-red-600 text-white'
+                : 'bg-red-50 border border-red-300 text-red-700 hover:bg-red-100'
+            }`}
+          >
+            Falta archivo ({totalSinArchivo})
+          </button>
+        )}
         {(Object.entries(ESTADOS) as [EstadoPedido, (typeof ESTADOS)[EstadoPedido]][]).map(
           ([estado, { label }]) => (
             <button
@@ -125,6 +159,11 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
                     <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${estadoInfo.color}`}>
                       {estadoInfo.label}
                     </span>
+                    {faltaArchivo(pedido) && (
+                      <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-600 text-white">
+                        ⚠ Falta archivo
+                      </span>
+                    )}
                     <span className="text-xs text-gray-400">
                       {new Date(pedido.created_at).toLocaleDateString('es-CL', {
                         day: '2-digit',
@@ -155,7 +194,7 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
                     {formatCLP(pedido.precio_total)}
                   </p>
 
-                  {pedido.archivo_url && (
+                  {pedido.archivo_url ? (
                     <a
                       href={pedido.archivo_url}
                       target="_blank"
@@ -164,6 +203,20 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
                     >
                       ↓ Descargar archivo
                     </a>
+                  ) : (
+                    faltaArchivo(pedido) && (
+                      <a
+                        href={waLink(
+                          pedido.cliente_telefono,
+                          `Hola ${pedido.cliente_nombre}, somos Impresora Color. Recibimos tu pedido ${pedido.numero_orden} (${pedido.producto_nombre}) y ya está pagado. Para empezar la producción necesitamos que nos envíes tu archivo de diseño por acá. ¡Gracias!`
+                        )}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1.5 rounded-full transition-colors"
+                      >
+                        Pedir archivo por WhatsApp
+                      </a>
+                    )
                   )}
 
                   {puedeAvanzar && (
