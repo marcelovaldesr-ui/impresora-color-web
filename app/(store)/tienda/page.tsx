@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { PRODUCTOS, formatCLP } from '@/lib/productos'
+import { PRODUCTOS, formatCLP, precioDesde } from '@/lib/productos'
 import type { Metadata } from 'next'
 import { TIENDA_EN_CONSTRUCCION } from '@/lib/config'
 
@@ -57,9 +57,7 @@ export default function TiendaPage() {
       {/* Products grid */}
       <div className="grid sm:grid-cols-2 gap-6">
         {PRODUCTOS.map((producto) => {
-          const precioMinimo = producto.calcularPrecio(
-            Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, g.valores[0]]))
-          )
+          const precioMinimo = precioDesde(producto)
 
           return (
             <Link
@@ -120,7 +118,7 @@ export default function TiendaPage() {
           },
           {
             title: 'Retiro en tienda',
-            desc: 'Listo en 1–5 días hábiles. Arauco 1060, Chillán.',
+            desc: 'Listo en 1–3 días hábiles. Arauco 1060, Chillán.',
             d: 'M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6',
           },
         ].map((item) => (

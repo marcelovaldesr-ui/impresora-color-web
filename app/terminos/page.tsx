@@ -92,7 +92,7 @@ export default function TerminosPage() {
 
       <Seccion n={6} titulo="Plazos de producción">
         <p>
-          Cada producto indica su plazo estimado, que va de <strong>1 a 5 días hábiles</strong>. Ese
+          Cada producto indica su plazo estimado, que va de <strong>1 a 3 días hábiles</strong>. Ese
           plazo empieza a correr desde que se confirma el pago y recibimos el archivo conforme, no
           desde el momento de la compra.
         </p>

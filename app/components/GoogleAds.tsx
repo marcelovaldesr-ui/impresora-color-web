@@ -10,6 +10,61 @@ const CONV_WHATSAPP = "AW-434671504/rD-SCP6E8rwcEJCfos8B";
 // Conversión: Formulario Cotización (Web) — ID acción 7643478371
 export const CONV_FORMULARIO = "AW-434671504/nebXCOPy2LwcEJCfos8B";
 
+// Conversión: Compra en la tienda online.
+// Se crea en Google Ads (Objetivos → Conversiones → Nueva acción → Sitio web,
+// categoría "Compra", valor variable) y se pega la etiqueta completa
+// "AW-434671504/xxxxxxxxxxxx" en NEXT_PUBLIC_ADS_CONV_COMPRA.
+// Mientras esté vacía, la compra igual se registra en GA4.
+export const CONV_COMPRA = process.env.NEXT_PUBLIC_ADS_CONV_COMPRA ?? "";
+
+// Propiedad de GA4 ("G-XXXXXXX"). Si no está definida, no se carga nada extra.
+export const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID ?? "";
+
+export interface ItemCompra {
+  item_id: string;
+  item_name: string;
+  price: number;
+  quantity: number;
+}
+
+/**
+ * Registra una compra en GA4 y en Google Ads.
+ * Se llama una sola vez por número de orden: la página de confirmación se
+ * recarga o se comparte con frecuencia, y sin este control la misma venta se
+ * contaría varias veces y ensuciaría el CPA y el ROAS.
+ */
+export function trackPurchase(datos: {
+  orden: string;
+  valor: number;
+  items: ItemCompra[];
+}) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+
+  const clave = `ic_purchase_${datos.orden}`;
+  try {
+    if (window.sessionStorage.getItem(clave)) return;
+    window.sessionStorage.setItem(clave, "1");
+  } catch {
+    // Modo incógnito sin sessionStorage: preferimos medir de más que de menos
+  }
+
+  window.gtag("event", "purchase", {
+    transaction_id: datos.orden,
+    value: datos.valor,
+    currency: "CLP",
+    items: datos.items,
+  });
+
+  if (CONV_COMPRA) {
+    window.gtag("event", "conversion", {
+      send_to: CONV_COMPRA,
+      value: datos.valor,
+      currency: "CLP",
+      transaction_id: datos.orden,
+    });
+  }
+}
+
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
@@ -54,6 +109,7 @@ export default function GoogleAds() {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '${GOOGLE_ADS_ID}');
+        ${GA4_ID ? `gtag('config', '${GA4_ID}');` : ""}
       `}</Script>
     </>
   );

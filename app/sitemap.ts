@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { PRODUCTOS } from "@/lib/productos";
+import { TIENDA_EN_CONSTRUCCION } from "@/lib/config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://impresoracolor.cl";
@@ -39,5 +41,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    // La tienda y sus fichas entran al sitemap recién cuando está abierta:
+    // ofrecer a Google páginas que muestran "próximamente" desperdicia rastreo.
+    ...(TIENDA_EN_CONSTRUCCION
+      ? []
+      : [
+          {
+            url: `${base}/tienda`,
+            lastModified: new Date(),
+            changeFrequency: "weekly" as const,
+            priority: 0.9,
+          },
+          ...PRODUCTOS.map((p) => ({
+            url: `${base}/tienda/${p.slug}`,
+            lastModified: new Date(),
+            changeFrequency: "weekly" as const,
+            priority: 0.8,
+          })),
+        ]),
   ];
 }

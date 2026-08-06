@@ -85,7 +85,7 @@ export const PRODUCTOS: Producto[] = [
     nombre: 'Tarjetas de Presentación',
     descripcion:
       'Tarjetas profesionales para hacer crecer tu red de contactos. Tamaño 9 x 5 cm, papel couché 300 grs.',
-    tiempoEntrega: '2-3 días hábiles',
+    tiempoEntrega: '1-3 días hábiles',
     imagen: '/images/tarjetas-crop.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
@@ -103,7 +103,7 @@ export const PRODUCTOS: Producto[] = [
     nombre: 'Flyers / Volantes',
     descripcion:
       'Volantes de alta calidad para promocionar tu negocio. Papel couché 90g, 1 o 2 caras.',
-    tiempoEntrega: '1-2 días hábiles',
+    tiempoEntrega: '1-3 días hábiles',
     imagen: '/images/FLYER.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
@@ -123,7 +123,7 @@ export const PRODUCTOS: Producto[] = [
     nombre: 'Stickers / Calcomanías',
     descripcion:
       'Stickers en vinilo brillante para packaging, branding y decoración. Mismo precio en forma circular, rectangular o cuadrada.',
-    tiempoEntrega: '2-4 días hábiles',
+    tiempoEntrega: '1-3 días hábiles',
     imagen: '/images/sitkers.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
@@ -142,7 +142,7 @@ export const PRODUCTOS: Producto[] = [
     nombre: 'Pendón Roller Retráctil',
     descripcion:
       'Pendones con estructura enrollable y estuche de transporte incluido. Ideales para eventos, ferias y puntos de venta.',
-    tiempoEntrega: '3-5 días hábiles',
+    tiempoEntrega: '1-3 días hábiles',
     imagen: '/images/roller-producto-crop.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
@@ -158,7 +158,7 @@ export const PRODUCTOS: Producto[] = [
     nombre: 'Tela PVC Impresa (Lona)',
     descripcion:
       'Lona impresa en PVC, sin ojetillos, ideal para publicidad exterior y de gran formato.',
-    tiempoEntrega: '3-5 días hábiles',
+    tiempoEntrega: '1-3 días hábiles',
     imagen: '/images/tela-pvc-impresa.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
@@ -174,7 +174,7 @@ export const PRODUCTOS: Producto[] = [
     nombre: 'Credencial PVC',
     descripcion:
       'Credencial tipo carne en PVC blanco, impresion full color. Tamaño estándar 8,5 x 5,5 cm. Valor $2.500 por unidad (hasta 5 unidades); para mayores cantidades, cotiza por privado.',
-    tiempoEntrega: '2-4 días hábiles',
+    tiempoEntrega: '1-3 días hábiles',
     imagen: '/images/tarjetaspvc.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
@@ -233,4 +233,12 @@ export function precioServidor(slug: unknown, opciones: unknown): PrecioServidor
     cantidad: Number.isFinite(cantidad) && cantidad > 0 ? cantidad : 1,
     precio: Math.round(precio),
   }
+}
+
+/** Precio más bajo publicado de un producto (la primera opción de cada grupo).
+ *  Se usa en el catálogo y en el schema.org de la ficha. */
+export function precioDesde(producto: Producto): number {
+  return producto.calcularPrecio(
+    Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, g.valores[0]]))
+  )
 }

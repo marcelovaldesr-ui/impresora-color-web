@@ -175,7 +175,7 @@ async function enviarEmails(items: FilaPedido[], grupo: string) {
             </tr>
           </table>
           ${bloqueFaltaArchivo(items, grupo)}
-          <p style="margin-top:16px">Tu pedido estará listo en <strong>2 a 5 días hábiles</strong>. Te avisaremos cuando puedas retirarlo en <strong>Arauco 1060, Chillán</strong>.</p>
+          <p style="margin-top:16px">Tu pedido estará listo en <strong>1 a 3 días hábiles</strong>. Te avisaremos cuando puedas retirarlo en <strong>Arauco 1060, Chillán</strong>.</p>
           <p>¿Tienes dudas? <a href="${WHATSAPP}" style="color:#E91E8F">Escríbenos por WhatsApp</a></p>
         </div>
         <p style="color:#aaa;font-size:12px;margin-top:16px;text-align:center">Impresora Color Ltda · Arauco 1060, Chillán</p>

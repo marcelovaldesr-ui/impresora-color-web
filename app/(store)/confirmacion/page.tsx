@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { formatCLP } from '@/lib/productos'
 import LimpiarCarrito from './LimpiarCarrito'
+import TrackCompra from './TrackCompra'
 
 const WHATSAPP = 'https://wa.me/56998441157'
 
@@ -34,6 +35,7 @@ export default async function ConfirmacionPage({
 
   let items: Array<{
     numero_orden: string
+    producto_slug: string
     producto_nombre: string
     opciones: Record<string, string>
     precio_total: number
@@ -43,7 +45,7 @@ export default async function ConfirmacionPage({
   if (orden) {
     const { data } = await supabase
       .from('pedidos')
-      .select('numero_orden, producto_nombre, opciones, precio_total, pago_confirmado')
+      .select('numero_orden, producto_slug, producto_nombre, opciones, precio_total, pago_confirmado')
       .eq('grupo_orden', orden)
       .order('numero_orden', { ascending: true })
     items = data ?? []
@@ -55,6 +57,18 @@ export default async function ConfirmacionPage({
   return (
     <div className="max-w-lg mx-auto px-4 py-16">
       {pagoAprobado && <LimpiarCarrito />}
+      {pagoAprobado && orden && total > 0 && (
+        <TrackCompra
+          orden={orden}
+          valor={total}
+          items={items.map((i) => ({
+            item_id: i.producto_slug,
+            item_name: i.producto_nombre,
+            price: Number(i.precio_total),
+            quantity: 1,
+          }))}
+        />
+      )}
 
       <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-8 text-center">
         {pagoAprobado ? (
