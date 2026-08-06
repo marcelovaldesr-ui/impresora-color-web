@@ -4,9 +4,14 @@ import { Resend } from 'resend'
 import { NextRequest } from 'next/server'
 
 // Remitente: DEBE ser una dirección de un dominio verificado en Resend.
-// El antiguo onboarding@resend.dev solo entrega correos a la casilla dueña de
-// la cuenta, así que los clientes nunca recibían su confirmación.
-const FROM = process.env.RESEND_FROM_EMAIL ?? 'Impresora Color <pedidos@impresoracolor.cl>'
+// La tienda usa su propio remitente (pedidos@) para no mezclarse con las
+// cotizaciones del formulario de la web, que salen de cotizaciones@.
+// Si RESEND_FROM_PEDIDOS no está definida, cae en el remitente general y,
+// como último recurso, en pedidos@impresoracolor.cl.
+const FROM =
+  process.env.RESEND_FROM_PEDIDOS ??
+  process.env.RESEND_FROM_EMAIL ??
+  'Impresora Color <pedidos@impresoracolor.cl>'
 const TO_INTERNO = process.env.RESEND_TO_EMAIL ?? 'impresoracolor3@gmail.com'
 const WHATSAPP = 'https://wa.me/56998441157'
 
