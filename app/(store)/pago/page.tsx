@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useCarrito } from '@/lib/carrito'
+import { useCarrito, precioItem } from '@/lib/carrito'
 import { formatCLP, calcularIVA } from '@/lib/productos'
 import { trackEcommerce } from '@/app/components/GoogleAds'
 
@@ -34,7 +34,7 @@ export default function PagoPage() {
       items: items.map((i) => ({
         item_id: i.productoSlug,
         item_name: i.productoNombre,
-        price: i.precio,
+        price: precioItem(i),
         quantity: 1,
       })),
     })
@@ -138,7 +138,7 @@ export default function PagoPage() {
                 <p className="font-medium text-gray-900">{item.productoNombre}</p>
                 <p className="text-xs text-gray-500">{Object.values(item.opciones).join(' · ')}</p>
               </div>
-              <span className="font-semibold ml-4 shrink-0">{formatCLP(item.precio)}</span>
+              <span className="font-semibold ml-4 shrink-0">{formatCLP(precioItem(item))}</span>
             </div>
           ))}
           <div className="mt-3 space-y-1.5">

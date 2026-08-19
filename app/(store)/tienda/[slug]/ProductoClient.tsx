@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCarrito } from '@/lib/carrito'
-import { formatCLP, calcularIVA, getProducto } from '@/lib/productos'
+import { formatCLP, calcularIVA, getProducto, evaluarResolucion, type Resolucion } from '@/lib/productos'
 import { TIENDA_COMPRA_HABILITADA } from '@/lib/config'
 import { trackEcommerce } from '@/app/components/GoogleAds'
 
@@ -45,7 +45,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
   const [archivoBlobUrl, setArchivoBlobUrl] = useState<string | null>(null)
   const [subiendo, setSubiendo] = useState(false)
   const [errorArchivo, setErrorArchivo] = useState<string | null>(null)
-  const [advertenciaResolucion, setAdvertenciaResolucion] = useState(false)
+  const [dimsArchivo, setDimsArchivo] = useState<{ w: number; h: number } | null>(null)
   const [enviarDespues, setEnviarDespues] = useState(false)
   const [montado, setMontado] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
@@ -77,6 +77,14 @@ export default function ProductoClient({ slug }: { slug: string }) {
   const precio = producto.calcularPrecio(opciones)
   const { neto, iva } = calcularIVA(precio)
 
+  // La resolución exigida depende del tamaño elegido: el mismo archivo puede
+  // servir para un sticker de 3 cm y no para uno de 8 cm. Por eso se reevalúa
+  // cada vez que cambian las opciones, no solo al subir.
+  const resolucion: Resolucion | null = useMemo(() => {
+    if (!dimsArchivo) return null
+    return evaluarResolucion(dimsArchivo.w, dimsArchivo.h, producto.dimensiones(opciones))
+  }, [dimsArchivo, opciones, producto])
+
   // --- Precio por unidad y mejor oferta por cantidad -----------------------
   const grupoCantidad = producto.opcionGrupos.find((g) => g.id === 'cantidad')
   const cantidadActual = Number(opciones.cantidad ?? '0')
@@ -107,16 +115,47 @@ export default function ProductoClient({ slug }: { slug: string }) {
   const handleOpcion = (grupoId: string, valor: string) =>
     setOpciones((prev) => ({ ...prev, [grupoId]: valor }))
 
+  /** Mide una imagen en el navegador. Devuelve null si el formato no se puede
+   *  decodificar (PDF, AI, EPS, y también TIFF, que Chrome no abre). */
+  const medirImagen = (file: File): Promise<{ w: number; h: number } | null> =>
+    new Promise((resolve) => {
+      if (!file.type.startsWith('image/')) return resolve(null)
+      const url = URL.createObjectURL(file)
+      const img = document.createElement('img')
+      img.onload = () => {
+        URL.revokeObjectURL(url)
+        resolve({ w: img.naturalWidth, h: img.naturalHeight })
+      }
+      img.onerror = () => {
+        URL.revokeObjectURL(url)
+        resolve(null)
+      }
+      img.src = url
+    })
+
   const handleArchivo = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
 
     setErrorArchivo(null)
-    setAdvertenciaResolucion(false)
+    setDimsArchivo(null)
     setEnviarDespues(false)
     setArchivo(file)
-    setSubiendo(true)
     setArchivoBlobUrl(null)
+    setSubiendo(true)
+
+    // Se mide ANTES de subir: si el archivo no sirve, no tiene sentido gastar
+    // la subida ni dejar un archivo inservible guardado.
+    const dims = await medirImagen(file)
+    if (dims) {
+      const evaluacion = evaluarResolucion(dims.w, dims.h, producto.dimensiones(opciones))
+      if (evaluacion.estado === 'rechazado') {
+        setDimsArchivo(dims)
+        setSubiendo(false)
+        if (fileRef.current) fileRef.current.value = ''
+        return
+      }
+    }
 
     const fd = new FormData()
     fd.append('file', file)
@@ -130,14 +169,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
         setArchivo(null)
       } else {
         setArchivoBlobUrl(data.url)
-        if (file.type.startsWith('image/')) {
-          const img = document.createElement('img')
-          img.src = URL.createObjectURL(file)
-          img.onload = () => {
-            if (img.width < 1000 || img.height < 1000) setAdvertenciaResolucion(true)
-            URL.revokeObjectURL(img.src)
-          }
-        }
+        setDimsArchivo(dims)
       }
     } catch {
       setErrorArchivo('Error de red al subir el archivo. Intenta de nuevo.')
@@ -147,7 +179,9 @@ export default function ProductoClient({ slug }: { slug: string }) {
     }
   }
 
-  const puedeContinuar = !subiendo && (!!archivoBlobUrl || enviarDespues)
+  const resolucionBloquea = resolucion?.estado === 'rechazado' && !enviarDespues
+  const puedeContinuar =
+    !subiendo && (enviarDespues || (!!archivoBlobUrl && !resolucionBloquea))
 
   const handleAgregarAlCarrito = () => {
     if (!puedeContinuar) {
@@ -176,6 +210,8 @@ export default function ProductoClient({ slug }: { slug: string }) {
 
   const textoCta = subiendo
     ? 'Subiendo archivo…'
+    : resolucionBloquea
+    ? 'Sube un archivo de mejor calidad'
     : puedeContinuar
     ? 'Continuar con mi pedido →'
     : 'Sube tu diseño para continuar'
@@ -335,10 +371,35 @@ export default function ProductoClient({ slug }: { slug: string }) {
                 <p role="alert" className="text-red-600 text-sm mt-2">{errorArchivo}</p>
               )}
 
-              {advertenciaResolucion && (
-                <div role="status" aria-live="polite" className="mt-2 bg-yellow-50 border border-yellow-200 rounded-2xl p-3 text-sm text-yellow-800">
-                  La imagen parece de baja resolución y podría no verse nítida impresa. Si tienes una
-                  versión de mayor calidad, úsala. Ante la duda, la revisamos gratis antes de imprimir.
+              {resolucion && (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className={`mt-2 rounded-2xl p-3.5 text-sm border ${
+                    resolucion.estado === 'ok'
+                      ? 'bg-green-50 border-green-200 text-green-800'
+                      : resolucion.estado === 'advertencia'
+                      ? 'bg-yellow-50 border-yellow-200 text-yellow-900'
+                      : 'bg-red-50 border-red-200 text-red-800'
+                  }`}
+                >
+                  <p className="font-semibold mb-0.5">
+                    {resolucion.estado === 'ok'
+                      ? '✓ Archivo listo para imprimir'
+                      : resolucion.estado === 'advertencia'
+                      ? '⚠ Resolución justa'
+                      : '✕ Resolución insuficiente'}
+                  </p>
+                  <p className="leading-snug">{resolucion.mensaje}</p>
+                  {resolucion.estado !== 'ok' && (
+                    <p className="mt-2 text-xs">
+                      ¿Tienes el diseño original?{' '}
+                      <a href={WA_DISENO} target="_blank" rel="noopener noreferrer" className="underline font-medium">
+                        Envíanoslo por WhatsApp y lo revisamos
+                      </a>
+                      .
+                    </p>
+                  )}
                 </div>
               )}
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { getProducto } from './productos'
 import {
   createContext,
   useContext,
@@ -21,6 +22,22 @@ export interface CarritoItem {
 
 interface CarritoState {
   items: CarritoItem[]
+}
+
+/**
+ * Precio vigente de un ítem del carrito.
+ *
+ * El carrito vive en localStorage y puede quedar guardado días. Si mientras
+ * tanto cambia el catálogo, el precio guardado queda viejo — y como el cobro
+ * SIEMPRE se recalcula en el servidor, el cliente vería un monto en el carrito
+ * y se le cobraría otro. Por eso el precio mostrado se recalcula acá desde el
+ * catálogo, y el guardado solo se usa si el producto ya no existe.
+ */
+export function precioItem(item: CarritoItem): number {
+  const producto = getProducto(item.productoSlug)
+  if (!producto) return item.precio
+  const actual = producto.calcularPrecio(item.opciones)
+  return actual > 0 ? actual : item.precio
 }
 
 type CarritoAction =
@@ -86,7 +103,7 @@ export function CarritoProvider({ children }: { children: ReactNode }) {
         eliminarItem,
         limpiarCarrito,
         totalItems: state.items.length,
-        totalPrecio: state.items.reduce((sum, i) => sum + i.precio, 0),
+        totalPrecio: state.items.reduce((sum, i) => sum + precioItem(i), 0),
       }}
     >
       {children}

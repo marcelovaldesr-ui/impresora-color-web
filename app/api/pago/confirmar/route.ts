@@ -61,6 +61,30 @@ export async function POST(req: NextRequest) {
     const grupo = filas[0].grupo_orden
     const estadoFlow = Number(flowData?.status ?? 0)
 
+    // El token tiene que corresponder a esta orden. Si no coincide, algo está
+    // mal (token reutilizado o cruce de datos) y es mejor no tocar el pedido.
+    if (flowData?.commerceOrder && String(flowData.commerceOrder) !== grupo) {
+      console.error('[confirmar] commerceOrder no coincide', {
+        esperado: grupo,
+        recibido: flowData.commerceOrder,
+      })
+      return new Response('order mismatch', { status: 409 })
+    }
+
+    // El monto pagado debería ser exactamente el del pedido. Si difiere, la
+    // venta igual se procesa (la plata entró) pero queda avisado en el correo
+    // interno para revisarla a mano antes de producir.
+    const totalEsperado = filas.reduce((s, p) => s + Number(p.precio_total), 0)
+    const montoPagado = Number(flowData?.amount ?? 0)
+    const montoDescuadra = estadoFlow === 2 && montoPagado > 0 && montoPagado !== totalEsperado
+    if (montoDescuadra) {
+      console.error('[confirmar] monto no coincide', {
+        grupo,
+        esperado: totalEsperado,
+        pagado: montoPagado,
+      })
+    }
+
     // status 2 = pagado en Flow.cl · 3 = rechazado · 4 = anulado
     if (estadoFlow === 2) {
       const yaConfirmado = filas.every((p) => p.pago_confirmado)
@@ -78,7 +102,7 @@ export async function POST(req: NextRequest) {
         // Los correos van después de guardar: si Resend falla, la venta igual
         // quedó registrada y visible en el panel.
         try {
-          await enviarEmails(filas, grupo)
+          await enviarEmails(filas, grupo, montoDescuadra ? montoPagado : null)
         } catch (err) {
           console.error('[confirmar] emails', err)
         }
@@ -149,7 +173,7 @@ function filasHtml(items: FilaPedido[]): string {
     .join('')
 }
 
-async function enviarEmails(items: FilaPedido[], grupo: string) {
+async function enviarEmails(items: FilaPedido[], grupo: string, montoDescuadrado: number | null = null) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   const cliente = items[0]
   const total = items.reduce((s, i) => s + Number(i.precio_total), 0)
@@ -213,6 +237,14 @@ async function enviarEmails(items: FilaPedido[], grupo: string) {
             ${filasHtml(items)}
             <tr><td style="padding:12px 0;font-weight:bold">Total</td><td style="padding:12px 0;text-align:right;font-weight:bold">${clp(total)}</td></tr>
           </table>
+          ${
+            montoDescuadrado !== null
+              ? `<div style="border:2px solid #c62828;background:#fdeded;border-radius:8px;padding:12px;margin-bottom:16px">
+                   <strong style="color:#c62828">Revisar antes de producir:</strong> Flow reporta un pago de
+                   ${clp(montoDescuadrado)} y el pedido dice ${clp(total)}. Verifica el monto en el panel de Flow.
+                 </div>`
+              : ''
+          }
           <p style="margin:18px 0 6px;font-weight:bold;color:#555">Archivos del cliente</p>
           <ul style="margin:0;padding-left:18px">${archivos}</ul>
           ${

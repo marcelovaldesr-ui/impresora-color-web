@@ -4,6 +4,13 @@ export interface OpcionGrupo {
   valores: string[]
 }
 
+export interface Dimensiones {
+  anchoCm: number
+  altoCm: number
+  /** Gran formato: se mira de lejos, así que tolera mucha menos resolución. */
+  granFormato: boolean
+}
+
 export interface Producto {
   slug: string
   nombre: string
@@ -13,6 +20,18 @@ export interface Producto {
   formatosAceptados: string[]
   opcionGrupos: OpcionGrupo[]
   calcularPrecio: (opciones: Record<string, string>) => number
+  /** Tamaño físico impreso según las opciones elegidas. */
+  dimensiones: (opciones: Record<string, string>) => Dimensiones
+}
+
+/** "150 x 200 cm" o "A5 (14,8 x 21 cm)" -> { anchoCm, altoCm } */
+function medidasDeTexto(texto: string): { anchoCm: number; altoCm: number } | null {
+  const m = texto.match(/(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)/i)
+  if (!m) return null
+  return {
+    anchoCm: parseFloat(m[1].replace(',', '.')),
+    altoCm: parseFloat(m[2].replace(',', '.')),
+  }
 }
 
 export function formatCLP(amount: number): string {
@@ -41,12 +60,12 @@ const TARJETAS: Record<string, Record<number, number>> = {
 // FLYERS / VOLANTES — Couche 90g. Precios finales por fila (1 y 2 caras fijados a mano en el catalogo).
 const FLYERS: Record<string, Record<string, Record<number, number>>> = {
   'A6 (10,5 x 14,8 cm)': {
-    '1 cara': { 100: 13000, 200: 17500, 500: 35000 },
-    '2 caras': { 100: 18500, 200: 28000, 500: 52000 },
+    '1 cara': { 100: 15000, 200: 22000, 500: 42000 },
+    '2 caras': { 100: 22000, 200: 32000, 500: 58000 },
   },
   'A5 (14,8 x 21 cm)': {
-    '1 cara': { 100: 14000, 200: 26000, 500: 58000 },
-    '2 caras': { 100: 22000, 200: 35000, 500: 75000 },
+    '1 cara': { 100: 22000, 200: 32000, 500: 68000 },
+    '2 caras': { 100: 28000, 200: 35000, 500: 75000 },
   },
 }
 
@@ -97,6 +116,7 @@ export const PRODUCTOS: Producto[] = [
       const cantidad = parseInt(opciones.cantidad ?? '100', 10)
       return TARJETAS[acabado]?.[cantidad] ?? 0
     },
+    dimensiones: () => ({ anchoCm: 9, altoCm: 5, granFormato: false }),
   },
   {
     slug: 'flyers-volantes',
@@ -117,6 +137,10 @@ export const PRODUCTOS: Producto[] = [
       const cantidad = parseInt(opciones.cantidad ?? '100', 10)
       return FLYERS[tamano]?.[caras]?.[cantidad] ?? 0
     },
+    dimensiones: (opciones) => {
+      const m = medidasDeTexto(opciones.tamano ?? '') ?? { anchoCm: 10.5, altoCm: 14.8 }
+      return { ...m, granFormato: false }
+    },
   },
   {
     slug: 'stickers',
@@ -136,6 +160,11 @@ export const PRODUCTOS: Producto[] = [
       const cantidad = parseInt(opciones.cantidad ?? '100', 10)
       return STICKERS[tamano]?.[cantidad] ?? 0
     },
+    dimensiones: (opciones) => {
+      const lado = parseFloat((opciones.tamano ?? '3 cm').replace(/[^\d.,]/g, '').replace(',', '.'))
+      const cm = Number.isFinite(lado) && lado > 0 ? lado : 3
+      return { anchoCm: cm, altoCm: cm, granFormato: false }
+    },
   },
   {
     slug: 'pendon-roller',
@@ -152,6 +181,10 @@ export const PRODUCTOS: Producto[] = [
       const tamano = opciones.tamano ?? '80 x 200 cm'
       return PENDON[tamano] ?? 0
     },
+    dimensiones: (opciones) => {
+      const m = medidasDeTexto(opciones.tamano ?? '') ?? { anchoCm: 80, altoCm: 200 }
+      return { ...m, granFormato: true }
+    },
   },
   {
     slug: 'tela-pvc-impresa',
@@ -167,6 +200,10 @@ export const PRODUCTOS: Producto[] = [
     calcularPrecio: (opciones) => {
       const tamano = opciones.tamano ?? '80 x 60 cm'
       return TELA_PVC[tamano] ?? 0
+    },
+    dimensiones: (opciones) => {
+      const m = medidasDeTexto(opciones.tamano ?? '') ?? { anchoCm: 80, altoCm: 60 }
+      return { ...m, granFormato: true }
     },
   },
   {
@@ -185,6 +222,7 @@ export const PRODUCTOS: Producto[] = [
       const cantidad = parseInt(opciones.cantidad ?? '1', 10)
       return CREDENCIAL_PVC_UNITARIO * cantidad
     },
+    dimensiones: () => ({ anchoCm: 8.5, altoCm: 5.5, granFormato: false }),
   },
 ]
 
@@ -241,4 +279,75 @@ export function precioDesde(producto: Producto): number {
   return producto.calcularPrecio(
     Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, g.valores[0]]))
   )
+}
+
+// ---------------------------------------------------------------------------
+// Revisión de resolución del archivo del cliente.
+// Un archivo con poca resolución sale borroso impreso, y el reproceso lo paga
+// la imprenta. Acá se compara la resolución real contra el tamaño físico que
+// va a tener el producto: una tarjeta de 9 cm y un pendón de 2 metros no
+// necesitan lo mismo.
+// ---------------------------------------------------------------------------
+export type EstadoResolucion = 'ok' | 'advertencia' | 'rechazado'
+
+export interface Resolucion {
+  estado: EstadoResolucion
+  dpi: number
+  /** Píxeles recomendados para que quede nítido en el tamaño elegido. */
+  anchoIdealPx: number
+  altoIdealPx: number
+  mensaje: string
+}
+
+export function evaluarResolucion(
+  anchoPx: number,
+  altoPx: number,
+  dim: Dimensiones
+): Resolucion {
+  // Gran formato se ve de lejos: con 100 dpi ya se ve bien y 50 es el piso.
+  const dpiIdeal = dim.granFormato ? 100 : 300
+  const dpiMinimo = dim.granFormato ? 50 : 150
+
+  // Si el archivo viene en la orientación contraria al producto, comparamos
+  // lado largo con lado largo: si no, un diseño horizontal correcto para un
+  // pendón vertical se calificaría mal por un problema que no es de calidad.
+  let { anchoCm, altoCm } = dim
+  if (anchoPx > altoPx !== anchoCm > altoCm) {
+    ;[anchoCm, altoCm] = [altoCm, anchoCm]
+  }
+
+  const dpi = Math.floor(
+    Math.min(anchoPx / (anchoCm / 2.54), altoPx / (altoCm / 2.54))
+  )
+
+  const anchoIdealPx = Math.round((dim.anchoCm / 2.54) * dpiIdeal)
+  const altoIdealPx = Math.round((dim.altoCm / 2.54) * dpiIdeal)
+
+  if (dpi >= dpiIdeal) {
+    return {
+      estado: 'ok',
+      dpi,
+      anchoIdealPx,
+      altoIdealPx,
+      mensaje: `Resolución excelente (${dpi} dpi). Tu diseño va a salir nítido.`,
+    }
+  }
+
+  if (dpi >= dpiMinimo) {
+    return {
+      estado: 'advertencia',
+      dpi,
+      anchoIdealPx,
+      altoIdealPx,
+      mensaje: `Tu archivo tiene ${dpi} dpi para el tamaño elegido. Se puede imprimir, pero los bordes y los textos chicos pueden verse un poco blandos. Lo ideal serían ${anchoIdealPx} × ${altoIdealPx} px.`,
+    }
+  }
+
+  return {
+    estado: 'rechazado',
+    dpi,
+    anchoIdealPx,
+    altoIdealPx,
+    mensaje: `Con ${dpi} dpi el diseño va a salir borroso o pixelado impreso a ${dim.anchoCm} × ${dim.altoCm} cm. Necesitamos un archivo de al menos ${anchoIdealPx} × ${altoIdealPx} px, o el original en PDF, AI o EPS.`,
+  }
 }

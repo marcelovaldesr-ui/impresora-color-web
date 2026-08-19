@@ -1,8 +1,10 @@
-// Cambiar a false cuando los precios y productos de la tienda estén confirmados.
-// Mientras esté en true: el público en general ve "próximamente" y la página lleva noindex.
-// Nota: quien entre con el enlace privado de vista previa (ver /tienda/preview) ve el
-// catálogo real igual, aunque esta constante esté en true.
-export const TIENDA_EN_CONSTRUCCION = true
+// Mientras esté en true: el público en general ve "próximamente", las páginas de la
+// tienda llevan noindex y no entran al sitemap. Quien tenga el enlace privado de vista
+// previa (/tienda/preview?key=...) ve el catálogo real igual.
+//
+// 2026-08-06: TIENDA ABIERTA AL PÚBLICO. Flujo de compra verificado de punta a punta en
+// producción (pago, webhook, correos, panel) y probado también desde celular.
+export const TIENDA_EN_CONSTRUCCION = false
 
 // Controla si el botón "Agregar al carrito" / compra está habilitado.
 // Mientras esté en false: se puede navegar el catálogo, ver productos, variantes y precios,

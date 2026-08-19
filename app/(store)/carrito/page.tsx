@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useCarrito } from '@/lib/carrito'
+import { useCarrito, precioItem } from '@/lib/carrito'
 import { formatCLP, calcularIVA } from '@/lib/productos'
 
 export default function CarritoPage() {
@@ -58,7 +58,12 @@ export default function CarritoPage() {
                 )}
               </div>
               <div className="text-right shrink-0">
-                <p className="font-black text-[#2D3E9F] text-lg">{formatCLP(item.precio)}</p>
+                <p className="font-black text-[#2D3E9F] text-lg">{formatCLP(precioItem(item))}</p>
+                {precioItem(item) !== item.precio && (
+                  <p className="text-[11px] text-amber-700 mt-0.5 max-w-[9rem]">
+                    Precio actualizado desde que lo agregaste
+                  </p>
+                )}
                 {confirmandoEliminar === item.id ? (
                   <div className="flex items-center gap-2 mt-1">
                     <button
