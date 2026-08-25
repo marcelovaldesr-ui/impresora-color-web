@@ -66,7 +66,7 @@ const PLANES: Plan[] = [
 
 export default function PaginasWeb() {
   return (
-    <section id="paginas-web" className="bg-[#0F1730] py-20 px-4 scroll-mt-16 relative overflow-hidden">
+    <section id="paginas-web" className="bg-[#0F1730] py-20 px-4 scroll-mt-28 relative overflow-hidden">
       {/* Blobs de gradiente difuminado con parallax — profundidad de agencia digital */}
       <Parallax ariaHidden speed={0.18} className="absolute -top-24 -left-24">
         <div className="w-80 h-80 rounded-full bg-[#47B7E8]/20 blur-3xl" />

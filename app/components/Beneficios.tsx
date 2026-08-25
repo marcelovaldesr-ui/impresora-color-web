@@ -46,7 +46,7 @@ const BENEFICIOS = [
 
 export default function Beneficios() {
   return (
-    <section id="beneficios" className="bg-[#F6F8FC] py-20 px-4 relative overflow-hidden">
+    <section id="beneficios" className="bg-[#F6F8FC] py-20 px-4 relative overflow-hidden scroll-mt-28">
       {/* Franja superior decorativa */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#E91E8F] via-[#47B7E8] to-[#7DBA2F]" />
       {/* Blobs de gradiente difuminado de fondo */}

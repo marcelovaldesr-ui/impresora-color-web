@@ -350,7 +350,7 @@ function CategoriaHeader({ label, color, id }: { label: string; color: string; i
 // ── Sección principal ─────────────────────────────────────────────────────────
 export default function Servicios() {
   return (
-    <section id="servicios" className="bg-white py-20 px-4">
+    <section id="servicios" className="bg-white py-20 px-4 scroll-mt-28">
       <div className="max-w-6xl mx-auto">
 
         {/* Encabezado */}

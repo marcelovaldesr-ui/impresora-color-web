@@ -110,7 +110,7 @@ export default function EmpresasClientes() {
   const doble = [...CLIENTES, ...CLIENTES];
 
   return (
-    <section className="bg-[#f8f8f8] py-20 px-4 overflow-hidden">
+    <section id="clientes" className="bg-[#f8f8f8] py-20 px-4 overflow-hidden scroll-mt-28">
       <div className="max-w-5xl mx-auto">
         <Reveal className="text-center mb-12">
           <span className="text-[#47B7E8] font-bold text-sm uppercase tracking-widest">

@@ -7,7 +7,7 @@ export default function FAQ() {
   const [abierto, setAbierto] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-[#F5F7FA] py-20 px-4">
+    <section id="faq" className="bg-[#F5F7FA] py-20 px-4 scroll-mt-28">
       <div className="max-w-3xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-14">

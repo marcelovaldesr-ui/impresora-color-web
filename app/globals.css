@@ -70,3 +70,7 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Barra de navegación por secciones — oculta scrollbar horizontal en móvil */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }

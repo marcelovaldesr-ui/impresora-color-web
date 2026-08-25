@@ -28,7 +28,7 @@ const WA_URL =
 
 export default function MasProductos() {
   return (
-    <section id="mas-productos" className="bg-gray-50 border-t border-gray-100 py-14 px-4 scroll-mt-16">
+    <section id="mas-productos" className="bg-gray-50 border-t border-gray-100 py-14 px-4 scroll-mt-28">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <span className="text-[#47B7E8] font-bold text-xs uppercase tracking-widest">

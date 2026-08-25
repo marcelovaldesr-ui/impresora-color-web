@@ -178,7 +178,7 @@ const TRABAJOS: Trabajo[] = [
 
 export default function Galeria() {
   return (
-    <section id="galeria" className="bg-white py-20 px-4">
+    <section id="galeria" className="bg-white py-20 px-4 scroll-mt-28">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">

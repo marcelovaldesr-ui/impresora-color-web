@@ -8,7 +8,7 @@ const WA_URL =
 
 export default function Ubicacion() {
   return (
-    <section id="ubicacion" className="bg-white py-20 px-4">
+    <section id="ubicacion" className="bg-white py-20 px-4 scroll-mt-28">
       <div className="max-w-5xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-14">

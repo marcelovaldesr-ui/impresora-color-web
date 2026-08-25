@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import BarraSecciones from "./components/BarraSecciones";
 import Reveal from "./components/Reveal";
 import SeccionOnda from "./components/SeccionOnda";
 import Hero from "./components/Hero";
@@ -37,6 +38,7 @@ export default function Home() {
       <ScrollProgress />
       <CursorGlow />
       <Navbar />
+      <BarraSecciones />
       <main>
         <Hero />
         <BandaEstadisticas />

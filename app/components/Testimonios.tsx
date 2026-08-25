@@ -47,7 +47,7 @@ function Stars() {
 
 export default function Testimonios() {
   return (
-    <section id="testimonios" className="bg-white py-20 px-4 relative overflow-hidden">
+    <section id="testimonios" className="bg-white py-20 px-4 relative overflow-hidden scroll-mt-28">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#E91E8F] via-[#47B7E8] to-[#7DBA2F]" />
 
       <div className="max-w-5xl mx-auto relative z-10">
