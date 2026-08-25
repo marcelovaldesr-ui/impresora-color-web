@@ -21,6 +21,7 @@ const TRABAJOS: Trabajo[] = [
   {
     imagenUrl: "/images/FLYER.jpg",
     imagenAlt: "Flyers publicitarios impresos a color para publicidad y promociones",
+    objectFit: "contain",
     bg: "from-[#E91E8F] to-[#2D3E9F]",
     acento: "#E91E8F",
     nombre: "Flyers publicitarios",
