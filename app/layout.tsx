@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/brand/banner-hero-categorias.png",
-        width: 2172,
-        height: 724,
+        width: 1672,
+        height: 941,
         alt: "Impresora Color Ltda - Imprenta en Chillán",
       },
     ],
