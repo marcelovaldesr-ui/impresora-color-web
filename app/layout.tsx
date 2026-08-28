@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import GoogleAds from "./components/GoogleAds";
+import MetaPixel from "./components/MetaPixel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -97,6 +98,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         {children}
         <GoogleAds />
+        <MetaPixel />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
