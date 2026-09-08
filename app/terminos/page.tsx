@@ -25,7 +25,7 @@ export default function TerminosPage() {
         </p>
         <p>
           Contacto: <a href="https://wa.me/56998441157" className="text-[#2D3E9F] hover:underline" target="_blank" rel="noopener noreferrer">WhatsApp +56 9 9844 1157</a>
-          {' '}· <a href="mailto:impresoracolor3@gmail.com" className="text-[#2D3E9F] hover:underline">impresoracolor3@gmail.com</a>
+          {' '}· <a href="mailto:contacto@impresoracolor.cl" className="text-[#2D3E9F] hover:underline">contacto@impresoracolor.cl</a>
         </p>
       </Seccion>
 

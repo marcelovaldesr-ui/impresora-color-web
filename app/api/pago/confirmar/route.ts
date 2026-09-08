@@ -12,7 +12,7 @@ const FROM =
   process.env.RESEND_FROM_PEDIDOS ??
   process.env.RESEND_FROM_EMAIL ??
   'Impresora Color <pedidos@impresoracolor.cl>'
-const TO_INTERNO = process.env.RESEND_TO_EMAIL ?? 'impresoracolor3@gmail.com'
+const TO_INTERNO = process.env.RESEND_TO_EMAIL ?? 'contacto@impresoracolor.cl'
 const WHATSAPP = 'https://wa.me/56998441157'
 
 interface FilaPedido {

@@ -22,8 +22,8 @@ export default function PrivacidadPage() {
         <p>
           <strong>Impresora Color Ltda</strong>, RUT 76.065.269-5, Arauco 1060, Chillán, Región de
           Ñuble, Chile. Contacto para temas de privacidad:{' '}
-          <a href="mailto:impresoracolor3@gmail.com" className="text-[#2D3E9F] hover:underline">
-            impresoracolor3@gmail.com
+          <a href="mailto:contacto@impresoracolor.cl" className="text-[#2D3E9F] hover:underline">
+            contacto@impresoracolor.cl
           </a>
           .
         </p>
@@ -106,8 +106,8 @@ export default function PrivacidadPage() {
         </ul>
         <p>
           Basta con escribirnos a{' '}
-          <a href="mailto:impresoracolor3@gmail.com" className="text-[#2D3E9F] hover:underline">
-            impresoracolor3@gmail.com
+          <a href="mailto:contacto@impresoracolor.cl" className="text-[#2D3E9F] hover:underline">
+            contacto@impresoracolor.cl
           </a>{' '}
           o por{' '}
           <a href="https://wa.me/56998441157" className="text-[#2D3E9F] hover:underline" target="_blank" rel="noopener noreferrer">

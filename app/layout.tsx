@@ -49,6 +49,7 @@ const jsonLd = {
   name: "Impresora Color Ltda",
   url: "https://impresoracolor.cl/",
   telephone: "+56998441157",
+  email: "contacto@impresoracolor.cl",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Arauco 1060",

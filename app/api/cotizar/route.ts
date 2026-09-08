@@ -8,7 +8,7 @@ const CORS_HEADERS = {
 };
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "Cotizaciones <onboarding@resend.dev>";
-const TO_EMAIL = process.env.RESEND_TO_EMAIL ?? "impresoracolor3@gmail.com";
+const TO_EMAIL = process.env.RESEND_TO_EMAIL ?? "contacto@impresoracolor.cl";
 
 export async function OPTIONS() {
   return new Response(null, { status: 204, headers: CORS_HEADERS });
