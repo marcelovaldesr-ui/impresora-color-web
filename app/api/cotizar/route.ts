@@ -58,6 +58,10 @@ export async function POST(request: NextRequest) {
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
       to: TO_EMAIL,
+      // Sin esto, "Responder" en Gmail contesta a la propia casilla del
+      // negocio en vez de al cliente: el correo del cliente queda solo como
+      // texto en el cuerpo y hay que copiarlo a mano para cotizarle.
+      replyTo: email,
       subject: `Nueva cotización: ${producto} — ${nombre}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
