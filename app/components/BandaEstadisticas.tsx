@@ -19,7 +19,7 @@ const STATS: Stat[] = [
     // quedaba desactualizado cada año. El año de fundación no cambia, así
     // que va como texto fijo — mismo patrón que la tarjeta de WhatsApp.
     icon: "🏆",
-    textoFijo: "Desde 1989",
+    textoFijo: "Desde 1991",
     label: "imprimiendo en Chillán",
     color: "#E91E8F",
     bg: "bg-[#E91E8F]/10",

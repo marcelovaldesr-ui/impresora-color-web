@@ -225,7 +225,7 @@ export default function PagoPage() {
             Serás redirigido a Flow.cl para completar el pago de forma segura. Aceptamos tarjetas de
             crédito, débito y transferencia bancaria.
           </p>
-          <p>Impresora Color Ltda · Imprimiendo en Chillán desde 1989 · Producción propia.</p>
+          <p>Impresora Color Ltda · Imprimiendo en Chillán desde 1991 · Producción propia.</p>
         </div>
       </form>
     </div>

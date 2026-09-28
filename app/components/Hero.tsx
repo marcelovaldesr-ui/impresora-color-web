@@ -40,7 +40,7 @@ export default function Hero() {
       {/* Crop marks — esquina inferior derecha */}
       <CropMark className="absolute bottom-16 right-4 text-[#2D3E9F]/20 rotate-180" />
 
-      {/* "89" (de 1989, año de fundación) como marca de agua tipográfica con
+      {/* "91" (de 1991, año de fundación) como marca de agua tipográfica con
           parallax. Antes decía "35" (años) — esa cifra quedaba vieja cada
           año; el año de fundación no cambia nunca. Se deja en 2 dígitos
           a propósito, para no alterar el tamaño/kerning pensado para "35". */}
@@ -50,7 +50,7 @@ export default function Hero() {
         className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none hidden lg:block"
       >
         <span className="block text-[22rem] font-black text-[#2D3E9F]/[0.04] leading-none animate-[float-y_7s_ease-in-out_infinite]">
-          89
+          91
         </span>
       </Parallax>
 
@@ -61,7 +61,7 @@ export default function Hero() {
         <div>
           {/* Eyebrow — año de fundación como dato estructural */}
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#E91E8F] mb-5 opacity-0 animate-[fade-in-up_0.7s_ease-out_0.05s_both]">
-            Imprenta en Chillán · Desde 1989
+            Imprenta en Chillán · Desde 1991
           </p>
 
           {/* H1 — un solo color base, un solo acento */}
@@ -114,7 +114,7 @@ export default function Hero() {
           {/* Trust strip — 3 datos concretos, sin repetición */}
           <div className="flex flex-wrap gap-x-6 gap-y-2 opacity-0 animate-[fade-in-up_0.7s_ease-out_0.45s_both]">
             {[
-              { n: "1989", label: "año de fundación" },
+              { n: "1991", label: "año de fundación" },
               { n: "<24h", label: "tiempo de respuesta" },
               { n: "100%", label: "impresión local" },
             ].map(({ n, label }) => (

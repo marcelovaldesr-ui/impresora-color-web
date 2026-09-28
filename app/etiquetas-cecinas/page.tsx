@@ -4,14 +4,14 @@ import PaginaServicio from "@/app/components/PaginaServicio";
 export const metadata: Metadata = {
   title: "Etiquetas para Cecinas y Alimentos en Chillán | Impresora Color Ltda",
   description:
-    "Etiquetas adhesivas para cecinas, vinos, conservas, miel y alimentos en Chillán. Imprimiendo para productores locales de Ñuble desde 1989. Cotiza por WhatsApp con respuesta en menos de 24 horas.",
+    "Etiquetas adhesivas para cecinas, vinos, conservas, miel y alimentos en Chillán. Imprimiendo para productores locales de Ñuble desde 1991. Cotiza por WhatsApp con respuesta en menos de 24 horas.",
   keywords:
     "etiquetas para cecinas, etiquetas para vinos, etiquetas adhesivas chillán, etiquetas para alimentos, etiquetas para miel, etiquetas productos gourmet ñuble, imprenta chillán",
   alternates: { canonical: "/etiquetas-cecinas" },
   openGraph: {
     title: "Etiquetas para Cecinas y Alimentos en Chillán | Impresora Color Ltda",
     description:
-      "Etiquetas adhesivas para cecinas, vinos, conservas y alimentos. Imprimiendo para productores locales de Ñuble desde 1989.",
+      "Etiquetas adhesivas para cecinas, vinos, conservas y alimentos. Imprimiendo para productores locales de Ñuble desde 1991.",
     type: "website",
     locale: "es_CL",
     url: "https://impresoracolor.cl/etiquetas-cecinas",
@@ -25,7 +25,7 @@ export default function Page() {
       eyebrow="Etiquetas · Chillán y Ñuble"
       h1="Etiquetas para cecinas y alimentos que"
       h1Acento="venden en el mesón"
-      intro="Los productores de Ñuble etiquetan con nosotros desde 1989: cecinas, vinos, conservas, miel y productos gourmet. Una etiqueta bien impresa hace que tu producto se vea profesional en la feria, el almacén o el supermercado — y nosotros la imprimimos aquí mismo en Chillán, sin esperas de despacho desde Santiago."
+      intro="Los productores de Ñuble etiquetan con nosotros desde 1991: cecinas, vinos, conservas, miel y productos gourmet. Una etiqueta bien impresa hace que tu producto se vea profesional en la feria, el almacén o el supermercado — y nosotros la imprimimos aquí mismo en Chillán, sin esperas de despacho desde Santiago."
       queHacemos={[
         "Etiquetas adhesivas para cecinas, longanizas y productos cárnicos.",
         "Etiquetas para vinos, licores y cervezas artesanales.",

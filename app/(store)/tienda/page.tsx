@@ -41,7 +41,7 @@ export default function TiendaPage() {
       {/* Barra de confianza — visible antes de elegir producto */}
       <div className="mb-9 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-600">
         {[
-          'Imprimiendo en Chillán desde 1989',
+          'Imprimiendo en Chillán desde 1991',
           'Producción propia, no tercerizamos',
           'Revisamos tu archivo gratis',
         ].map((t) => (
