@@ -62,7 +62,11 @@ export default async function ProductoPage({
           url: `${SITIO}/tienda/${slug}`,
           priceCurrency: 'CLP',
           price: precioDesde(producto),
-          availability: 'https://schema.org/InStock',
+          priceValidUntil: '2026-12-31',
+          availability:
+            producto.disponible !== false
+              ? 'https://schema.org/InStock'
+              : 'https://schema.org/OutOfStock',
           itemCondition: 'https://schema.org/NewCondition',
           seller: { '@type': 'Organization', name: 'Impresora Color Ltda' },
         },

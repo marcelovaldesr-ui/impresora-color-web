@@ -54,6 +54,11 @@ export default function Page() {
       waMensaje="Hola, quiero cotizar stickers personalizados."
       waLabel="Cotizar stickers por WhatsApp"
       serviceName="Stickers personalizados"
+      tiendaProducto={{
+        slug: "stickers",
+        nombre: "Stickers / Calcomanías",
+        precioDesde: "desde $8.000",
+      }}
     />
   );
 }

@@ -311,11 +311,11 @@ export function precioServidor(slug: unknown, opciones: unknown): PrecioServidor
   }
 }
 
-/** Precio más bajo publicado de un producto (la primera opción de cada grupo).
+/** Precio más bajo publicado de un producto (la primera opción disponible de cada grupo).
  *  Se usa en el catálogo y en el schema.org de la ficha. */
 export function precioDesde(producto: Producto): number {
   return producto.calcularPrecio(
-    Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, g.valores[0]]))
+    Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, primerValorDisponible(g)]))
   )
 }
 

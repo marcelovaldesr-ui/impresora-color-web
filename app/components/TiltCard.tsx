@@ -1,7 +1,7 @@
 "use client";
 // Tarjeta con inclinación 3D al pasar el mouse + brillo que sigue el cursor.
 // Solo desktop (pointer: fine), respeta prefers-reduced-motion.
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useRef, useSyncExternalStore, type ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
@@ -12,15 +12,31 @@ type Props = {
   glare?: boolean;
 };
 
+function subscribe(callback: () => void) {
+  const fine = window.matchMedia("(pointer: fine)");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  fine.addEventListener("change", callback);
+  reduced.addEventListener("change", callback);
+  return () => {
+    fine.removeEventListener("change", callback);
+    reduced.removeEventListener("change", callback);
+  };
+}
+
+function getSnapshot() {
+  return (
+    window.matchMedia("(pointer: fine)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
 export default function TiltCard({ children, className = "", maxTilt = 6, glare = true }: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    const fine = window.matchMedia("(pointer: fine)").matches;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setEnabled(fine && !reduced);
-  }, []);
+  const enabled = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const onMove = (e: React.MouseEvent) => {
     const el = ref.current;

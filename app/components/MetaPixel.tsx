@@ -44,6 +44,34 @@ export function trackMeta(evento: string, datos?: Record<string, unknown>) {
   }
 }
 
+/** Registra la compra en Meta Pixel con deduplicación por sesión. */
+export function trackMetaPurchase(datos: {
+  orden: string;
+  valor: number;
+  items: Array<{ item_id: string; quantity: number; price: number }>;
+}) {
+  if (typeof window === "undefined" || typeof window.fbq !== "function") return;
+  const clave = `ic_meta_purchase_${datos.orden}`;
+  try {
+    if (window.sessionStorage.getItem(clave)) return;
+    window.sessionStorage.setItem(clave, "1");
+  } catch {
+    // modo privado sin sessionStorage
+  }
+
+  trackMeta("Purchase", {
+    value: datos.valor,
+    currency: "CLP",
+    content_type: "product",
+    contents: datos.items.map((i) => ({
+      id: i.item_id,
+      quantity: i.quantity,
+      item_price: i.price,
+    })),
+    order_id: datos.orden,
+  });
+}
+
 export default function MetaPixel() {
   useEffect(() => {
     if (!META_PIXEL_ID) return;

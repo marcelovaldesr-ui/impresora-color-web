@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useCarrito, precioItem } from '@/lib/carrito'
 import { formatCLP, calcularIVA } from '@/lib/productos'
 import { trackEcommerce } from '@/app/components/GoogleAds'
+import { trackMeta } from '@/app/components/MetaPixel'
 
 export default function PagoPage() {
   const { items, totalPrecio } = useCarrito()
@@ -25,6 +26,7 @@ export default function PagoPage() {
   // begin_checkout: al llegar a la pantalla de datos, una sola vez.
   // La distancia entre este evento y purchase es la que muestra cuánta
   // gente se cae justo en el último paso.
+  const terminosRef = useRef<HTMLInputElement>(null)
   const disparado = useRef(false)
   useEffect(() => {
     if (disparado.current || items.length === 0) return
@@ -38,12 +40,22 @@ export default function PagoPage() {
         quantity: 1,
       })),
     })
+    trackMeta('InitiateCheckout', {
+      value: totalPrecio,
+      currency: 'CLP',
+      num_items: items.length,
+    })
   }, [items, totalPrecio])
 
   if (items.length === 0) return null
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!aceptaTerminos) {
+      setError('Debes aceptar los Términos y Condiciones y la Política de Privacidad para continuar con el pago.')
+      terminosRef.current?.focus()
+      return
+    }
     setLoading(true)
     setError(null)
 
@@ -165,17 +177,20 @@ export default function PagoPage() {
             <strong>Arauco 1060, Chillán</strong>, de lunes a viernes de 9:00 a 18:00 hrs.
           </p>
           <p className="text-xs text-gray-500 mt-2">
-            Te avisamos apenas esté listo. Lo guardamos por 30 días.
+            Te avisamos apenas esté listo. Lo guardamos hasta por 60 días corridos.
           </p>
         </div>
 
         {/* Aceptacion de terminos */}
         <label className="flex gap-3 items-start cursor-pointer">
           <input
+            ref={terminosRef}
             type="checkbox"
-            required
             checked={aceptaTerminos}
-            onChange={(e) => setAceptaTerminos(e.target.checked)}
+            onChange={(e) => {
+              setAceptaTerminos(e.target.checked)
+              if (e.target.checked) setError(null)
+            }}
             className="mt-0.5 w-5 h-5 shrink-0 accent-[#E91E8F] cursor-pointer"
           />
           <span className="text-sm text-gray-600 leading-relaxed">
@@ -199,8 +214,8 @@ export default function PagoPage() {
 
         <button
           type="submit"
-          disabled={loading || !aceptaTerminos}
-          className="w-full bg-[#E91E8F] hover:bg-[#c8186e] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold py-4 rounded-full text-base transition-colors shadow-lg shadow-[#E91E8F]/20"
+          disabled={loading}
+          className="w-full bg-[#E91E8F] hover:bg-[#c8186e] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold py-4 rounded-full text-base transition-colors shadow-lg shadow-[#E91E8F]/20 cursor-pointer"
         >
           {loading ? 'Redirigiendo al pago…' : `Pagar ${formatCLP(totalPrecio)} →`}
         </button>

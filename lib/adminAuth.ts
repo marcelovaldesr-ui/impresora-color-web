@@ -21,10 +21,6 @@ const SESSION_HOURS = 10 // dentro del rango pedido (8-12h)
 export const SESSION_SECONDS = SESSION_HOURS * 60 * 60
 
 function secret(): string {
-  // Si ADMIN_SECRET no está configurado, igual generamos tokens (con un valor
-  // por defecto) para no romper el build, pero en producción SIEMPRE debe
-  // estar seteado: sin él, cualquiera que adivine este valor por defecto
-  // podría firmar tokens válidos.
   return process.env.ADMIN_SECRET ?? 'ic_salt_dev_only'
 }
 
@@ -38,6 +34,9 @@ interface SesionPayload {
 }
 
 export function crearTokenSesion(): string {
+  if (process.env.NODE_ENV === 'production' && !process.env.ADMIN_SECRET) {
+    throw new Error('ADMIN_SECRET no está configurada en producción.')
+  }
   const ahora = Math.floor(Date.now() / 1000)
   const payload: SesionPayload = { iat: ahora, exp: ahora + SESSION_SECONDS }
   const payloadB64 = Buffer.from(JSON.stringify(payload)).toString('base64url')
@@ -48,6 +47,10 @@ export function crearTokenSesion(): string {
 /** Verifica firma y expiración. No lanza: cualquier formato inválido → false. */
 export function verificarTokenSesion(token: string | undefined | null): boolean {
   if (!token) return false
+  if (process.env.NODE_ENV === 'production' && !process.env.ADMIN_SECRET) {
+    console.error('[adminAuth] ADMIN_SECRET no está configurada en producción. Acceso bloqueado.')
+    return false
+  }
 
   const separador = token.indexOf('.')
   if (separador <= 0) return false

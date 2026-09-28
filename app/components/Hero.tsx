@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import TiltCard from "./TiltCard";
 import Parallax from "./Parallax";
 
@@ -9,15 +10,15 @@ const MAPS_URL =
   "https://www.google.com/maps/place/Impresora+Color+Ltda./@-36.6124899,-72.1037117,13z/data=!4m6!3m5!1s0x9669282ecbefa02d:0xd52cfa17b8d7d88d!8m2!3d-36.6130779!4d-72.1051356!16s%2Fg%2F12lvg43y1?hl=es&entry=ttu&g_ep=EgoyMDI2MDQyNi4wIKXMDSoASAFQAw%3D%3D";
 
 const PILLS = [
-  { label: "Flyers",     href: "#servicios", color: "#E91E8F" },
-  { label: "Stickers",   href: "#servicios", color: "#47B7E8" },
-  { label: "Tarjetas",   href: "#servicios", color: "#2D3E9F" },
-  { label: "Pendones",   href: "#servicios", color: "#F47A20" },
+  { label: "Flyers",     href: "/tienda/flyers-volantes", color: "#E91E8F" },
+  { label: "Stickers",   href: "/tienda/stickers", color: "#47B7E8" },
+  { label: "Tarjetas",   href: "/tienda/tarjetas-presentacion", color: "#2D3E9F" },
+  { label: "Pendones",   href: "/tienda/pendon-roller", color: "#F47A20" },
   { label: "Menús",      href: "#servicios", color: "#7DBA2F" },
   { label: "Imanes",     href: "#servicios", color: "#F5C51B" },
   { label: "Etiquetas",  href: "#etiquetas", color: "#E91E8F" },
   { label: "Packaging",  href: "#etiquetas", color: "#47B7E8" },
-  { label: "Credenciales", href: "#servicio-credenciales-fargo", color: "#2D3E9F" },
+  { label: "Credenciales", href: "/tienda/credencial-pvc", color: "#2D3E9F" },
   { label: "Bolsas",     href: "#servicio-bolsas-sublimacion", color: "#F47A20" },
 ];
 
@@ -84,11 +85,17 @@ export default function Hero() {
 
           {/* CTAs con jerarquía clara */}
           <div className="flex flex-col sm:flex-row gap-3 mb-10 opacity-0 animate-[fade-in-up_0.7s_ease-out_0.35s_both]">
+            <Link
+              href="/tienda"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#E91E8F] hover:bg-[#c8186e] active:scale-[0.98] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-[background-color,transform] duration-200 animate-[pulse-glow_2.8s_ease-in-out_infinite] motion-reduce:animate-none hover:scale-[1.03]"
+            >
+              Comprar en Tienda Online →
+            </Link>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 bg-[#E91E8F] hover:bg-[#c8186e] active:scale-[0.98] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-[background-color,transform] duration-200 animate-[pulse-glow_2.8s_ease-in-out_infinite] motion-reduce:animate-none hover:scale-[1.03]"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#2D3E9F] hover:bg-[#1f2c73] active:scale-[0.98] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#2D3E9F]/20 transition-[background-color,transform] duration-200 hover:scale-[1.02]"
             >
               <WhatsAppIcon className="w-5 h-5" />
               Cotizar por WhatsApp
@@ -97,10 +104,10 @@ export default function Hero() {
               href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 border border-[#2D3E9F]/25 text-[#2D3E9F] hover:bg-[#2D3E9F]/6 font-medium text-sm px-6 py-4 rounded-full transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 border border-[#2D3E9F]/25 text-[#2D3E9F] hover:bg-[#2D3E9F]/6 font-medium text-sm px-5 py-4 rounded-full transition-colors duration-200"
             >
               <LocationIcon className="w-4 h-4" />
-              Arauco 1060, Chillán
+              Arauco 1060
             </a>
           </div>
 
@@ -150,7 +157,7 @@ export default function Hero() {
       <div className="relative z-10 border-t border-gray-200/60 bg-white/80 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-center gap-2">
           {PILLS.map((p) => (
-            <a
+            <Link
               key={p.label}
               href={p.href}
               className="text-xs font-bold px-3.5 py-1.5 rounded-full border transition-opacity duration-150 hover:opacity-80"
@@ -161,7 +168,7 @@ export default function Hero() {
               }}
             >
               {p.label}
-            </a>
+            </Link>
           ))}
         </div>
       </div>

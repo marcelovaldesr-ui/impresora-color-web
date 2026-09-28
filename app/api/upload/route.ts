@@ -41,6 +41,22 @@ export async function POST(req: NextRequest) {
     )
   }
 
+  // Validación de firma binaria (magic bytes) para prevenir archivos maliciosos
+  // renombrados. PDF, PNG y JPG tienen cabeceras estándar estables.
+  if (['pdf', 'png', 'jpg', 'jpeg'].includes(ext)) {
+    const bytes = new Uint8Array(await file.slice(0, 8).arrayBuffer())
+    const esPdf = ext === 'pdf' && bytes[0] === 0x25 && bytes[1] === 0x50 && bytes[2] === 0x44 && bytes[3] === 0x46 // %PDF
+    const esPng = ext === 'png' && bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47 // \x89PNG
+    const esJpg = (ext === 'jpg' || ext === 'jpeg') && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff // \xFF\xD8\xFF
+
+    if (!esPdf && !esPng && !esJpg) {
+      return Response.json(
+        { error: 'El contenido del archivo no corresponde a su extensión o está corrupto.' },
+        { status: 400 }
+      )
+    }
+  }
+
   try {
     const nombreBlob = `uploads/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`
     // addRandomSuffix agrega un texto aleatorio al nombre del archivo. El store es

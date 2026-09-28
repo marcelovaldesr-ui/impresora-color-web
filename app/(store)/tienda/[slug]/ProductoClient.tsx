@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useRef, useEffect, useMemo, useSyncExternalStore } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -15,7 +15,10 @@ import {
 } from '@/lib/productos'
 import { TIENDA_COMPRA_HABILITADA } from '@/lib/config'
 import { trackEcommerce } from '@/app/components/GoogleAds'
+import { trackMeta } from '@/app/components/MetaPixel'
 import { esFeriadoChile } from '@/lib/feriadosChile'
+
+const subscribeVoid = () => () => {}
 
 const WA_DISENO =
   'https://wa.me/56998441157?text=Hola%2C%20necesito%20ayuda%20con%20el%20dise%C3%B1o%20de%20mi%20pedido'
@@ -61,11 +64,9 @@ export default function ProductoClient({ slug }: { slug: string }) {
   const [errorArchivo, setErrorArchivo] = useState<string | null>(null)
   const [dimsArchivo, setDimsArchivo] = useState<{ w: number; h: number } | null>(null)
   const [enviarDespues, setEnviarDespues] = useState(false)
-  const [montado, setMontado] = useState(false)
+  const montado = useSyncExternalStore(subscribeVoid, () => true, () => false)
   const fileRef = useRef<HTMLInputElement>(null)
   const zonaArchivoRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => setMontado(true), [])
 
   // view_item: una sola vez por producto, no en cada cambio de opción —
   // si no, alguien que prueba cinco combinaciones contaría cinco vistas.
@@ -218,6 +219,13 @@ export default function ProductoClient({ slug }: { slug: string }) {
         { item_id: producto.slug, item_name: producto.nombre, price: precio, quantity: 1 },
       ],
     })
+    trackMeta('AddToCart', {
+      content_name: producto.nombre,
+      content_ids: [producto.slug],
+      content_type: 'product',
+      value: precio,
+      currency: 'CLP',
+    })
 
     agregarItem({
       id: crypto.randomUUID(),
@@ -289,7 +297,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
               )}
             </span>
           </div>
-          <p className="mt-1 text-xs text-gray-400">
+          <p className="mt-1 text-xs text-gray-500">
             Cuenta desde que confirmamos tu pago y recibimos un archivo apto para imprimir — si aún no tienes el archivo, el plazo parte cuando nos lo envíes.
           </p>
 
@@ -322,7 +330,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
                         aria-disabled={noDisponible}
                         className={`relative min-h-[48px] px-4 py-3 rounded-xl border text-sm font-medium transition-all ${
                           noDisponible
-                            ? 'bg-gray-50 text-gray-400 border-gray-200 cursor-not-allowed line-through'
+                            ? 'bg-gray-50 text-gray-500 border-gray-200 cursor-not-allowed line-through'
                             : activo
                             ? 'bg-[#2D3E9F] text-white border-[#2D3E9F] shadow-sm'
                             : 'bg-white text-gray-700 border-gray-200 hover:border-[#2D3E9F] hover:text-[#2D3E9F]'
@@ -330,7 +338,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
                       >
                         {valor}
                         {noDisponible && (
-                          <span className="absolute -top-2 -right-1 bg-gray-400 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm no-underline">
+                          <span className="absolute -top-2 -right-1 bg-gray-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm no-underline">
                             agotado
                           </span>
                         )}
@@ -387,6 +395,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
                 <input
                   ref={fileRef}
                   type="file"
+                  aria-label="Seleccionar archivo de diseño"
                   accept=".pdf,.ai,.eps,.png,.jpg,.jpeg,.tiff,.tif"
                   onChange={handleArchivo}
                   className="hidden"

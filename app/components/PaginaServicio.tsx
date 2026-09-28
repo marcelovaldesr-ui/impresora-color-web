@@ -21,6 +21,11 @@ export type ServicioPageProps = {
   waMensaje: string;
   waLabel: string;
   serviceName: string;
+  tiendaProducto?: {
+    slug: string;
+    nombre: string;
+    precioDesde?: string;
+  };
 };
 
 export default function PaginaServicio(p: ServicioPageProps) {
@@ -81,7 +86,7 @@ export default function PaginaServicio(p: ServicioPageProps) {
           <p className="text-gray-600 text-lg leading-relaxed mb-10 text-pretty">{p.intro}</p>
 
           {/* CTA principal */}
-          <div className="flex flex-col sm:flex-row gap-3 mb-14">
+          <div className="flex flex-col sm:flex-row gap-3 mb-8">
             <a
               href={waUrl}
               target="_blank"
@@ -98,6 +103,29 @@ export default function PaginaServicio(p: ServicioPageProps) {
               Prefiero el formulario de cotización
             </Link>
           </div>
+
+          {/* Banner de compra directa en tienda si está disponible */}
+          {p.tiendaProducto && (
+            <div className="mb-14 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-blue-50/80 via-purple-50/50 to-pink-50/50 border border-[#2D3E9F]/15 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#2D3E9F] bg-white border border-[#2D3E9F]/20 px-2.5 py-0.5 rounded-full inline-block mb-1.5 shadow-xs">
+                  Disponible en Tienda Online
+                </span>
+                <h3 className="font-black text-gray-900 text-lg">
+                  ¿Tienes tu archivo listo? Compra directamente
+                </h3>
+                <p className="text-xs text-gray-600 mt-1 max-w-md">
+                  Configura tus opciones con precios en vivo {p.tiendaProducto.precioDesde ? `(${p.tiendaProducto.precioDesde})` : ''}, sube tu diseño y paga seguro con Webpay o Flow.
+                </p>
+              </div>
+              <Link
+                href={`/tienda/${p.tiendaProducto.slug}`}
+                className="shrink-0 w-full sm:w-auto bg-[#2D3E9F] hover:bg-[#1f2c73] text-white font-bold text-sm px-6 py-3.5 rounded-full transition-colors shadow-md shadow-[#2D3E9F]/20 text-center"
+              >
+                Comprar {p.tiendaProducto.nombre} →
+              </Link>
+            </div>
+          )}
 
           {/* Qué imprimimos */}
           <h2 className="text-2xl font-black text-[#2D3E9F] mb-5">¿Qué imprimimos?</h2>
@@ -155,19 +183,29 @@ export default function PaginaServicio(p: ServicioPageProps) {
 
           {/* CTA de cierre */}
           <div className="text-center bg-gradient-to-br from-[#2D3E9F] to-[#1f2c73] rounded-3xl p-10">
-            <h2 className="text-white font-black text-2xl mb-3">¿Listo para cotizar?</h2>
+            <h2 className="text-white font-black text-2xl mb-3">¿Listo para cotizar o comprar?</h2>
             <p className="text-white/70 text-sm mb-6 max-w-md mx-auto">
-              Cuéntanos qué necesitas, la cantidad y para cuándo. Te respondemos en menos de 24 horas.
+              Cuéntanos qué necesitas, la cantidad y para cuándo. O compra directamente online si ya tienes tu diseño.
             </p>
-            <a
-              href={waUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg transition-colors duration-200"
-            >
-              <WAIcon className="w-5 h-5" />
-              {p.waLabel}
-            </a>
+            <div className="flex flex-col sm:flex-row justify-center gap-3">
+              <a
+                href={waUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg transition-colors duration-200"
+              >
+                <WAIcon className="w-5 h-5" />
+                {p.waLabel}
+              </a>
+              {p.tiendaProducto && (
+                <Link
+                  href={`/tienda/${p.tiendaProducto.slug}`}
+                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold text-base px-7 py-4 rounded-full shadow-lg transition-colors duration-200"
+                >
+                  Ver en Tienda Online →
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </main>

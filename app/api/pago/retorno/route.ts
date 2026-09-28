@@ -42,9 +42,14 @@ async function resolverDestino(token: string | null): Promise<string> {
       supabase.from('pedidos').select('grupo_orden').eq('flow_token', token).limit(1).maybeSingle(),
     ])
 
-    if (pedido?.grupo_orden) {
+    let grupoOrden = pedido?.grupo_orden
+    if (!grupoOrden && flowData?.commerceOrder) {
+      grupoOrden = String(flowData.commerceOrder)
+    }
+
+    if (grupoOrden) {
       const estado = Number(flowData?.status ?? 0)
-      return `/confirmacion?orden=${encodeURIComponent(pedido.grupo_orden)}&estado=${estado}`
+      return `/confirmacion?orden=${encodeURIComponent(grupoOrden)}&estado=${estado}`
     }
   } catch (err) {
     console.error('[pago/retorno]', err)

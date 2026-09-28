@@ -114,10 +114,14 @@ export default function TerminosPage() {
           orden.
         </p>
         <p>
-          <strong>Custodia:</strong> guardamos los pedidos terminados durante <strong>30 días
-          corridos</strong> desde que te avisamos que están listos. Pasado ese plazo, y dado que se
-          trata de productos personalizados que no pueden destinarse a otro cliente, podremos
-          eliminarlos sin derecho a devolución del dinero.
+          <strong>Custodia:</strong> guardamos los pedidos terminados durante un plazo de{' '}
+          <strong>60 días corridos</strong> desde el primer aviso de disponibilidad para retiro.
+          Durante este período realizaremos al menos dos recordatorios por correo electrónico o
+          WhatsApp al número de contacto registrado. Vencido dicho plazo sin que el pedido haya sido
+          retirado ni se haya coordinado una prórroga fundada, y tratándose de productos personalizados
+          que no pueden reutilizarse ni comercializarse a terceros, se entenderá que el cliente
+          abandona el material, pudiendo Impresora Color disponer su reciclaje o destrucción sin
+          derecho a reembolso de los costos incurridos de fabricación.
         </p>
       </Seccion>
 

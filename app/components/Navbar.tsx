@@ -51,7 +51,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
         {/* Logo / Marca */}
-        <a href="/" className="flex items-center gap-2.5 select-none">
+        <Link href="/" className="flex items-center gap-2.5 select-none">
           <Image
             src="/brand/logo-impresora-color.jpg.jpeg"
             alt="Impresora Color Ltda"
@@ -66,7 +66,7 @@ export default function Navbar() {
           <span className="font-black text-lg text-[#E91E8F] tracking-tight -ml-1.5">
             Color
           </span>
-        </a>
+        </Link>
 
         {/* Links escritorio */}
         <div className="hidden md:flex items-center gap-5 text-sm font-medium">
@@ -76,7 +76,7 @@ export default function Navbar() {
             onMouseEnter={() => setServOpen(true)}
             onMouseLeave={() => setServOpen(false)}
           >
-            <a
+            <Link
               href="/#servicios"
               aria-expanded={servOpen}
               aria-haspopup="true"
@@ -92,7 +92,7 @@ export default function Navbar() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            </a>
+            </Link>
             {servOpen && (
               <div className="absolute left-1/2 -translate-x-1/2 top-full w-[720px] bg-white border border-gray-100 rounded-2xl shadow-2xl p-6 grid grid-cols-3 gap-x-6 gap-y-4">
                 {NAV_SERVICIOS.map((cat) => (
@@ -103,25 +103,25 @@ export default function Navbar() {
                     <ul className="space-y-0.5">
                       {cat.items.map((item) => (
                         <li key={item.label}>
-                          <a
+                          <Link
                             href={item.href}
                             onClick={() => setServOpen(false)}
                             className="block text-[13px] text-gray-600 hover:text-[#E91E8F] py-1 transition-colors"
                           >
                             {item.label}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
                   </div>
                 ))}
-                <a
+                <Link
                   href="/#servicios"
                   onClick={() => setServOpen(false)}
                   className="col-span-3 text-center text-xs font-bold text-[#2D3E9F] hover:text-[#E91E8F] border-t border-gray-100 pt-3 transition-colors"
                 >
                   Ver todos los servicios →
-                </a>
+                </Link>
               </div>
             )}
           </div>
@@ -133,7 +133,7 @@ export default function Navbar() {
           ].map((item) => {
             const id = item.href.replace("/#", "");
             return (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className={`transition-colors ${
@@ -141,7 +141,7 @@ export default function Navbar() {
                 }`}
               >
                 {item.label}
-              </a>
+              </Link>
             );
           })}
           <Link
@@ -154,12 +154,12 @@ export default function Navbar() {
 
         {/* CTAs escritorio */}
         <div className="hidden md:flex items-center gap-3">
-          <a
+          <Link
             href="/#cotizar"
             className="flex items-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25"
           >
             Cotizar ahora
-          </a>
+          </Link>
         </div>
 
         {/* Menú móvil botón */}
@@ -203,14 +203,14 @@ export default function Navbar() {
                     {cat.categoria}
                   </p>
                   {cat.items.map((item) => (
-                    <a
+                    <Link
                       key={item.label}
                       href={item.href}
                       onClick={() => setOpen(false)}
                       className="block py-2 px-1 text-sm text-gray-600"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               ))}
@@ -222,14 +222,14 @@ export default function Navbar() {
             { href: "/#ubicacion", label: "Ubicación" },
             { href: "/#faq", label: "Preguntas Frecuentes" },
           ].map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
               className="flex items-center py-3.5 text-gray-700 hover:text-[#E91E8F] border-b border-gray-100 text-sm font-medium transition-colors"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <Link
             href="/tienda"
@@ -239,13 +239,13 @@ export default function Navbar() {
             🛒 Tienda Online
           </Link>
           <div className="flex flex-col gap-3 mt-4">
-            <a
+            <Link
               href="/#cotizar"
               onClick={() => setOpen(false)}
               className="flex items-center justify-center gap-2 bg-[#E91E8F] text-white font-bold py-3.5 rounded-full text-sm"
             >
               Cotizar ahora
-            </a>
+            </Link>
             <a
               href={WHATSAPP_URL}
               target="_blank"

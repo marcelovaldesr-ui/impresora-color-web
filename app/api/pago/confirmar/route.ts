@@ -47,14 +47,34 @@ export async function POST(req: NextRequest) {
   try {
     const flowData = await verificarPago(token)
 
-    const { data: pedidos } = await supabase
+    let { data: pedidos } = await supabase
       .from('pedidos')
       .select('*')
       .eq('flow_token', token)
       .order('numero_orden', { ascending: true })
 
+    // Resiliencia ante reintentos de pago: si el usuario abrió Flow más de una vez,
+    // flow_token en la base de datos se pudo haber sobrescrito con el último token
+    // generado. Si pagó con un token anterior, buscamos por commerceOrder (grupo_orden).
     if (!pedidos || pedidos.length === 0) {
-      console.error('[confirmar] Pedido no encontrado para token:', token)
+      if (flowData?.commerceOrder) {
+        const { data: pedidosPorGrupo } = await supabase
+          .from('pedidos')
+          .select('*')
+          .eq('grupo_orden', String(flowData.commerceOrder))
+          .order('numero_orden', { ascending: true })
+
+        if (pedidosPorGrupo && pedidosPorGrupo.length > 0) {
+          pedidos = pedidosPorGrupo
+        }
+      }
+    }
+
+    if (!pedidos || pedidos.length === 0) {
+      console.error('[confirmar] Pedido no encontrado para token o commerceOrder:', {
+        token,
+        order: flowData?.commerceOrder,
+      })
       return new Response('not found', { status: 404 })
     }
 
@@ -72,11 +92,9 @@ export async function POST(req: NextRequest) {
       return new Response('order mismatch', { status: 409 })
     }
 
-    // El monto pagado debería ser exactamente el del pedido. Si difiere, la
-    // venta igual se procesa (la plata entró) pero queda avisado en el correo
-    // interno para revisarla a mano antes de producir.
     const totalEsperado = filas.reduce((s, p) => s + Number(p.precio_total), 0)
     const montoPagado = Number(flowData?.amount ?? 0)
+    const montoInsuficiente = estadoFlow === 2 && montoPagado > 0 && montoPagado < totalEsperado
     const montoDescuadra = estadoFlow === 2 && montoPagado > 0 && montoPagado !== totalEsperado
     if (montoDescuadra) {
       console.error('[confirmar] monto no coincide', {
@@ -88,6 +106,26 @@ export async function POST(req: NextRequest) {
 
     // status 2 = pagado en Flow.cl · 3 = rechazado · 4 = anulado
     if (estadoFlow === 2) {
+      if (montoInsuficiente) {
+        // Alerta de pago incompleto: no marcar como pagado automáticamente
+        await supabase
+          .from('pedidos')
+          .update({
+            flow_token: token,
+            flow_orden: String(flowData.flowOrder ?? ''),
+            notas: `ALERTA: Flow reportó pago parcial por $${montoPagado} (esperado $${totalEsperado}).`,
+          })
+          .eq('grupo_orden', grupo)
+          .eq('pago_confirmado', false)
+
+        try {
+          await enviarEmailAlertaMonto(filas, grupo, montoPagado, totalEsperado)
+        } catch (err) {
+          console.error('[confirmar] email alerta monto', err)
+        }
+        return new Response('amount mismatch', { status: 200 })
+      }
+
       // Flow.cl puede llamar este webhook más de una vez para el mismo pago
       // (reintentos si la respuesta tardó, entregas duplicadas). Antes esto
       // se decidía con un SELECT aparte ("¿ya está confirmado?") y luego un
@@ -109,6 +147,7 @@ export async function POST(req: NextRequest) {
         .from('pedidos')
         .update({
           estado: 'pagado',
+          flow_token: token,
           flow_orden: String(flowData.flowOrder ?? ''),
           pago_confirmado: true,
           pago_confirmado_at: new Date().toISOString(),
@@ -293,6 +332,41 @@ async function enviarEmails(items: FilaPedido[], grupo: string, montoDescuadrado
           }
         </div>
         <p style="color:#aaa;font-size:12px;margin-top:16px;text-align:center">La boleta electrónica de este pedido la emite Flow.cl al confirmarse el pago.</p>
+      </div>
+    `,
+  })
+}
+
+async function enviarEmailAlertaMonto(
+  items: FilaPedido[],
+  grupo: string,
+  montoPagado: number,
+  totalEsperado: number
+) {
+  const resend = new Resend(process.env.RESEND_API_KEY)
+  const cliente = items[0]
+
+  await resend.emails.send({
+    from: FROM,
+    to: TO_INTERNO,
+    subject: `🚨 ALERTA: Pago insuficiente en pedido #${grupo}`,
+    html: `
+      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+        <div style="background:#c62828;padding:24px;border-radius:8px 8px 0 0">
+          <h1 style="color:white;margin:0;font-size:18px">Alerta: Pago insuficiente reportado por Flow</h1>
+        </div>
+        <div style="background:#f9f9f9;padding:24px;border:1px solid #e0e0e0;border-top:none;border-radius:0 0 8px 8px">
+          <p>El cliente <strong>${escapeHtml(cliente.cliente_nombre)}</strong> completó un pago en Flow por <strong>${clp(montoPagado)}</strong>, pero el total del pedido era <strong>${clp(totalEsperado)}</strong>.</p>
+          <div style="background:#fff;border-left:4px solid #c62828;padding:12px;margin:16px 0">
+            <strong>El pedido NO ha sido marcado como pagado automáticamente.</strong> Por favor verifica la transacción en el panel de Flow antes de producir.
+          </div>
+          <p style="color:#555;font-size:14px">
+            Orden: <strong>${grupo}</strong><br>
+            Teléfono cliente: ${escapeHtml(cliente.cliente_telefono)}<br>
+            Email cliente: ${escapeHtml(cliente.cliente_email)}
+          </p>
+        </div>
+        <p style="color:#aaa;font-size:12px;margin-top:16px;text-align:center">Sistema de pagos online · Impresora Color Ltda</p>
       </div>
     `,
   })

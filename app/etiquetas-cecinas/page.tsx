@@ -54,6 +54,11 @@ export default function Page() {
       waMensaje="Hola, quiero cotizar etiquetas para mi producto (cecinas/alimentos). Necesito orientación sobre tamaño, material y cantidad."
       waLabel="Cotizar etiquetas por WhatsApp"
       serviceName="Etiquetas para cecinas y alimentos"
+      tiendaProducto={{
+        slug: "stickers",
+        nombre: "Stickers y Etiquetas Adhesivas",
+        precioDesde: "desde $8.000",
+      }}
     />
   );
 }

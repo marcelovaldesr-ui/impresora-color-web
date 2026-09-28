@@ -3,7 +3,6 @@ import { useState } from "react";
 import { trackConversion, CONV_FORMULARIO } from "./GoogleAds";
 
 const PHONE = "56998441157";
-const WHATSAPP_URL = `https://wa.me/${PHONE}?text=${encodeURIComponent("Hola, quiero cotizar un trabajo de imprenta")}`;
 const waIntent = (msg: string) => `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
 
 const PRODUCTOS = [

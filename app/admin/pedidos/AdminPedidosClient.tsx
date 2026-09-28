@@ -33,6 +33,47 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
   const [pedidos, setPedidos] = useState(pedidosIniciales)
   const [filtro, setFiltro] = useState<Filtro>('todos')
   const [actualizando, setActualizando] = useState<string | null>(null)
+  const [reconciliando, setReconciliando] = useState<string | null>(null)
+  const [mensajeReconciliacion, setMensajeReconciliacion] = useState<{ id: string; texto: string; error?: boolean } | null>(null)
+
+  const reconciliarFlow = async (pedido: Pedido) => {
+    setReconciliando(pedido.id)
+    setMensajeReconciliacion(null)
+    try {
+      const res = await fetch(`/api/admin/pedidos/${pedido.id}/reconciliar`, {
+        method: 'POST',
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error ?? 'Error al consultar Flow')
+
+      if (data.actualizado) {
+        setPedidos((prev) =>
+          prev.map((p) =>
+            p.id === pedido.id
+              ? { ...p, estado: 'pagado', pago_confirmado: true, flow_orden: data.flowOrder }
+              : p
+          )
+        )
+        setMensajeReconciliacion({
+          id: pedido.id,
+          texto: `¡Pago confirmado en Flow! (${data.statusText}, monto: ${formatCLP(data.monto)}). Pedido actualizado a pagado.`,
+        })
+      } else {
+        setMensajeReconciliacion({
+          id: pedido.id,
+          texto: `Estado actual en Flow: ${data.statusText}.`,
+        })
+      }
+    } catch (err) {
+      setMensajeReconciliacion({
+        id: pedido.id,
+        texto: err instanceof Error ? err.message : 'Error al consultar Flow',
+        error: true,
+      })
+    } finally {
+      setReconciliando(null)
+    }
+  }
 
   const pedidosFiltrados =
     filtro === 'todos'
@@ -229,8 +270,32 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
                       {actualizando === pedido.id ? '…' : `→ ${siguienteLabel}`}
                     </button>
                   )}
+
+                  {pedido.flow_token && (!pedido.pago_confirmado || pedido.estado === 'pendiente_pago') && (
+                    <button
+                      type="button"
+                      onClick={() => reconciliarFlow(pedido)}
+                      disabled={reconciliando === pedido.id}
+                      className="border border-blue-600 hover:bg-blue-50 disabled:bg-gray-100 text-blue-700 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors"
+                      title="Consultar estado del pago directamente en la API de Flow.cl"
+                    >
+                      {reconciliando === pedido.id ? 'Consultando Flow…' : '🔄 Consultar Flow'}
+                    </button>
+                  )}
                 </div>
               </div>
+
+              {mensajeReconciliacion && mensajeReconciliacion.id === pedido.id && (
+                <div
+                  className={`mt-3 text-xs p-2.5 rounded-xl ${
+                    mensajeReconciliacion.error
+                      ? 'bg-red-50 text-red-700 border border-red-200'
+                      : 'bg-blue-50 text-blue-800 border border-blue-200'
+                  }`}
+                >
+                  {mensajeReconciliacion.texto}
+                </div>
+              )}
             </div>
           )
         })}

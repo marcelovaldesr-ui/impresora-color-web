@@ -54,6 +54,11 @@ export default function Page() {
       waMensaje="Hola, quiero cotizar un pendón o roller retráctil."
       waLabel="Cotizar pendón por WhatsApp"
       serviceName="Pendones y rollers"
+      tiendaProducto={{
+        slug: "pendon-roller",
+        nombre: "Pendón Roller Retráctil",
+        precioDesde: "desde $38.000",
+      }}
     />
   );
 }
