@@ -1,17 +1,11 @@
 import { supabase } from '@/lib/supabase'
 import { cookies } from 'next/headers'
 import { NextRequest } from 'next/server'
-import crypto from 'crypto'
-
-function buildToken(): string {
-  const secret = (process.env.ADMIN_PASSWORD ?? '') + (process.env.ADMIN_SECRET ?? 'ic_salt')
-  return crypto.createHash('sha256').update(secret).digest('hex')
-}
+import { verificarTokenSesion } from '@/lib/adminAuth'
 
 async function autenticado(): Promise<boolean> {
   const jar = await cookies()
-  const token = jar.get('admin_ic')?.value
-  return !!token && token === buildToken()
+  return verificarTokenSesion(jar.get('admin_ic')?.value)
 }
 
 const ESTADOS_VALIDOS = [

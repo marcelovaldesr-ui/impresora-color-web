@@ -7,7 +7,10 @@
 // avanzada (más productos, fotos reales propias y mejoras de ficha) antes de reabrir.
 // El flujo de compra sigue funcionando: quien entra con el enlace de vista previa puede
 // comprar igual, así que se puede seguir probando sin exponerlo al público.
-export const TIENDA_EN_CONSTRUCCION = true
+//
+// 2026-09-27: se reabre al público tras la fase de correcciones pre-lanzamiento
+// (Next.js parchado, seguridad admin, garantía legal, privacidad, feriados, rate limit).
+export const TIENDA_EN_CONSTRUCCION = false
 
 // Controla si el botón "Agregar al carrito" / compra está habilitado.
 // Mientras esté en false: se puede navegar el catálogo, ver productos, variantes y precios,

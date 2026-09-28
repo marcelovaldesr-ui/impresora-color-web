@@ -15,10 +15,12 @@ type Stat = {
 
 const STATS: Stat[] = [
   {
+    // Antes era un contador "35 años" (numero: 35, sufijo: " años") que se
+    // quedaba desactualizado cada año. El año de fundación no cambia, así
+    // que va como texto fijo — mismo patrón que la tarjeta de WhatsApp.
     icon: "🏆",
-    numero: 35,
-    sufijo: " años",
-    label: "de experiencia",
+    textoFijo: "Desde 1989",
+    label: "imprimiendo en Chillán",
     color: "#E91E8F",
     bg: "bg-[#E91E8F]/10",
     border: "border-[#E91E8F]/20",
@@ -43,10 +45,22 @@ const STATS: Stat[] = [
 ];
 
 function useCountUp(target: number, run: boolean, duration = 1400) {
-  const [value, setValue] = useState(0);
+  // Antes el estado inicial era 0, así que el HTML que genera el servidor
+  // (y lo que ve cualquiera sin JavaScript, o un buscador) mostraba
+  // "0 clientes satisfechos" hasta que el usuario hacía scroll y corría la
+  // animación. Ahora el valor real (target) es el estado inicial: el
+  // número correcto está en el HTML desde el primer render. La animación
+  // de conteo pasa a ser un efecto puramente visual que solo se dispara,
+  // una vez, cuando la tarjeta entra en pantalla — ya no es la fuente del
+  // valor mostrado.
+  const [value, setValue] = useState(target);
+  const yaAnimoRef = useRef(false);
 
   useEffect(() => {
-    if (!run) return;
+    if (!run || yaAnimoRef.current) return;
+    yaAnimoRef.current = true;
+
+    setValue(0);
     let raf = 0;
     const start = performance.now();
 

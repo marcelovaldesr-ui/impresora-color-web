@@ -41,7 +41,7 @@ export default function TiendaPage() {
       {/* Barra de confianza — visible antes de elegir producto */}
       <div className="mb-9 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-600">
         {[
-          '35 años imprimiendo en Chillán',
+          'Imprimiendo en Chillán desde 1989',
           'Producción propia, no tercerizamos',
           'Revisamos tu archivo gratis',
         ].map((t) => (
@@ -71,8 +71,15 @@ export default function TiendaPage() {
                   alt={producto.nombre}
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
-                  className="object-contain p-6 group-hover:scale-[1.03] transition-transform duration-300"
+                  className={`object-contain p-6 group-hover:scale-[1.03] transition-transform duration-300 ${
+                    producto.disponible === false ? 'opacity-40 grayscale' : ''
+                  }`}
                 />
+                {producto.disponible === false && (
+                  <span className="absolute top-3 left-3 bg-gray-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                    No disponible
+                  </span>
+                )}
               </div>
               <div className="p-5">
                 <h2 className="font-semibold text-lg text-gray-900 group-hover:text-[#2D3E9F] transition-colors">
@@ -92,8 +99,14 @@ export default function TiendaPage() {
                       </svg>
                       {producto.tiempoEntrega}
                     </span>
-                    <span className="bg-[#E91E8F] group-hover:bg-[#c8186e] text-white text-sm font-bold px-5 py-2.5 rounded-full transition-colors shadow-sm shadow-[#E91E8F]/20">
-                      Personalizar →
+                    <span
+                      className={`text-sm font-bold px-5 py-2.5 rounded-full transition-colors shadow-sm ${
+                        producto.disponible === false
+                          ? 'bg-gray-200 text-gray-500 shadow-none'
+                          : 'bg-[#E91E8F] group-hover:bg-[#c8186e] text-white shadow-[#E91E8F]/20'
+                      }`}
+                    >
+                      {producto.disponible === false ? 'Ver detalle' : 'Personalizar →'}
                     </span>
                   </div>
                 </div>

@@ -2,6 +2,7 @@ import { supabase } from '@/lib/supabase'
 import { verificarPago } from '@/lib/flow'
 import { Resend } from 'resend'
 import { NextRequest } from 'next/server'
+import { escapeHtml } from '@/lib/escapeHtml'
 
 // Remitente: DEBE ser una dirección de un dominio verificado en Resend.
 // La tienda usa su propio remitente (pedidos@) para no mezclarse con las
@@ -87,18 +88,38 @@ export async function POST(req: NextRequest) {
 
     // status 2 = pagado en Flow.cl · 3 = rechazado · 4 = anulado
     if (estadoFlow === 2) {
-      const yaConfirmado = filas.every((p) => p.pago_confirmado)
-      if (!yaConfirmado) {
-        await supabase
-          .from('pedidos')
-          .update({
-            estado: 'pagado',
-            flow_orden: String(flowData.flowOrder ?? ''),
-            pago_confirmado: true,
-            pago_confirmado_at: new Date().toISOString(),
-          })
-          .eq('grupo_orden', grupo)
+      // Flow.cl puede llamar este webhook más de una vez para el mismo pago
+      // (reintentos si la respuesta tardó, entregas duplicadas). Antes esto
+      // se decidía con un SELECT aparte ("¿ya está confirmado?") y luego un
+      // UPDATE separado: si dos llamadas llegaban casi al mismo tiempo,
+      // ambas podían leer pago_confirmado=false ANTES de que cualquiera
+      // alcanzara a escribir, y las dos terminaban mandando los correos de
+      // confirmación duplicados al cliente y a la imprenta.
+      //
+      // El fix es que la condición "¿todavía no estaba confirmado?" se
+      // evalúe como parte del mismo UPDATE (.eq('pago_confirmado', false)),
+      // no en un SELECT previo. Postgres serializa los UPDATE que compiten
+      // por las mismas filas: si dos llegan a la vez, uno espera a que el
+      // otro confirme su transacción y, al reintentar, vuelve a evaluar el
+      // WHERE contra el dato ya actualizado — así que solo la llamada que
+      // de verdad hizo el cambio de false→true recibe filas de vuelta.
+      // Los correos se mandan únicamente si esta llamada fue la que ganó
+      // esa carrera.
+      const { data: actualizados, error: errorUpdate } = await supabase
+        .from('pedidos')
+        .update({
+          estado: 'pagado',
+          flow_orden: String(flowData.flowOrder ?? ''),
+          pago_confirmado: true,
+          pago_confirmado_at: new Date().toISOString(),
+        })
+        .eq('grupo_orden', grupo)
+        .eq('pago_confirmado', false)
+        .select('id')
 
+      if (errorUpdate) {
+        console.error('[confirmar] update pago_confirmado', errorUpdate)
+      } else if (actualizados && actualizados.length > 0) {
         // Los correos van después de guardar: si Resend falla, la venta igual
         // quedó registrada y visible en el panel.
         try {
@@ -157,12 +178,15 @@ function bloqueFaltaArchivo(items: FilaPedido[], grupo: string): string {
 function filasHtml(items: FilaPedido[]): string {
   return items
     .map((i) => {
+      // producto_nombre/opciones vienen del catálogo del servidor (precioServidor),
+      // no del usuario — igual se escapan por si algún valor del catálogo llega
+      // a tener un caracter especial, sin costo real.
       const opciones = Object.entries(i.opciones ?? {})
-        .map(([k, v]) => `${k}: ${v}`)
+        .map(([k, v]) => `${escapeHtml(k)}: ${escapeHtml(v)}`)
         .join(' · ')
       return `<tr>
         <td style="padding:10px 0;border-bottom:1px solid #eee">
-          <strong>${i.producto_nombre}</strong><br>
+          <strong>${escapeHtml(i.producto_nombre)}</strong><br>
           <span style="color:#888;font-size:13px">${opciones}</span>
         </td>
         <td style="padding:10px 0;border-bottom:1px solid #eee;text-align:right;white-space:nowrap">
@@ -189,7 +213,7 @@ async function enviarEmails(items: FilaPedido[], grupo: string, montoDescuadrado
           <h1 style="color:white;margin:0;font-size:20px">¡Pedido confirmado!</h1>
         </div>
         <div style="background:#f9f9f9;padding:24px;border:1px solid #e0e0e0;border-top:none;border-radius:0 0 8px 8px">
-          <p>Hola <strong>${cliente.cliente_nombre}</strong>, recibimos tu pago con éxito.</p>
+          <p>Hola <strong>${escapeHtml(cliente.cliente_nombre)}</strong>, recibimos tu pago con éxito.</p>
           <p style="color:#555;margin:0 0 12px">N° de orden: <strong style="color:#2D3E9F">${grupo}</strong></p>
           <table style="width:100%;border-collapse:collapse">
             ${filasHtml(items)}
@@ -199,7 +223,11 @@ async function enviarEmails(items: FilaPedido[], grupo: string, montoDescuadrado
             </tr>
           </table>
           ${bloqueFaltaArchivo(items, grupo)}
-          <p style="margin-top:16px">Tu pedido estará listo en <strong>1 a 3 días hábiles</strong>. Te avisaremos cuando puedas retirarlo en <strong>Arauco 1060, Chillán</strong>.</p>
+          <p style="margin-top:16px">${
+            items.some((i) => !i.archivo_url)
+              ? 'Apenas recibamos tu archivo de diseño, tu pedido estará <strong>listo en 1 a 3 días hábiles</strong>.'
+              : 'Tu pedido estará <strong>listo en 1 a 3 días hábiles</strong>.'
+          } Te avisaremos cuando puedas retirarlo en <strong>Arauco 1060, Chillán</strong>.</p>
           <p>¿Tienes dudas? <a href="${WHATSAPP}" style="color:#E91E8F">Escríbenos por WhatsApp</a></p>
         </div>
         <p style="color:#aaa;font-size:12px;margin-top:16px;text-align:center">Impresora Color Ltda · Arauco 1060, Chillán</p>
@@ -208,11 +236,15 @@ async function enviarEmails(items: FilaPedido[], grupo: string, montoDescuadrado
   })
 
   // --- Aviso interno a la imprenta ---
+  // archivo_url ya está validado en api/pedidos (solo *.public.blob.vercel-storage.com),
+  // pero igual se escapa al insertarlo en el atributo href: defensa en profundidad,
+  // sin costo. archivo_nombre_original SÍ es texto libre del cliente (el nombre de
+  // su archivo) y es el campo que de verdad necesita el escape acá.
   const archivos = items
     .map((i) =>
       i.archivo_url
-        ? `<li><a href="${i.archivo_url}" style="color:#2D3E9F;font-weight:bold">${i.producto_nombre}</a> <small style="color:#888">${i.archivo_nombre_original ?? ''}</small></li>`
-        : `<li style="color:#c00">${i.producto_nombre} — SIN ARCHIVO, contactar al cliente</li>`
+        ? `<li><a href="${escapeHtml(i.archivo_url)}" style="color:#2D3E9F;font-weight:bold">${escapeHtml(i.producto_nombre)}</a> <small style="color:#888">${escapeHtml(i.archivo_nombre_original ?? '')}</small></li>`
+        : `<li style="color:#c00">${escapeHtml(i.producto_nombre)} — SIN ARCHIVO, contactar al cliente</li>`
     )
     .join('')
 
@@ -229,9 +261,9 @@ async function enviarEmails(items: FilaPedido[], grupo: string, montoDescuadrado
         <div style="background:#f9f9f9;padding:24px;border:1px solid #e0e0e0;border-top:none;border-radius:0 0 8px 8px">
           <table style="width:100%;border-collapse:collapse;margin-bottom:16px">
             <tr><td style="padding:6px 0;color:#555;width:35%">Orden</td><td style="padding:6px 0;font-weight:bold;color:#E91E8F">${grupo}</td></tr>
-            <tr><td style="padding:6px 0;color:#555">Cliente</td><td style="padding:6px 0">${cliente.cliente_nombre}</td></tr>
-            <tr><td style="padding:6px 0;color:#555">Teléfono</td><td style="padding:6px 0">${cliente.cliente_telefono}</td></tr>
-            <tr><td style="padding:6px 0;color:#555">Email</td><td style="padding:6px 0">${cliente.cliente_email}</td></tr>
+            <tr><td style="padding:6px 0;color:#555">Cliente</td><td style="padding:6px 0">${escapeHtml(cliente.cliente_nombre)}</td></tr>
+            <tr><td style="padding:6px 0;color:#555">Teléfono</td><td style="padding:6px 0">${escapeHtml(cliente.cliente_telefono)}</td></tr>
+            <tr><td style="padding:6px 0;color:#555">Email</td><td style="padding:6px 0">${escapeHtml(cliente.cliente_email)}</td></tr>
           </table>
           <table style="width:100%;border-collapse:collapse">
             ${filasHtml(items)}
@@ -260,7 +292,7 @@ async function enviarEmails(items: FilaPedido[], grupo: string, montoDescuadrado
               : ''
           }
         </div>
-        <p style="color:#aaa;font-size:12px;margin-top:16px;text-align:center">Recuerda emitir la boleta electrónica de este pedido.</p>
+        <p style="color:#aaa;font-size:12px;margin-top:16px;text-align:center">La boleta electrónica de este pedido la emite Flow.cl al confirmarse el pago.</p>
       </div>
     `,
   })

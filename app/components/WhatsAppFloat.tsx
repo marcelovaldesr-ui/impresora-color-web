@@ -2,14 +2,16 @@
 const WA_URL =
   "https://wa.me/56998441157?text=Hola%2C%20quiero%20cotizar%20un%20trabajo%20de%20imprenta";
 
-export default function WhatsAppFloat() {
+// subirEnMovil: en la tienda, la ficha de producto tiene una barra fija abajo con el
+// precio y el botón de compra; sin esto el botón de WhatsApp tapa ese botón en el celular.
+export default function WhatsAppFloat({ subirEnMovil = false }: { subirEnMovil?: boolean }) {
   return (
     <a
       href={WA_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Cotizar por WhatsApp"
-      className="fixed bottom-6 right-6 z-50 group flex items-center"
+      className={`fixed ${subirEnMovil ? "bottom-24 md:bottom-6" : "bottom-6"} right-6 z-50 group flex items-center`}
     >
       {/* Etiqueta que aparece al hover */}
       <span className="overflow-hidden max-w-0 group-hover:max-w-xs whitespace-nowrap text-sm font-bold text-white bg-[#25D366] px-0 group-hover:px-4 py-3 rounded-full transition-[max-width,padding-left,padding-right,margin-right] duration-300 mr-0 group-hover:mr-2 shadow-lg">

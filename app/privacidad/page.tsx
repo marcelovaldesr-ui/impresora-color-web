@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PrivacidadPage() {
   return (
-    <PaginaLegal titulo="Política de Privacidad" actualizado="6 de agosto de 2026">
+    <PaginaLegal titulo="Política de Privacidad" actualizado="27 de septiembre de 2026">
       <p>
         En Impresora Color Ltda pedimos solo los datos necesarios para producir y entregar tu pedido.
         Acá te explicamos cuáles son, para qué los usamos y qué puedes exigirnos.
@@ -65,7 +65,8 @@ export default function PrivacidadPage() {
           <li><strong>Vercel</strong> — alojamiento del sitio y de los archivos de diseño.</li>
           <li><strong>Supabase</strong> — base de datos donde se registran los pedidos.</li>
           <li><strong>Resend</strong> — envío de los correos de confirmación.</li>
-          <li><strong>Google</strong> — analítica y medición de nuestra publicidad.</li>
+          <li><strong>Google</strong> (Google Analytics y Google Ads) — analítica del sitio y medición de nuestra publicidad.</li>
+          <li><strong>Meta</strong> (Facebook e Instagram) — medición de nuestra publicidad en esas plataformas, cuando la tenemos activa.</li>
         </ul>
         <p>
           Cada uno accede únicamente a lo que necesita para prestar su servicio. También podríamos
@@ -79,18 +80,28 @@ export default function PrivacidadPage() {
           imposibles de adivinar, y se usan exclusivamente para producir tu pedido.
         </p>
         <p>
-          Los conservamos por un tiempo razonable para poder reimprimir si hay algún problema o si
-          repites el mismo trabajo. <strong>Si quieres que eliminemos tu archivo antes, escríbenos y
-          lo hacemos.</strong>
+          Los conservamos hasta <strong>12 meses</strong> desde tu pedido, para poder reimprimir si hay
+          algún problema o si repites el mismo trabajo. <strong>Si quieres que eliminemos tu archivo
+          antes, escríbenos y lo hacemos.</strong>
         </p>
       </Seccion>
 
       <Seccion n={6} titulo="Cuánto tiempo los guardamos">
-        <p>
-          Los datos de tus pedidos se conservan mientras sean necesarios para la relación comercial y
-          para cumplir los plazos legales y tributarios que nos obligan como empresa. Después se
-          eliminan o se anonimizan.
-        </p>
+        <ul className="list-disc pl-5 space-y-1.5">
+          <li>
+            <strong>Datos del pedido y documentos tributarios</strong> (nombre, contacto, detalle y
+            monto): <strong>6 años</strong>, el plazo que exige el artículo 200 del Código Tributario.
+          </li>
+          <li>
+            <strong>Archivos de diseño</strong>: hasta <strong>12 meses</strong> desde el pedido, o
+            antes si nos lo pides.
+          </li>
+          <li>
+            <strong>Registros técnicos de seguridad</strong> (por ejemplo, intentos de uso del sitio
+            por dirección IP): <strong>90 días</strong>.
+          </li>
+        </ul>
+        <p>Cumplidos esos plazos, los datos se eliminan o se anonimizan.</p>
       </Seccion>
 
       <Seccion n={7} titulo="Tus derechos">
@@ -119,8 +130,8 @@ export default function PrivacidadPage() {
 
       <Seccion n={8} titulo="Cookies">
         <p>
-          Usamos cookies propias para que funcionen el carrito y la sesión, y cookies de Google para
-          medir el rendimiento del sitio y de nuestra publicidad. Puedes bloquearlas desde la
+          Usamos cookies propias para que funcionen el carrito y la sesión, y cookies de Google y de
+          Meta (Facebook/Instagram) para medir el rendimiento del sitio y de nuestra publicidad. Puedes bloquearlas desde la
           configuración de tu navegador; ten en cuenta que si lo haces, el carrito de compras puede
           dejar de funcionar correctamente.
         </p>

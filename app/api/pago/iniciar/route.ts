@@ -1,8 +1,13 @@
 import { supabase } from '@/lib/supabase'
 import { crearPago } from '@/lib/flow'
 import { NextRequest } from 'next/server'
+import { obtenerIp, verificarLimite, registrarSolicitud, respuestaLimiteExcedido } from '@/lib/publicRateLimit'
 
 export async function POST(req: NextRequest) {
+  const ip = obtenerIp(req)
+  const limite = await verificarLimite(ip, 'pago-iniciar')
+  if (limite.excedido) return respuestaLimiteExcedido(limite.segundosRestantes)
+
   let grupoOrden: unknown
   try {
     ;({ grupoOrden } = await req.json())
@@ -59,6 +64,7 @@ export async function POST(req: NextRequest) {
     })
 
     await supabase.from('pedidos').update({ flow_token: token }).eq('grupo_orden', grupoOrden)
+    await registrarSolicitud(ip, 'pago-iniciar')
 
     return Response.json({ url })
   } catch (err) {

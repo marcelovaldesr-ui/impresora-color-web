@@ -97,7 +97,7 @@ export default async function StoreLayout({ children }: { children: React.ReactN
 
         <Footer />
       </div>
-      <WhatsAppFloat />
+      <WhatsAppFloat subirEnMovil />
     </CarritoProvider>
   )
 }

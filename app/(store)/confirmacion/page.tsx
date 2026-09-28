@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { formatCLP } from '@/lib/productos'
@@ -5,6 +6,12 @@ import LimpiarCarrito from './LimpiarCarrito'
 import TrackCompra from './TrackCompra'
 
 const WHATSAPP = 'https://wa.me/56998441157'
+
+// Página de resultado de una compra puntual — sin valor de contenido para
+// buscar en Google, no debería indexarse.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+}
 
 export default async function ConfirmacionPage({
   searchParams,

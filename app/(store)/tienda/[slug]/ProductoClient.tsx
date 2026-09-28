@@ -5,22 +5,32 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCarrito } from '@/lib/carrito'
-import { formatCLP, calcularIVA, getProducto, evaluarResolucion, type Resolucion } from '@/lib/productos'
+import {
+  formatCLP,
+  calcularIVA,
+  getProducto,
+  evaluarResolucion,
+  primerValorDisponible,
+  type Resolucion,
+} from '@/lib/productos'
 import { TIENDA_COMPRA_HABILITADA } from '@/lib/config'
 import { trackEcommerce } from '@/app/components/GoogleAds'
+import { esFeriadoChile } from '@/lib/feriadosChile'
 
 const WA_DISENO =
   'https://wa.me/56998441157?text=Hola%2C%20necesito%20ayuda%20con%20el%20dise%C3%B1o%20de%20mi%20pedido'
 
-/** Suma días hábiles (lun-vie) a una fecha. Sirve para decirle al cliente una
- *  fecha concreta en vez de "2-3 días hábiles", que nadie traduce mentalmente. */
+/** Suma días hábiles (lun-vie, sin feriados chilenos) a una fecha. Sirve para
+ *  decirle al cliente una fecha concreta en vez de "2-3 días hábiles", que
+ *  nadie traduce mentalmente. Ver lib/feriadosChile.ts para la lista de
+ *  feriados y cómo mantenerla actualizada. */
 function sumarDiasHabiles(desde: Date, dias: number): Date {
   const d = new Date(desde)
   let restantes = dias
   while (restantes > 0) {
     d.setDate(d.getDate() + 1)
-    const dow = d.getDay()
-    if (dow !== 0 && dow !== 6) restantes--
+    const esFinDeSemana = d.getDay() === 0 || d.getDay() === 6
+    if (!esFinDeSemana && !esFeriadoChile(d)) restantes--
   }
   return d
 }
@@ -34,12 +44,16 @@ function diasMaximos(texto: string): number {
 
 export default function ProductoClient({ slug }: { slug: string }) {
   const producto = getProducto(slug)!
+  // Producto completo pausado (ej. sin materia prima). Ver BLOQUE 11: campo
+  // opcional, `undefined` se trata igual que `true` — ningún producto
+  // existente cambia de comportamiento por este chequeo.
+  const productoDisponible = producto.disponible !== false
 
   const router = useRouter()
   const { agregarItem } = useCarrito()
 
   const [opciones, setOpciones] = useState<Record<string, string>>(
-    Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, g.valores[0]]))
+    Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, primerValorDisponible(g)]))
   )
   const [archivo, setArchivo] = useState<File | null>(null)
   const [archivoBlobUrl, setArchivoBlobUrl] = useState<string | null>(null)
@@ -93,7 +107,13 @@ export default function ProductoClient({ slug }: { slug: string }) {
 
   const mejorCantidad = useMemo(() => {
     if (!grupoCantidad) return null
-    const unitarios = grupoCantidad.valores.map((v) => {
+    // No destacar como "mejor precio" una cantidad que ni siquiera se puede
+    // elegir ahora mismo.
+    const valoresElegibles = grupoCantidad.valores.filter(
+      (v) => !grupoCantidad.valoresNoDisponibles?.includes(v)
+    )
+    if (valoresElegibles.length === 0) return null
+    const unitarios = valoresElegibles.map((v) => {
       const cant = Number(v)
       const p = producto.calcularPrecio({ ...opciones, cantidad: v })
       return { valor: v, unitario: cant > 0 ? p / cant : Infinity }
@@ -112,8 +132,12 @@ export default function ProductoClient({ slug }: { slug: string }) {
     return d.toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long' })
   }, [montado, producto.tiempoEntrega])
 
-  const handleOpcion = (grupoId: string, valor: string) =>
+  const handleOpcion = (grupoId: string, valor: string, grupo: (typeof producto.opcionGrupos)[number]) => {
+    // Defensa adicional además del `disabled` del botón: nunca seleccionar
+    // en el estado de React un valor marcado como no disponible.
+    if (grupo.valoresNoDisponibles?.includes(valor)) return
     setOpciones((prev) => ({ ...prev, [grupoId]: valor }))
+  }
 
   /** Mide una imagen en el navegador. Devuelve null si el formato no se puede
    *  decodificar (PDF, AI, EPS, y también TIFF, que Chrome no abre). */
@@ -245,7 +269,10 @@ export default function ProductoClient({ slug }: { slug: string }) {
           <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">{producto.nombre}</h1>
           <p className="text-gray-600 mt-2 leading-relaxed">{producto.descripcion}</p>
 
-          {/* Fecha concreta de retiro: responde "¿cuándo lo tengo?" sin hacer cuentas */}
+          {/* Fecha concreta de retiro: responde "¿cuándo lo tengo?" sin hacer cuentas.
+              "Retiro estimado" en vez de una promesa fija ("Listo para retirar el..."):
+              el plazo real depende de que el pago se confirme y de que el archivo
+              recibido esté apto para imprimir, así que no es una fecha garantizada. */}
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
             <span className="flex items-center gap-1.5 text-gray-600">
               <svg className="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -253,7 +280,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
               </svg>
               {fechaRetiro ? (
                 <span>
-                  Listo para retirar el <strong className="text-gray-900">{fechaRetiro}</strong>
+                  Retiro estimado: <strong className="text-gray-900">{fechaRetiro}</strong>
                 </span>
               ) : (
                 <span>
@@ -262,6 +289,9 @@ export default function ProductoClient({ slug }: { slug: string }) {
               )}
             </span>
           </div>
+          <p className="mt-1 text-xs text-gray-400">
+            Cuenta desde que confirmamos tu pago y recibimos un archivo apto para imprimir — si aún no tienes el archivo, el plazo parte cuando nos lo envíes.
+          </p>
 
           {/* Selectores de opciones */}
           <div className="mt-6 space-y-5">
@@ -279,20 +309,32 @@ export default function ProductoClient({ slug }: { slug: string }) {
                   {grupo.valores.map((valor) => {
                     const activo = opciones[grupo.id] === valor
                     const esMejor = grupo.id === 'cantidad' && mejorCantidad === valor
+                    // No disponible si el producto entero está pausado, o si
+                    // justo este valor puntual (ej. un tamaño) está agotado.
+                    const noDisponible = !productoDisponible || !!grupo.valoresNoDisponibles?.includes(valor)
                     return (
                       <button
                         key={valor}
                         type="button"
-                        onClick={() => handleOpcion(grupo.id, valor)}
+                        onClick={() => handleOpcion(grupo.id, valor, grupo)}
+                        disabled={noDisponible}
                         aria-pressed={activo}
+                        aria-disabled={noDisponible}
                         className={`relative min-h-[48px] px-4 py-3 rounded-xl border text-sm font-medium transition-all ${
-                          activo
+                          noDisponible
+                            ? 'bg-gray-50 text-gray-400 border-gray-200 cursor-not-allowed line-through'
+                            : activo
                             ? 'bg-[#2D3E9F] text-white border-[#2D3E9F] shadow-sm'
                             : 'bg-white text-gray-700 border-gray-200 hover:border-[#2D3E9F] hover:text-[#2D3E9F]'
-                        } ${esMejor && !activo ? 'border-[#E91E8F]/40' : ''}`}
+                        } ${esMejor && !activo && !noDisponible ? 'border-[#E91E8F]/40' : ''}`}
                       >
                         {valor}
-                        {esMejor && (
+                        {noDisponible && (
+                          <span className="absolute -top-2 -right-1 bg-gray-400 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm no-underline">
+                            agotado
+                          </span>
+                        )}
+                        {esMejor && !noDisponible && (
                           <span className="absolute -top-2 -right-1 bg-[#E91E8F] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm">
                             mejor precio
                           </span>
@@ -322,7 +364,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
           </div>
 
           {/* Subida de archivo */}
-          {TIENDA_COMPRA_HABILITADA && (
+          {TIENDA_COMPRA_HABILITADA && productoDisponible && (
             <div className="mt-5" ref={zonaArchivoRef}>
               <p className="text-sm font-semibold text-gray-700 mb-1">
                 Tu diseño{' '}
@@ -432,7 +474,26 @@ export default function ProductoClient({ slug }: { slug: string }) {
           )}
 
           {/* CTA escritorio */}
-          {TIENDA_COMPRA_HABILITADA ? (
+          {!TIENDA_COMPRA_HABILITADA ? (
+            <div className="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4 text-center">
+              <p className="text-sm font-semibold text-gray-500">Compra en preparación</p>
+              <p className="text-xs text-gray-500 mt-1">
+                Estamos revisando precios y variantes. Por ahora puedes explorar el catálogo; muy
+                pronto podrás comprar directamente aquí.
+              </p>
+            </div>
+          ) : !productoDisponible ? (
+            <div className="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4 text-center">
+              <p className="text-sm font-semibold text-gray-500">Producto no disponible</p>
+              <p className="text-xs text-gray-500 mt-1">
+                Este producto no está disponible por el momento.{' '}
+                <a href={WA_DISENO} className="underline font-medium" target="_blank" rel="noopener noreferrer">
+                  Escríbenos por WhatsApp
+                </a>{' '}
+                si necesitas algo similar.
+              </p>
+            </div>
+          ) : (
             <button
               type="button"
               onClick={handleAgregarAlCarrito}
@@ -445,14 +506,6 @@ export default function ProductoClient({ slug }: { slug: string }) {
             >
               {textoCta}
             </button>
-          ) : (
-            <div className="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4 text-center">
-              <p className="text-sm font-semibold text-gray-500">Compra en preparación</p>
-              <p className="text-xs text-gray-500 mt-1">
-                Estamos revisando precios y variantes. Por ahora puedes explorar el catálogo; muy
-                pronto podrás comprar directamente aquí.
-              </p>
-            </div>
           )}
 
           {/* Señales de confianza */}
@@ -494,7 +547,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
       </div>
 
       {/* Barra fija en móvil: precio + CTA siempre a la vista */}
-      {TIENDA_COMPRA_HABILITADA && (
+      {TIENDA_COMPRA_HABILITADA && productoDisponible && (
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
           <div className="flex items-center gap-3">
             <div className="shrink-0">

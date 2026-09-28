@@ -2,6 +2,14 @@ export interface OpcionGrupo {
   id: string
   nombre: string
   valores: string[]
+  /**
+   * Valores de ESTE grupo temporalmente no disponibles (ej. el tamaño "8 cm"
+   * de un sticker, agotado por un tiempo). Deben ser un subconjunto de
+   * `valores` — no se quita nada de `valores`, solo se marca como no
+   * elegible por ahora. Opcional: si no se define, todos los valores del
+   * grupo están disponibles (comportamiento actual, sin cambios).
+   */
+  valoresNoDisponibles?: string[]
 }
 
 export interface Dimensiones {
@@ -22,6 +30,13 @@ export interface Producto {
   calcularPrecio: (opciones: Record<string, string>) => number
   /** Tamaño físico impreso según las opciones elegidas. */
   dimensiones: (opciones: Record<string, string>) => Dimensiones
+  /**
+   * Producto completo temporalmente no disponible (ej. pausado hasta
+   * reponer materia prima). Opcional: si no está definido, se asume
+   * disponible (`true`) — ningún producto existente necesita tocarse para
+   * seguir vendiéndose exactamente igual que hoy.
+   */
+  disponible?: boolean
 }
 
 /** "150 x 200 cm" o "A5 (14,8 x 21 cm)" -> { anchoCm, altoCm } */
@@ -230,6 +245,16 @@ export function getProducto(slug: string): Producto | undefined {
   return PRODUCTOS.find((p) => p.slug === slug)
 }
 
+/** Primer valor de un grupo de opciones que SÍ está disponible. Sirve para
+ *  elegir la selección inicial en la ficha del producto sin caer en un valor
+ *  marcado como no disponible. Si por algún motivo todos los valores de un
+ *  grupo quedaran marcados no disponibles, devuelve igual el primero (mejor
+ *  mostrar algo seleccionado, aunque haya que corregir el catálogo, que
+ *  romper la página). */
+export function primerValorDisponible(grupo: OpcionGrupo): string {
+  return grupo.valores.find((v) => !grupo.valoresNoDisponibles?.includes(v)) ?? grupo.valores[0]
+}
+
 // ---------------------------------------------------------------------------
 // Cálculo de precio en el SERVIDOR.
 // Regla de oro: el precio que llega desde el navegador NO se usa nunca para
@@ -246,6 +271,13 @@ export function precioServidor(slug: unknown, opciones: unknown): PrecioServidor
   const producto = getProducto(slug)
   if (!producto) return { ok: false, error: 'Producto no disponible en la tienda.' }
 
+  // Disponibilidad se valida ACÁ, del lado del servidor — nunca confiando en
+  // lo que el navegador diga. Es la misma regla de oro que ya rige el precio:
+  // lo que decide el navegador no sirve para cobrar ni para aceptar un pedido.
+  if (producto.disponible === false) {
+    return { ok: false, error: `${producto.nombre} no está disponible por el momento.` }
+  }
+
   const entrada = (opciones ?? {}) as Record<string, unknown>
   const limpias: Record<string, string> = {}
 
@@ -253,6 +285,12 @@ export function precioServidor(slug: unknown, opciones: unknown): PrecioServidor
     const valor = entrada[grupo.id]
     if (typeof valor !== 'string' || !grupo.valores.includes(valor)) {
       return { ok: false, error: `Opción inválida en "${grupo.nombre}" para ${producto.nombre}.` }
+    }
+    if (grupo.valoresNoDisponibles?.includes(valor)) {
+      return {
+        ok: false,
+        error: `"${valor}" no está disponible actualmente para ${grupo.nombre} en ${producto.nombre}.`,
+      }
     }
     limpias[grupo.id] = valor
   }

@@ -121,7 +121,7 @@ export default function EmpresasClientes() {
             <span className="text-[#E91E8F]">confían en nosotros</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto text-sm">
-            Más de 35 años trabajando con empresas, instituciones y negocios de la región
+            Trabajando con empresas, instituciones y negocios de la región desde 1989
           </p>
         </Reveal>
       </div>

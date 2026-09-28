@@ -128,7 +128,7 @@ export default function PaginaServicio(p: ServicioPageProps) {
           {/* Confianza */}
           <div className="bg-[#F6F8FC] border border-gray-100 rounded-2xl p-6 mb-12 flex flex-wrap gap-x-8 gap-y-3">
             {[
-              { n: "35", label: "años en Chillán" },
+              { n: "1989", label: "año de fundación" },
               { n: "<24h", label: "tiempo de respuesta" },
               { n: "100%", label: "impresión local" },
             ].map(({ n, label }) => (

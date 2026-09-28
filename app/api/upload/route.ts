@@ -1,10 +1,27 @@
 import { put } from '@vercel/blob'
 import { NextRequest } from 'next/server'
+import { obtenerIp, verificarLimite, registrarSolicitud, respuestaLimiteExcedido } from '@/lib/publicRateLimit'
 
 const MAX_SIZE = 50 * 1024 * 1024 // 50 MB
 
 export async function POST(req: NextRequest) {
-  const formData = await req.formData()
+  const ip = obtenerIp(req)
+  const limite = await verificarLimite(ip, 'upload')
+  if (limite.excedido) return respuestaLimiteExcedido(limite.segundosRestantes)
+
+  // Hallazgo incidental al tocar este archivo para el rate limit: si la
+  // solicitud no trae Content-Type multipart/form-data (un formulario roto,
+  // un bot, alguien probando el endpoint a mano), req.formData() lanzaba una
+  // excepción no capturada y el framework respondía 500 con detalle del
+  // error interno en vez de un 400 normal. Se corrige acá mismo porque es de
+  // una línea y es exactamente el mismo tipo de endurecimiento del endpoint
+  // que motiva este bloque.
+  let formData: FormData
+  try {
+    formData = await req.formData()
+  } catch {
+    return Response.json({ error: 'Solicitud inválida.' }, { status: 400 })
+  }
   const file = formData.get('file') as File | null
 
   if (!file) {
@@ -30,6 +47,7 @@ export async function POST(req: NextRequest) {
     // publico (cualquiera con la URL puede bajar el archivo), asi que esto evita
     // que alguien adivine la direccion del diseno de otro cliente probando nombres.
     const blob = await put(nombreBlob, file, { access: 'public', addRandomSuffix: true })
+    await registrarSolicitud(ip, 'upload')
     return Response.json({ url: blob.url, nombre: file.name })
   } catch (err) {
     console.error('[upload]', err)

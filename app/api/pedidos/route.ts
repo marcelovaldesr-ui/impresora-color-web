@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import { precioServidor } from '@/lib/productos'
 import { NextRequest } from 'next/server'
+import { obtenerIp, verificarLimite, registrarSolicitud, respuestaLimiteExcedido } from '@/lib/publicRateLimit'
 
 const MAX_ITEMS = 10
 
@@ -42,6 +43,10 @@ function urlArchivoValida(v: unknown): string | null {
 }
 
 export async function POST(req: NextRequest) {
+  const ip = obtenerIp(req)
+  const limite = await verificarLimite(ip, 'pedidos')
+  if (limite.excedido) return respuestaLimiteExcedido(limite.segundosRestantes)
+
   let body: Record<string, unknown>
   try {
     body = await req.json()
@@ -109,6 +114,7 @@ export async function POST(req: NextRequest) {
     const { error } = await supabase.from('pedidos').insert(filas)
 
     if (!error) {
+      await registrarSolicitud(ip, 'pedidos')
       return Response.json({ grupoOrden: grupo_orden, total, items: validados.length })
     }
     if (error.code !== '23505') {

@@ -139,18 +139,37 @@ export default function TerminosPage() {
         </p>
       </Seccion>
 
-      <Seccion n={9} titulo="Garantía por trabajos defectuosos">
+      <Seccion n={9} titulo="Garantía legal y atención rápida ante defectos">
+        <Destacado>
+          Tienes <strong>derecho a garantía legal</strong> conforme a los artículos 19, 20 y 21 de la
+          Ley N° 19.496 sobre Protección de los Derechos de los Consumidores (modificada por la Ley
+          N° 21.398, vigente desde marzo de 2022). Si tu pedido presenta un defecto de fabricación, no
+          es apto para el uso al que está destinado, o no corresponde a lo que compraste, tienes{' '}
+          <strong>6 meses desde que retiras el pedido</strong> para elegir, a tu criterio, entre:
+        </Destacado>
+        <ul className="list-disc pl-5 space-y-1.5">
+          <li><strong>Reparación</strong> gratuita (en nuestro caso, reimpresión).</li>
+          <li><strong>Cambio</strong> por un producto de las mismas características.</li>
+          <li><strong>Devolución</strong> del dinero pagado.</li>
+        </ul>
         <p>
-          Si el trabajo presenta un defecto <strong>imputable a nosotros</strong> —error de
-          impresión, mal corte, color notoriamente distinto al archivo entregado, material dañado o
-          cantidad incompleta— <strong>lo reimprimimos sin costo</strong>.
+          La elección es tuya, no nuestra: no podemos imponerte una alternativa distinta a la que
+          prefieras de estas tres. Para ejercerla basta que nos escribas por WhatsApp o email con tu
+          número de orden y una descripción o foto del problema; podemos pedirte el producto
+          observado para evaluarlo.
         </p>
         <p>
-          Para hacerlo válido, avísanos dentro de los <strong>7 días corridos</strong> siguientes al
-          retiro, con tu número de orden y una foto del problema. Es posible que te pidamos devolver
-          el material observado.
+          Además de la garantía legal, si nos informas dentro de los <strong>7 días corridos</strong>{' '}
+          siguientes al retiro sobre un posible defecto imputable a Impresora Color, priorizaremos su
+          revisión y, cuando corresponda, la reimpresión sin costo. Esta política de atención rápida
+          es <strong>adicional y no limita ni reemplaza</strong> los derechos que otorga la garantía
+          legal: pasado ese plazo rápido, tus 6 meses de garantía legal siguen disponibles igual.
         </p>
-        <p className="font-medium text-gray-800">La garantía no cubre:</p>
+        <p className="font-medium text-gray-800">
+          Esto cubre defectos imputables a nosotros: error de impresión, mal corte, color
+          notoriamente distinto al archivo entregado, material dañado o cantidad incompleta. No
+          cubre resultados derivados del archivo que tú mismo entregaste y aprobaste, entre ellos:
+        </p>
         <ul className="list-disc pl-5 space-y-1.5">
           <li>Errores presentes en el archivo entregado por el cliente (textos, datos, ortografía).</li>
           <li>Baja resolución o mala calidad del archivo original.</li>
@@ -161,6 +180,10 @@ export default function TerminosPage() {
           <li>Diferencias menores de corte dentro de las tolerancias propias de la industria gráfica.</li>
           <li>Daños ocurridos después del retiro del pedido.</li>
         </ul>
+        <p>
+          Nada de esto limita los derechos que la ley te reconoce de forma irrenunciable como
+          consumidor.
+        </p>
       </Seccion>
 
       <Seccion n={10} titulo="Cancelación de un pedido">

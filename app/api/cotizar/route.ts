@@ -1,5 +1,7 @@
 import { Resend } from "resend";
 import { NextRequest } from "next/server";
+import { escapeHtml } from "@/lib/escapeHtml";
+import { obtenerIp, verificarLimite, registrarSolicitud, respuestaLimiteExcedido } from "@/lib/publicRateLimit";
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
@@ -15,6 +17,14 @@ export async function OPTIONS() {
 }
 
 export async function POST(request: NextRequest) {
+  const ip = obtenerIp(request);
+  const limite = await verificarLimite(ip, "cotizar");
+  if (limite.excedido) {
+    const res = respuestaLimiteExcedido(limite.segundosRestantes);
+    Object.entries(CORS_HEADERS).forEach(([k, v]) => res.headers.set(k, v));
+    return res;
+  }
+
   const { nombre, telefono, email, producto, cantidadTamano, mensaje } =
     await request.json();
 
@@ -22,33 +32,46 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Faltan campos obligatorios." }, { status: 400, headers: CORS_HEADERS });
   }
 
+  await registrarSolicitud(ip, "cotizar");
+
   const resend = new Resend(process.env.RESEND_API_KEY);
+
+  // Todo lo que viene del formulario se escapa antes de insertarse en el
+  // HTML del correo. Las variables RAW (nombre, email, producto, etc.) se
+  // guardan sin tocar para usos que NO son HTML: el asunto del correo y el
+  // replyTo, donde escapar de más rompería la dirección o se vería mal.
+  const nombreHtml = escapeHtml(nombre);
+  const telefonoHtml = escapeHtml(telefono);
+  const emailHtml = escapeHtml(email);
+  const productoHtml = escapeHtml(producto);
+  const cantidadTamanoHtml = escapeHtml(cantidadTamano) || "—";
+  const mensajeHtml = escapeHtml(mensaje) || "—";
 
   const tablaHTML = `
     <table style="width: 100%; border-collapse: collapse;">
       <tr>
         <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #555; width: 40%;">Nombre</td>
-        <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${nombre}</td>
+        <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${nombreHtml}</td>
       </tr>
       <tr>
         <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #555;">Teléfono</td>
-        <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${telefono}</td>
+        <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${telefonoHtml}</td>
       </tr>
       <tr>
         <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #555;">Email</td>
-        <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${email}</td>
+        <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${emailHtml}</td>
       </tr>
       <tr>
         <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #555;">Producto</td>
-        <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${producto}</td>
+        <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${productoHtml}</td>
       </tr>
       <tr>
         <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #555;">Cantidad / Tamaño</td>
-        <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${cantidadTamano || "—"}</td>
+        <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #222;">${cantidadTamanoHtml}</td>
       </tr>
       <tr>
         <td style="padding: 10px 0; font-weight: bold; color: #555; vertical-align: top;">Mensaje adicional</td>
-        <td style="padding: 10px 0; color: #222; white-space: pre-wrap;">${mensaje || "—"}</td>
+        <td style="padding: 10px 0; color: #222; white-space: pre-wrap;">${mensajeHtml}</td>
       </tr>
     </table>
   `;
@@ -97,9 +120,9 @@ export async function POST(request: NextRequest) {
             <h1 style="color: white; margin: 0; font-size: 20px;">¡Recibimos tu cotización!</h1>
           </div>
           <div style="background: #f9f9f9; padding: 24px; border: 1px solid #e0e0e0; border-top: none; border-radius: 0 0 8px 8px;">
-            <p style="color: #333; font-size: 15px; margin-top: 0;">Hola <strong>${nombre}</strong>,</p>
+            <p style="color: #333; font-size: 15px; margin-top: 0;">Hola <strong>${nombreHtml}</strong>,</p>
             <p style="color: #555; font-size: 14px; line-height: 1.6;">
-              Recibimos tu solicitud de cotización para <strong>${producto}</strong>.
+              Recibimos tu solicitud de cotización para <strong>${productoHtml}</strong>.
               Te contactaremos en menos de 24 horas por teléfono o email.
             </p>
             <div style="background: #fff; border-radius: 8px; border: 1px solid #e0e0e0; padding: 16px; margin: 20px 0;">

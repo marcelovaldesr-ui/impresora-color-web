@@ -39,14 +39,17 @@ export default function Hero() {
       {/* Crop marks — esquina inferior derecha */}
       <CropMark className="absolute bottom-16 right-4 text-[#2D3E9F]/20 rotate-180" />
 
-      {/* "35" como marca de agua tipográfica con parallax */}
+      {/* "89" (de 1989, año de fundación) como marca de agua tipográfica con
+          parallax. Antes decía "35" (años) — esa cifra quedaba vieja cada
+          año; el año de fundación no cambia nunca. Se deja en 2 dígitos
+          a propósito, para no alterar el tamaño/kerning pensado para "35". */}
       <Parallax
         ariaHidden
         speed={0.22}
         className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none hidden lg:block"
       >
         <span className="block text-[22rem] font-black text-[#2D3E9F]/[0.04] leading-none animate-[float-y_7s_ease-in-out_infinite]">
-          35
+          89
         </span>
       </Parallax>
 
@@ -104,7 +107,7 @@ export default function Hero() {
           {/* Trust strip — 3 datos concretos, sin repetición */}
           <div className="flex flex-wrap gap-x-6 gap-y-2 opacity-0 animate-[fade-in-up_0.7s_ease-out_0.45s_both]">
             {[
-              { n: "35", label: "años en Chillán" },
+              { n: "1989", label: "año de fundación" },
               { n: "<24h", label: "tiempo de respuesta" },
               { n: "100%", label: "impresión local" },
             ].map(({ n, label }) => (
