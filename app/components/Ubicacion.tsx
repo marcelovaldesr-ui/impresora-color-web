@@ -1,3 +1,5 @@
+import { INSTAGRAM_URL, INSTAGRAM_USUARIO } from "@/lib/redes";
+
 // EDITABLE: Cambia dirección, enlace de Maps y WhatsApp aquí
 // ⚠️  Link exacto de Google Maps para Impresora Color Ltda. (NO cambiar a búsqueda genérica)
 const MAPS_URL =
@@ -134,12 +136,12 @@ export default function Ubicacion() {
                 <p className="text-[#2D3E9F] font-black text-sm">Síguenos en Instagram</p>
                 {/* EDITABLE: Cambia el usuario de Instagram aquí */}
                 <a
-                  href="https://www.instagram.com/impresoracolorchillan"
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#E91E8F] text-sm font-semibold hover:underline"
                 >
-                  @impresoracolorchillan
+                  {INSTAGRAM_USUARIO}
                 </a>
               </div>
             </div>

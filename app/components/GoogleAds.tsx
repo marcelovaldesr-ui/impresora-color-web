@@ -112,6 +112,14 @@ export default function GoogleAds() {
         'a[href*="wa.me"], a[href*="api.whatsapp.com"]'
       );
       if (link) trackConversion(CONV_WHATSAPP);
+      // Clic hacia Instagram: evento simple (NO es conversión de Ads),
+      // para medir cuánta gente de la web pasa al perfil.
+      if (
+        target?.closest?.('a[href*="instagram.com"]') &&
+        typeof window.gtag === "function"
+      ) {
+        window.gtag("event", "clic_instagram");
+      }
     }
     // Fase de captura: se dispara aunque el enlace abra en pestaña nueva
     document.addEventListener("click", onClick, true);

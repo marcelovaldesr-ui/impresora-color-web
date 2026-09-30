@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { NAV_SERVICIOS } from "@/lib/servicios-nav";
+import { INSTAGRAM_URL, INSTAGRAM_USUARIO } from "@/lib/redes";
+import InstagramIcon from "./InstagramIcon";
 
 // EDITABLE: Cambia los enlaces si cambia el número o redes
 const WHATSAPP_URL =
@@ -154,6 +156,16 @@ export default function Navbar() {
 
         {/* CTAs escritorio */}
         <div className="hidden md:flex items-center gap-3">
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Instagram ${INSTAGRAM_USUARIO}`}
+            title={`Síguenos en Instagram ${INSTAGRAM_USUARIO}`}
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-[#E91E8F] hover:bg-[#E91E8F] hover:border-[#E91E8F] hover:text-white transition-colors"
+          >
+            <InstagramIcon className="w-[18px] h-[18px] fill-current" />
+          </a>
           <Link
             href="/#cotizar"
             className="flex items-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25"
@@ -254,6 +266,15 @@ export default function Navbar() {
             >
               <WhatsAppIcon />
               WhatsApp
+            </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-white border border-gray-200 text-gray-700 font-bold py-3.5 rounded-full text-sm"
+            >
+              <InstagramIcon className="w-4 h-4 fill-[#E91E8F] shrink-0" />
+              Instagram {INSTAGRAM_USUARIO}
             </a>
           </div>
         </div>

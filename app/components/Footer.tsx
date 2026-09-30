@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { INSTAGRAM_URL, INSTAGRAM_USUARIO } from "@/lib/redes";
 
 // EDITABLE: Cambia dirección, teléfono, Instagram y links aquí
 const INFO = {
@@ -6,8 +7,8 @@ const INFO = {
   direccion:    "Arauco 1060, Chillán, Chile",
   whatsapp:     "+56 9 9844 1157",
   waUrl:        "https://wa.me/56998441157?text=Hola%2C%20quiero%20cotizar%20un%20trabajo%20de%20imprenta",
-  instagram:    "@impresoracolorchillan",
-  instagramUrl: "https://www.instagram.com/impresoracolorchillan",
+  instagram:    INSTAGRAM_USUARIO,
+  instagramUrl: INSTAGRAM_URL,
   // EDITABLE: Link exacto de Google Maps (NO cambiar a búsqueda genérica)
   mapsUrl:
     "https://www.google.com/maps/place/Impresora+Color+Ltda./@-36.6124899,-72.1037117,13z/data=!4m6!3m5!1s0x9669282ecbefa02d:0xd52cfa17b8d7d88d!8m2!3d-36.6130779!4d-72.1051356!16s%2Fg%2F12lvg43y1?hl=es&entry=ttu&g_ep=EgoyMDI2MDQyNi4wIKXMDSoASAFQAw%3D%3D",

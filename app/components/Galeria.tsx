@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { INSTAGRAM_URL, INSTAGRAM_USUARIO } from "@/lib/redes";
+import InstagramIcon from "./InstagramIcon";
 
 const PHONE = "56998441157";
 function waLink(msg: string) {
@@ -233,6 +235,31 @@ export default function Galeria() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Instagram: trabajos recientes y el día a día del taller */}
+        <div className="mt-12 bg-gradient-to-r from-[#E91E8F]/10 via-[#F5C51B]/10 to-[#47B7E8]/10 border border-[#E91E8F]/20 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+          <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm shrink-0">
+            <InstagramIcon className="w-7 h-7 fill-[#E91E8F]" />
+          </div>
+          <div className="flex-1">
+            <p className="text-[#2D3E9F] font-black text-lg leading-tight">
+              Mira lo que estamos imprimiendo esta semana
+            </p>
+            <p className="text-gray-500 text-sm mt-1">
+              Trabajos recientes, detrás de escena del taller e ideas para tu negocio en{" "}
+              <span className="font-semibold text-[#E91E8F]">{INSTAGRAM_USUARIO}</span>.
+            </p>
+          </div>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold px-6 py-3 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25 shrink-0"
+          >
+            <InstagramIcon className="w-4 h-4 fill-current" />
+            Seguir en Instagram
+          </a>
         </div>
       </div>
     </section>
