@@ -12,6 +12,7 @@ import {
   evaluarResolucion,
   primerValorDisponible,
   type Resolucion,
+  type Producto,
 } from '@/lib/productos'
 import { TIENDA_COMPRA_HABILITADA } from '@/lib/config'
 import { trackEcommerce } from '@/app/components/GoogleAds'
@@ -45,8 +46,19 @@ function diasMaximos(texto: string): number {
   return Math.max(...nums.map(Number))
 }
 
-export default function ProductoClient({ slug }: { slug: string }) {
-  const producto = getProducto(slug)!
+export default function ProductoClient({
+  slug,
+  producto: productoProp,
+  soloVista = false,
+}: {
+  slug: string
+  /** Producto ya resuelto (lo usa la vista previa privada del catálogo v2). */
+  producto?: Producto
+  /** Vista previa: se ve y se calcula el precio, pero no se puede comprar. */
+  soloVista?: boolean
+}) {
+  const producto = productoProp ?? getProducto(slug)!
+  const compraHabilitada = TIENDA_COMPRA_HABILITADA && !soloVista
   // Producto completo pausado (ej. sin materia prima). Ver BLOQUE 11: campo
   // opcional, `undefined` se trata igual que `true` — ningún producto
   // existente cambia de comportamiento por este chequeo.
@@ -71,6 +83,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
   // view_item: una sola vez por producto, no en cada cambio de opción —
   // si no, alguien que prueba cinco combinaciones contaría cinco vistas.
   useEffect(() => {
+    if (soloVista) return // la vista previa no ensucia las métricas
     trackEcommerce('view_item', {
       valor: producto.calcularPrecio(
         Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, g.valores[0]]))
@@ -252,7 +265,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
     <div className="max-w-5xl mx-auto px-4 py-8 md:py-10 pb-32 md:pb-10">
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 mb-5 flex items-center gap-2">
-        <Link href="/tienda" className="hover:text-[#2D3E9F] transition-colors">
+        <Link href={soloVista ? '/tienda/catalogo-v2' : '/tienda'} className="hover:text-[#2D3E9F] transition-colors">
           Tienda
         </Link>
         <span>/</span>
@@ -372,7 +385,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
           </div>
 
           {/* Subida de archivo */}
-          {TIENDA_COMPRA_HABILITADA && productoDisponible && (
+          {compraHabilitada && productoDisponible && (
             <div className="mt-5" ref={zonaArchivoRef}>
               <p className="text-sm font-semibold text-gray-700 mb-1">
                 Tu diseño{' '}
@@ -483,12 +496,15 @@ export default function ProductoClient({ slug }: { slug: string }) {
           )}
 
           {/* CTA escritorio */}
-          {!TIENDA_COMPRA_HABILITADA ? (
+          {!compraHabilitada ? (
             <div className="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4 text-center">
-              <p className="text-sm font-semibold text-gray-500">Compra en preparación</p>
+              <p className="text-sm font-semibold text-gray-500">
+                {soloVista ? 'Vista previa — no se puede comprar' : 'Compra en preparación'}
+              </p>
               <p className="text-xs text-gray-500 mt-1">
-                Estamos revisando precios y variantes. Por ahora puedes explorar el catálogo; muy
-                pronto podrás comprar directamente aquí.
+                {soloVista
+                  ? 'Este producto pertenece al catálogo en revisión. Puedes probar las opciones y ver el precio.'
+                  : 'Estamos revisando precios y variantes. Por ahora puedes explorar el catálogo; muy pronto podrás comprar directamente aquí.'}
               </p>
             </div>
           ) : !productoDisponible ? (
@@ -556,7 +572,7 @@ export default function ProductoClient({ slug }: { slug: string }) {
       </div>
 
       {/* Barra fija en móvil: precio + CTA siempre a la vista */}
-      {TIENDA_COMPRA_HABILITADA && productoDisponible && (
+      {compraHabilitada && productoDisponible && (
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
           <div className="flex items-center gap-3">
             <div className="shrink-0">
