@@ -34,6 +34,7 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
   const [filtro, setFiltro] = useState<Filtro>('todos')
   const [actualizando, setActualizando] = useState<string | null>(null)
   const [reconciliando, setReconciliando] = useState<string | null>(null)
+  const [avisoListo, setAvisoListo] = useState<{ id: string; ok: boolean } | null>(null)
   const [mensajeReconciliacion, setMensajeReconciliacion] = useState<{ id: string; texto: string; error?: boolean } | null>(null)
 
   const reconciliarFlow = async (pedido: Pedido) => {
@@ -97,9 +98,11 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
     })
 
     if (res.ok) {
+      const data = await res.json().catch(() => ({}))
       setPedidos((prev) =>
         prev.map((p) => (p.id === pedido.id ? { ...p, estado: nuevoEstado } : p))
       )
+      if (data.aviso) setAvisoListo({ id: pedido.id, ok: data.aviso === 'enviado' })
     }
     setActualizando(null)
   }
@@ -260,6 +263,20 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
                     )
                   )}
 
+                  {pedido.estado === 'listo' && (
+                    <a
+                      href={waLink(
+                        pedido.cliente_telefono,
+                        `Hola ${pedido.cliente_nombre}, somos Impresora Color. Tu pedido ${pedido.numero_orden} (${pedido.producto_nombre}) ya está listo para retirar en Arauco 1060, Chillán, de lunes a viernes de 9:00 a 18:00. ¡Te esperamos!`
+                      )}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1.5 rounded-full transition-colors"
+                    >
+                      Avisar por WhatsApp
+                    </a>
+                  )}
+
                   {puedeAvanzar && (
                     <button
                       type="button"
@@ -284,6 +301,20 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
                   )}
                 </div>
               </div>
+
+              {avisoListo && avisoListo.id === pedido.id && (
+                <div
+                  className={`mt-3 text-xs p-2.5 rounded-xl ${
+                    avisoListo.ok
+                      ? 'bg-green-50 text-green-800 border border-green-200'
+                      : 'bg-red-50 text-red-700 border border-red-200'
+                  }`}
+                >
+                  {avisoListo.ok
+                    ? `Correo de "pedido listo" enviado a ${pedido.cliente_email}.`
+                    : 'El pedido quedó en Listo, pero NO se pudo enviar el correo al cliente. Avísale por WhatsApp.'}
+                </div>
+              )}
 
               {mensajeReconciliacion && mensajeReconciliacion.id === pedido.id && (
                 <div
