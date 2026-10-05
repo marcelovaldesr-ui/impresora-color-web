@@ -40,7 +40,7 @@ export async function avisarListoPorWhatsapp(p: PedidoParaWhatsapp): Promise<Res
   const cuerpo = JSON.stringify({
     evento: 'pedido_listo',
     // Misma clave siempre para el mismo pedido: el bot puede descartar repetidos.
-    idempotency_key: `pedido_listo:${p.id}`,
+    idempotency_key: `pedido_listo:${p.id}`, // p.id = número de orden del grupo,
     telefono,
     nombre: p.cliente_nombre,
     numero_orden: p.numero_orden,

@@ -34,7 +34,7 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
   const [filtro, setFiltro] = useState<Filtro>('todos')
   const [actualizando, setActualizando] = useState<string | null>(null)
   const [reconciliando, setReconciliando] = useState<string | null>(null)
-  const [avisoListo, setAvisoListo] = useState<{ id: string; email: string | null; whatsapp: string | null } | null>(null)
+  const [avisoListo, setAvisoListo] = useState<{ id: string; email: string | null; whatsapp: string | null; pendientes: number } | null>(null)
   const [mensajeReconciliacion, setMensajeReconciliacion] = useState<{ id: string; texto: string; error?: boolean } | null>(null)
 
   const reconciliarFlow = async (pedido: Pedido) => {
@@ -102,7 +102,7 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
       setPedidos((prev) =>
         prev.map((p) => (p.id === pedido.id ? { ...p, estado: nuevoEstado } : p))
       )
-      if (data.aviso) setAvisoListo({ id: pedido.id, email: data.aviso.email, whatsapp: data.aviso.whatsapp })
+      if (data.aviso) setAvisoListo({ id: pedido.id, email: data.aviso.email, whatsapp: data.aviso.whatsapp, pendientes: data.aviso.pendientes ?? 0 })
     }
     setActualizando(null)
   }
@@ -305,11 +305,21 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
               {avisoListo && avisoListo.id === pedido.id && (
                 <div
                   className={`mt-3 text-xs p-2.5 rounded-xl space-y-0.5 ${
-                    avisoListo.email === 'enviado' || avisoListo.whatsapp === 'enviado'
+                    avisoListo.pendientes > 0
+                      ? 'bg-blue-50 text-blue-800 border border-blue-200'
+                      : avisoListo.email === 'enviado' || avisoListo.whatsapp === 'enviado'
                       ? 'bg-green-50 text-green-800 border border-green-200'
                       : 'bg-red-50 text-red-700 border border-red-200'
                   }`}
                 >
+                  {avisoListo.pendientes > 0 && (
+                    <p>
+                      Este carrito tiene {avisoListo.pendientes} producto(s) más sin terminar: el aviso al
+                      cliente saldrá cuando el último quede Listo.
+                    </p>
+                  )}
+                  {avisoListo.pendientes === 0 && (
+                    <>
                   <p>
                     {avisoListo.email === 'enviado'
                       ? `Correo enviado a ${pedido.cliente_email}.`
@@ -322,6 +332,8 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
                         ? 'WhatsApp automático sin configurar: usa el botón verde.'
                         : 'No se pudo enviar el WhatsApp: usa el botón verde.'}
                   </p>
+                    </>
+                  )}
                 </div>
               )}
 
