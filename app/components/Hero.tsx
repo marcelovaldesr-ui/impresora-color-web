@@ -133,7 +133,7 @@ export default function Hero() {
 
           <TiltCard maxTilt={3.5} className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#2D3E9F]/10">
             <Image
-              src="/brand/banner-hero-categorias.png"
+              src="/brand/banner-hero-categorias-v2.png"
               alt="Servicios de Impresora Color Ltda en Chillán: pendones, etiquetas, stickers, flyers, tarjetas, credenciales y más"
               width={1672}
               height={941}
