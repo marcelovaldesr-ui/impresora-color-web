@@ -34,6 +34,9 @@ export default function PaginaLegal({
             <Link href="/privacidad" className="text-[#2D3E9F] hover:underline font-medium">
               Política de Privacidad
             </Link>
+            <Link href="/devoluciones" className="text-[#2D3E9F] hover:underline font-medium">
+              Devoluciones y Reposición
+            </Link>
             <a
               href="https://wa.me/56998441157"
               target="_blank"

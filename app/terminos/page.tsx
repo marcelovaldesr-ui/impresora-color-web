@@ -188,6 +188,13 @@ export default function TerminosPage() {
           Nada de esto limita los derechos que la ley te reconoce de forma irrenunciable como
           consumidor.
         </p>
+        <p>
+          El detalle del procedimiento de revisión está en nuestra{' '}
+          <Link href="/devoluciones" className="text-[#2D3E9F] hover:underline font-medium">
+            Política de Devolución y Reposición
+          </Link>
+          .
+        </p>
       </Seccion>
 
       <Seccion n={10} titulo="Cancelación de un pedido">
