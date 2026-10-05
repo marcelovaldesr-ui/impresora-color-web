@@ -9,6 +9,13 @@ export interface DatosProductoV2 {
   slug: string
   nombre: string
   categoria: string
+  /** Familia de tienda (agrupación visual del catálogo). */
+  familia: string
+  orden: number
+  sinFoto: boolean
+  chips: string[]
+  /** Cantidad del pack más barato (para "desde $X por N u."). */
+  desdeCantidad: number | null
   descripcion: string
   tiempoEntrega: string
   imagen: string
@@ -25,6 +32,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Tarjetas de presentación",
   "categoria": "Tarjetas de presentación",
   "descripcion": "Tarjetas de presentación: 9 × 5 cm.",
+  "familia": "Papelería e impresos",
+  "orden": 0,
+  "sinFoto": false,
+  "chips": [
+   "9 × 5 cm",
+   "Couché 300 g",
+   "1 o 2 caras"
+  ],
+  "desdeCantidad": 100,
   "tiempoEntrega": "1-3 días hábiles",
   "imagen": "/images/tarjetas-crop.png",
   "grupos": [
@@ -99,6 +115,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Flyers / Volantes",
   "categoria": "Flyers y volantes",
   "descripcion": "Flyers / Volantes.",
+  "familia": "Papelería e impresos",
+  "orden": 1,
+  "sinFoto": false,
+  "chips": [
+   "A6 y A5",
+   "Couché 90 g",
+   "1 o 2 caras"
+  ],
+  "desdeCantidad": 100,
   "tiempoEntrega": "1-3 días hábiles",
   "imagen": "/images/FLYER.jpg",
   "grupos": [
@@ -236,6 +261,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Stickers",
   "categoria": "Stickers",
   "descripcion": "Stickers: Vinilo brillante.",
+  "familia": "Stickers y etiquetas",
+  "orden": 106,
+  "sinFoto": false,
+  "chips": [
+   "Vinilo brillante",
+   "3 tamaños",
+   "Forma a elección"
+  ],
+  "desdeCantidad": 100,
   "tiempoEntrega": "1-3 días hábiles",
   "imagen": "/images/sitkers.png",
   "grupos": [
@@ -342,6 +376,14 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Pendón Roller retráctil",
   "categoria": "Pendones roller retráctiles",
   "descripcion": "Pendón Roller retráctil: Con estuche de transporte.",
+  "familia": "Gran formato y publicidad",
+  "orden": 211,
+  "sinFoto": false,
+  "chips": [
+   "Con estuche",
+   "4 tamaños"
+  ],
+  "desdeCantidad": null,
   "tiempoEntrega": "1-3 días hábiles",
   "imagen": "/images/roller-producto-crop.jpg",
   "grupos": [
@@ -390,6 +432,14 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Tela PVC impresa",
   "categoria": "Tela PVC impresa",
   "descripcion": "Tela PVC impresa: Sin ojetillos.",
+  "familia": "Gran formato y publicidad",
+  "orden": 212,
+  "sinFoto": false,
+  "chips": [
+   "Sin ojetillos",
+   "4 tamaños"
+  ],
+  "desdeCantidad": null,
   "tiempoEntrega": "1-3 días hábiles",
   "imagen": "/images/tela-pvc-impresa.jpg",
   "grupos": [
@@ -438,6 +488,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Credencial PVC",
   "categoria": "Credencial PVC",
   "descripcion": "Credencial PVC: 8,5 × 5,5 cm, PVC blanco, impresión full color.",
+  "familia": "Credenciales y PVC",
+  "orden": 418,
+  "sinFoto": false,
+  "chips": [
+   "PVC blanco",
+   "Full color",
+   "8,5 × 5,5 cm"
+  ],
+  "desdeCantidad": 1,
   "tiempoEntrega": "1-3 días hábiles",
   "imagen": "/images/tarjetaspvc.png",
   "grupos": [
@@ -493,6 +552,14 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Paloma Publicitaria",
   "categoria": "Paloma Publicitaria",
   "descripcion": "Paloma Publicitaria.",
+  "familia": "Gran formato y publicidad",
+  "orden": 213,
+  "sinFoto": true,
+  "chips": [
+   "1 o 2 caras",
+   "3 tamaños"
+  ],
+  "desdeCantidad": null,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/brand/logo-impresora-color.jpg.jpeg",
   "grupos": [
@@ -567,6 +634,13 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Calendario mural",
   "categoria": "Calendarios",
   "descripcion": "Calendario mural: 33 × 45 cm.",
+  "familia": "Calendarios",
+  "orden": 314,
+  "sinFoto": false,
+  "chips": [
+   "33 × 45 cm"
+  ],
+  "desdeCantidad": 300,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/images/calendarios.jpg",
   "grupos": [
@@ -608,6 +682,13 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Calendario imán",
   "categoria": "Calendarios",
   "descripcion": "Calendario imán.",
+  "familia": "Calendarios",
+  "orden": 317,
+  "sinFoto": false,
+  "chips": [
+   "Imán"
+  ],
+  "desdeCantidad": 100,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/images/imanes-publicitarios.png",
   "grupos": [
@@ -649,6 +730,14 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Calendario comercial 12 meses",
   "categoria": "Calendarios",
   "descripcion": "Calendario comercial 12 meses: 31 × 38 cm, Taco comercial 38 × 26 cm.",
+  "familia": "Calendarios",
+  "orden": 315,
+  "sinFoto": false,
+  "chips": [
+   "31 × 38 cm",
+   "Taco 38 × 26 cm"
+  ],
+  "desdeCantidad": 100,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/images/calendarios.jpg",
   "grupos": [
@@ -697,6 +786,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Calendario de escritorio",
   "categoria": "Calendarios",
   "descripcion": "Calendario de escritorio: 6 láminas por ambas caras más portada de una cara, base de cartulina dúplex 325 g, portada y láminas en couché mate 200 g. Anillo a elección.",
+  "familia": "Calendarios",
+  "orden": 316,
+  "sinFoto": false,
+  "chips": [
+   "22 × 14 cm",
+   "6 láminas + portada",
+   "Anillo a elección"
+  ],
+  "desdeCantidad": 50,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/images/calendarios.jpg",
   "grupos": [
@@ -755,6 +853,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Diplomas",
   "categoria": "Diplomas",
   "descripcion": "Diplomas: Opalina lisa 240 g, full color.",
+  "familia": "Papelería e impresos",
+  "orden": 3,
+  "sinFoto": false,
+  "chips": [
+   "Opalina 240 g",
+   "Full color",
+   "3 tamaños"
+  ],
+  "desdeCantidad": 1,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/images/diplomas.jpg",
   "grupos": [
@@ -851,6 +958,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Papel fotocopia Office",
   "categoria": "Papel fotocopia (resmas)",
   "descripcion": "Papel fotocopia Office: Blanco 80 g, resma de 500 hojas.",
+  "familia": "Papelería e impresos",
+  "orden": 5,
+  "sinFoto": false,
+  "chips": [
+   "Office 80 g",
+   "Carta u oficio",
+   "Resma 500 hojas"
+  ],
+  "desdeCantidad": 1,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/images/fotocopias.png",
   "grupos": [
@@ -925,6 +1041,14 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Individuales",
   "categoria": "Individuales",
   "descripcion": "Individuales.",
+  "familia": "Papelería e impresos",
+  "orden": 4,
+  "sinFoto": true,
+  "chips": [
+   "Kraft o bond",
+   "3 formatos"
+  ],
+  "desdeCantidad": 200,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/brand/logo-impresora-color.jpg.jpeg",
   "grupos": [
@@ -1009,6 +1133,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Dípticos y trípticos",
   "categoria": "Dípticos y trípticos",
   "descripcion": "Dípticos y trípticos: Couché 170 g, full color 4/0.",
+  "familia": "Papelería e impresos",
+  "orden": 2,
+  "sinFoto": false,
+  "chips": [
+   "Couché 170 g",
+   "Full color",
+   "Carta u oficio"
+  ],
+  "desdeCantidad": 100,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/images/triptico.png",
   "grupos": [
@@ -1098,6 +1231,14 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Etiquetas de longaniza",
   "categoria": "Etiquetas de longaniza",
   "descripcion": "Etiquetas de longaniza: Papel adhesivo Ritrama semibrillo. (Medida por confirmar.)",
+  "familia": "Stickers y etiquetas",
+  "orden": 107,
+  "sinFoto": false,
+  "chips": [
+   "Adhesivo Ritrama",
+   "Semibrillo"
+  ],
+  "desdeCantidad": 5000,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/images/etiquetas.png",
   "grupos": [
@@ -1132,6 +1273,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Etiqueta de vino 15 × 4 cm",
   "categoria": "Etiquetas de vino",
   "descripcion": "Etiqueta de vino 15 × 4 cm: 15 × 4 cm, Couché 170 g, 4/0, barniz UV.",
+  "familia": "Stickers y etiquetas",
+  "orden": 108,
+  "sinFoto": true,
+  "chips": [
+   "15 × 4 cm",
+   "Couché 170 g",
+   "Barniz UV"
+  ],
+  "desdeCantidad": 5000,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/brand/logo-impresora-color.jpg.jpeg",
   "grupos": [
@@ -1166,6 +1316,14 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Etiqueta adhesiva botella 750 ml",
   "categoria": "Etiquetas de vino",
   "descripcion": "Etiqueta adhesiva botella 750 ml: 10 × 12 cm, Papel adhesivo.",
+  "familia": "Stickers y etiquetas",
+  "orden": 109,
+  "sinFoto": true,
+  "chips": [
+   "10 × 12 cm",
+   "Papel adhesivo"
+  ],
+  "desdeCantidad": 200,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/brand/logo-impresora-color.jpg.jpeg",
   "grupos": [
@@ -1207,6 +1365,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Etiqueta de vino 12 × 15 cm",
   "categoria": "Etiquetas de vino",
   "descripcion": "Etiqueta de vino 12 × 15 cm: 12 × 15 cm, Couché 170 g, 4/0, barniz UV.",
+  "familia": "Stickers y etiquetas",
+  "orden": 110,
+  "sinFoto": true,
+  "chips": [
+   "12 × 15 cm",
+   "Couché 170 g",
+   "Barniz UV"
+  ],
+  "desdeCantidad": 300,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/brand/logo-impresora-color.jpg.jpeg",
   "grupos": [
@@ -1248,6 +1415,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Agenda con espiral",
   "categoria": "Agendas de colegio",
   "descripcion": "Agenda con espiral: 14 × 20 cm, Tapa papel doble 300 g · interior 80 págs. B/N bond 80 g.",
+  "familia": "Agendas",
+  "orden": 519,
+  "sinFoto": true,
+  "chips": [
+   "14 × 20 cm",
+   "80 págs.",
+   "Con espiral"
+  ],
+  "desdeCantidad": 500,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/brand/logo-impresora-color.jpg.jpeg",
   "grupos": [
@@ -1282,6 +1458,15 @@ const DATOS: DatosProductoV2[] = [
   "nombre": "Agenda corcheteada",
   "categoria": "Agendas de colegio",
   "descripcion": "Agenda corcheteada: 14 × 20 cm, Portada full color · interior 80 págs. B/N bond 80 g.",
+  "familia": "Agendas",
+  "orden": 520,
+  "sinFoto": true,
+  "chips": [
+   "14 × 20 cm",
+   "80 págs.",
+   "Portada full color"
+  ],
+  "desdeCantidad": 300,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/brand/logo-impresora-color.jpg.jpeg",
   "grupos": [
@@ -1323,6 +1508,11 @@ const DATOS: DatosProductoV2[] = [
 export interface ItemCatalogoV2 {
   producto: Producto
   categoria: string
+  familia: string
+  orden: number
+  sinFoto: boolean
+  chips: string[]
+  desdeCantidad: number | null
   estado: 'si' | 'no' | 'mixto'
   desde: number
 }
@@ -1349,12 +1539,17 @@ function construir(d: DatosProductoV2): ItemCatalogoV2 {
   return {
     producto,
     categoria: d.categoria,
+    familia: d.familia,
+    orden: d.orden,
+    sinFoto: d.sinFoto,
+    chips: d.chips,
+    desdeCantidad: d.desdeCantidad,
     estado: d.estado,
     desde: Math.min(...d.filas.map((f) => f.p)),
   }
 }
 
-export const CATALOGO_V2: ItemCatalogoV2[] = DATOS.map(construir)
+export const CATALOGO_V2: ItemCatalogoV2[] = DATOS.map(construir).sort((a, b) => a.orden - b.orden)
 
 export function getProductoV2(slug: string): Producto | undefined {
   return CATALOGO_V2.find((i) => i.producto.slug === slug)?.producto
