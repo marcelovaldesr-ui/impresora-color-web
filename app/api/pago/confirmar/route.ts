@@ -268,6 +268,7 @@ async function enviarEmails(items: FilaPedido[], grupo: string, montoDescuadrado
               : 'Tu pedido estará <strong>listo en 1 a 3 días hábiles</strong>.'
           } Te avisaremos cuando puedas retirarlo en <strong>Arauco 1060, Chillán</strong>.</p>
           <p>¿Tienes dudas? <a href="${WHATSAPP}" style="color:#E91E8F">Escríbenos por WhatsApp</a></p>
+          <p style="color:#777;font-size:12px;margin-top:16px">Para no perderte nuestros avisos, agrega <strong>pedidos@impresoracolor.cl</strong> a tus contactos. Si algún correo nuestro llega a la carpeta de correo no deseado, márcalo como &quot;No es correo no deseado&quot;.</p>
         </div>
         <p style="color:#aaa;font-size:12px;margin-top:16px;text-align:center">Impresora Color Ltda · Arauco 1060, Chillán</p>
       </div>

@@ -79,6 +79,7 @@ async function enviarAvisoListo(p: DatosAviso) {
           </div>
           <p style="margin-top:16px;color:#555;font-size:13px">Tu pedido queda guardado para retiro por 60 días corridos.</p>
           <p>¿Dudas o alguien más lo retirará por ti? <a href="${WHATSAPP}" style="color:#E91E8F">Escríbenos por WhatsApp</a></p>
+          <p style="color:#777;font-size:12px;margin-top:16px">Para no perderte nuestros avisos, agrega <strong>pedidos@impresoracolor.cl</strong> a tus contactos. Si algún correo nuestro llega a la carpeta de correo no deseado, márcalo como &quot;No es correo no deseado&quot;.</p>
         </div>
         <p style="color:#aaa;font-size:12px;margin-top:16px;text-align:center">Impresora Color Ltda · Arauco 1060, Chillán</p>
       </div>
