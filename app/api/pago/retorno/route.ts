@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import { verificarPago } from '@/lib/flow'
+import { firmarRetorno } from '@/lib/firmaRetorno'
 import { NextRequest } from 'next/server'
 
 // Flow devuelve al pagador a esta URL después del pago.
@@ -49,7 +50,8 @@ async function resolverDestino(token: string | null): Promise<string> {
 
     if (grupoOrden) {
       const estado = Number(flowData?.status ?? 0)
-      return `/confirmacion?orden=${encodeURIComponent(grupoOrden)}&estado=${estado}`
+      const firma = firmarRetorno(String(grupoOrden), estado)
+      return `/confirmacion?orden=${encodeURIComponent(grupoOrden)}&estado=${estado}&f=${firma}`
     }
   } catch (err) {
     console.error('[pago/retorno]', err)

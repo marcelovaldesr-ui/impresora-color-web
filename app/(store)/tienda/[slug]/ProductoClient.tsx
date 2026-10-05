@@ -398,7 +398,12 @@ export default function ProductoClient({
                 role="button"
                 tabIndex={0}
                 onClick={() => fileRef.current?.click()}
-                onKeyDown={(e) => e.key === 'Enter' && fileRef.current?.click()}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    fileRef.current?.click()
+                  }
+                }}
                 className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-colors ${
                   archivoBlobUrl
                     ? 'border-green-400 bg-green-50'

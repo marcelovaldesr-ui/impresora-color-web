@@ -1,6 +1,8 @@
 // EDITABLE: Agrega, quita o cambia servicios en los arrays de cada categoría
 import Image from "next/image";
+import Link from "next/link";
 import TituloReveal from "./TituloReveal";
+import { getProducto, precioDesde, formatCLP } from "@/lib/productos";
 
 const PHONE = "56998441157";
 function waLink(msg: string) {
@@ -17,6 +19,9 @@ type Servicio = {
   entrega?: string;
   boton: string;
   wa: string;
+  /** Slug del producto en la tienda online. Si existe, el botón principal
+   *  lleva a comprar online y WhatsApp queda como opción para trabajos a medida. */
+  tienda?: string;
   acento: string;
   bg: string;
 };
@@ -29,6 +34,7 @@ const PUBLICIDAD: Servicio[] = [
     imagenAlt: "Flyers publicitarios impresos a color para publicidad y promociones",
     objectFit: "contain",
     titulo: "Flyers publicitarios",
+    tienda: "flyers-volantes",
     descripcion: "Diseñados para captar atención y generar más ventas.",
     entrega: "1-2 días hábiles",
     boton: "Cotizar flyers",
@@ -53,6 +59,7 @@ const PUBLICIDAD: Servicio[] = [
     imagenUrl: "/images/tarjetas.png",
     imagenAlt: "Tarjetas de presentación profesionales impresas",
     titulo: "Tarjetas de presentación",
+    tienda: "tarjetas-presentacion",
     descripcion: "Primera impresión profesional para tu negocio.",
     entrega: "2-3 días hábiles",
     boton: "Cotizar tarjetas",
@@ -66,6 +73,7 @@ const PUBLICIDAD: Servicio[] = [
     imagenAlt: "Pendones y rollers retráctiles para ferias, locales y eventos",
     objectFit: "contain",
     titulo: "Pendones y Rollers",
+    tienda: "pendon-roller",
     descripcion: "Visibilidad total en ferias, locales y eventos. Disponibles en pendón tradicional y roller retráctil.",
     entrega: "3-5 días hábiles",
     boton: "Cotizar pendón o roller",
@@ -126,6 +134,7 @@ const ETIQUETAS_PACKAGING: Servicio[] = [
     imagenUrl: "/images/sitkers.png",
     imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
     titulo: "Stickers personalizados",
+    tienda: "stickers",
     descripcion: "Para tu marca, producto o emprendimiento.",
     entrega: "2-4 días hábiles",
     boton: "Cotizar stickers",
@@ -153,6 +162,7 @@ const OFICINA: Servicio[] = [
     imagenUrl: "/images/tarjetaspvc.png",
     imagenAlt: "Impresión de carnet institucional y credenciales con tecnología Fargo en Chillán, con sobrelaminado de seguridad",
     titulo: "Tarjetas y Credenciales",
+    tienda: "credencial-pvc",
     descripcion: "Impresión directa con tecnología Fargo: carnet institucional, credenciales de empleado, control de acceso, carnet de socio/gimnasio y credenciales de eventos. Sobrelaminado con marca de agua de seguridad.",
     boton: "Cotiza por WhatsApp",
     wa: "Hola, quiero cotizar impresión de carnet o credenciales con tecnología Fargo.",
@@ -314,7 +324,7 @@ function TarjetaServicio({ s }: { s: Servicio }) {
       <div className="p-4 flex flex-col flex-1 bg-white">
         <h3 className="text-[#2D3E9F] font-black text-sm mb-1.5 leading-tight">{s.titulo}</h3>
         <p className="text-gray-500 text-xs leading-relaxed flex-1">{s.descripcion}</p>
-        {s.entrega && (
+        {s.entrega && !s.tienda && (
           <p className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-[#2D3E9F]">
             <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -322,17 +332,51 @@ function TarjetaServicio({ s }: { s: Servicio }) {
             Entrega {s.entrega}
           </p>
         )}
-        <a
-          href={waLink(s.wa)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-3 flex items-center justify-center gap-2 bg-[#2D3E9F] hover:bg-[#E91E8F] text-white font-bold text-xs py-2 px-3 rounded-xl transition-colors duration-200"
-        >
-          <WAIcon />
-          {s.boton}
-        </a>
+        {s.tienda ? <BotonesTienda s={s} /> : (
+          <a
+            href={waLink(s.wa)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 flex items-center justify-center gap-2 bg-[#2D3E9F] hover:bg-[#E91E8F] text-white font-bold text-xs py-2 px-3 rounded-xl transition-colors duration-200"
+          >
+            <WAIcon />
+            {s.boton}
+          </a>
+        )}
       </div>
     </div>
+  );
+}
+
+// Para los productos que ya se venden en la tienda online: el botón principal
+// lleva a comprar (precio cerrado, pago inmediato) y WhatsApp queda como
+// enlace secundario para medidas o cantidades especiales.
+function BotonesTienda({ s }: { s: Servicio }) {
+  const producto = s.tienda ? getProducto(s.tienda) : undefined;
+  if (!producto) return null;
+  return (
+    <>
+      <p className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-[#2D3E9F]">
+        <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Comprando online: 1-3 días hábiles
+      </p>
+      <Link
+        href={`/tienda/${producto.slug}`}
+        className="mt-3 flex items-center justify-center gap-2 bg-[#E91E8F] hover:bg-[#2D3E9F] text-white font-bold text-xs py-2 px-3 rounded-xl transition-colors duration-200"
+      >
+        Comprar online · desde {formatCLP(precioDesde(producto))}
+      </Link>
+      <a
+        href={waLink(s.wa)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-2 text-center text-[11px] font-semibold text-[#2D3E9F] hover:text-[#E91E8F] underline-offset-2 hover:underline"
+      >
+        ¿Otra medida o cantidad? Cotiza por WhatsApp
+      </a>
+    </>
   );
 }
 

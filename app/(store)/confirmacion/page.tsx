@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase'
 import { formatCLP } from '@/lib/productos'
 import LimpiarCarrito from './LimpiarCarrito'
 import TrackCompra from './TrackCompra'
+import { retornoValido } from '@/lib/firmaRetorno'
 
 const WHATSAPP = 'https://wa.me/56998441157'
 
@@ -16,9 +17,9 @@ export const metadata: Metadata = {
 export default async function ConfirmacionPage({
   searchParams,
 }: {
-  searchParams: Promise<{ orden?: string; estado?: string; error?: string }>
+  searchParams: Promise<{ orden?: string; estado?: string; f?: string; error?: string }>
 }) {
-  const { orden, estado, error } = await searchParams
+  const { orden, estado, f, error } = await searchParams
 
   if (error) {
     return (
@@ -59,7 +60,11 @@ export default async function ConfirmacionPage({
   }
 
   const total = items.reduce((s, i) => s + Number(i.precio_total), 0)
-  const pagoAprobado = Number(estado) === 2 || items.some((i) => i.pago_confirmado)
+  // Pago aprobado = la base ya lo marcó pagado (webhook de Flow), o el retorno
+  // de Flow dijo "2" con una firma válida del servidor. Un "estado=2" escrito a
+  // mano en la URL ya no basta (ver lib/firmaRetorno.ts).
+  const estadoFirmado = !!orden && retornoValido(orden, Number(estado), f) && Number(estado) === 2
+  const pagoAprobado = items.length > 0 && (items.some((i) => i.pago_confirmado) || estadoFirmado)
 
   return (
     <div className="max-w-lg mx-auto px-4 py-16">

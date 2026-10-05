@@ -2,7 +2,7 @@ import { supabase } from '@/lib/supabase'
 import { cookies } from 'next/headers'
 import { NextRequest } from 'next/server'
 import { verificarTokenSesion } from '@/lib/adminAuth'
-import { verificarPago } from '@/lib/flow'
+import { procesarPagoFlow } from '@/lib/procesarPagoFlow'
 
 async function autenticado(): Promise<boolean> {
   const jar = await cookies()
@@ -44,51 +44,32 @@ export async function POST(
   }
 
   try {
-    const flowData = await verificarPago(pedido.flow_token)
-    const estadoFlow = Number(flowData?.status ?? 0)
+    // Mismo proceso que el webhook de Flow (lib/procesarPagoFlow.ts): valida
+    // orden y monto, marca pagado una sola vez y envía los correos al cliente
+    // y a la imprenta. Antes este botón marcaba pagado sin mandar correos y
+    // sin revisar si el pago era parcial.
+    const r = await procesarPagoFlow(pedido.flow_token)
+    const estadoFlow = Number(r.estadoFlow ?? 0)
     const estadoTexto = FLOW_STATUS_DESC[estadoFlow] ?? `Desconocido (${estadoFlow})`
 
-    if (estadoFlow === 2) {
-      // Flow confirma pago aprobado
-      const updateData: Record<string, unknown> = {
-        pago_confirmado: true,
-        pago_confirmado_at: new Date().toISOString(),
-        flow_orden: String(flowData.flowOrder ?? pedido.flow_orden ?? ''),
-      }
-
-      // Si el pedido aún estaba en pendiente_pago, avanzarlo a pagado
-      if (pedido.estado === 'pendiente_pago') {
-        updateData.estado = 'pagado'
-      }
-
-      const targetFilter = pedido.grupo_orden
-        ? supabase.from('pedidos').update(updateData).eq('grupo_orden', pedido.grupo_orden)
-        : supabase.from('pedidos').update(updateData).eq('id', id)
-
-      const { error: updateError } = await targetFilter
-      if (updateError) {
-        return Response.json(
-          { error: 'Error al actualizar el pedido en la base de datos.' },
-          { status: 500 }
-        )
-      }
-
-      return Response.json({
-        ok: true,
-        status: estadoFlow,
-        statusText: estadoTexto,
-        monto: flowData.amount,
-        flowOrder: flowData.flowOrder,
-        actualizado: true,
-      })
+    if (r.status >= 400) {
+      return Response.json(
+        { error: `No se pudo procesar el pago (${r.texto}).`, status: estadoFlow, statusText: estadoTexto },
+        { status: r.status === 404 ? 404 : 409 }
+      )
     }
 
     return Response.json({
       ok: true,
       status: estadoFlow,
-      statusText: estadoTexto,
-      actualizado: false,
-      flowData,
+      statusText:
+        r.resultado === 'pago_parcial'
+          ? `${estadoTexto} — PAGO PARCIAL: no se marcó pagado, revisa el correo de alerta`
+          : estadoTexto,
+      monto: r.flowData?.amount,
+      flowOrder: r.flowData?.flowOrder,
+      actualizado: r.resultado === 'pagado',
+      resultado: r.resultado,
     })
   } catch (err) {
     console.error('[admin/reconciliar] Error consultando Flow:', err)

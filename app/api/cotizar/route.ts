@@ -3,11 +3,15 @@ import { NextRequest } from "next/server";
 import { escapeHtml } from "@/lib/escapeHtml";
 import { obtenerIp, verificarLimite, registrarSolicitud, respuestaLimiteExcedido } from "@/lib/publicRateLimit";
 
-const CORS_HEADERS = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
-};
+// El formulario solo se envía desde este mismo sitio (OpcionesCotizar.tsx), así
+// que no se habilita CORS para otros dominios. Antes estaba en "*", lo que
+// dejaba a cualquier página externa usar este endpoint para mandar correos.
+const CORS_HEADERS: Record<string, string> = {};
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+function texto(v: unknown, max: number): string {
+  return typeof v === "string" ? v.trim().slice(0, max) : "";
+}
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "Cotizaciones <onboarding@resend.dev>";
 const TO_EMAIL = process.env.RESEND_TO_EMAIL ?? "contacto@impresoracolor.cl";
@@ -25,11 +29,24 @@ export async function POST(request: NextRequest) {
     return res;
   }
 
-  const { nombre, telefono, email, producto, cantidadTamano, mensaje } =
-    await request.json();
+  let datos: Record<string, unknown>;
+  try {
+    datos = await request.json();
+  } catch {
+    return Response.json({ error: "Solicitud inválida." }, { status: 400, headers: CORS_HEADERS });
+  }
+  const nombre = texto(datos.nombre, 100);
+  const telefono = texto(datos.telefono, 30);
+  const email = texto(datos.email, 160);
+  const producto = texto(datos.producto, 120);
+  const cantidadTamano = texto(datos.cantidadTamano, 200);
+  const mensaje = texto(datos.mensaje, 2000);
 
   if (!nombre || !telefono || !email || !producto) {
     return Response.json({ error: "Faltan campos obligatorios." }, { status: 400, headers: CORS_HEADERS });
+  }
+  if (!EMAIL_RE.test(email)) {
+    return Response.json({ error: "El correo electrónico no es válido." }, { status: 400, headers: CORS_HEADERS });
   }
 
   await registrarSolicitud(ip, "cotizar");

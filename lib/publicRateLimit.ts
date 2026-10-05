@@ -36,10 +36,13 @@ interface Regla {
 // cientos de solicitudes en minutos), no para un cliente normal navegando
 // o probando su pedido.
 const REGLAS: Record<RutaLimitada, Regla> = {
-  cotizar: { ventanaMinutos: 10, maxSolicitudes: 5 }, // envía 2 correos (Resend) por solicitud
-  upload: { ventanaMinutos: 10, maxSolicitudes: 20 }, // puede subir varios archivos probando productos
-  pedidos: { ventanaMinutos: 10, maxSolicitudes: 10 }, // crea filas en Supabase, antes del pago
-  'pago-iniciar': { ventanaMinutos: 10, maxSolicitudes: 10 }, // llama a la API de Flow.cl
+  // 5-oct-2026: límites subidos. En redes móviles chilenas muchos clientes
+  // comparten la misma IP pública (CGNAT); con los límites anteriores dos
+  // personas en la misma antena podían bloquearse entre sí.
+  cotizar: { ventanaMinutos: 10, maxSolicitudes: 15 }, // envía 2 correos (Resend) por solicitud
+  upload: { ventanaMinutos: 10, maxSolicitudes: 50 }, // puede subir varios archivos probando productos
+  pedidos: { ventanaMinutos: 10, maxSolicitudes: 30 }, // crea filas en Supabase, antes del pago
+  'pago-iniciar': { ventanaMinutos: 10, maxSolicitudes: 30 }, // llama a la API de Flow.cl
 }
 
 const TABLA = 'rate_limit_publico'

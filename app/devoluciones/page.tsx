@@ -24,7 +24,7 @@ function Acordeon({ titulo, abierto = false, children }: { titulo: string; abier
 
 export default function DevolucionesPage() {
   return (
-    <PaginaLegal titulo="Políticas de Devolución y Reposición" actualizado="4 de octubre de 2026">
+    <PaginaLegal titulo="Políticas de Devolución y Reposición" actualizado="5 de octubre de 2026">
       <div>
         <Acordeon titulo="¿Impresora Color responde?" abierto>
           <p>
@@ -34,10 +34,28 @@ export default function DevolucionesPage() {
           </p>
         </Acordeon>
 
+        <Acordeon titulo="Garantía legal de 6 meses" abierto>
+          <p>
+            Todos nuestros productos tienen <strong>garantía legal de 6 meses</strong> desde que
+            retiras tu pedido, conforme a los artículos 19, 20 y 21 de la Ley N° 19.496 sobre
+            Protección de los Derechos de los Consumidores.
+          </p>
+          <p>
+            Si el producto tiene una falla de fabricación, no sirve para el uso al que está destinado
+            o no corresponde a lo que compraste, <strong>tú eliges</strong> entre:
+          </p>
+          <ul className="list-disc pl-5 space-y-1.5">
+            <li><strong>Reparación</strong> sin costo (en nuestro caso, reimprimirlo).</li>
+            <li><strong>Cambio</strong> por un producto de las mismas características.</li>
+            <li><strong>Devolución</strong> del dinero pagado.</li>
+          </ul>
+        </Acordeon>
+
         <Acordeon titulo="Reposición por fallas de fabricación">
           <p>
             Si un producto (stickers, flyers, tarjetas u otros impresos) presenta fallas atribuibles a
-            errores de impresión o fabricación, <strong>lo reponemos sin costo para el cliente</strong>.
+            errores de impresión o fabricación, <strong>lo reponemos sin costo para el cliente</strong>,
+            o aplicamos la alternativa de la garantía legal que prefieras.
           </p>
           <p>
             Antes de autorizar la reposición, nuestro equipo de calidad revisa el material entregado
@@ -71,13 +89,14 @@ export default function DevolucionesPage() {
         <Acordeon titulo="Procedimiento de revisión">
           <ul className="list-disc pl-5 space-y-1.5">
             <li>
-              El cliente debe informar el problema dentro de <strong>7 días corridos</strong> desde el
-              retiro o la entrega.
+              Puedes informar el problema dentro de los <strong>6 meses</strong> de garantía legal
+              desde el retiro. Si nos avisas dentro de los primeros <strong>7 días corridos</strong>,
+              lo revisamos con prioridad.
             </li>
             <li>Se solicitarán fotografías o la revisión física del producto.</li>
             <li>
-              Nuestro equipo de calidad evalúa el caso y te responde con la solución: reposición sin
-              costo cuando corresponde.
+              Nuestro equipo de calidad evalúa el caso y, si corresponde, aplicamos la alternativa que
+              elijas: reimpresión, cambio o devolución del dinero.
             </li>
           </ul>
           <p>

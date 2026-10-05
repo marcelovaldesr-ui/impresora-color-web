@@ -7,6 +7,7 @@ import { useCarrito, precioItem } from '@/lib/carrito'
 import { formatCLP, calcularIVA } from '@/lib/productos'
 import { trackEcommerce } from '@/app/components/GoogleAds'
 import { trackMeta } from '@/app/components/MetaPixel'
+import { telefonoValidoCL, MENSAJE_TELEFONO_INVALIDO } from '@/lib/telefono'
 
 export default function PagoPage() {
   const { items, totalPrecio } = useCarrito()
@@ -54,6 +55,10 @@ export default function PagoPage() {
     if (!aceptaTerminos) {
       setError('Debes aceptar los Términos y Condiciones y la Política de Privacidad para continuar con el pago.')
       terminosRef.current?.focus()
+      return
+    }
+    if (!telefonoValidoCL(form.telefono)) {
+      setError(MENSAJE_TELEFONO_INVALIDO)
       return
     }
     setLoading(true)

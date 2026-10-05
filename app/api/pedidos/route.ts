@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase'
+import { telefonoValidoCL, MENSAJE_TELEFONO_INVALIDO } from '@/lib/telefono'
 import { precioServidor } from '@/lib/productos'
 import { NextRequest } from 'next/server'
 import { obtenerIp, verificarLimite, registrarSolicitud, respuestaLimiteExcedido } from '@/lib/publicRateLimit'
@@ -60,6 +61,9 @@ export async function POST(req: NextRequest) {
 
   if (!cliente_nombre || !cliente_telefono) {
     return Response.json({ error: 'Faltan tu nombre o tu teléfono.' }, { status: 400 })
+  }
+  if (!telefonoValidoCL(cliente_telefono)) {
+    return Response.json({ error: MENSAJE_TELEFONO_INVALIDO }, { status: 400 })
   }
   if (!emailValido(cliente_email)) {
     return Response.json({ error: 'El correo electrónico no es válido.' }, { status: 400 })
