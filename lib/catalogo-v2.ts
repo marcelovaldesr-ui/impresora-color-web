@@ -968,7 +968,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 1,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/fotocopias.png",
+  "imagen": "/images/resmas-carta-oficio.jpg",
   "grupos": [
    {
     "id": "medida",
