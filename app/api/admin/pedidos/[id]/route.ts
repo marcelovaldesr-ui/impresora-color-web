@@ -4,6 +4,7 @@ import { NextRequest } from 'next/server'
 import { verificarTokenSesion } from '@/lib/adminAuth'
 import { Resend } from 'resend'
 import { escapeHtml } from '@/lib/escapeHtml'
+import { avisarListoPorWhatsapp, type ResultadoWhatsapp } from '@/lib/avisoWhatsapp'
 
 async function autenticado(): Promise<boolean> {
   const jar = await cookies()
@@ -85,7 +86,7 @@ export async function PATCH(
   // así un doble clic o un reintento no le repite el correo al cliente.
   const { data: previo } = await supabase
     .from('pedidos')
-    .select('estado, numero_orden, cliente_nombre, cliente_email, producto_nombre, cantidad')
+    .select('estado, numero_orden, cliente_nombre, cliente_email, cliente_telefono, producto_nombre, cantidad')
     .eq('id', id)
     .maybeSingle()
 
@@ -95,17 +96,21 @@ export async function PATCH(
   const { error } = await supabase.from('pedidos').update(update).eq('id', id)
   if (error) return Response.json({ error: 'Error al actualizar.' }, { status: 500 })
 
-  // El estado ya quedó guardado: si el correo falla, no se revierte; se informa al panel.
-  let aviso: 'enviado' | 'fallido' | null = null
-  if (estado === 'listo' && previo && previo.estado !== 'listo' && previo.cliente_email) {
-    try {
-      await enviarAvisoListo(previo as DatosAviso)
-      aviso = 'enviado'
-    } catch (err) {
-      console.error('[pedidos] aviso listo', err)
-      aviso = 'fallido'
+  // El estado ya quedó guardado: si un aviso falla, no se revierte; se informa al panel.
+  let email: 'enviado' | 'fallido' | null = null
+  let whatsapp: ResultadoWhatsapp | null = null
+  if (estado === 'listo' && previo && previo.estado !== 'listo') {
+    const [r1, r2] = await Promise.allSettled([
+      previo.cliente_email ? enviarAvisoListo(previo as DatosAviso) : Promise.reject(new Error('sin email')),
+      avisarListoPorWhatsapp({ id, ...(previo as Omit<Parameters<typeof avisarListoPorWhatsapp>[0], 'id'>) }),
+    ])
+    if (r1.status === 'fulfilled') email = 'enviado'
+    else {
+      console.error('[pedidos] aviso listo (email)', r1.reason)
+      email = 'fallido'
     }
+    whatsapp = r2.status === 'fulfilled' ? r2.value : 'fallido'
   }
 
-  return Response.json({ ok: true, aviso })
+  return Response.json({ ok: true, aviso: { email, whatsapp } })
 }

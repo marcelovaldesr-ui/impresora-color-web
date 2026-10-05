@@ -34,7 +34,7 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
   const [filtro, setFiltro] = useState<Filtro>('todos')
   const [actualizando, setActualizando] = useState<string | null>(null)
   const [reconciliando, setReconciliando] = useState<string | null>(null)
-  const [avisoListo, setAvisoListo] = useState<{ id: string; ok: boolean } | null>(null)
+  const [avisoListo, setAvisoListo] = useState<{ id: string; email: string | null; whatsapp: string | null } | null>(null)
   const [mensajeReconciliacion, setMensajeReconciliacion] = useState<{ id: string; texto: string; error?: boolean } | null>(null)
 
   const reconciliarFlow = async (pedido: Pedido) => {
@@ -102,7 +102,7 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
       setPedidos((prev) =>
         prev.map((p) => (p.id === pedido.id ? { ...p, estado: nuevoEstado } : p))
       )
-      if (data.aviso) setAvisoListo({ id: pedido.id, ok: data.aviso === 'enviado' })
+      if (data.aviso) setAvisoListo({ id: pedido.id, email: data.aviso.email, whatsapp: data.aviso.whatsapp })
     }
     setActualizando(null)
   }
@@ -304,15 +304,24 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
 
               {avisoListo && avisoListo.id === pedido.id && (
                 <div
-                  className={`mt-3 text-xs p-2.5 rounded-xl ${
-                    avisoListo.ok
+                  className={`mt-3 text-xs p-2.5 rounded-xl space-y-0.5 ${
+                    avisoListo.email === 'enviado' || avisoListo.whatsapp === 'enviado'
                       ? 'bg-green-50 text-green-800 border border-green-200'
                       : 'bg-red-50 text-red-700 border border-red-200'
                   }`}
                 >
-                  {avisoListo.ok
-                    ? `Correo de "pedido listo" enviado a ${pedido.cliente_email}.`
-                    : 'El pedido quedó en Listo, pero NO se pudo enviar el correo al cliente. Avísale por WhatsApp.'}
+                  <p>
+                    {avisoListo.email === 'enviado'
+                      ? `Correo enviado a ${pedido.cliente_email}.`
+                      : 'No se pudo enviar el correo al cliente.'}
+                  </p>
+                  <p>
+                    {avisoListo.whatsapp === 'enviado'
+                      ? 'WhatsApp enviado por el bot.'
+                      : avisoListo.whatsapp === 'no_configurado'
+                        ? 'WhatsApp automático sin configurar: usa el botón verde.'
+                        : 'No se pudo enviar el WhatsApp: usa el botón verde.'}
+                  </p>
                 </div>
               )}
 
