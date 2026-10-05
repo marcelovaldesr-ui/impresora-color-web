@@ -554,14 +554,14 @@ const DATOS: DatosProductoV2[] = [
   "descripcion": "Paloma Publicitaria.",
   "familia": "Gran formato y publicidad",
   "orden": 213,
-  "sinFoto": true,
+  "sinFoto": false,
   "chips": [
    "1 o 2 caras",
    "3 tamaños"
   ],
   "desdeCantidad": null,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/brand/logo-impresora-color.jpg.jpeg",
+  "imagen": "/images/paloma-publicitaria.jpg",
   "grupos": [
    {
     "id": "medida",
@@ -642,7 +642,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 300,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/calendarios.jpg",
+  "imagen": "/images/calendario-mural.jpg",
   "grupos": [
    {
     "id": "cantidad",
@@ -690,7 +690,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 100,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/imanes-publicitarios.png",
+  "imagen": "/images/calendario-iman.jpg",
   "grupos": [
    {
     "id": "cantidad",
@@ -739,7 +739,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 100,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/calendarios.jpg",
+  "imagen": "/images/calendario-comercial.jpg",
   "grupos": [
    {
     "id": "cantidad",
@@ -796,7 +796,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 50,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/calendarios.jpg",
+  "imagen": "/images/calendario-escritorio.jpg",
   "grupos": [
    {
     "id": "cantidad",
@@ -1043,14 +1043,14 @@ const DATOS: DatosProductoV2[] = [
   "descripcion": "Individuales.",
   "familia": "Papelería e impresos",
   "orden": 4,
-  "sinFoto": true,
+  "sinFoto": false,
   "chips": [
    "Kraft o bond",
    "3 formatos"
   ],
   "desdeCantidad": 200,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/brand/logo-impresora-color.jpg.jpeg",
+  "imagen": "/images/individuales.jpg",
   "grupos": [
    {
     "id": "acabado",
@@ -1417,7 +1417,7 @@ const DATOS: DatosProductoV2[] = [
   "descripcion": "Agenda con espiral: 14 × 20 cm, Tapa papel doble 300 g · interior 80 págs. B/N bond 80 g.",
   "familia": "Agendas",
   "orden": 519,
-  "sinFoto": true,
+  "sinFoto": false,
   "chips": [
    "14 × 20 cm",
    "80 págs.",
@@ -1425,7 +1425,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 500,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/brand/logo-impresora-color.jpg.jpeg",
+  "imagen": "/images/agenda-espiral.jpg",
   "grupos": [
    {
     "id": "cantidad",
@@ -1460,7 +1460,7 @@ const DATOS: DatosProductoV2[] = [
   "descripcion": "Agenda corcheteada: 14 × 20 cm, Portada full color · interior 80 págs. B/N bond 80 g.",
   "familia": "Agendas",
   "orden": 520,
-  "sinFoto": true,
+  "sinFoto": false,
   "chips": [
    "14 × 20 cm",
    "80 págs.",
@@ -1468,7 +1468,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 300,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/brand/logo-impresora-color.jpg.jpeg",
+  "imagen": "/images/agenda-corcheteada.jpg",
   "grupos": [
    {
     "id": "cantidad",
