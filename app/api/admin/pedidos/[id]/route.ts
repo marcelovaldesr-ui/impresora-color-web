@@ -47,6 +47,20 @@ async function enviarAvisoListo(p: DatosAviso) {
     to: p.cliente_email,
     replyTo: 'contacto@impresoracolor.cl',
     subject: `Tu pedido #${p.numero_orden} está listo para retirar — Impresora Color`,
+    // Versión de texto plano: un correo solo-HTML puntúa peor en los filtros de spam.
+    text: [
+      `Hola ${p.cliente_nombre}, tu pedido ya está listo para retirar.`,
+      `N° de orden: ${p.numero_orden}`,
+      ...p.items.map((i) => `- ${i.producto_nombre} x ${Number(i.cantidad)}`),
+      '',
+      'Dónde: Arauco 1060, Chillán',
+      'Horario: lunes a viernes de 9:00 a 18:00 horas',
+      'Para retirar: indica tu número de orden.',
+      'Tu pedido queda guardado para retiro por 60 días corridos.',
+      '',
+      `¿Dudas? Escríbenos por WhatsApp: ${WHATSAPP}`,
+      'Impresora Color Ltda · Arauco 1060, Chillán',
+    ].join('\n'),
     html: `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
         <div style="background:#2D3E9F;padding:24px;border-radius:8px 8px 0 0">
