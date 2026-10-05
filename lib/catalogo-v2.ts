@@ -1275,7 +1275,7 @@ const DATOS: DatosProductoV2[] = [
   "descripcion": "Etiqueta de vino 15 × 4 cm: 15 × 4 cm, Couché 170 g, 4/0, barniz UV.",
   "familia": "Stickers y etiquetas",
   "orden": 108,
-  "sinFoto": true,
+  "sinFoto": false,
   "chips": [
    "15 × 4 cm",
    "Couché 170 g",
@@ -1283,7 +1283,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 5000,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/brand/logo-impresora-color.jpg.jpeg",
+  "imagen": "/images/etiqueta-vino-15x4.jpg",
   "grupos": [
    {
     "id": "cantidad",
@@ -1318,14 +1318,14 @@ const DATOS: DatosProductoV2[] = [
   "descripcion": "Etiqueta adhesiva botella 750 ml: 10 × 12 cm, Papel adhesivo.",
   "familia": "Stickers y etiquetas",
   "orden": 109,
-  "sinFoto": true,
+  "sinFoto": false,
   "chips": [
    "10 × 12 cm",
    "Papel adhesivo"
   ],
   "desdeCantidad": 200,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/brand/logo-impresora-color.jpg.jpeg",
+  "imagen": "/images/etiqueta-botella-10x12.jpg",
   "grupos": [
    {
     "id": "cantidad",
@@ -1367,7 +1367,7 @@ const DATOS: DatosProductoV2[] = [
   "descripcion": "Etiqueta de vino 12 × 15 cm: 12 × 15 cm, Couché 170 g, 4/0, barniz UV.",
   "familia": "Stickers y etiquetas",
   "orden": 110,
-  "sinFoto": true,
+  "sinFoto": false,
   "chips": [
    "12 × 15 cm",
    "Couché 170 g",
@@ -1375,7 +1375,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 300,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/brand/logo-impresora-color.jpg.jpeg",
+  "imagen": "/images/etiqueta-vino-12x15.jpg",
   "grupos": [
    {
     "id": "cantidad",
