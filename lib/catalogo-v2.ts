@@ -31,14 +31,15 @@ const DATOS: DatosProductoV2[] = [
   "slug": "v2-tarjetas-de-presentacion",
   "nombre": "Tarjetas de presentación",
   "categoria": "Tarjetas de presentación",
-  "descripcion": "Tarjetas de presentación: 9 × 5 cm.",
+  "descripcion": "Tarjetas de presentación: 9 × 5 cm, couché 300 g. Termolaminado mate o brillante con recargo del 30 %.",
   "familia": "Papelería e impresos",
   "orden": 0,
   "sinFoto": false,
   "chips": [
    "9 × 5 cm",
    "Couché 300 g",
-   "1 o 2 caras"
+   "1 o 2 caras",
+   "Termolaminado opcional"
   ],
   "desdeCantidad": 100,
   "tiempoEntrega": "1-3 días hábiles",
@@ -49,7 +50,11 @@ const DATOS: DatosProductoV2[] = [
     "nombre": "Impresión",
     "valores": [
      "couche 300 grs 4x0 color",
-     "couche 300 grs 4x4 color"
+     "couche 300 grs 4x4 color",
+     "couche 300 grs 4x0 color termolaminada mate",
+     "couche 300 grs 4x0 color termolaminada brillante",
+     "couche 300 grs 4x4 color termolaminada mate",
+     "couche 300 grs 4x4 color termolaminada brillante"
     ],
     "soloInformativo": false
    },
@@ -70,21 +75,21 @@ const DATOS: DatosProductoV2[] = [
      "acabado": "couche 300 grs 4x0 color",
      "cantidad": "100"
     },
-    "p": 8000
+    "p": 10000
    },
    {
     "o": {
      "acabado": "couche 300 grs 4x0 color",
      "cantidad": "200"
     },
-    "p": 14000
+    "p": 18000
    },
    {
     "o": {
      "acabado": "couche 300 grs 4x0 color",
      "cantidad": "500"
     },
-    "p": 30000
+    "p": 35000
    },
    {
     "o": {
@@ -98,14 +103,98 @@ const DATOS: DatosProductoV2[] = [
      "acabado": "couche 300 grs 4x4 color",
      "cantidad": "200"
     },
-    "p": 20000
+    "p": 22000
    },
    {
     "o": {
      "acabado": "couche 300 grs 4x4 color",
      "cantidad": "500"
     },
-    "p": 35000
+    "p": 40000
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x0 color termolaminada mate",
+     "cantidad": "100"
+    },
+    "p": 13000
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x0 color termolaminada mate",
+     "cantidad": "200"
+    },
+    "p": 23400
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x0 color termolaminada mate",
+     "cantidad": "500"
+    },
+    "p": 45500
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x0 color termolaminada brillante",
+     "cantidad": "100"
+    },
+    "p": 13000
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x0 color termolaminada brillante",
+     "cantidad": "200"
+    },
+    "p": 23400
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x0 color termolaminada brillante",
+     "cantidad": "500"
+    },
+    "p": 45500
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x4 color termolaminada mate",
+     "cantidad": "100"
+    },
+    "p": 18200
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x4 color termolaminada mate",
+     "cantidad": "200"
+    },
+    "p": 28600
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x4 color termolaminada mate",
+     "cantidad": "500"
+    },
+    "p": 52000
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x4 color termolaminada brillante",
+     "cantidad": "100"
+    },
+    "p": 18200
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x4 color termolaminada brillante",
+     "cantidad": "200"
+    },
+    "p": 28600
+   },
+   {
+    "o": {
+     "acabado": "couche 300 grs 4x4 color termolaminada brillante",
+     "cantidad": "500"
+    },
+    "p": 52000
    }
   ],
   "estado": "si"
@@ -114,13 +203,13 @@ const DATOS: DatosProductoV2[] = [
   "slug": "v2-flyers-volantes",
   "nombre": "Flyers / Volantes",
   "categoria": "Flyers y volantes",
-  "descripcion": "Flyers / Volantes.",
+  "descripcion": "Flyers / Volantes: couché 130 g, impresión 4/0 (una cara) o 4/4 (ambas caras, 25 % más que una cara).",
   "familia": "Papelería e impresos",
   "orden": 1,
   "sinFoto": false,
   "chips": [
-   "A6 y A5",
-   "Couché 90 g",
+   "A6 y 13 × 20 cm",
+   "Couché 130 g",
    "1 o 2 caras"
   ],
   "desdeCantidad": 100,
@@ -132,7 +221,7 @@ const DATOS: DatosProductoV2[] = [
     "nombre": "Tamaño",
     "valores": [
      "A6 (10,5 × 14,8 cm)",
-     "A5 (14,8 × 21 cm)"
+     "13 × 20 cm"
     ],
     "soloInformativo": false
    },
@@ -140,8 +229,8 @@ const DATOS: DatosProductoV2[] = [
     "id": "acabado",
     "nombre": "Papel e impresión",
     "valores": [
-     "Couché 90g — 1 cara",
-     "Couché 90g — 2 caras"
+     "Couché 130g — 1 cara",
+     "Couché 130g — 2 caras"
     ],
     "soloInformativo": false
    },
@@ -151,7 +240,8 @@ const DATOS: DatosProductoV2[] = [
     "valores": [
      "100",
      "200",
-     "500"
+     "500",
+     "1000"
     ],
     "soloInformativo": false
    }
@@ -160,23 +250,23 @@ const DATOS: DatosProductoV2[] = [
    {
     "o": {
      "medida": "A6 (10,5 × 14,8 cm)",
-     "acabado": "Couché 90g — 1 cara",
+     "acabado": "Couché 130g — 1 cara",
      "cantidad": "100"
     },
-    "p": 15000
+    "p": 18000
    },
    {
     "o": {
      "medida": "A6 (10,5 × 14,8 cm)",
-     "acabado": "Couché 90g — 1 cara",
+     "acabado": "Couché 130g — 1 cara",
      "cantidad": "200"
     },
-    "p": 22000
+    "p": 25000
    },
    {
     "o": {
      "medida": "A6 (10,5 × 14,8 cm)",
-     "acabado": "Couché 90g — 1 cara",
+     "acabado": "Couché 130g — 1 cara",
      "cantidad": "500"
     },
     "p": 42000
@@ -184,74 +274,106 @@ const DATOS: DatosProductoV2[] = [
    {
     "o": {
      "medida": "A6 (10,5 × 14,8 cm)",
-     "acabado": "Couché 90g — 2 caras",
+     "acabado": "Couché 130g — 1 cara",
+     "cantidad": "1000"
+    },
+    "p": 70000
+   },
+   {
+    "o": {
+     "medida": "A6 (10,5 × 14,8 cm)",
+     "acabado": "Couché 130g — 2 caras",
      "cantidad": "100"
     },
-    "p": 22000
+    "p": 22500
    },
    {
     "o": {
      "medida": "A6 (10,5 × 14,8 cm)",
-     "acabado": "Couché 90g — 2 caras",
+     "acabado": "Couché 130g — 2 caras",
      "cantidad": "200"
     },
-    "p": 32000
+    "p": 31250
    },
    {
     "o": {
      "medida": "A6 (10,5 × 14,8 cm)",
-     "acabado": "Couché 90g — 2 caras",
+     "acabado": "Couché 130g — 2 caras",
      "cantidad": "500"
     },
-    "p": 58000
+    "p": 52500
    },
    {
     "o": {
-     "medida": "A5 (14,8 × 21 cm)",
-     "acabado": "Couché 90g — 1 cara",
+     "medida": "A6 (10,5 × 14,8 cm)",
+     "acabado": "Couché 130g — 2 caras",
+     "cantidad": "1000"
+    },
+    "p": 87500
+   },
+   {
+    "o": {
+     "medida": "13 × 20 cm",
+     "acabado": "Couché 130g — 1 cara",
      "cantidad": "100"
     },
     "p": 22000
    },
    {
     "o": {
-     "medida": "A5 (14,8 × 21 cm)",
-     "acabado": "Couché 90g — 1 cara",
+     "medida": "13 × 20 cm",
+     "acabado": "Couché 130g — 1 cara",
      "cantidad": "200"
     },
-    "p": 32000
+    "p": 38000
    },
    {
     "o": {
-     "medida": "A5 (14,8 × 21 cm)",
-     "acabado": "Couché 90g — 1 cara",
+     "medida": "13 × 20 cm",
+     "acabado": "Couché 130g — 1 cara",
      "cantidad": "500"
     },
     "p": 68000
    },
    {
     "o": {
-     "medida": "A5 (14,8 × 21 cm)",
-     "acabado": "Couché 90g — 2 caras",
+     "medida": "13 × 20 cm",
+     "acabado": "Couché 130g — 1 cara",
+     "cantidad": "1000"
+    },
+    "p": 85000
+   },
+   {
+    "o": {
+     "medida": "13 × 20 cm",
+     "acabado": "Couché 130g — 2 caras",
      "cantidad": "100"
     },
-    "p": 28000
+    "p": 27500
    },
    {
     "o": {
-     "medida": "A5 (14,8 × 21 cm)",
-     "acabado": "Couché 90g — 2 caras",
+     "medida": "13 × 20 cm",
+     "acabado": "Couché 130g — 2 caras",
      "cantidad": "200"
     },
-    "p": 35000
+    "p": 47500
    },
    {
     "o": {
-     "medida": "A5 (14,8 × 21 cm)",
-     "acabado": "Couché 90g — 2 caras",
+     "medida": "13 × 20 cm",
+     "acabado": "Couché 130g — 2 caras",
      "cantidad": "500"
     },
-    "p": 75000
+    "p": 85000
+   },
+   {
+    "o": {
+     "medida": "13 × 20 cm",
+     "acabado": "Couché 130g — 2 caras",
+     "cantidad": "1000"
+    },
+    "p": 106250
    }
   ],
   "estado": "si"
@@ -640,7 +762,7 @@ const DATOS: DatosProductoV2[] = [
   "chips": [
    "33 × 45 cm"
   ],
-  "desdeCantidad": 300,
+  "desdeCantidad": 100,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/images/calendario-mural.jpg",
   "grupos": [
@@ -648,6 +770,7 @@ const DATOS: DatosProductoV2[] = [
     "id": "cantidad",
     "nombre": "Cantidad",
     "valores": [
+     "100",
      "300",
      "500",
      "1000"
@@ -658,21 +781,27 @@ const DATOS: DatosProductoV2[] = [
   "filas": [
    {
     "o": {
+     "cantidad": "100"
+    },
+    "p": 250000
+   },
+   {
+    "o": {
      "cantidad": "300"
     },
-    "p": 600000
+    "p": 660000
    },
    {
     "o": {
      "cantidad": "500"
     },
-    "p": 800000
+    "p": 1000000
    },
    {
     "o": {
      "cantidad": "1000"
     },
-    "p": 800000
+    "p": 1650000
    }
   ],
   "estado": "si"
@@ -681,12 +810,13 @@ const DATOS: DatosProductoV2[] = [
   "slug": "v2-calendario-iman",
   "nombre": "Calendario imán",
   "categoria": "Calendarios",
-  "descripcion": "Calendario imán.",
+  "descripcion": "Calendario imán: 7 × 8 cm, con mini taco.",
   "familia": "Calendarios",
   "orden": 317,
   "sinFoto": false,
   "chips": [
-   "Imán"
+   "7 × 8 cm",
+   "Con mini taco"
   ],
   "desdeCantidad": 100,
   "tiempoEntrega": "Por confirmar",
@@ -697,7 +827,8 @@ const DATOS: DatosProductoV2[] = [
     "nombre": "Cantidad",
     "valores": [
      "100",
-     "250",
+     "200",
+     "300",
      "1000"
     ],
     "soloInformativo": false
@@ -708,19 +839,25 @@ const DATOS: DatosProductoV2[] = [
     "o": {
      "cantidad": "100"
     },
-    "p": 50000
+    "p": 45000
    },
    {
     "o": {
-     "cantidad": "250"
+     "cantidad": "200"
     },
-    "p": 87500
+    "p": 80000
+   },
+   {
+    "o": {
+     "cantidad": "300"
+    },
+    "p": 105000
    },
    {
     "o": {
      "cantidad": "1000"
     },
-    "p": 280000
+    "p": 250000
    }
   ],
   "estado": "si"
@@ -758,25 +895,25 @@ const DATOS: DatosProductoV2[] = [
     "o": {
      "cantidad": "100"
     },
-    "p": 140000
+    "p": 200000
    },
    {
     "o": {
      "cantidad": "200"
     },
-    "p": 240000
+    "p": 370000
    },
    {
     "o": {
      "cantidad": "500"
     },
-    "p": 500000
+    "p": 825000
    },
    {
     "o": {
      "cantidad": "1000"
     },
-    "p": 1000000
+    "p": 1450000
    }
   ],
   "estado": "si"
@@ -852,7 +989,7 @@ const DATOS: DatosProductoV2[] = [
   "slug": "v2-diplomas",
   "nombre": "Diplomas",
   "categoria": "Diplomas",
-  "descripcion": "Diplomas: Opalina lisa 240 g, full color.",
+  "descripcion": "Diplomas: opalina lisa 240 g, impresión full color. De 1 a 50 unidades valor unitario mayor; desde 100 unidades valor unitario reducido.",
   "familia": "Papelería e impresos",
   "orden": 3,
   "sinFoto": false,
@@ -892,66 +1029,66 @@ const DATOS: DatosProductoV2[] = [
      "medida": "Tamaño carta",
      "cantidad": "1"
     },
-    "p": 1500
+    "p": 3000
    },
    {
     "o": {
      "medida": "Tamaño carta",
      "cantidad": "50"
     },
-    "p": 75000
+    "p": 150000
    },
    {
     "o": {
      "medida": "Tamaño carta",
      "cantidad": "100"
     },
-    "p": 120000
+    "p": 180000
    },
    {
     "o": {
      "medida": "Tamaño oficio",
      "cantidad": "1"
     },
-    "p": 1800
+    "p": 3500
    },
    {
     "o": {
      "medida": "Tamaño oficio",
      "cantidad": "50"
     },
-    "p": 90000
+    "p": 175000
    },
    {
     "o": {
      "medida": "Tamaño oficio",
      "cantidad": "100"
     },
-    "p": 140000
+    "p": 200000
    },
    {
     "o": {
      "medida": "Tamaño 9",
      "cantidad": "1"
     },
-    "p": 2200
+    "p": 4000
    },
    {
     "o": {
      "medida": "Tamaño 9",
      "cantidad": "50"
     },
-    "p": 110000
+    "p": 200000
    },
    {
     "o": {
      "medida": "Tamaño 9",
      "cantidad": "100"
     },
-    "p": 170000
+    "p": 250000
    }
   ],
-  "estado": "no"
+  "estado": "si"
  },
  {
   "slug": "v2-papel-fotocopia-office",
@@ -1040,13 +1177,14 @@ const DATOS: DatosProductoV2[] = [
   "slug": "v2-individuales",
   "nombre": "Individuales",
   "categoria": "Individuales",
-  "descripcion": "Individuales.",
+  "descripcion": "Individuales en papel kraft 70 g o bond 80 g, oficio 33 × 22 cm o tamaño 9 de 36 × 25 cm. Tamaño especial 42 × 35 cm: precio a consultar.",
   "familia": "Papelería e impresos",
   "orden": 4,
   "sinFoto": false,
   "chips": [
    "Kraft o bond",
-   "3 formatos"
+   "Oficio o tamaño 9",
+   "Especial 42 × 35: consultar"
   ],
   "desdeCantidad": 200,
   "tiempoEntrega": "Por confirmar",
@@ -1062,6 +1200,15 @@ const DATOS: DatosProductoV2[] = [
     "soloInformativo": false
    },
    {
+    "id": "formato",
+    "nombre": "Formato",
+    "valores": [
+     "Oficio (33 × 22 cm)",
+     "Tamaño 9 (36 × 25 cm)"
+    ],
+    "soloInformativo": false
+   },
+   {
     "id": "cantidad",
     "nombre": "Cantidad",
     "valores": [
@@ -1070,50 +1217,69 @@ const DATOS: DatosProductoV2[] = [
      "1000"
     ],
     "soloInformativo": false
-   },
-   {
-    "id": "formato",
-    "nombre": "Formato",
-    "valores": [
-     "Oficio (33 × 22 cm)",
-     "Tamaño 9 (36 × 25 cm)",
-     "Especial (42 × 35 cm)"
-    ],
-    "soloInformativo": true
    }
   ],
   "filas": [
    {
     "o": {
      "acabado": "Papel kraft 70 g",
+     "formato": "Oficio (33 × 22 cm)",
      "cantidad": "200"
     },
-    "p": 20000
+    "p": 30000
    },
    {
     "o": {
      "acabado": "Papel kraft 70 g",
+     "formato": "Oficio (33 × 22 cm)",
      "cantidad": "500"
     },
-    "p": 40000
+    "p": 45000
    },
    {
     "o": {
      "acabado": "Papel kraft 70 g",
+     "formato": "Oficio (33 × 22 cm)",
      "cantidad": "1000"
     },
     "p": 65000
    },
    {
     "o": {
-     "acabado": "Papel bond 80 g",
+     "acabado": "Papel kraft 70 g",
+     "formato": "Tamaño 9 (36 × 25 cm)",
      "cantidad": "200"
     },
-    "p": 16000
+    "p": 36000
+   },
+   {
+    "o": {
+     "acabado": "Papel kraft 70 g",
+     "formato": "Tamaño 9 (36 × 25 cm)",
+     "cantidad": "500"
+    },
+    "p": 60000
+   },
+   {
+    "o": {
+     "acabado": "Papel kraft 70 g",
+     "formato": "Tamaño 9 (36 × 25 cm)",
+     "cantidad": "1000"
+    },
+    "p": 80000
    },
    {
     "o": {
      "acabado": "Papel bond 80 g",
+     "formato": "Oficio (33 × 22 cm)",
+     "cantidad": "200"
+    },
+    "p": 30000
+   },
+   {
+    "o": {
+     "acabado": "Papel bond 80 g",
+     "formato": "Oficio (33 × 22 cm)",
      "cantidad": "500"
     },
     "p": 35000
@@ -1121,27 +1287,52 @@ const DATOS: DatosProductoV2[] = [
    {
     "o": {
      "acabado": "Papel bond 80 g",
+     "formato": "Oficio (33 × 22 cm)",
      "cantidad": "1000"
     },
     "p": 55000
+   },
+   {
+    "o": {
+     "acabado": "Papel bond 80 g",
+     "formato": "Tamaño 9 (36 × 25 cm)",
+     "cantidad": "200"
+    },
+    "p": 40000
+   },
+   {
+    "o": {
+     "acabado": "Papel bond 80 g",
+     "formato": "Tamaño 9 (36 × 25 cm)",
+     "cantidad": "500"
+    },
+    "p": 60000
+   },
+   {
+    "o": {
+     "acabado": "Papel bond 80 g",
+     "formato": "Tamaño 9 (36 × 25 cm)",
+     "cantidad": "1000"
+    },
+    "p": 85000
    }
   ],
-  "estado": "no"
+  "estado": "si"
  },
  {
   "slug": "v2-dipticos-y-tripticos",
   "nombre": "Dípticos y trípticos",
   "categoria": "Dípticos y trípticos",
-  "descripcion": "Dípticos y trípticos: Couché 170 g, full color 4/0.",
+  "descripcion": "Dípticos y trípticos (mismo precio): carta u oficio, couché 170 g, full color 4/4 (ambas caras).",
   "familia": "Papelería e impresos",
   "orden": 2,
   "sinFoto": false,
   "chips": [
    "Couché 170 g",
-   "Full color",
+   "Full color 4/4",
    "Carta u oficio"
   ],
-  "desdeCantidad": 100,
+  "desdeCantidad": 50,
   "tiempoEntrega": "Por confirmar",
   "imagen": "/images/triptico.png",
   "grupos": [
@@ -1158,6 +1349,7 @@ const DATOS: DatosProductoV2[] = [
     "id": "cantidad",
     "nombre": "Cantidad",
     "valores": [
+     "50",
      "100",
      "200",
      "300",
@@ -1167,6 +1359,13 @@ const DATOS: DatosProductoV2[] = [
    }
   ],
   "filas": [
+   {
+    "o": {
+     "medida": "Carta",
+     "cantidad": "50"
+    },
+    "p": 60000
+   },
    {
     "o": {
      "medida": "Carta",
@@ -1194,6 +1393,13 @@ const DATOS: DatosProductoV2[] = [
      "cantidad": "500"
     },
     "p": 150000
+   },
+   {
+    "o": {
+     "medida": "Oficio",
+     "cantidad": "50"
+    },
+    "p": 75000
    },
    {
     "o": {
@@ -1228,13 +1434,14 @@ const DATOS: DatosProductoV2[] = [
  },
  {
   "slug": "v2-etiquetas-de-longaniza",
-  "nombre": "Etiquetas de longaniza",
+  "nombre": "Etiquetas de longaniza 15 × 4 cm — adhesivo",
   "categoria": "Etiquetas de longaniza",
-  "descripcion": "Etiquetas de longaniza: Papel adhesivo Ritrama semibrillo. (Medida por confirmar.)",
+  "descripcion": "Etiquetas de longaniza: 15 × 4 cm, papel adhesivo Ritrama semibrillo.",
   "familia": "Stickers y etiquetas",
   "orden": 107,
   "sinFoto": false,
   "chips": [
+   "15 × 4 cm",
    "Adhesivo Ritrama",
    "Semibrillo"
   ],
@@ -1266,13 +1473,13 @@ const DATOS: DatosProductoV2[] = [
     "p": 250000
    }
   ],
-  "estado": "no"
+  "estado": "si"
  },
  {
   "slug": "v2-etiqueta-de-vino-15-4-cm",
-  "nombre": "Etiqueta de vino 15 × 4 cm",
-  "categoria": "Etiquetas de vino",
-  "descripcion": "Etiqueta de vino 15 × 4 cm: 15 × 4 cm, Couché 170 g, 4/0, barniz UV.",
+  "nombre": "Etiquetas de longaniza 15 × 4 cm — couché con barniz UV",
+  "categoria": "Etiquetas de longaniza",
+  "descripcion": "Etiquetas de longaniza: 15 × 4 cm, couché 170 g, impresión full color 4/0, barniz UV.",
   "familia": "Stickers y etiquetas",
   "orden": 108,
   "sinFoto": false,
@@ -1309,13 +1516,13 @@ const DATOS: DatosProductoV2[] = [
     "p": 185000
    }
   ],
-  "estado": "no"
+  "estado": "si"
  },
  {
   "slug": "v2-etiqueta-adhesiva-botella-750-ml",
-  "nombre": "Etiqueta adhesiva botella 750 ml",
-  "categoria": "Etiquetas de vino",
-  "descripcion": "Etiqueta adhesiva botella 750 ml: 10 × 12 cm, Papel adhesivo.",
+  "nombre": "Etiqueta de botella adhesiva 10 × 12 cm",
+  "categoria": "Etiquetas de botella",
+  "descripcion": "Etiqueta de botella: 10 × 12 cm, papel adhesivo.",
   "familia": "Stickers y etiquetas",
   "orden": 109,
   "sinFoto": false,
@@ -1355,16 +1562,16 @@ const DATOS: DatosProductoV2[] = [
     "o": {
      "cantidad": "1000"
     },
-    "p": 110000
+    "p": 130000
    }
   ],
-  "estado": "no"
+  "estado": "si"
  },
  {
   "slug": "v2-etiqueta-de-vino-12-15-cm",
-  "nombre": "Etiqueta de vino 12 × 15 cm",
-  "categoria": "Etiquetas de vino",
-  "descripcion": "Etiqueta de vino 12 × 15 cm: 12 × 15 cm, Couché 170 g, 4/0, barniz UV.",
+  "nombre": "Etiqueta de botella 12 × 15 cm — couché con barniz UV",
+  "categoria": "Etiquetas de botella",
+  "descripcion": "Etiqueta de botella: 12 × 15 cm, couché 170 g, impresión full color 4/0, barniz UV.",
   "familia": "Stickers y etiquetas",
   "orden": 110,
   "sinFoto": false,
@@ -1408,18 +1615,18 @@ const DATOS: DatosProductoV2[] = [
     "p": 105000
    }
   ],
-  "estado": "no"
+  "estado": "si"
  },
  {
   "slug": "v2-agenda-con-espiral",
   "nombre": "Agenda con espiral",
   "categoria": "Agendas de colegio",
-  "descripcion": "Agenda con espiral: 14 × 20 cm, Tapa papel doble 300 g · interior 80 págs. B/N bond 80 g.",
+  "descripcion": "Agenda con espiral: 13 × 20 cm, tapa full color 4/0 · interior 80 págs. a un solo color, bond 80 g.",
   "familia": "Agendas",
   "orden": 519,
   "sinFoto": false,
   "chips": [
-   "14 × 20 cm",
+   "13 × 20 cm",
    "80 págs.",
    "Con espiral"
   ],
@@ -1442,7 +1649,7 @@ const DATOS: DatosProductoV2[] = [
     "o": {
      "cantidad": "500"
     },
-    "p": 1400000
+    "p": 1500000
    },
    {
     "o": {
@@ -1451,20 +1658,20 @@ const DATOS: DatosProductoV2[] = [
     "p": 2200000
    }
   ],
-  "estado": "no"
+  "estado": "si"
  },
  {
   "slug": "v2-agenda-corcheteada",
   "nombre": "Agenda corcheteada",
   "categoria": "Agendas de colegio",
-  "descripcion": "Agenda corcheteada: 14 × 20 cm, Portada full color · interior 80 págs. B/N bond 80 g.",
+  "descripcion": "Agenda corcheteada: 14 × 20 cm, tapa cartulina nacional 250 g · interior 70 págs. (35 hojas) full color, bond 80 g.",
   "familia": "Agendas",
   "orden": 520,
   "sinFoto": false,
   "chips": [
    "14 × 20 cm",
-   "80 págs.",
-   "Portada full color"
+   "70 págs. full color",
+   "Corcheteada"
   ],
   "desdeCantidad": 300,
   "tiempoEntrega": "Por confirmar",
@@ -1501,7 +1708,119 @@ const DATOS: DatosProductoV2[] = [
     "p": 980000
    }
   ],
-  "estado": "no"
+  "estado": "si"
+ },
+ {
+  "slug": "v2-etiquetas-de-longaniza-8-12-cm",
+  "nombre": "Etiquetas de longaniza 8 × 12 cm — adhesivo",
+  "categoria": "Etiquetas de longaniza",
+  "descripcion": "Etiquetas de longaniza: 8 × 12 cm, papel adhesivo.",
+  "familia": "Stickers y etiquetas",
+  "orden": 107.5,
+  "sinFoto": false,
+  "chips": [
+   "8 × 12 cm",
+   "Papel adhesivo"
+  ],
+  "desdeCantidad": 1000,
+  "tiempoEntrega": "Por confirmar",
+  "imagen": "/images/etiquetas.png",
+  "grupos": [
+   {
+    "id": "cantidad",
+    "nombre": "Cantidad",
+    "valores": [
+     "1000",
+     "2000",
+     "5000"
+    ],
+    "soloInformativo": false
+   }
+  ],
+  "filas": [
+   {
+    "o": {
+     "cantidad": "1000"
+    },
+    "p": 68000
+   },
+   {
+    "o": {
+     "cantidad": "2000"
+    },
+    "p": 110000
+   },
+   {
+    "o": {
+     "cantidad": "5000"
+    },
+    "p": 225000
+   }
+  ],
+  "estado": "si"
+ },
+ {
+  "slug": "v2-timbres",
+  "nombre": "Timbres",
+  "categoria": "Timbres",
+  "descripcion": "Timbres automáticos N° 11, 12 y 13, y timbres circulares de 3 y 4 cm de diámetro. Precio por unidad.",
+  "familia": "Papelería e impresos",
+  "orden": 6,
+  "sinFoto": false,
+  "chips": [
+   "Automáticos",
+   "Circulares"
+  ],
+  "desdeCantidad": null,
+  "tiempoEntrega": "1-3 días hábiles",
+  "imagen": "/images/timbres.png",
+  "grupos": [
+   {
+    "id": "modelo",
+    "nombre": "Modelo",
+    "valores": [
+     "Automático N° 11",
+     "Automático N° 12",
+     "Automático N° 13",
+     "Circular 3 cm de diámetro",
+     "Circular 4 cm de diámetro"
+    ],
+    "soloInformativo": false
+   }
+  ],
+  "filas": [
+   {
+    "o": {
+     "modelo": "Automático N° 11"
+    },
+    "p": 13500
+   },
+   {
+    "o": {
+     "modelo": "Automático N° 12"
+    },
+    "p": 14500
+   },
+   {
+    "o": {
+     "modelo": "Automático N° 13"
+    },
+    "p": 16500
+   },
+   {
+    "o": {
+     "modelo": "Circular 3 cm de diámetro"
+    },
+    "p": 22000
+   },
+   {
+    "o": {
+     "modelo": "Circular 4 cm de diámetro"
+    },
+    "p": 24000
+   }
+  ],
+  "estado": "si"
  }
 ]
 
