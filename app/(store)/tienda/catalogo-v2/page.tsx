@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { CATALOGO_V2 } from '@/lib/catalogo-v2'
+import { unitarioDesde } from '@/lib/productos'
 import { tieneAccesoCatalogoV2 } from '@/lib/catalogoV2Acceso'
 import CatalogoV2Lista, { type ItemLista } from './CatalogoV2Lista'
 
@@ -23,6 +24,7 @@ export default async function CatalogoV2Page() {
     sinFoto: i.sinFoto,
     chips: i.chips,
     desde: i.desde,
+    unitario: unitarioDesde(i.producto),
     desdeCantidad: i.desdeCantidad,
     enRevision: i.estado !== 'si',
   }))

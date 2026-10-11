@@ -20,7 +20,7 @@ export interface DatosProductoV2 {
   tiempoEntrega: string
   imagen: string
   /** Grupos que cambian el precio y grupos solo informativos (forma, color de anillo, etc.). */
-  grupos: { id: string; nombre: string; valores: string[]; soloInformativo: boolean }[]
+  grupos: { id: string; nombre: string; valores: string[]; soloInformativo: boolean; cantidadLibre?: { min: number; max: number } }[]
   filas: { o: Record<string, string>; p: number }[]
   /** 'si' = todas las filas marcadas Sí en el Excel; 'no' = todas No; 'mixto' = ambas. */
   estado: 'si' | 'no' | 'mixto'
@@ -1094,14 +1094,14 @@ const DATOS: DatosProductoV2[] = [
   "slug": "v2-papel-fotocopia-office",
   "nombre": "Papel fotocopia Office",
   "categoria": "Papel fotocopia (resmas)",
-  "descripcion": "Papel fotocopia Office: Blanco 80 g, resma de 500 hojas.",
+  "descripcion": "Papel fotocopia Office: blanco 80 g, resma de 500 hojas. Precio fijo por resma: compra las que necesites.",
   "familia": "Papelería e impresos",
   "orden": 5,
   "sinFoto": false,
   "chips": [
    "Office 80 g",
    "Carta u oficio",
-   "Resma 500 hojas"
+   "Se vende por resma"
   ],
   "desdeCantidad": 1,
   "tiempoEntrega": "Por confirmar",
@@ -1118,60 +1118,32 @@ const DATOS: DatosProductoV2[] = [
    },
    {
     "id": "cantidad",
-    "nombre": "Cantidad",
+    "nombre": "Cantidad (resmas)",
     "valores": [
-     "1",
-     "10",
-     "100"
+     "1"
     ],
-    "soloInformativo": false
+    "soloInformativo": false,
+    "cantidadLibre": {
+     "min": 1,
+     "max": 500
+    }
    }
   ],
   "filas": [
    {
     "o": {
-     "medida": "Carta",
-     "cantidad": "1"
+     "medida": "Carta"
     },
     "p": 3800
    },
    {
     "o": {
-     "medida": "Carta",
-     "cantidad": "10"
-    },
-    "p": 38000
-   },
-   {
-    "o": {
-     "medida": "Carta",
-     "cantidad": "100"
-    },
-    "p": 380000
-   },
-   {
-    "o": {
-     "medida": "Oficio",
-     "cantidad": "1"
+     "medida": "Oficio"
     },
     "p": 4500
-   },
-   {
-    "o": {
-     "medida": "Oficio",
-     "cantidad": "10"
-    },
-    "p": 45000
-   },
-   {
-    "o": {
-     "medida": "Oficio",
-     "cantidad": "100"
-    },
-    "p": 450000
    }
   ],
-  "estado": "no"
+  "estado": "si"
  },
  {
   "slug": "v2-individuales",
@@ -1837,7 +1809,9 @@ export interface ItemCatalogoV2 {
 }
 
 function construir(d: DatosProductoV2): ItemCatalogoV2 {
-  const gruposPrecio = d.grupos.filter((g) => !g.soloInformativo)
+  const libre = d.grupos.find((g) => g.cantidadLibre)
+  // El grupo de cantidad libre no entra a la clave de precio: la fila trae el precio POR UNIDAD.
+  const gruposPrecio = d.grupos.filter((g) => !g.soloInformativo && !g.cantidadLibre)
   const tabla = new Map<string, number>()
   for (const f of d.filas) {
     tabla.set(gruposPrecio.map((g) => f.o[g.id] ?? '').join('|'), f.p)
@@ -1849,9 +1823,16 @@ function construir(d: DatosProductoV2): ItemCatalogoV2 {
     tiempoEntrega: d.tiempoEntrega,
     imagen: d.imagen,
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
-    opcionGrupos: d.grupos.map((g): OpcionGrupo => ({ id: g.id, nombre: g.nombre, valores: g.valores })),
-    calcularPrecio: (opciones) =>
-      conAjuste(tabla.get(gruposPrecio.map((g) => opciones[g.id] ?? g.valores[0]).join('|')) ?? 0),
+    opcionGrupos: d.grupos.map(
+      (g): OpcionGrupo => ({ id: g.id, nombre: g.nombre, valores: g.valores, cantidadLibre: g.cantidadLibre })
+    ),
+    calcularPrecio: (opciones) => {
+      const unidad = conAjuste(tabla.get(gruposPrecio.map((g) => opciones[g.id] ?? g.valores[0]).join('|')) ?? 0)
+      if (!libre?.cantidadLibre) return unidad
+      const { min, max } = libre.cantidadLibre
+      const n = parseInt(opciones[libre.id] ?? '', 10)
+      return unidad * Math.min(max, Math.max(min, Number.isFinite(n) ? n : min))
+    },
     // Solo se usa para revisar resolución de archivos, y la vista previa no permite subir.
     dimensiones: () => ({ anchoCm: 21, altoCm: 29.7, granFormato: false }),
   }

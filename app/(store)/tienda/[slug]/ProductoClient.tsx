@@ -11,6 +11,7 @@ import {
   getProducto,
   evaluarResolucion,
   primerValorDisponible,
+  formatUnitario,
   type Resolucion,
   type Producto,
 } from '@/lib/productos'
@@ -44,6 +45,57 @@ function diasMaximos(texto: string): number {
   const nums = texto.match(/\d+/g)
   if (!nums || nums.length === 0) return 3
   return Math.max(...nums.map(Number))
+}
+
+/** Cantidad libre (ej. resmas): botones − / + y campo numérico. Corrige al salir del campo. */
+function CantidadLibre({
+  valor,
+  min,
+  max,
+  disabled,
+  onChange,
+}: {
+  valor: string
+  min: number
+  max: number
+  disabled: boolean
+  onChange: (v: string) => void
+}) {
+  const n = parseInt(valor, 10)
+  const actual = Number.isFinite(n) ? n : min
+  const fijar = (x: number) => onChange(String(Math.min(max, Math.max(min, x))))
+  return (
+    <div className="inline-flex items-center rounded-xl border border-gray-200 bg-white overflow-hidden">
+      <button
+        type="button"
+        aria-label="Una menos"
+        disabled={disabled || actual <= min}
+        onClick={() => fijar(actual - 1)}
+        className="min-h-[48px] w-12 text-xl font-bold text-[#2D3E9F] disabled:text-gray-300"
+      >
+        −
+      </button>
+      <input
+        type="text"
+        inputMode="numeric"
+        aria-label="Cantidad"
+        value={valor}
+        disabled={disabled}
+        onChange={(e) => onChange(e.target.value.replace(/\D/g, '').slice(0, 4))}
+        onBlur={() => fijar(actual)}
+        className="w-20 min-h-[48px] text-center text-base font-semibold text-gray-900 border-x border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#E91E8F]"
+      />
+      <button
+        type="button"
+        aria-label="Una más"
+        disabled={disabled || actual >= max}
+        onClick={() => fijar(actual + 1)}
+        className="min-h-[48px] w-12 text-xl font-bold text-[#2D3E9F] disabled:text-gray-300"
+      >
+        +
+      </button>
+    </div>
+  )
 }
 
 export default function ProductoClient({
@@ -120,7 +172,7 @@ export default function ProductoClient({
     grupoCantidad && cantidadActual > 0 ? precio / cantidadActual : null
 
   const mejorCantidad = useMemo(() => {
-    if (!grupoCantidad) return null
+    if (!grupoCantidad || grupoCantidad.cantidadLibre) return null
     // No destacar como "mejor precio" una cantidad que ni siquiera se puede
     // elegir ahora mismo.
     const valoresElegibles = grupoCantidad.valores.filter(
@@ -322,10 +374,19 @@ export default function ProductoClient({
                   {grupo.nombre}
                   {grupo.id === 'cantidad' && precioUnitario !== null && (
                     <span className="ml-2 font-normal text-gray-500">
-                      ({formatCLP(Math.round(precioUnitario))} c/u)
+                      ({formatUnitario(precioUnitario)} c/u)
                     </span>
                   )}
                 </p>
+                {grupo.cantidadLibre ? (
+                  <CantidadLibre
+                    valor={opciones[grupo.id] ?? ''}
+                    min={grupo.cantidadLibre.min}
+                    max={grupo.cantidadLibre.max}
+                    disabled={!productoDisponible}
+                    onChange={(v) => setOpciones((prev) => ({ ...prev, [grupo.id]: v }))}
+                  />
+                ) : (
                 <div className="flex flex-wrap gap-2">
                   {grupo.valores.map((valor) => {
                     const activo = opciones[grupo.id] === valor
@@ -364,6 +425,7 @@ export default function ProductoClient({
                     )
                   })}
                 </div>
+                )}
               </div>
             ))}
           </div>
@@ -375,7 +437,7 @@ export default function ProductoClient({
               <span className="text-sm text-gray-500">IVA incluido</span>
               {precioUnitario !== null && (
                 <span className="text-sm font-semibold text-[#2D3E9F]/80">
-                  · {formatCLP(Math.round(precioUnitario))} c/u
+                  · {formatUnitario(precioUnitario)} c/u
                 </span>
               )}
             </div>
@@ -584,7 +646,7 @@ export default function ProductoClient({
               <p className="text-xl font-black text-[#2D3E9F] leading-none">{formatCLP(precio)}</p>
               <p className="text-[11px] text-gray-500 mt-0.5">
                 {precioUnitario !== null
-                  ? `${formatCLP(Math.round(precioUnitario))} c/u · IVA incl.`
+                  ? `${formatUnitario(precioUnitario)} c/u · IVA incl.`
                   : 'IVA incluido'}
               </p>
             </div>

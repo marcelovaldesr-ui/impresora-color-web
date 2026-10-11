@@ -10,6 +10,12 @@ export interface OpcionGrupo {
    * grupo están disponibles (comportamiento actual, sin cambios).
    */
   valoresNoDisponibles?: string[]
+  /**
+   * Cantidad libre: en vez de botones con tramos, el cliente escribe cualquier
+   * cantidad entera entre `min` y `max` (precio fijo por unidad). `valores`
+   * solo lleva el valor inicial (ej. ['1']).
+   */
+  cantidadLibre?: { min: number; max: number }
 }
 
 export interface Dimensiones {
@@ -54,6 +60,16 @@ function medidasDeTexto(texto: string): { anchoCm: number; altoCm: number } | nu
 export const AJUSTE_PRECIOS = 1.03
 export function conAjuste(precioBase: number): number {
   return precioBase > 0 ? Math.round((precioBase * AJUSTE_PRECIOS) / 10) * 10 : 0
+}
+
+/** Precio por unidad: con 1 decimal si es menor a $100 ($25,8), entero si no. */
+export function formatUnitario(n: number): string {
+  return new Intl.NumberFormat('es-CL', {
+    style: 'currency',
+    currency: 'CLP',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: n < 100 ? 1 : 0,
+  }).format(n)
 }
 
 export function formatCLP(amount: number): string {
@@ -295,6 +311,17 @@ export function precioServidor(slug: unknown, opciones: unknown): PrecioServidor
 
   for (const grupo of producto.opcionGrupos) {
     const valor = entrada[grupo.id]
+    if (grupo.cantidadLibre) {
+      const n = typeof valor === 'string' && /^\d{1,6}$/.test(valor) ? Number(valor) : NaN
+      if (!Number.isInteger(n) || n < grupo.cantidadLibre.min || n > grupo.cantidadLibre.max) {
+        return {
+          ok: false,
+          error: `La cantidad de "${grupo.nombre}" para ${producto.nombre} debe estar entre ${grupo.cantidadLibre.min} y ${grupo.cantidadLibre.max}.`,
+        }
+      }
+      limpias[grupo.id] = String(n)
+      continue
+    }
     if (typeof valor !== 'string' || !grupo.valores.includes(valor)) {
       return { ok: false, error: `Opción inválida en "${grupo.nombre}" para ${producto.nombre}.` }
     }
@@ -329,6 +356,29 @@ export function precioDesde(producto: Producto): number {
   return producto.calcularPrecio(
     Object.fromEntries(producto.opcionGrupos.map((g) => [g.id, primerValorDisponible(g)]))
   )
+}
+
+/** Mejor precio por unidad publicado (recorre todas las combinaciones y todas las cantidades).
+ *  null si el producto no se vende por cantidad. Sirve para mostrar "$26 c/u" en las tarjetas:
+ *  el total de un pack grande asusta, el valor por unidad no. */
+export function unitarioDesde(producto: Producto): number | null {
+  const gc = producto.opcionGrupos.find((g) => g.id === 'cantidad')
+  if (!gc) return null
+  const otros = producto.opcionGrupos.filter((g) => g.id !== 'cantidad')
+  let combos: Record<string, string>[] = [{}]
+  for (const g of otros) {
+    const vs = g.valores.filter((v) => !g.valoresNoDisponibles?.includes(v))
+    combos = combos.flatMap((c) => vs.map((v) => ({ ...c, [g.id]: v })))
+  }
+  let mejor: number | null = null
+  for (const c of combos) {
+    for (const v of gc.valores.filter((x) => !gc.valoresNoDisponibles?.includes(x))) {
+      const q = Number(v)
+      const p = producto.calcularPrecio({ ...c, cantidad: v })
+      if (q > 0 && p > 0 && (mejor === null || p / q < mejor)) mejor = p / q
+    }
+  }
+  return mejor
 }
 
 // ---------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { PRODUCTOS, formatCLP, precioDesde } from '@/lib/productos'
+import { PRODUCTOS, formatCLP, formatUnitario, precioDesde, unitarioDesde } from '@/lib/productos'
 import type { Metadata } from 'next'
 import { TIENDA_EN_CONSTRUCCION } from '@/lib/config'
 
@@ -58,6 +58,7 @@ export default function TiendaPage() {
       <div className="grid sm:grid-cols-2 gap-6">
         {PRODUCTOS.map((producto) => {
           const precioMinimo = precioDesde(producto)
+          const unitario = unitarioDesde(producto)
 
           return (
             <Link
@@ -89,8 +90,19 @@ export default function TiendaPage() {
                 <div className="flex items-end justify-between mt-4">
                   <div>
                     <p className="text-xs text-gray-500">Desde</p>
-                    <p className="text-[#2D3E9F] font-black text-2xl">{formatCLP(precioMinimo)}</p>
-                    <p className="text-xs text-gray-500">IVA incluido</p>
+                    {unitario !== null ? (
+                      <>
+                        <p className="text-[#2D3E9F] font-black text-2xl">
+                          {formatUnitario(unitario)} <span className="text-base font-bold">c/u</span>
+                        </p>
+                        <p className="text-xs text-gray-500">Pack desde {formatCLP(precioMinimo)} · IVA incluido</p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-[#2D3E9F] font-black text-2xl">{formatCLP(precioMinimo)}</p>
+                        <p className="text-xs text-gray-500">IVA incluido</p>
+                      </>
+                    )}
                   </div>
                   <div className="flex flex-col items-end gap-2">
                     <span className="flex items-center gap-1 text-xs text-gray-500">

@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { formatCLP } from '@/lib/productos'
+import { formatCLP, formatUnitario } from '@/lib/productos'
 
 export interface ItemLista {
   slug: string
@@ -13,6 +13,8 @@ export interface ItemLista {
   sinFoto: boolean
   chips: string[]
   desde: number
+  /** Mejor precio por unidad (null si el producto no se vende por cantidad). */
+  unitario: number | null
   desdeCantidad: number | null
   enRevision: boolean
 }
@@ -68,11 +70,24 @@ function Tarjeta({ item }: { item: ItemLista }) {
 
         <div className="mt-auto pt-3">
           <p className="text-[11px] text-gray-500 leading-none">Desde</p>
-          <p className="text-[#2D3E9F] font-black text-xl sm:text-2xl leading-tight">{formatCLP(item.desde)}</p>
-          <p className="text-[11px] text-gray-500">
-            IVA incluido
-            {item.desdeCantidad && item.desdeCantidad > 1 ? ` · ${item.desdeCantidad.toLocaleString('es-CL')} u.` : ''}
-          </p>
+          {item.unitario !== null ? (
+            <>
+              <p className="text-[#2D3E9F] font-black text-xl sm:text-2xl leading-tight">
+                {formatUnitario(item.unitario)} <span className="text-sm font-bold">c/u</span>
+              </p>
+              <p className="text-[11px] text-gray-500">
+                {item.desdeCantidad && item.desdeCantidad > 1
+                  ? `Pack desde ${formatCLP(item.desde)} (${item.desdeCantidad.toLocaleString('es-CL')} u.)`
+                  : `Desde ${formatCLP(item.desde)} la unidad`}
+                {' · IVA incluido'}
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-[#2D3E9F] font-black text-xl sm:text-2xl leading-tight">{formatCLP(item.desde)}</p>
+              <p className="text-[11px] text-gray-500">IVA incluido</p>
+            </>
+          )}
           <span className="mt-3 block text-center text-sm font-bold rounded-full py-2 bg-[#E91E8F]/10 text-[#E91E8F] group-hover:bg-[#E91E8F] group-hover:text-white transition-colors">
             Ver opciones →
           </span>
