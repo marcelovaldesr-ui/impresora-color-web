@@ -3,7 +3,7 @@
 // NO lo usa la tienda pública (que sigue leyendo lib/productos.ts) y NO se puede comprar desde aquí.
 // Precios FINALES con IVA incluido (19%), total por la cantidad elegida.
 // Para actualizar: editar el Excel maestro y pedir que se regenere este archivo.
-import type { Producto, OpcionGrupo } from './productos'
+import { conAjuste, type Producto, type OpcionGrupo } from './productos'
 
 export interface DatosProductoV2 {
   slug: string
@@ -1851,7 +1851,7 @@ function construir(d: DatosProductoV2): ItemCatalogoV2 {
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: d.grupos.map((g): OpcionGrupo => ({ id: g.id, nombre: g.nombre, valores: g.valores })),
     calcularPrecio: (opciones) =>
-      tabla.get(gruposPrecio.map((g) => opciones[g.id] ?? g.valores[0]).join('|')) ?? 0,
+      conAjuste(tabla.get(gruposPrecio.map((g) => opciones[g.id] ?? g.valores[0]).join('|')) ?? 0),
     // Solo se usa para revisar resolución de archivos, y la vista previa no permite subir.
     dimensiones: () => ({ anchoCm: 21, altoCm: 29.7, granFormato: false }),
   }
@@ -1864,7 +1864,7 @@ function construir(d: DatosProductoV2): ItemCatalogoV2 {
     chips: d.chips,
     desdeCantidad: d.desdeCantidad,
     estado: d.estado,
-    desde: Math.min(...d.filas.map((f) => f.p)),
+    desde: conAjuste(Math.min(...d.filas.map((f) => f.p))),
   }
 }
 

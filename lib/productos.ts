@@ -49,6 +49,13 @@ function medidasDeTexto(texto: string): { anchoCm: number; altoCm: number } | nu
   }
 }
 
+/** Alza general de precios sobre las tablas de abajo (3 %, 11-oct-2026). Las tablas guardan
+ *  el precio base; este ajuste se aplica al calcular. Redondea a la decena de pesos. */
+export const AJUSTE_PRECIOS = 1.03
+export function conAjuste(precioBase: number): number {
+  return precioBase > 0 ? Math.round((precioBase * AJUSTE_PRECIOS) / 10) * 10 : 0
+}
+
 export function formatCLP(amount: number): string {
   return new Intl.NumberFormat('es-CL', {
     style: 'currency',
@@ -113,7 +120,7 @@ const TELA_PVC: Record<string, number> = {
 // Precio por unidad, fijo hasta 5 unidades. Sobre 5 unidades se cotiza por privado.
 const CREDENCIAL_PVC_UNITARIO = 2500
 
-export const PRODUCTOS: Producto[] = [
+const PRODUCTOS_BASE: Producto[] = [
   {
     slug: 'tarjetas-presentacion',
     nombre: 'Tarjetas de Presentación',
@@ -225,7 +232,7 @@ export const PRODUCTOS: Producto[] = [
     slug: 'credencial-pvc',
     nombre: 'Credencial PVC',
     descripcion:
-      'Credencial tipo carne en PVC blanco, impresion full color. Tamaño estándar 8,5 x 5,5 cm. Valor $2.500 por unidad (hasta 5 unidades); para mayores cantidades, cotiza por privado.',
+      'Credencial tipo carne en PVC blanco, impresion full color. Tamaño estándar 8,5 x 5,5 cm. Valor $2.580 por unidad (hasta 5 unidades); para mayores cantidades, cotiza por privado.',
     tiempoEntrega: '1-3 días hábiles',
     imagen: '/images/tarjetaspvc.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
@@ -240,6 +247,11 @@ export const PRODUCTOS: Producto[] = [
     dimensiones: () => ({ anchoCm: 8.5, altoCm: 5.5, granFormato: false }),
   },
 ]
+
+export const PRODUCTOS: Producto[] = PRODUCTOS_BASE.map((p) => ({
+  ...p,
+  calcularPrecio: (opciones: Record<string, string>) => conAjuste(p.calcularPrecio(opciones)),
+}))
 
 export function getProducto(slug: string): Producto | undefined {
   return PRODUCTOS.find((p) => p.slug === slug)
