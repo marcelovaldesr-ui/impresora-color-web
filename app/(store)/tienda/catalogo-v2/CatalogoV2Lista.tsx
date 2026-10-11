@@ -25,10 +25,10 @@ function normalizar(t: string): string {
   return t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 }
 
-function Tarjeta({ item }: { item: ItemLista }) {
+function Tarjeta({ item, base }: { item: ItemLista; base: string }) {
   return (
     <Link
-      href={`/tienda/catalogo-v2/${item.slug}`}
+      href={`${base}/${item.slug}`}
       className="group flex flex-col bg-white rounded-2xl border border-gray-200 hover:border-[#2D3E9F]/40 hover:shadow-lg hover:-translate-y-0.5 transition-all overflow-hidden"
     >
       <div className="relative aspect-square bg-[#F5F6FB]">
@@ -97,7 +97,17 @@ function Tarjeta({ item }: { item: ItemLista }) {
   )
 }
 
-export default function CatalogoV2Lista({ items }: { items: ItemLista[] }) {
+export default function CatalogoV2Lista({
+  items,
+  base = '/tienda/catalogo-v2',
+  vistaPrevia = true,
+}: {
+  items: ItemLista[]
+  /** Ruta base de las fichas. */
+  base?: string
+  /** true = aviso de borrador (catálogo privado). false = tienda pública. */
+  vistaPrevia?: boolean
+}) {
   const [familia, setFamilia] = useState(TODOS)
   const [busqueda, setBusqueda] = useState('')
 
@@ -124,9 +134,11 @@ export default function CatalogoV2Lista({ items }: { items: ItemLista[] }) {
 
   return (
     <div>
-      <div className="bg-amber-50 border-b border-amber-300 text-amber-900 text-xs text-center px-4 py-2">
-        Vista previa privada del catálogo v2 (borrador). Precios en revisión; no se puede comprar desde aquí.
-      </div>
+      {vistaPrevia && (
+        <div className="bg-amber-50 border-b border-amber-300 text-amber-900 text-xs text-center px-4 py-2">
+          Vista previa privada del catálogo v2 (borrador). Precios en revisión; no se puede comprar desde aquí.
+        </div>
+      )}
 
       {/* Encabezado + buscador */}
       <div className="bg-gradient-to-br from-[#2D3E9F] to-[#1f2d78] text-white">
@@ -201,7 +213,7 @@ export default function CatalogoV2Lista({ items }: { items: ItemLista[] }) {
                 <span className="text-xs text-gray-500">{s.items.length} {s.items.length === 1 ? 'producto' : 'productos'}</span>
               </div>
               <div className={grilla}>
-                {s.items.map((i) => <Tarjeta key={i.slug} item={i} />)}
+                {s.items.map((i) => <Tarjeta key={i.slug} item={i} base={base} />)}
               </div>
             </section>
           ))
@@ -211,7 +223,7 @@ export default function CatalogoV2Lista({ items }: { items: ItemLista[] }) {
               {visibles.length} {visibles.length === 1 ? 'producto' : 'productos'}
             </p>
             <div className={grilla}>
-              {visibles.map((i) => <Tarjeta key={i.slug} item={i} />)}
+              {visibles.map((i) => <Tarjeta key={i.slug} item={i} base={base} />)}
             </div>
           </>
         )}

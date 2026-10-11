@@ -1,3 +1,7 @@
+import { conAjuste } from './precios'
+import { CATALOGO_V2_EN_TIENDA } from './config'
+import { PRODUCTOS_V2_PUBLICOS } from './catalogo-v2'
+
 export interface OpcionGrupo {
   id: string
   nombre: string
@@ -43,6 +47,11 @@ export interface Producto {
    * seguir vendiéndose exactamente igual que hoy.
    */
   disponible?: boolean
+  /**
+   * Si el producto lleva un diseño del cliente. Opcional: si no está definido se
+   * asume que sí (`true`). En `false` (ej. resmas de papel) no se pide archivo.
+   */
+  requiereArchivo?: boolean
 }
 
 /** "150 x 200 cm" o "A5 (14,8 x 21 cm)" -> { anchoCm, altoCm } */
@@ -55,12 +64,7 @@ function medidasDeTexto(texto: string): { anchoCm: number; altoCm: number } | nu
   }
 }
 
-/** Alza general de precios sobre las tablas de abajo (3 %, 11-oct-2026). Las tablas guardan
- *  el precio base; este ajuste se aplica al calcular. Redondea a la decena de pesos. */
-export const AJUSTE_PRECIOS = 1.03
-export function conAjuste(precioBase: number): number {
-  return precioBase > 0 ? Math.round((precioBase * AJUSTE_PRECIOS) / 10) * 10 : 0
-}
+export { AJUSTE_PRECIOS, conAjuste } from './precios'
 
 /** Precio por unidad: con 1 decimal si es menor a $100 ($25,8), entero si no. */
 export function formatUnitario(n: number): string {
@@ -264,10 +268,13 @@ const PRODUCTOS_BASE: Producto[] = [
   },
 ]
 
-export const PRODUCTOS: Producto[] = PRODUCTOS_BASE.map((p) => ({
+const PRODUCTOS_ACTUALES: Producto[] = PRODUCTOS_BASE.map((p) => ({
   ...p,
   calcularPrecio: (opciones: Record<string, string>) => conAjuste(p.calcularPrecio(opciones)),
 }))
+
+/** Lo que muestra y vende la tienda pública (ver CATALOGO_V2_EN_TIENDA en lib/config.ts). */
+export const PRODUCTOS: Producto[] = CATALOGO_V2_EN_TIENDA ? PRODUCTOS_V2_PUBLICOS : PRODUCTOS_ACTUALES
 
 export function getProducto(slug: string): Producto | undefined {
   return PRODUCTOS.find((p) => p.slug === slug)

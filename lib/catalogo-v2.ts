@@ -3,7 +3,8 @@
 // NO lo usa la tienda pública (que sigue leyendo lib/productos.ts) y NO se puede comprar desde aquí.
 // Precios FINALES con IVA incluido (19%), total por la cantidad elegida.
 // Para actualizar: editar el Excel maestro y pedir que se regenere este archivo.
-import { conAjuste, type Producto, type OpcionGrupo } from './productos'
+import { conAjuste } from './precios'
+import type { Producto, OpcionGrupo, Dimensiones } from './productos'
 
 export interface DatosProductoV2 {
   slug: string
@@ -609,7 +610,7 @@ const DATOS: DatosProductoV2[] = [
   "slug": "v2-credencial-pvc",
   "nombre": "Credencial PVC",
   "categoria": "Credencial PVC",
-  "descripcion": "Credencial PVC: 8,5 × 5,5 cm, PVC blanco, impresión full color.",
+  "descripcion": "Credencial tipo carné en PVC blanco, impresión full color. Tamaño estándar 8,5 × 5,5 cm. Hasta 5 unidades; para más cantidad, cotiza por WhatsApp.",
   "familia": "Credenciales y PVC",
   "orden": 418,
   "sinFoto": false,
@@ -1808,6 +1809,53 @@ export interface ItemCatalogoV2 {
   desde: number
 }
 
+/** "150 x 200 cm" o "A5 (14,8 x 21 cm)" -> medidas en cm (acepta x, X y ×). */
+function medidasDe(texto: string): { anchoCm: number; altoCm: number } | null {
+  const m = texto.match(/(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)/i)
+  return m ? { anchoCm: parseFloat(m[1].replace(',', '.')), altoCm: parseFloat(m[2].replace(',', '.')) } : null
+}
+
+const PEQ = (anchoCm: number, altoCm: number): Dimensiones => ({ anchoCm, altoCm, granFormato: false })
+const GRAN = (anchoCm: number, altoCm: number): Dimensiones => ({ anchoCm, altoCm, granFormato: true })
+
+/** Tamaño físico impreso: lo usa el revisor de resolución del archivo del cliente. */
+function dimensionesV2(slug: string, o: Record<string, string>): Dimensiones {
+  const med = o.medida ?? ''
+  const fmt = o.formato ?? ''
+  switch (slug) {
+    case 'v2-tarjetas-de-presentacion': return PEQ(9, 5)
+    case 'v2-flyers-volantes': { const m = medidasDe(med); return m ? PEQ(m.anchoCm, m.altoCm) : PEQ(10.5, 14.8) }
+    case 'v2-stickers': { const l = parseFloat(med); return PEQ(l > 0 ? l : 3, l > 0 ? l : 3) }
+    case 'v2-pendon-roller-retractil':
+    case 'v2-tela-pvc-impresa': { const m = medidasDe(med); return m ? GRAN(m.anchoCm, m.altoCm) : GRAN(80, 200) }
+    case 'v2-paloma-publicitaria': {
+      const t: Record<string, [number, number]> = { '1,25X70': [125, 70], '1,5x70': [150, 70], '2x1m': [200, 100] }
+      const m = t[med] ?? [125, 70]
+      return GRAN(m[0], m[1])
+    }
+    case 'v2-credencial-pvc': return PEQ(8.5, 5.5)
+    case 'v2-calendario-mural': return PEQ(33, 45)
+    case 'v2-calendario-iman': return PEQ(7, 8)
+    case 'v2-calendario-comercial-12-meses': return PEQ(31, 38)
+    case 'v2-calendario-de-escritorio': return PEQ(22, 14)
+    case 'v2-diplomas': return med.includes('oficio') ? PEQ(21.6, 33) : med.includes('9') ? PEQ(36, 25) : PEQ(21.6, 27.9)
+    case 'v2-individuales': return fmt.includes('9') ? PEQ(36, 25) : PEQ(33, 22)
+    case 'v2-dipticos-y-tripticos': return med === 'Oficio' ? PEQ(21.6, 33) : PEQ(21.6, 27.9)
+    case 'v2-etiquetas-de-longaniza':
+    case 'v2-etiqueta-de-vino-15-4-cm': return PEQ(15, 4)
+    case 'v2-etiquetas-de-longaniza-8-12-cm': return PEQ(8, 12)
+    case 'v2-etiqueta-adhesiva-botella-750-ml': return PEQ(10, 12)
+    case 'v2-etiqueta-de-vino-12-15-cm': return PEQ(12, 15)
+    case 'v2-agenda-con-espiral': return PEQ(13, 20)
+    case 'v2-agenda-corcheteada': return PEQ(14, 20)
+    case 'v2-timbres': return PEQ(5, 3)
+    default: return PEQ(21, 29.7)
+  }
+}
+
+/** Productos que se venden sin diseño del cliente. */
+const SIN_ARCHIVO = new Set(['v2-papel-fotocopia-office'])
+
 function construir(d: DatosProductoV2): ItemCatalogoV2 {
   const libre = d.grupos.find((g) => g.cantidadLibre)
   // El grupo de cantidad libre no entra a la clave de precio: la fila trae el precio POR UNIDAD.
@@ -1833,8 +1881,8 @@ function construir(d: DatosProductoV2): ItemCatalogoV2 {
       const n = parseInt(opciones[libre.id] ?? '', 10)
       return unidad * Math.min(max, Math.max(min, Number.isFinite(n) ? n : min))
     },
-    // Solo se usa para revisar resolución de archivos, y la vista previa no permite subir.
-    dimensiones: () => ({ anchoCm: 21, altoCm: 29.7, granFormato: false }),
+    dimensiones: (opciones) => dimensionesV2(d.slug, opciones),
+    requiereArchivo: !SIN_ARCHIVO.has(d.slug),
   }
   return {
     producto,
@@ -1854,3 +1902,24 @@ export const CATALOGO_V2: ItemCatalogoV2[] = DATOS.map(construir).sort((a, b) =>
 export function getProductoV2(slug: string): Producto | undefined {
   return CATALOGO_V2.find((i) => i.producto.slug === slug)?.producto
 }
+
+// ---------------------------------------------------------------------------
+// Catálogo PÚBLICO (cuando CATALOGO_V2_EN_TIENDA = true en lib/config.ts).
+// Solo los productos confirmados (estado "si"). Mantiene las direcciones de la tienda
+// actual para los 6 productos que ya existían y quita el prefijo "v2-" a los nuevos.
+// ---------------------------------------------------------------------------
+const SLUG_PUBLICO: Record<string, string> = {
+  'v2-tarjetas-de-presentacion': 'tarjetas-presentacion',
+  'v2-flyers-volantes': 'flyers-volantes',
+  'v2-stickers': 'stickers',
+  'v2-pendon-roller-retractil': 'pendon-roller',
+  'v2-tela-pvc-impresa': 'tela-pvc-impresa',
+  'v2-credencial-pvc': 'credencial-pvc',
+}
+
+export const CATALOGO_PUBLICO: ItemCatalogoV2[] = CATALOGO_V2.filter((i) => i.estado === 'si').map((i) => ({
+  ...i,
+  producto: { ...i.producto, slug: SLUG_PUBLICO[i.producto.slug] ?? i.producto.slug.replace(/^v2-/, '') },
+}))
+
+export const PRODUCTOS_V2_PUBLICOS: Producto[] = CATALOGO_PUBLICO.map((i) => i.producto)

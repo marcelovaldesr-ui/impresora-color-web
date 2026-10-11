@@ -270,8 +270,9 @@ export default function ProductoClient({
   }
 
   const resolucionBloquea = resolucion?.estado === 'rechazado' && !enviarDespues
+  const requiereArchivo = producto.requiereArchivo !== false
   const puedeContinuar =
-    !subiendo && (enviarDespues || (!!archivoBlobUrl && !resolucionBloquea))
+    !subiendo && (!requiereArchivo || enviarDespues || (!!archivoBlobUrl && !resolucionBloquea))
 
   const handleAgregarAlCarrito = () => {
     if (!puedeContinuar) {
@@ -447,7 +448,7 @@ export default function ProductoClient({
           </div>
 
           {/* Subida de archivo */}
-          {compraHabilitada && productoDisponible && (
+          {compraHabilitada && productoDisponible && requiereArchivo && (
             <div className="mt-5" ref={zonaArchivoRef}>
               <p className="text-sm font-semibold text-gray-700 mb-1">
                 Tu diseño{' '}

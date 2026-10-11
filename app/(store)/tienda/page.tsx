@@ -2,7 +2,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { PRODUCTOS, formatCLP, formatUnitario, precioDesde, unitarioDesde } from '@/lib/productos'
 import type { Metadata } from 'next'
-import { TIENDA_EN_CONSTRUCCION } from '@/lib/config'
+import { TIENDA_EN_CONSTRUCCION, CATALOGO_V2_EN_TIENDA } from '@/lib/config'
+import { CATALOGO_PUBLICO } from '@/lib/catalogo-v2'
+import CatalogoV2Lista from './catalogo-v2/CatalogoV2Lista'
 
 export const metadata: Metadata = {
   title: 'Tienda Online | Impresora Color Ltda — Chillán',
@@ -14,6 +16,27 @@ export const metadata: Metadata = {
 }
 
 export default function TiendaPage() {
+  if (CATALOGO_V2_EN_TIENDA) {
+    return (
+      <CatalogoV2Lista
+        base="/tienda"
+        vistaPrevia={false}
+        items={CATALOGO_PUBLICO.map((i) => ({
+          slug: i.producto.slug,
+          nombre: i.producto.nombre,
+          familia: i.familia,
+          imagen: i.producto.imagen,
+          sinFoto: i.sinFoto,
+          chips: i.chips,
+          desde: i.desde,
+          unitario: unitarioDesde(i.producto),
+          desdeCantidad: i.desdeCantidad,
+          enRevision: false,
+        }))}
+      />
+    )
+  }
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       {/* Header */}

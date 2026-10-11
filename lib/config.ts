@@ -20,3 +20,11 @@ export const TIENDA_EN_CONSTRUCCION = false
 // Combinacion intencional para la prueba de compra real: el publico general sigue
 // viendo "proximamente" y solo quien entre con /tienda/preview?key=... puede comprar.
 export const TIENDA_COMPRA_HABILITADA = true
+
+// Catálogo que muestra y vende la tienda pública.
+// false = el catálogo actual de 6 productos (lib/productos.ts, tablas de arriba).
+// true  = el catálogo v2 (lib/catalogo-v2.ts): los productos con estado "si" (confirmados),
+//         con las mismas direcciones de siempre para tarjetas, flyers, stickers, pendón,
+//         tela PVC y credencial. Los productos "en revisión" no se publican.
+// Antes de pasarlo a true: hacer una compra de prueba de un producto nuevo (resma, calendario).
+export const CATALOGO_V2_EN_TIENDA = false
