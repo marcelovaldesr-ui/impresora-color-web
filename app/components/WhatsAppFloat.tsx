@@ -1,10 +1,18 @@
 // EDITABLE: Cambia el mensaje y número del botón flotante de WhatsApp
-const WA_URL =
-  "https://wa.me/56998441157?text=Hola%2C%20quiero%20cotizar%20un%20trabajo%20de%20imprenta";
+const WA_MENSAJE = "Hola, quiero cotizar un trabajo de imprenta";
 
 // subirEnMovil: en la tienda, la ficha de producto tiene una barra fija abajo con el
 // precio y el botón de compra; sin esto el botón de WhatsApp tapa ese botón en el celular.
-export default function WhatsAppFloat({ subirEnMovil = false }: { subirEnMovil?: boolean }) {
+// mensaje: texto precargado propio de cada página (ej. campaña de calendarios),
+// para saber en el chat desde dónde escribió el cliente.
+export default function WhatsAppFloat({
+  subirEnMovil = false,
+  mensaje = WA_MENSAJE,
+}: {
+  subirEnMovil?: boolean;
+  mensaje?: string;
+}) {
+  const WA_URL = `https://wa.me/56998441157?text=${encodeURIComponent(mensaje)}`;
   return (
     <a
       href={WA_URL}
