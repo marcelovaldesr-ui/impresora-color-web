@@ -26,26 +26,40 @@ const WA_URL = `https://wa.me/${PHONE}?text=${encodeURIComponent(WA_MSG)}`;
 export const metadata: Metadata = {
   title: "Calendarios 2027 con tu logo en Chillán | Impresora Color",
   description:
-    "Calendarios 2027 personalizados para empresas de Ñuble: murales, de escritorio e imán, con tu logo. Producción propia en Chillán desde 1991. Pedidos desde 500 unidades.",
+    "Calendarios 2027 personalizados para empresas de Ñuble: comerciales de taco, con fleje metálico, murales, de escritorio e imán, con tu logo. Producción propia en Chillán desde 1991. Pedidos desde 500 unidades.",
   keywords:
-    "calendarios 2027 chillán, calendarios personalizados empresas, calendarios con logo ñuble, calendarios publicitarios, calendarios corporativos, imprenta chillán",
+    "calendarios 2027 chillán, calendario de taco, calendario con fleje, calendarios personalizados empresas, calendarios con logo ñuble, calendarios publicitarios, calendarios corporativos, imprenta chillán",
   alternates: { canonical: "/calendarios-2027" },
   openGraph: {
     title: "Calendarios 2027 para tu empresa · Impresos en Chillán",
-    description: "Murales, de escritorio e imán con tu logo. Producción propia, desde 500 unidades.",
+    description: "De taco, con fleje, murales, de escritorio e imán con tu logo. Producción propia, desde 500 unidades.",
     type: "website",
     locale: "es_CL",
     url: "https://impresoracolor.cl/calendarios-2027",
-    images: [{ url: "/images/calendario-mural.jpg", width: 1200, height: 1200 }],
+    images: [{ url: "/images/calendario-taco-2027.jpg", width: 1200, height: 1200 }],
   },
 };
 
 const MODELOS = [
   {
+    img: "/images/calendario-taco-2027.jpg",
+    nombre: "Comercial de taco",
+    medida: "Publicidad + bloque de 12 hojas",
+    texto:
+      "El favorito de nuestros clientes. Arriba tu publicidad a todo color (productos, teléfono, dirección y redes); abajo el taco con un mes por hoja. Tu negocio queda a la vista cada vez que alguien mira la fecha.",
+    destacado: true,
+  },
+  {
+    img: "/images/calendario-fleje-2027.jpg",
+    nombre: "Lámina única con fleje metálico",
+    medida: "Los 12 meses en una hoja",
+    texto: "Una sola lámina con todo el año y fleje metálico arriba y abajo para colgar. Mucho espacio para tu marca.",
+  },
+  {
     img: "/images/calendario-mural.jpg",
     nombre: "Mural",
     medida: "33 × 45 cm aprox.",
-    texto: "El clásico de la pared de la cocina o del local. Tu marca a la vista los 12 meses.",
+    texto: "Con anillado y una foto por mes. Tu marca a la vista los 12 meses.",
   },
   {
     img: "/images/calendario-escritorio.jpg",
@@ -58,12 +72,6 @@ const MODELOS = [
     nombre: "Imán",
     medida: "Formato refrigerador",
     texto: "Económico para grandes volúmenes. Perfecto para minimarkets y reparto a domicilio.",
-  },
-  {
-    img: "/images/calendario-comercial.jpg",
-    nombre: "Comercial con tu marca",
-    medida: "Diseño a medida",
-    texto: "Tu logo, productos, teléfono y redes en cada mes. Publicidad que se mira todos los días.",
   },
 ];
 
@@ -148,7 +156,7 @@ export default function Page() {
                 Calendarios 2027 <span className="text-[#E91E8F]">con tu logo</span>, impresos en Chillán
               </h1>
               <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-xl text-pretty">
-                Regala a tus clientes algo que van a mirar los 365 días. Murales, de escritorio e imán con tu marca,
+                Regala a tus clientes algo que van a mirar los 365 días. Calendarios de taco, con fleje, murales, de escritorio e imán con tu marca,
                 hechos en nuestro propio taller. Sin intermediarios ni despachos desde Santiago.
               </p>
 
@@ -207,24 +215,44 @@ export default function Page() {
         <section className="max-w-6xl mx-auto px-4 py-16 sm:py-20">
           <p className="text-xs font-bold tracking-[0.18em] uppercase text-[#E91E8F] mb-3">Modelos</p>
           <h2 className="text-3xl sm:text-4xl font-black text-[#111827] mb-10 text-balance">Elige el calendario que va con tu negocio</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {MODELOS.map((m) => (
-              <article key={m.nombre} className="group bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#2D3E9F]/8 transition-shadow">
-                <div className="relative aspect-square overflow-hidden bg-gray-50">
+              <article
+                key={m.nombre}
+                className={`group bg-white rounded-3xl border overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#2D3E9F]/8 transition-shadow ${
+                  m.destacado ? "sm:col-span-2 lg:row-span-1 grid sm:grid-cols-2 border-[#E91E8F]/40 ring-1 ring-[#E91E8F]/20" : "border-gray-100"
+                }`}
+              >
+                <div
+                  className={`relative overflow-hidden bg-gray-50 ${
+                    m.destacado ? "aspect-square sm:aspect-auto sm:h-full sm:min-h-[420px]" : "aspect-square"
+                  }`}
+                >
                   <Image
                     src={m.img}
                     alt={`Calendario 2027 ${m.nombre.toLowerCase()} personalizado`}
                     fill
-                    sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"
+                    sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
                     className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
                   />
+                  {m.destacado && (
+                    <span className="absolute top-4 left-4 bg-[#E91E8F] text-white text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg">
+                      ★ El más pedido
+                    </span>
+                  )}
                 </div>
-                <div className="p-5">
-                  <div className="flex items-baseline justify-between gap-2 mb-2">
-                    <h3 className="font-black text-lg text-[#111827]">{m.nombre}</h3>
-                    <span className="text-[11px] font-semibold text-gray-400 whitespace-nowrap">{m.medida}</span>
-                  </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{m.texto}</p>
+                <div className={m.destacado ? "p-6 sm:p-8 flex flex-col justify-center" : "p-5"}>
+                  <h3 className={`font-black text-[#111827] ${m.destacado ? "text-2xl sm:text-3xl mb-1" : "text-lg"}`}>{m.nombre}</h3>
+                  <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">{m.medida}</p>
+                  <p className={`text-gray-600 leading-relaxed ${m.destacado ? "text-base mb-6" : "text-sm"}`}>{m.texto}</p>
+                  {m.destacado && (
+                    <a
+                      href="#cotizar"
+                      className="self-start inline-flex items-center bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
+                    >
+                      Cotizar calendario de taco
+                    </a>
+                  )}
                 </div>
               </article>
             ))}

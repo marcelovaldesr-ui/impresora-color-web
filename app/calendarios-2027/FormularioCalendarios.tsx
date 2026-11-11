@@ -5,7 +5,7 @@ import { trackMeta } from "@/app/components/MetaPixel";
 import { trackConversion, CONV_FORMULARIO } from "@/app/components/GoogleAds";
 
 const TRAMOS = ["500 a 999", "1.000 a 1.999", "2.000 a 4.999", "5.000 o más", "Menos de 500"];
-const TIPOS = ["Mural", "Escritorio", "Imán", "Aún no sé"];
+const TIPOS = ["De taco (comercial)", "Lámina con fleje", "Mural", "Escritorio", "Imán", "Aún no sé"];
 const FECHAS = ["Antes del 15 de diciembre", "Antes de Navidad", "Primera quincena de enero", "Tengo flexibilidad"];
 const COMUNAS = [
   "Chillán", "Chillán Viejo", "San Carlos", "Bulnes", "Quillón", "Coihueco", "Yungay",
