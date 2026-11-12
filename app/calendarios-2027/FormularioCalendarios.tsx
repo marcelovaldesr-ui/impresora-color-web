@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { trackMeta } from "@/app/components/MetaPixel";
 import { trackConversion, CONV_FORMULARIO } from "@/app/components/GoogleAds";
 
-const TRAMOS = ["500 a 999", "1.000 a 1.999", "2.000 a 4.999", "5.000 o más", "Menos de 500"];
+const TRAMOS = ["200 a 499", "500 a 999", "1.000 a 4.999", "5.000 o más", "Menos de 200"];
 const TIPOS = ["De taco (comercial)", "Lámina con fleje", "Mural", "Escritorio", "Imán", "Aún no sé"];
 const FECHAS = ["Antes del 15 de diciembre", "Antes de Navidad", "Primera quincena de enero", "Tengo flexibilidad"];
 const COMUNAS = [
@@ -80,7 +80,7 @@ export default function FormularioCalendarios({ waUrl }: { waUrl: string }) {
       });
       const j = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(j.error || "No se pudo enviar.");
-      // Solo los pedidos de 500+ cuentan como conversión: así Google y Meta
+      // Solo los pedidos de 200+ cuentan como conversión: así Google y Meta
       // aprenden a buscar empresas que compran volumen, no pedidos chicos.
       if (j.calificado) {
         trackConversion(CONV_FORMULARIO);
@@ -137,9 +137,9 @@ export default function FormularioCalendarios({ waUrl }: { waUrl: string }) {
             </button>
           ))}
         </div>
-        {cantidad === "Menos de 500" && (
+        {cantidad === "Menos de 200" && (
           <p className="mt-3 text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
-            Nuestra línea corporativa parte en 500 unidades. Igual puedes enviarnos tu solicitud y te contamos qué opción te conviene.
+            Nuestra línea corporativa parte en 200 unidades. Igual puedes enviarnos tu solicitud y te contamos qué opción te conviene.
           </p>
         )}
       </fieldset>

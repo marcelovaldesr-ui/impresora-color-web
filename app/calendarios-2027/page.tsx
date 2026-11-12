@@ -9,10 +9,10 @@ import FormularioCalendarios from "./FormularioCalendarios";
  * Landing de la campaña CALENDARIOS 2027 (nov-dic 2026).
  * Público: empresas de Ñuble que regalan calendarios con su marca
  * (minimarkets, supermercados, distribuidoras, ferreterías, agrícolas…).
- * Pedido corporativo mínimo: 500 unidades.
+ * Pedido corporativo mínimo: 200 unidades.
  *
  * Medición:
- *  - Formulario 500+  → conversión "Formulario Cotización (Web)" en Google Ads
+ *  - Formulario 200+  → conversión "Formulario Cotización (Web)" en Google Ads
  *                       + evento Lead en el píxel de Meta.
  *  - Clic a WhatsApp  → conversión "Clic WhatsApp (Web)" + Contact (listener global).
  *  - El mensaje de WhatsApp de esta página es distinto al de los anuncios de
@@ -26,13 +26,13 @@ const WA_URL = `https://wa.me/${PHONE}?text=${encodeURIComponent(WA_MSG)}`;
 export const metadata: Metadata = {
   title: "Calendarios 2027 con tu logo en Chillán | Impresora Color",
   description:
-    "Calendarios 2027 personalizados para empresas de Ñuble: comerciales de taco, con fleje metálico, murales, de escritorio e imán, con tu logo. Producción propia en Chillán desde 1991. Pedidos desde 500 unidades.",
+    "Calendarios 2027 personalizados para empresas de Ñuble: comerciales de taco, con fleje metálico, murales, de escritorio e imán, con tu logo. Producción propia en Chillán desde 1991. Pedidos desde 200 unidades.",
   keywords:
     "calendarios 2027 chillán, calendario de taco, calendario con fleje, calendarios personalizados empresas, calendarios con logo ñuble, calendarios publicitarios, calendarios corporativos, imprenta chillán",
   alternates: { canonical: "/calendarios-2027" },
   openGraph: {
     title: "Calendarios 2027 para tu empresa · Impresos en Chillán",
-    description: "De taco, con fleje, murales, de escritorio e imán con tu logo. Producción propia, desde 500 unidades.",
+    description: "De taco, con fleje, murales, de escritorio e imán con tu logo. Producción propia, desde 200 unidades.",
     type: "website",
     locale: "es_CL",
     url: "https://impresoracolor.cl/calendarios-2027",
@@ -93,7 +93,7 @@ const PASOS = [
 const FAQ = [
   {
     q: "¿Cuál es el pedido mínimo?",
-    a: "Nuestra línea corporativa de calendarios parte en 500 unidades. Si necesitas menos, escríbenos igual y te orientamos.",
+    a: "Nuestra línea corporativa de calendarios parte en 200 unidades. Si necesitas menos, escríbenos igual y te orientamos.",
   },
   {
     q: "¿Hasta cuándo reciben pedidos?",
@@ -180,7 +180,7 @@ export default function Page() {
 
               <dl className="grid grid-cols-3 gap-4 max-w-lg">
                 {[
-                  ["500+", "unidades por pedido"],
+                  ["200+", "unidades por pedido"],
                   ["1991", "imprimiendo en Chillán"],
                   ["100%", "producción propia"],
                 ].map(([n, l]) => (
@@ -311,7 +311,7 @@ export default function Page() {
               </p>
               <ul className="space-y-3 text-sm text-gray-700 mb-8">
                 {[
-                  "Pedidos corporativos desde 500 unidades",
+                  "Pedidos corporativos desde 200 unidades",
                   "Prueba de diseño antes de imprimir",
                   "Factura electrónica para tu empresa",
                   "Retiro en Arauco 1060, Chillán",

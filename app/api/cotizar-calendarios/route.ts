@@ -4,11 +4,11 @@ import { escapeHtml } from "@/lib/escapeHtml";
 import { obtenerIp, verificarLimite, registrarSolicitud, respuestaLimiteExcedido } from "@/lib/publicRateLimit";
 
 /**
- * Cotización de CALENDARIOS 2027 (pedidos corporativos desde 500 unidades).
+ * Cotización de CALENDARIOS 2027 (pedidos corporativos desde 200 unidades).
  *
  * Es un endpoint aparte del /api/cotizar general porque:
  *  - pide datos distintos (empresa, cantidad por tramo, fecha, comuna, logo);
- *  - marca en el asunto si el pedido está bajo el mínimo de 500, para que
+ *  - marca en el asunto si el pedido está bajo el mínimo de 200, para que
  *    Cecilia priorice los grandes sin abrir cada correo;
  *  - registra de dónde vino el cliente (Google Ads, Meta, web directa) para
  *    medir la campaña sin depender de que alguien lo pregunte.
@@ -29,10 +29,10 @@ const TO_EMAIL = process.env.RESEND_TO_EMAIL ?? "contacto@impresoracolor.cl";
 
 // Tramos válidos: cualquier otro valor se rechaza (evita basura en el asunto).
 const TRAMOS_CANTIDAD = [
-  "Menos de 500",
+  "Menos de 200",
+  "200 a 499",
   "500 a 999",
-  "1.000 a 1.999",
-  "2.000 a 4.999",
+  "1.000 a 4.999",
   "5.000 o más",
 ] as const;
 
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
 
   await registrarSolicitud(ip, "cotizar");
 
-  const bajoMinimo = cantidad === "Menos de 500";
+  const bajoMinimo = cantidad === "Menos de 200";
   const fuente = origenLegible(origen);
   const telLimpio = telefono.replace(/\D/g, "");
   const telWa = telLimpio.startsWith("56") ? telLimpio : `56${telLimpio.replace(/^0+/, "")}`;
@@ -130,7 +130,7 @@ export async function POST(request: NextRequest) {
             <h1 style="color:#fff;margin:0;font-size:20px;">${escapeHtml(empresa)} — ${escapeHtml(cantidad)} calendarios</h1>
           </div>
           <div style="background:#f9f9f9;padding:24px;border:1px solid #e0e0e0;border-top:none;border-radius:0 0 8px 8px;">
-            ${bajoMinimo ? `<p style="background:#FEF3C7;color:#92400E;padding:10px 12px;border-radius:6px;font-size:13px;margin:0 0 16px;">Pidió menos de 500 unidades (bajo el mínimo corporativo). Atender cuando haya tiempo.</p>` : ""}
+            ${bajoMinimo ? `<p style="background:#FEF3C7;color:#92400E;padding:10px 12px;border-radius:6px;font-size:13px;margin:0 0 16px;">Pidió menos de 200 unidades (bajo el mínimo corporativo). Atender cuando haya tiempo.</p>` : ""}
             ${tabla}
             <p style="margin:22px 0 0;">
               <a href="https://wa.me/${escapeHtml(telWa)}" style="background:#25D366;color:#fff;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:999px;display:inline-block;">Responder por WhatsApp</a>
