@@ -127,6 +127,13 @@ export default function Navbar() {
               </div>
             )}
           </div>
+          {/* Temporada: quitar en enero */}
+          <Link
+            href="/calendarios-2027"
+            className="text-[#E91E8F] font-bold hover:text-[#c8186e] transition-colors"
+          >
+            Calendarios 2027
+          </Link>
           {[
             { href: "/#paginas-web", label: "Páginas Web" },
             { href: "/#galeria", label: "Galería" },
@@ -228,6 +235,13 @@ export default function Navbar() {
               ))}
             </div>
           )}
+          <Link
+            href="/calendarios-2027"
+            onClick={() => setOpen(false)}
+            className="flex items-center py-3.5 text-[#E91E8F] font-bold border-b border-gray-100 text-sm transition-colors"
+          >
+            📅 Calendarios 2027 para empresas
+          </Link>
           {[
             { href: "/#paginas-web", label: "Páginas Web" },
             { href: "/#galeria", label: "Galería" },
