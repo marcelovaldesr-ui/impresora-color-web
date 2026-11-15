@@ -25,7 +25,7 @@ export default function Navbar() {
 
   // Scrollspy — resalta el link de la sección visible en el viewport
   useEffect(() => {
-    const ids = ["servicios", "paginas-web", "galeria", "ubicacion", "faq"];
+    const ids = ["servicios", "galeria", "ubicacion", "faq"];
     const elementos = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -135,7 +135,6 @@ export default function Navbar() {
             Calendarios 2027
           </Link>
           {[
-            { href: "/#paginas-web", label: "Páginas Web" },
             { href: "/#galeria", label: "Galería" },
             { href: "/#ubicacion", label: "Ubicación" },
             { href: "/#faq", label: "FAQ" },
@@ -243,7 +242,6 @@ export default function Navbar() {
             📅 Calendarios 2027 para empresas
           </Link>
           {[
-            { href: "/#paginas-web", label: "Páginas Web" },
             { href: "/#galeria", label: "Galería" },
             { href: "/#ubicacion", label: "Ubicación" },
             { href: "/#faq", label: "Preguntas Frecuentes" },

@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const SECCIONES = [
   { id: "servicios", label: "Servicios", color: "#E91E8F" },
   { id: "mas-productos", label: "Más productos", color: "#47B7E8" },
-  { id: "paginas-web", label: "Páginas Web", color: "#7DBA2F" },
   { id: "beneficios", label: "Beneficios", color: "#F5C51B" },
   { id: "clientes", label: "Clientes", color: "#F47A20" },
   { id: "testimonios", label: "Testimonios", color: "#2D3E9F" },

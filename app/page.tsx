@@ -7,7 +7,6 @@ import BandaEstadisticas from "./components/BandaEstadisticas";
 import OpcionesCotizar from "./components/OpcionesCotizar";
 import Servicios from "./components/Servicios";
 import MasProductos from "./components/MasProductos";
-import PaginasWeb from "./components/PaginasWeb";
 import Beneficios from "./components/Beneficios";
 import Testimonios from "./components/Testimonios";
 import EmpresasClientes from "./components/EmpresasClientes";
@@ -46,7 +45,6 @@ export default function Home() {
         <Reveal><Servicios /></Reveal>
         <Reveal><MasProductos /></Reveal>
         <SeccionOnda colorArriba="#f9fafb" colorAbajo="#0F1730" />
-        <Reveal><PaginasWeb /></Reveal>
         <SeccionOnda colorArriba="#0F1730" colorAbajo="#F6F8FC" invertir />
         <Reveal><Beneficios /></Reveal>
         <Reveal><EmpresasClientes /></Reveal>
