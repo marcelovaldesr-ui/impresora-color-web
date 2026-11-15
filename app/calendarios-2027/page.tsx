@@ -253,19 +253,21 @@ export default function Page() {
                     </span>
                   )}
                 </div>
-                <div className={m.destacado ? "p-6 sm:p-8 flex flex-col justify-center" : "p-5"}>
+                <div className={m.destacado ? "p-6 sm:p-8 flex flex-col justify-center" : "p-5 flex flex-col items-start"}>
                   <h3 className={`font-black text-[#111827] ${m.destacado ? "text-2xl sm:text-3xl mb-1" : "text-lg"}`}>{m.nombre}</h3>
                   <p className="text-[11px] font-bold text-[#E91E8F] uppercase tracking-wider mb-1">{m.codigo}</p>
                   <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">{m.medida}</p>
                   <p className={`text-gray-600 leading-relaxed ${m.destacado ? "text-base mb-6" : "text-sm"}`}>{m.texto}</p>
-                  {m.destacado && (
-                    <a
-                      href="#cotizar"
-                      className="self-start inline-flex items-center bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
-                    >
-                      Cotizar este modelo
-                    </a>
-                  )}
+                  <a
+                    href={`#cotizar-${m.codigo.slice(-2)}`}
+                    className={
+                      m.destacado
+                        ? "self-start inline-flex items-center bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
+                        : "mt-4 inline-flex items-center border border-[#E91E8F] text-[#E91E8F] hover:bg-[#E91E8F] hover:text-white font-bold text-xs px-4 py-2 rounded-full transition-colors"
+                    }
+                  >
+                    Cotizar este modelo
+                  </a>
                 </div>
               </article>
             ))}

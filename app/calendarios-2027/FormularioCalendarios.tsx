@@ -45,6 +45,20 @@ export default function FormularioCalendarios({ waUrl }: { waUrl: string }) {
     origen.current = leerOrigen();
   }, []);
 
+  // Los botones "Cotizar este modelo" llevan a #cotizar-03, etc.: se marca ese modelo y se baja al formulario.
+  useEffect(() => {
+    function alCambiarHash() {
+      const m = window.location.hash.match(/^#cotizar-(\d{2})$/);
+      if (!m) return;
+      const tipo = TIPOS.find((t) => t.startsWith(m[1] + " "));
+      if (tipo) setTipos((prev) => (prev.includes(tipo) ? prev : [...prev, tipo]));
+      document.getElementById("cotizar")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    alCambiarHash();
+    window.addEventListener("hashchange", alCambiarHash);
+    return () => window.removeEventListener("hashchange", alCambiarHash);
+  }, []);
+
   function toggleTipo(t: string) {
     setTipos((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]));
   }
