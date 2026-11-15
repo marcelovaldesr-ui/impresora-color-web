@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
   const email = texto(datos.email, 160);
   const comuna = texto(datos.comuna, 60);
   const cantidad = texto(datos.cantidad, 30);
-  const tipos = lista(datos.tipos, 6);
+  const tipos = lista(datos.tipos, 7);
   const fecha = texto(datos.fecha, 60);
   const diseno = texto(datos.diseno, 60);
   const mensaje = texto(datos.mensaje, 2000);
@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
       ${fila("Email", escapeHtml(email))}
       ${fila("Comuna", escapeHtml(comuna))}
       ${fila("Cantidad", `<strong>${escapeHtml(cantidad)}</strong>`)}
-      ${fila("Tipo de calendario", escapeHtml(tipos.join(", ")))}
+      ${fila("Modelo", escapeHtml(tipos.join(", ")))}
       ${fila("Lo necesita", escapeHtml(fecha))}
       ${fila("Diseño", escapeHtml(diseno))}
       ${fila("Comentarios", escapeHtml(mensaje))}

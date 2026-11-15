@@ -26,52 +26,64 @@ const WA_URL = `https://wa.me/${PHONE}?text=${encodeURIComponent(WA_MSG)}`;
 export const metadata: Metadata = {
   title: "Calendarios 2027 con tu logo en Chillán | Impresora Color",
   description:
-    "Calendarios 2027 personalizados para empresas de Ñuble: comerciales de taco, con fleje metálico, murales, de escritorio e imán, con tu logo. Producción propia en Chillán desde 1991. Pedidos desde 200 unidades.",
+    "Calendarios 2027 personalizados para empresas de Ñuble: murales con taco mensual, triangulares, murales, de escritorio anillados, 1/8 e imán, con tu logo. Producción propia en Chillán desde 1991. Pedidos desde 200 unidades.",
   keywords:
     "calendarios 2027 chillán, calendario de taco, calendario con fleje, calendarios personalizados empresas, calendarios con logo ñuble, calendarios publicitarios, calendarios corporativos, imprenta chillán",
   alternates: { canonical: "/calendarios-2027" },
   openGraph: {
     title: "Calendarios 2027 para tu empresa · Impresos en Chillán",
-    description: "De taco, con fleje, murales, de escritorio e imán con tu logo. Producción propia, desde 200 unidades.",
+    description: "6 modelos con tu logo: mural con taco, triangular, mural, escritorio, 1/8 e imán. Producción propia, desde 200 unidades.",
     type: "website",
     locale: "es_CL",
     url: "https://impresoracolor.cl/calendarios-2027",
-    images: [{ url: "/images/calendario-taco-2027.jpg", width: 1200, height: 1200 }],
+    images: [{ url: "/images/cal2027-mural-taco.jpg", width: 1400, height: 815 }],
   },
 };
 
 const MODELOS = [
   {
-    img: "/images/calendario-taco-2027.jpg",
-    nombre: "Comercial de taco",
-    medida: "Publicidad + bloque de 12 hojas",
+    img: "/images/cal2027-mural-taco.jpg",
+    codigo: "Modelo 03",
+    nombre: "Mural con taco mensual",
+    medida: "Lámina 31 × 38 cm · taco 27 × 38 cm · fleje metálico",
     texto:
       "El favorito de nuestros clientes. Arriba tu publicidad a todo color (productos, teléfono, dirección y redes); abajo el taco con un mes por hoja. Tu negocio queda a la vista cada vez que alguien mira la fecha.",
     destacado: true,
   },
   {
-    img: "/images/calendario-fleje-2027.jpg",
-    nombre: "Lámina única con fleje metálico",
-    medida: "Los 12 meses en una hoja",
-    texto: "Una sola lámina con todo el año y fleje metálico arriba y abajo para colgar. Mucho espacio para tu marca.",
+    img: "/images/cal2027-triangular.jpg",
+    codigo: "Modelo 01",
+    nombre: "Triangular de escritorio",
+    medida: "21 × 11 cm · couché 300 g · 4/4",
+    texto: "Los 12 meses en un triángulo de escritorio, impreso por ambas caras. Ideal para oficinas y mesones.",
   },
   {
-    img: "/images/calendario-mural.jpg",
+    img: "/images/cal2027-mural.jpg",
+    codigo: "Modelo 02",
     nombre: "Mural",
-    medida: "33 × 45 cm aprox.",
-    texto: "Con anillado y una foto por mes. Tu marca a la vista los 12 meses.",
+    medida: "32 × 45 cm · couché 300 g",
+    texto: "Los 12 meses en una sola lámina, con mucho espacio para tu marca.",
   },
   {
-    img: "/images/calendario-escritorio.jpg",
-    nombre: "Escritorio",
-    medida: "22 × 14 cm aprox.",
-    texto: "Con anillado metálico. Ideal para clientes de oficina, proveedores y distribuidores.",
+    img: "/images/cal2027-escritorio-anillado.jpg",
+    codigo: "Modelo 04",
+    nombre: "Escritorio anillado",
+    medida: "20 × 15 cm cerrado · 7 láminas · anillado plata",
+    texto: "Formato horizontal con base plegable. Para clientes de oficina, proveedores y distribuidores.",
   },
   {
-    img: "/images/calendario-iman.jpg",
-    nombre: "Imán",
-    medida: "Formato refrigerador",
-    texto: "Económico para grandes volúmenes. Perfecto para minimarkets y reparto a domicilio.",
+    img: "/images/cal2027-un-octavo.jpg",
+    codigo: "Modelo 05",
+    nombre: "Calendario 1/8",
+    medida: "40 × 26 cm · taco bimensual · publicidad a un color",
+    texto: "Económico para grandes volúmenes, con 30 motivos preimpresos a elegir.",
+  },
+  {
+    img: "/images/cal2027-mini-iman.jpg",
+    codigo: "Modelo 06",
+    nombre: "Mini calendario imán",
+    medida: "7 × 8 cm · magnético · taquito de 12 meses",
+    texto: "Tu marca en el refrigerador de tus clientes todo el año. Perfecto para minimarkets y reparto.",
   },
 ];
 
@@ -225,7 +237,7 @@ export default function Page() {
               >
                 <div
                   className={`relative overflow-hidden bg-gray-50 ${
-                    m.destacado ? "aspect-square sm:aspect-auto sm:h-full sm:min-h-[420px]" : "aspect-square"
+                    m.destacado ? "aspect-[16/10] sm:aspect-auto sm:h-full sm:min-h-[420px]" : "aspect-[16/10]"
                   }`}
                 >
                   <Image
@@ -233,7 +245,7 @@ export default function Page() {
                     alt={`Calendario 2027 ${m.nombre.toLowerCase()} personalizado`}
                     fill
                     sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-                    className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    className="object-contain group-hover:scale-[1.03] transition-transform duration-500"
                   />
                   {m.destacado && (
                     <span className="absolute top-4 left-4 bg-[#E91E8F] text-white text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg">
@@ -243,6 +255,7 @@ export default function Page() {
                 </div>
                 <div className={m.destacado ? "p-6 sm:p-8 flex flex-col justify-center" : "p-5"}>
                   <h3 className={`font-black text-[#111827] ${m.destacado ? "text-2xl sm:text-3xl mb-1" : "text-lg"}`}>{m.nombre}</h3>
+                  <p className="text-[11px] font-bold text-[#E91E8F] uppercase tracking-wider mb-1">{m.codigo}</p>
                   <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">{m.medida}</p>
                   <p className={`text-gray-600 leading-relaxed ${m.destacado ? "text-base mb-6" : "text-sm"}`}>{m.texto}</p>
                   {m.destacado && (
@@ -250,12 +263,23 @@ export default function Page() {
                       href="#cotizar"
                       className="self-start inline-flex items-center bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
                     >
-                      Cotizar calendario de taco
+                      Cotizar este modelo
                     </a>
                   )}
                 </div>
               </article>
             ))}
+          </div>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href="/catalogo-calendarios-2027.pdf"
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center bg-[#111827] hover:bg-[#2D3E9F] text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
+            >
+              Descargar catálogo 2027 (PDF)
+            </a>
+            <p className="text-sm text-gray-500">Revisa los 6 modelos con medidas y especificaciones, y cotiza indicando el número de modelo.</p>
           </div>
         </section>
 

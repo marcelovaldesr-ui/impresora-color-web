@@ -5,7 +5,7 @@ import { trackMeta } from "@/app/components/MetaPixel";
 import { trackConversion, CONV_FORMULARIO } from "@/app/components/GoogleAds";
 
 const TRAMOS = ["200 a 499", "500 a 999", "1.000 a 4.999", "5.000 o más", "Menos de 200"];
-const TIPOS = ["De taco (comercial)", "Lámina con fleje", "Mural", "Escritorio", "Imán", "Aún no sé"];
+const TIPOS = ["01 Triangular", "02 Mural", "03 Mural con taco", "04 Escritorio anillado", "05 Calendario 1/8", "06 Mini imán", "Aún no sé"];
 const FECHAS = ["Antes del 15 de diciembre", "Antes de Navidad", "Primera quincena de enero", "Tengo flexibilidad"];
 const COMUNAS = [
   "Chillán", "Chillán Viejo", "San Carlos", "Bulnes", "Quillón", "Coihueco", "Yungay",
@@ -145,7 +145,7 @@ export default function FormularioCalendarios({ waUrl }: { waUrl: string }) {
       </fieldset>
 
       <fieldset>
-        <legend className={label}>Tipo de calendario</legend>
+        <legend className={label}>Modelo del catálogo</legend>
         <div className="flex flex-wrap gap-2">
           {TIPOS.map((t) => (
             <button type="button" key={t} onClick={() => toggleTipo(t)} className={chip(tipos.includes(t))} aria-pressed={tipos.includes(t)}>
