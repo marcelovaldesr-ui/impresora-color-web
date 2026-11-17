@@ -104,14 +104,50 @@ export function trackConversion(sendTo: string) {
  * "Clic WhatsApp" para cualquier enlace wa.me del sitio, incluidos
  * los que se agreguen a futuro (listener global con `closest`).
  */
+/** Marca que se agrega al mensaje de WhatsApp cuando la visita viene de un anuncio de Google. */
+const MARCA_GOOGLE = "(Los encontré en Google)";
+
+/** true si esta visita (o una anterior en la misma sesión) llegó desde un anuncio de Google. */
+function vieneDeGoogleAds(): boolean {
+  try {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get("gclid") || p.get("gbraid") || p.get("wbraid")) {
+      sessionStorage.setItem("ic_google_ads", "1");
+      return true;
+    }
+    return sessionStorage.getItem("ic_google_ads") === "1";
+  } catch {
+    return false;
+  }
+}
+
+/** Agrega la marca de Google al texto prellenado del enlace de WhatsApp (una sola vez). */
+function marcarEnlaceGoogle(link: HTMLAnchorElement) {
+  try {
+    const url = new URL(link.href);
+    const texto = url.searchParams.get("text") ?? "Hola";
+    if (texto.includes(MARCA_GOOGLE)) return;
+    url.searchParams.set("text", `${texto} ${MARCA_GOOGLE}`);
+    link.href = url.toString();
+  } catch {
+    // href raro: se deja como está
+  }
+}
+
 export default function GoogleAds() {
   useEffect(() => {
+    // Se evalúa al cargar para guardar el gclid en la sesión antes de que el visitante navegue.
+    const desdeGoogle = vieneDeGoogleAds();
     function onClick(e: MouseEvent) {
       const target = e.target as Element | null;
       const link = target?.closest?.(
         'a[href*="wa.me"], a[href*="api.whatsapp.com"]'
-      );
-      if (link) trackConversion(CONV_WHATSAPP);
+      ) as HTMLAnchorElement | null;
+      if (link) {
+        trackConversion(CONV_WHATSAPP);
+        // Así el chat llega identificado como "vino de Google" (Meta ya llega identificado por el anuncio).
+        if (desdeGoogle) marcarEnlaceGoogle(link);
+      }
       // Clic hacia Instagram: evento simple (NO es conversión de Ads),
       // para medir cuánta gente de la web pasa al perfil.
       if (
