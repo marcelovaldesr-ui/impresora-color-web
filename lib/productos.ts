@@ -117,13 +117,13 @@ const FLYERS: Record<string, Record<string, Record<number, number>>> = {
 // solo se pide como referencia para el diseno.
 const STICKERS: Record<string, Record<number, number>> = {
   '3 cm': { 100: 9000, 200: 14000, 500: 28000 },
-  '5 cm': { 100: 10000, 200: 18000, 500: 38000 },
+  '5 cm': { 100: 12000, 200: 18000, 500: 38000 },
   '8 cm': { 100: 16000, 200: 25000, 500: 48000 },
 }
 
 // PENDON ROLLER RETRACTIL — todos los tamanos incluyen estuche de transporte
 const PENDON: Record<string, number> = {
-  '80 x 200 cm': 38000,
+  '80 x 200 cm': 35000,
   '90 x 200 cm': 40000,
   '100 x 200 cm': 45000,
   '120 x 200 cm': 50000,
