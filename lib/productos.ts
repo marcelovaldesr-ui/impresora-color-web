@@ -92,11 +92,12 @@ export function calcularIVA(precioConIVA: number) {
 
 // Precios cargados desde catalogo_tienda_onlineV2.xlsx (filas marcadas "Si"/"Si").
 // Precios FINALES con IVA incluido (19%). Actualizar solo desde el Excel maestro.
+// 22-nov-2026: tarjetas y stickers actualizados con los precios base que confirmó Cecilia.
 
 // TARJETAS DE PRESENTACION — 9 x 5 cm, couche 300 grs
 const TARJETAS: Record<string, Record<number, number>> = {
-  '4x0 color (1 cara)': { 100: 8000, 200: 14000, 500: 30000 },
-  '4x4 color (2 caras)': { 100: 14000, 200: 20000, 500: 35000 },
+  '4x0 color (1 cara)': { 100: 10000, 200: 16500, 500: 35000 },
+  '4x4 color (2 caras)': { 100: 16000, 200: 24000, 500: 45000 },
 }
 
 // FLYERS / VOLANTES — Couche 90g. Precios finales por fila (1 y 2 caras fijados a mano en el catalogo).
@@ -115,9 +116,9 @@ const FLYERS: Record<string, Record<string, Record<number, number>>> = {
 // El precio es el mismo sin importar la forma (Circular, Rectangular o Cuadrado); la forma
 // solo se pide como referencia para el diseno.
 const STICKERS: Record<string, Record<number, number>> = {
-  '3 cm': { 100: 8000, 200: 14000, 500: 28000 },
-  '5 cm': { 100: 10000, 200: 16000, 500: 32000 },
-  '8 cm': { 100: 14000, 200: 22000, 500: 45000 },
+  '3 cm': { 100: 9000, 200: 14000, 500: 28000 },
+  '5 cm': { 100: 10000, 200: 18000, 500: 38000 },
+  '8 cm': { 100: 16000, 200: 25000, 500: 48000 },
 }
 
 // PENDON ROLLER RETRACTIL — todos los tamanos incluyen estuche de transporte
