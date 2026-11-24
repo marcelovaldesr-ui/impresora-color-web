@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // CSS dentro del HTML: elimina ~1 s de bloqueo en celular (Tailwind, sitio de
+  // visitantes nuevos que llegan por anuncios). Ver docs de Next: inlineCss.
+  experimental: { inlineCss: true },
   images: {
     remotePatterns: [
       {
