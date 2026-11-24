@@ -418,7 +418,7 @@ export default function ProductoClient({
                           </span>
                         )}
                         {esMejor && !noDisponible && (
-                          <span className="absolute -top-2 -right-1 bg-[#E91E8F] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm">
+                          <span className="absolute -top-2 -right-1 bg-[#D11A80] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm">
                             mejor precio
                           </span>
                         )}
@@ -556,7 +556,7 @@ export default function ProductoClient({
 
               <p className="text-xs text-gray-500 mt-3">
                 ¿No tienes diseño?{' '}
-                <a href={WA_DISENO} className="text-[#E91E8F] font-medium underline" target="_blank" rel="noopener noreferrer">
+                <a href={WA_DISENO} className="text-[#D11A80] font-medium underline" target="_blank" rel="noopener noreferrer">
                   Lo hacemos por ti — cotiza por WhatsApp
                 </a>
               </p>

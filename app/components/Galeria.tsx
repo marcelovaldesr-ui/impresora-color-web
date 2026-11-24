@@ -21,7 +21,7 @@ type Trabajo = {
 const TRABAJOS: Trabajo[] = [
   // Publicidad y emprendimientos
   {
-    imagenUrl: "/images/FLYER.jpg",
+    imagenUrl: "/images/FLYER.webp",
     imagenAlt: "Flyers publicitarios impresos a color para publicidad y promociones",
     objectFit: "contain",
     bg: "from-[#E91E8F] to-[#2D3E9F]",
@@ -31,7 +31,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, me gustó un trabajo de flyers y quiero cotizar algo similar.",
   },
   {
-    imagenUrl: "/images/sitkers.png",
+    imagenUrl: "/images/sitkers.webp",
     imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
     bg: "from-[#47B7E8] to-[#2D3E9F]",
     acento: "#47B7E8",
@@ -40,7 +40,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, me gustó un trabajo de stickers y quiero cotizar algo similar.",
   },
   {
-    imagenUrl: "/images/tarjetas.png",
+    imagenUrl: "/images/tarjetas.webp",
     imagenAlt: "Tarjetas de presentación profesionales impresas",
     bg: "from-[#2D3E9F] to-[#3A4EB0]",
     acento: "#2D3E9F",
@@ -49,7 +49,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, me gustaron las tarjetas y quiero cotizar.",
   },
   {
-    imagenUrl: "/images/pendon2.png",
+    imagenUrl: "/images/pendon2.webp",
     imagenAlt: "Pendones y lonas publicitarias para ferias, locales y eventos",
     objectFit: "contain",
     bg: "from-[#F47A20] to-[#E91E8F]",
@@ -59,7 +59,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, me gustó el pendón y quiero cotizar uno.",
   },
   {
-    imagenUrl: "/images/Menus.png",
+    imagenUrl: "/images/Menus.webp",
     imagenAlt: "Menús impresos para restaurantes, cafeterías y locales gastronómicos",
     bg: "from-[#47B7E8] to-[#7DBA2F]",
     acento: "#47B7E8",
@@ -68,7 +68,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, me gustaron los menús y quiero cotizar para mi local.",
   },
   {
-    imagenUrl: "/images/imanes-publicitarios.png",
+    imagenUrl: "/images/imanes-publicitarios.webp",
     imagenAlt: "Imanes publicitarios personalizados con logo y datos de contacto",
     bg: "from-[#F5C51B] to-[#F47A20]",
     acento: "#F5C51B",
@@ -77,7 +77,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, me gustaron los imanes y quiero cotizar.",
   },
   {
-    imagenUrl: "/images/triptico.png",
+    imagenUrl: "/images/triptico.webp",
     imagenAlt: "Dípticos y trípticos impresos para empresas, clínicas y eventos",
     bg: "from-[#E91E8F] to-[#47B7E8]",
     acento: "#E91E8F",
@@ -87,7 +87,7 @@ const TRABAJOS: Trabajo[] = [
   },
   // Etiquetas y packaging
   {
-    imagenUrl: "/images/etiquetas.png",
+    imagenUrl: "/images/etiquetas.webp",
     imagenAlt: "Etiquetas adhesivas para productos, cecinas, vinos y alimentos",
     bg: "from-[#E91E8F] to-[#2D3E9F]",
     acento: "#E91E8F",
@@ -96,7 +96,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, me gustaron las etiquetas y quiero cotizar.",
   },
   {
-    imagenUrl: "/images/100-stickers-cierre-de-caja.jpg",
+    imagenUrl: "/images/100-stickers-cierre-de-caja.webp",
     imagenAlt: "Stickers adhesivos para packaging, bolsas y empaques de marca",
     bg: "from-[#7DBA2F] to-[#47B7E8]",
     acento: "#7DBA2F",
@@ -106,7 +106,7 @@ const TRABAJOS: Trabajo[] = [
   },
   // Oficina, colegios y empresas
   {
-    imagenUrl: "/images/fotocopias.png",
+    imagenUrl: "/images/fotocopias.webp",
     imagenAlt: "Fotocopias rápidas para documentos, trabajos y trámites",
     bg: "from-[#47B7E8] to-[#2D3E9F]",
     acento: "#47B7E8",
@@ -115,7 +115,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, quiero cotizar fotocopias.",
   },
   {
-    imagenUrl: "/images/IMPRESIONES.png",
+    imagenUrl: "/images/IMPRESIONES.webp",
     imagenAlt: "Impresiones para documentos, presentaciones y material de estudio",
     bg: "from-[#2D3E9F] to-[#3A4EB0]",
     acento: "#2D3E9F",
@@ -124,7 +124,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, quiero cotizar impresiones.",
   },
   {
-    imagenUrl: "/images/anillados.png",
+    imagenUrl: "/images/anillados.webp",
     imagenAlt: "Anillados para trabajos, manuales, informes y documentos",
     bg: "from-[#7DBA2F] to-[#2D3E9F]",
     acento: "#7DBA2F",
@@ -133,7 +133,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, quiero cotizar anillados.",
   },
   {
-    imagenUrl: "/images/empastado.png",
+    imagenUrl: "/images/empastado.webp",
     imagenAlt: "Empastados para documentos importantes y presentaciones profesionales",
     bg: "from-[#F47A20] to-[#2D3E9F]",
     acento: "#F47A20",
@@ -142,7 +142,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, quiero cotizar empastados.",
   },
   {
-    imagenUrl: "/images/diplomas.jpg",
+    imagenUrl: "/images/diplomas.webp",
     imagenAlt: "Diplomas impresos para cursos, reconocimientos y eventos",
     bg: "from-[#F5C51B] to-[#F47A20]",
     acento: "#F5C51B",
@@ -151,7 +151,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, quiero cotizar diplomas.",
   },
   {
-    imagenUrl: "/images/carpertas.png",
+    imagenUrl: "/images/carpertas.webp",
     imagenAlt: "Carpetas corporativas con imagen profesional",
     bg: "from-[#E91E8F] to-[#2D3E9F]",
     acento: "#E91E8F",
@@ -160,8 +160,8 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, quiero cotizar carpetas corporativas.",
   },
   {
-    imagenUrl: "/images/calendarios.jpg",
-    imagenAlt: "Calendarios personalizados para empresas y regalos corporativos",
+    imagenUrl: "/images/cal2027-mural.webp",
+    imagenAlt: "Calendario mural 2027 personalizado con el logo de la empresa, impreso en Chillán",
     bg: "from-[#F47A20] to-[#E91E8F]",
     acento: "#F47A20",
     nombre: "Calendarios",
@@ -169,7 +169,7 @@ const TRABAJOS: Trabajo[] = [
     wa: "Hola, quiero cotizar calendarios personalizados.",
   },
   {
-    imagenUrl: "/images/timbres.png",
+    imagenUrl: "/images/timbres.webp",
     imagenAlt: "Timbres personalizados de caucho y automáticos para empresas y profesionales",
     bg: "from-[#2D3E9F] to-[#47B7E8]",
     acento: "#2D3E9F",
@@ -179,16 +179,22 @@ const TRABAJOS: Trabajo[] = [
   },
 ];
 
-export default function Galeria() {
+/**
+ * soloInstagram (24-nov-2026): en el home la grilla de trabajos repetia uno a uno
+ * los mismos ~20 productos de «Servicios» (la pagina media 26 pantallas en celular
+ * y pesaba ~80 KB mas de HTML). En el home queda solo el bloque de Instagram.
+ */
+export default function Galeria({ soloInstagram = false }: { soloInstagram?: boolean } = {}) {
   return (
-    <section id="galeria" className="bg-white py-20 px-4 scroll-mt-28">
+    <section id="galeria" className={`bg-white ${soloInstagram ? "py-10" : "py-20"} px-4 scroll-mt-28`}>
       <div className="max-w-6xl mx-auto">
+        {!soloInstagram && (<>
         <div className="text-center mb-14">
-          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#D11A80] font-bold text-sm uppercase tracking-widest">
             Galería
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
-            Trabajos que <span className="text-[#E91E8F]">ayudan a vender</span>
+            Trabajos que <span className="text-[#D11A80]">ayudan a vender</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
             Cada impresión está pensada para que tu negocio, producto o empresa
@@ -237,6 +243,7 @@ export default function Galeria() {
           ))}
         </div>
 
+        </>)}
         {/* Instagram: trabajos recientes y el día a día del taller */}
         <div className="mt-12 bg-gradient-to-r from-[#E91E8F]/10 via-[#F5C51B]/10 to-[#47B7E8]/10 border border-[#E91E8F]/20 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
           <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm shrink-0">
@@ -248,14 +255,14 @@ export default function Galeria() {
             </p>
             <p className="text-gray-500 text-sm mt-1">
               Trabajos recientes, detrás de escena del taller e ideas para tu negocio en{" "}
-              <span className="font-semibold text-[#E91E8F]">{INSTAGRAM_USUARIO}</span>.
+              <span className="font-semibold text-[#D11A80]">{INSTAGRAM_USUARIO}</span>.
             </p>
           </div>
           <a
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold px-6 py-3 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25 shrink-0"
+            className="flex items-center gap-2 bg-[#D11A80] hover:bg-[#c8186e] text-white font-bold px-6 py-3 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25 shrink-0"
           >
             <InstagramIcon className="w-4 h-4 fill-current" />
             Seguir en Instagram

@@ -36,13 +36,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CL",
     url: "https://impresoracolor.cl/calendarios-2027",
-    images: [{ url: "/images/cal2027-mural-taco.jpg", width: 1400, height: 815 }],
+    images: [{ url: "/images/cal2027-mural-taco.webp", width: 1400, height: 815 }],
   },
 };
 
 const MODELOS = [
   {
-    img: "/images/cal2027-mural-taco.jpg",
+    img: "/images/cal2027-mural-taco.webp",
     codigo: "Modelo 03",
     nombre: "Mural con taco mensual",
     medida: "Lámina 31 × 38 cm · taco 27 × 38 cm · fleje metálico",
@@ -51,35 +51,35 @@ const MODELOS = [
     destacado: true,
   },
   {
-    img: "/images/cal2027-triangular.jpg",
+    img: "/images/cal2027-triangular.webp",
     codigo: "Modelo 01",
     nombre: "Triangular de escritorio",
     medida: "21 × 11 cm · couché 300 g · 4/4",
     texto: "Los 12 meses en un triángulo de escritorio, impreso por ambas caras. Ideal para oficinas y mesones.",
   },
   {
-    img: "/images/cal2027-mural.jpg",
+    img: "/images/cal2027-mural.webp",
     codigo: "Modelo 02",
     nombre: "Mural",
     medida: "32 × 45 cm · couché 300 g",
     texto: "Los 12 meses en una sola lámina, con mucho espacio para tu marca.",
   },
   {
-    img: "/images/cal2027-escritorio-anillado.jpg",
+    img: "/images/cal2027-escritorio-anillado.webp",
     codigo: "Modelo 04",
     nombre: "Escritorio anillado",
     medida: "20 × 15 cm cerrado · 7 láminas · anillado plata",
     texto: "Formato horizontal con base plegable. Para clientes de oficina, proveedores y distribuidores.",
   },
   {
-    img: "/images/cal2027-un-octavo.jpg",
+    img: "/images/cal2027-un-octavo.webp",
     codigo: "Modelo 05",
     nombre: "Calendario 1/8",
     medida: "40 × 26 cm · taco bimensual · publicidad a un color",
     texto: "Económico para grandes volúmenes, con 30 motivos preimpresos a elegir.",
   },
   {
-    img: "/images/cal2027-mini-iman.jpg",
+    img: "/images/cal2027-mini-iman.webp",
     codigo: "Modelo 06",
     nombre: "Mini calendario imán",
     medida: "7 × 8 cm · magnético · taquito de 12 meses",
@@ -161,11 +161,11 @@ export default function Page() {
         <section className="relative overflow-hidden bg-[#FAFBFF]">
           <div className="max-w-6xl mx-auto px-4 py-12 sm:py-20 grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
             <div>
-              <p className="inline-block text-xs font-bold tracking-[0.18em] uppercase text-[#E91E8F] bg-[#E91E8F]/8 px-3 py-1.5 rounded-full mb-5">
+              <p className="inline-block text-xs font-bold tracking-[0.18em] uppercase text-[#D11A80] bg-[#E91E8F]/8 px-3 py-1.5 rounded-full mb-5">
                 Temporada 2027 · Pedidos corporativos
               </p>
               <h1 className="text-4xl sm:text-6xl font-black text-[#111827] leading-[1.04] tracking-tight mb-6 text-balance">
-                Calendarios 2027 <span className="text-[#E91E8F]">con tu logo</span>, impresos en Chillán
+                Calendarios 2027 <span className="text-[#D11A80]">con tu logo</span>, impresos en Chillán
               </h1>
               <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-xl text-pretty">
                 Regala a tus clientes algo que van a mirar los 365 días. Calendarios de taco, con fleje, murales, de escritorio e imán con tu marca,
@@ -175,7 +175,7 @@ export default function Page() {
               <div className="flex flex-col sm:flex-row gap-3 mb-9">
                 <a
                   href="#cotizar"
-                  className="inline-flex items-center justify-center bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold text-base px-8 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-colors"
+                  className="inline-flex items-center justify-center bg-[#D11A80] hover:bg-[#c8186e] text-white font-bold text-base px-8 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-colors"
                 >
                   Cotizar mis calendarios
                 </a>
@@ -225,7 +225,7 @@ export default function Page() {
 
         {/* MODELOS */}
         <section className="max-w-6xl mx-auto px-4 py-16 sm:py-20">
-          <p className="text-xs font-bold tracking-[0.18em] uppercase text-[#E91E8F] mb-3">Modelos</p>
+          <p className="text-xs font-bold tracking-[0.18em] uppercase text-[#D11A80] mb-3">Modelos</p>
           <h2 className="text-3xl sm:text-4xl font-black text-[#111827] mb-10 text-balance">Elige el calendario que va con tu negocio</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {MODELOS.map((m) => (
@@ -248,22 +248,22 @@ export default function Page() {
                     className="object-contain group-hover:scale-[1.03] transition-transform duration-500"
                   />
                   {m.destacado && (
-                    <span className="absolute top-4 left-4 bg-[#E91E8F] text-white text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg">
+                    <span className="absolute top-4 left-4 bg-[#D11A80] text-white text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg">
                       ★ El más pedido
                     </span>
                   )}
                 </div>
                 <div className={m.destacado ? "p-6 sm:p-8 flex flex-col justify-center" : "p-5 flex flex-col items-start"}>
                   <h3 className={`font-black text-[#111827] ${m.destacado ? "text-2xl sm:text-3xl mb-1" : "text-lg"}`}>{m.nombre}</h3>
-                  <p className="text-[11px] font-bold text-[#E91E8F] uppercase tracking-wider mb-1">{m.codigo}</p>
+                  <p className="text-[11px] font-bold text-[#D11A80] uppercase tracking-wider mb-1">{m.codigo}</p>
                   <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">{m.medida}</p>
                   <p className={`text-gray-600 leading-relaxed ${m.destacado ? "text-base mb-6" : "text-sm"}`}>{m.texto}</p>
                   <a
                     href={`#cotizar-${m.codigo.slice(-2)}`}
                     className={
                       m.destacado
-                        ? "self-start inline-flex items-center bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
-                        : "mt-4 inline-flex items-center border border-[#E91E8F] text-[#E91E8F] hover:bg-[#E91E8F] hover:text-white font-bold text-xs px-4 py-2 rounded-full transition-colors"
+                        ? "self-start inline-flex items-center bg-[#D11A80] hover:bg-[#c8186e] text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
+                        : "mt-4 inline-flex items-center border border-[#E91E8F] text-[#D11A80] hover:bg-[#E91E8F] hover:text-white font-bold text-xs px-4 py-2 rounded-full transition-colors"
                     }
                   >
                     Cotizar este modelo
@@ -313,12 +313,12 @@ export default function Page() {
 
         {/* CÓMO FUNCIONA */}
         <section className="max-w-6xl mx-auto px-4 py-16 sm:py-20">
-          <p className="text-xs font-bold tracking-[0.18em] uppercase text-[#E91E8F] mb-3">Cómo funciona</p>
+          <p className="text-xs font-bold tracking-[0.18em] uppercase text-[#D11A80] mb-3">Cómo funciona</p>
           <h2 className="text-3xl sm:text-4xl font-black text-[#111827] mb-10">De tu logo a la pared de tus clientes</h2>
           <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {PASOS.map(([t, d], i) => (
               <li key={t} className="bg-[#FAFBFF] border border-gray-100 rounded-3xl p-6">
-                <span className="block text-4xl font-black text-[#E91E8F]/25 tabular-nums mb-3">0{i + 1}</span>
+                <span className="block text-4xl font-black text-[#D11A80]/25 tabular-nums mb-3">0{i + 1}</span>
                 <h3 className="font-black text-[#111827] text-lg mb-2">{t}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{d}</p>
               </li>
@@ -330,7 +330,7 @@ export default function Page() {
         <section id="cotizar" className="scroll-mt-20 bg-gradient-to-b from-[#FAFBFF] to-white">
           <div className="max-w-6xl mx-auto px-4 py-16 sm:py-20 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
             <div className="lg:sticky lg:top-28">
-              <p className="text-xs font-bold tracking-[0.18em] uppercase text-[#E91E8F] mb-3">Cotización</p>
+              <p className="text-xs font-bold tracking-[0.18em] uppercase text-[#D11A80] mb-3">Cotización</p>
               <h2 className="text-3xl sm:text-4xl font-black text-[#111827] mb-4 text-balance">Cotiza tus calendarios 2027</h2>
               <p className="text-gray-600 leading-relaxed mb-6">
                 Completa los datos y te enviamos la cotización dentro de 24 horas hábiles. Recibimos pedidos hasta mediados de diciembre.
@@ -343,12 +343,12 @@ export default function Page() {
                   "Retiro en Arauco 1060, Chillán",
                 ].map((t) => (
                   <li key={t} className="flex gap-3">
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#E91E8F] shrink-0" />
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#D11A80] shrink-0" />
                     {t}
                   </li>
                 ))}
               </ul>
-              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#2D3E9F] hover:text-[#E91E8F] transition-colors">
+              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#2D3E9F] hover:text-[#D11A80] transition-colors">
                 ¿Más rápido? Escríbenos por WhatsApp →
               </a>
             </div>
@@ -364,7 +364,7 @@ export default function Page() {
               <details key={item.q} className="group bg-white border border-gray-200 rounded-2xl px-6 py-4">
                 <summary className="cursor-pointer list-none flex items-center justify-between gap-4 font-bold text-[15px] text-[#111827]">
                   {item.q}
-                  <span className="text-[#E91E8F] transition-transform duration-200 group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
+                  <span className="text-[#D11A80] transition-transform duration-200 group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
                 </summary>
                 <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
               </details>

@@ -1,5 +1,6 @@
 // EDITABLE: Agrega, quita o cambia servicios en los arrays de cada categoría
 import Image from "next/image";
+import { textoLegible } from "@/lib/color-legible";
 import Link from "next/link";
 import TituloReveal from "./TituloReveal";
 import { getProducto, precioDesde, formatCLP } from "@/lib/productos";
@@ -30,7 +31,7 @@ type Servicio = {
 const PUBLICIDAD: Servicio[] = [
   {
     imagen: "flyers",
-    imagenUrl: "/images/FLYER.jpg",
+    imagenUrl: "/images/FLYER.webp",
     imagenAlt: "Flyers publicitarios impresos a color para publicidad y promociones",
     objectFit: "contain",
     titulo: "Flyers publicitarios",
@@ -44,7 +45,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "bolsas-sublimacion",
-    imagenUrl: "/images/bolsas-sublimacion.jpg",
+    imagenUrl: "/images/bolsas-sublimacion.webp",
     imagenAlt: "Bolsas personalizadas con estampado a color por sublimación para merchandising y eventos en Chillán",
     objectFit: "contain",
     titulo: "Bolsas Sublimación",
@@ -56,7 +57,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "tarjetas",
-    imagenUrl: "/images/tarjetas.png",
+    imagenUrl: "/images/tarjetas.webp",
     imagenAlt: "Tarjetas de presentación profesionales impresas",
     titulo: "Tarjetas de presentación",
     tienda: "tarjetas-presentacion",
@@ -69,7 +70,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "pendones",
-    imagenUrl: "/images/roller-producto.jpg",
+    imagenUrl: "/images/pendon2.webp",
     imagenAlt: "Pendones y rollers retráctiles para ferias, locales y eventos",
     objectFit: "contain",
     titulo: "Pendones y Rollers",
@@ -83,7 +84,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "menus",
-    imagenUrl: "/images/Menus.png",
+    imagenUrl: "/images/Menus.webp",
     imagenAlt: "Menús impresos para restaurantes, cafeterías y locales gastronómicos",
     titulo: "Menús para locales",
     descripcion: "Presentación profesional para tu restaurante o cafetería.",
@@ -94,7 +95,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "imanes",
-    imagenUrl: "/images/imanes-publicitarios.png",
+    imagenUrl: "/images/imanes-publicitarios.webp",
     imagenAlt: "Imanes publicitarios personalizados con logo y datos de contacto",
     titulo: "Imanes publicitarios",
     descripcion: "Tu marca presente todos los días.",
@@ -105,7 +106,7 @@ const PUBLICIDAD: Servicio[] = [
   },
   {
     imagen: "dipticos",
-    imagenUrl: "/images/triptico.png",
+    imagenUrl: "/images/triptico.webp",
     imagenAlt: "Dípticos y trípticos impresos para empresas, clínicas y eventos",
     titulo: "Dípticos y trípticos",
     descripcion: "Material informativo plegado para empresas, eventos, clínicas y negocios que quieren comunicar más.",
@@ -120,7 +121,7 @@ const PUBLICIDAD: Servicio[] = [
 const ETIQUETAS_PACKAGING: Servicio[] = [
   {
     imagen: "etiquetas-adhesivas",
-    imagenUrl: "/images/etiquetas.png",
+    imagenUrl: "/images/etiquetas.webp",
     imagenAlt: "Etiquetas adhesivas para productos, cecinas, vinos y alimentos",
     titulo: "Etiquetas adhesivas",
     descripcion: "Para productos, cecinas, vinos, alimentos, envases y marcas locales. Adhesivos de alta calidad para todo tipo de superficie.",
@@ -131,7 +132,7 @@ const ETIQUETAS_PACKAGING: Servicio[] = [
   },
   {
     imagen: "stickers",
-    imagenUrl: "/images/sitkers.png",
+    imagenUrl: "/images/sitkers.webp",
     imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
     titulo: "Stickers personalizados",
     tienda: "stickers",
@@ -144,7 +145,7 @@ const ETIQUETAS_PACKAGING: Servicio[] = [
   },
   {
     imagen: "packaging",
-    imagenUrl: "/images/100-stickers-cierre-de-caja.jpg",
+    imagenUrl: "/images/100-stickers-cierre-de-caja.webp",
     imagenAlt: "Stickers adhesivos para packaging, bolsas y empaques de marca",
     titulo: "Stickers para packaging",
     descripcion: "Adhesivos para bolsas, cajas y empaques de marca.",
@@ -159,7 +160,7 @@ const ETIQUETAS_PACKAGING: Servicio[] = [
 const OFICINA: Servicio[] = [
   {
     imagen: "credenciales-fargo",
-    imagenUrl: "/images/tarjetaspvc.png",
+    imagenUrl: "/images/tarjetaspvc.webp",
     imagenAlt: "Impresión de carnet institucional y credenciales con tecnología Fargo en Chillán, con sobrelaminado de seguridad",
     titulo: "Tarjetas y Credenciales",
     tienda: "credencial-pvc",
@@ -171,7 +172,7 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "fotocopias",
-    imagenUrl: "/images/fotocopias.png",
+    imagenUrl: "/images/fotocopias.webp",
     imagenAlt: "Fotocopias rápidas para documentos, trabajos y trámites",
     titulo: "Fotocopias",
     descripcion: "Copias rápidas y claras para documentos, trabajos y trámites.",
@@ -182,7 +183,7 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "impresiones",
-    imagenUrl: "/images/IMPRESIONES.png",
+    imagenUrl: "/images/IMPRESIONES.webp",
     imagenAlt: "Impresiones para documentos, presentaciones y material de estudio",
     titulo: "Impresiones",
     descripcion: "Impresiones para documentos, presentaciones, material de estudio y empresas.",
@@ -193,7 +194,7 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "anillados",
-    imagenUrl: "/images/anillados.png",
+    imagenUrl: "/images/anillados.webp",
     imagenAlt: "Anillados para trabajos, manuales, informes y documentos",
     titulo: "Anillados",
     descripcion: "Terminación práctica y ordenada para trabajos, manuales, informes y documentos.",
@@ -204,7 +205,7 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "timbres",
-    imagenUrl: "/images/timbres.png",
+    imagenUrl: "/images/timbres.webp",
     imagenAlt: "Timbres personalizados de caucho y automáticos para empresas y profesionales",
     titulo: "Timbres personalizados",
     descripcion: "Timbres de caucho y automáticos para empresas, profesionales y uso personal.",
@@ -215,7 +216,7 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "empastados",
-    imagenUrl: "/images/empastado.png",
+    imagenUrl: "/images/empastado.webp",
     imagenAlt: "Empastados para documentos importantes y presentaciones profesionales",
     titulo: "Empastados",
     descripcion: "Presentación firme y profesional para documentos importantes.",
@@ -226,7 +227,7 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "diplomas",
-    imagenUrl: "/images/diplomas.jpg",
+    imagenUrl: "/images/diplomas.webp",
     imagenAlt: "Diplomas impresos para cursos, reconocimientos y eventos",
     titulo: "Diplomas",
     descripcion: "Diplomas impresos para cursos, reconocimientos, colegios, eventos y capacitaciones.",
@@ -237,7 +238,7 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "sobres",
-    imagenUrl: "/images/Sobres.png",
+    imagenUrl: "/images/Sobres.webp",
     imagenAlt: "Sobres personalizados para empresas e instituciones",
     titulo: "Sobres",
     descripcion: "Sobres personalizados para empresas, instituciones y presentaciones corporativas.",
@@ -248,7 +249,7 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "carpetas-corporativas",
-    imagenUrl: "/images/carpertas.png",
+    imagenUrl: "/images/carpertas.webp",
     imagenAlt: "Carpetas corporativas con imagen profesional",
     titulo: "Carpetas corporativas",
     descripcion: "Carpetas con imagen profesional para propuestas, documentos y presentaciones.",
@@ -259,7 +260,7 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "reglamentos",
-    imagenUrl: "/images/reglamenot-interno.jpg",
+    imagenUrl: "/images/reglamenot-interno.webp",
     imagenAlt: "Reglamentos internos y manuales empresariales impresos",
     titulo: "Reglamentos internos",
     descripcion: "Impresión y terminación de reglamentos, manuales y documentos empresariales.",
@@ -270,8 +271,8 @@ const OFICINA: Servicio[] = [
   },
   {
     imagen: "calendarios",
-    imagenUrl: "/images/calendarios.jpg",
-    imagenAlt: "Calendarios personalizados para empresas y regalos corporativos",
+    imagenUrl: "/images/cal2027-mural.webp",
+    imagenAlt: "Calendario mural 2027 personalizado con el logo de la empresa, impreso en Chillán",
     titulo: "Calendarios",
     descripcion: "Calendarios personalizados para empresas, regalos corporativos y promociones.",
     boton: "Cotizar calendarios",
@@ -364,7 +365,7 @@ function BotonesTienda({ s }: { s: Servicio }) {
       </p>
       <Link
         href={`/tienda/${producto.slug}`}
-        className="mt-3 flex items-center justify-center gap-2 bg-[#E91E8F] hover:bg-[#2D3E9F] text-white font-bold text-xs py-2 px-3 rounded-xl transition-colors duration-200"
+        className="mt-3 flex items-center justify-center gap-2 bg-[#D11A80] hover:bg-[#2D3E9F] text-white font-bold text-xs py-2 px-3 rounded-xl transition-colors duration-200"
       >
         Comprar online · desde {formatCLP(precioDesde(producto))}
       </Link>
@@ -372,7 +373,7 @@ function BotonesTienda({ s }: { s: Servicio }) {
         href={waLink(s.wa)}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-2 text-center text-[11px] font-semibold text-[#2D3E9F] hover:text-[#E91E8F] underline-offset-2 hover:underline"
+        className="mt-2 text-center text-[11px] font-semibold text-[#2D3E9F] hover:text-[#D11A80] underline-offset-2 hover:underline"
       >
         ¿Otra medida o cantidad? Cotiza por WhatsApp
       </a>
@@ -401,14 +402,14 @@ export default function Servicios() {
 
         {/* Encabezado */}
         <div className="text-center mb-14">
-          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#D11A80] font-bold text-sm uppercase tracking-widest">
             Servicios
           </span>
           <TituloReveal
             className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4"
             segmentos={[
               { t: "Todo lo que necesitas para" },
-              { t: "tu negocio,", c: "text-[#E91E8F]" },
+              { t: "tu negocio,", c: "text-[#D11A80]" },
               { t: "tus productos", c: "text-[#47B7E8]" },
               { t: "y tu" },
               { t: "empresa", c: "text-[#7DBA2F]" },
@@ -431,7 +432,7 @@ export default function Servicios() {
                 key={c.href}
                 href={c.href}
                 className="text-xs font-bold px-4 py-2 rounded-full border transition-opacity duration-150 hover:opacity-75"
-                style={{ color: c.color, borderColor: `${c.color}40`, backgroundColor: `${c.color}0D` }}
+                style={{ color: textoLegible(c.color), borderColor: `${c.color}40`, backgroundColor: `${c.color}0D` }}
               >
                 {c.label}
               </a>
@@ -466,7 +467,7 @@ export default function Servicios() {
             href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Hola, quiero cotizar material gráfico para mi negocio.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border-2 border-[#E91E8F] text-[#E91E8F] hover:bg-[#E91E8F] hover:text-white font-bold px-7 py-3 rounded-full transition-all duration-200 text-sm"
+            className="inline-flex items-center gap-2 border-2 border-[#E91E8F] text-[#D11A80] hover:bg-[#E91E8F] hover:text-white font-bold px-7 py-3 rounded-full transition-all duration-200 text-sm"
           >
             <WAIcon />
             Consultar por WhatsApp

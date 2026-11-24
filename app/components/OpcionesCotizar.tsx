@@ -66,7 +66,7 @@ export default function OpcionesCotizar() {
       <div className="max-w-5xl mx-auto">
 
         <div className="text-center mb-10">
-          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#D11A80] font-bold text-sm uppercase tracking-widest">
             Cotización sin costo
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-3">
@@ -145,7 +145,7 @@ export default function OpcionesCotizar() {
           <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
             <div className="p-8">
               <div className="w-14 h-14 bg-[#E91E8F]/10 rounded-2xl flex items-center justify-center mb-6">
-                <EmailIcon className="w-8 h-8 text-[#E91E8F]" />
+                <EmailIcon className="w-8 h-8 text-[#D11A80]" />
               </div>
               <h3 className="text-[#2D3E9F] font-black text-2xl mb-2">Por correo electrónico</h3>
               <p className="text-gray-500 text-sm mb-6">
@@ -156,7 +156,7 @@ export default function OpcionesCotizar() {
               <div aria-live="polite">
               {estado === "ok" ? (
                 <div className="text-center py-8">
-                  <div className="w-14 h-14 bg-[#E91E8F] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-14 h-14 bg-[#D11A80] rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
@@ -171,7 +171,7 @@ export default function OpcionesCotizar() {
                       setEstado("idle");
                       setForm({ nombre: "", telefono: "", email: "", producto: "", cantidadTamano: "", mensaje: "" });
                     }}
-                    className="mt-6 text-[#E91E8F] font-bold underline underline-offset-4 hover:text-[#2D3E9F] transition-colors text-sm"
+                    className="mt-6 text-[#D11A80] font-bold underline underline-offset-4 hover:text-[#2D3E9F] transition-colors text-sm"
                   >
                     Enviar otra solicitud
                   </button>
@@ -181,7 +181,7 @@ export default function OpcionesCotizar() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="oc-nombre" className="block text-gray-700 text-xs font-semibold mb-1.5">
-                        Nombre <span className="text-[#E91E8F]">*</span>
+                        Nombre <span className="text-[#D11A80]">*</span>
                       </label>
                       <input
                         id="oc-nombre" type="text" name="nombre" value={form.nombre} onChange={handleChange}
@@ -191,7 +191,7 @@ export default function OpcionesCotizar() {
                     </div>
                     <div>
                       <label htmlFor="oc-telefono" className="block text-gray-700 text-xs font-semibold mb-1.5">
-                        Teléfono <span className="text-[#E91E8F]">*</span>
+                        Teléfono <span className="text-[#D11A80]">*</span>
                       </label>
                       <input
                         id="oc-telefono" type="tel" name="telefono" value={form.telefono} onChange={handleChange}
@@ -203,7 +203,7 @@ export default function OpcionesCotizar() {
 
                   <div>
                     <label htmlFor="oc-email" className="block text-gray-700 text-xs font-semibold mb-1.5">
-                      Correo electrónico <span className="text-[#E91E8F]">*</span>
+                      Correo electrónico <span className="text-[#D11A80]">*</span>
                     </label>
                     <input
                       id="oc-email" type="email" name="email" value={form.email} onChange={handleChange}
@@ -215,7 +215,7 @@ export default function OpcionesCotizar() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="oc-producto" className="block text-gray-700 text-xs font-semibold mb-1.5">
-                        Producto <span className="text-[#E91E8F]">*</span>
+                        Producto <span className="text-[#D11A80]">*</span>
                       </label>
                       <select
                         id="oc-producto" name="producto" value={form.producto} onChange={handleChange} required
@@ -257,7 +257,7 @@ export default function OpcionesCotizar() {
                   <button
                     type="submit"
                     disabled={estado === "enviando"}
-                    className="w-full bg-[#E91E8F] hover:bg-[#d4166c] disabled:opacity-60 disabled:cursor-not-allowed text-white font-black py-3.5 rounded-xl transition-colors text-sm shadow-lg shadow-[#E91E8F]/25"
+                    className="w-full bg-[#D11A80] hover:bg-[#d4166c] disabled:opacity-60 disabled:cursor-not-allowed text-white font-black py-3.5 rounded-xl transition-colors text-sm shadow-lg shadow-[#E91E8F]/25"
                   >
                     {estado === "enviando" ? "Enviando…" : "Solicitar cotización"}
                   </button>

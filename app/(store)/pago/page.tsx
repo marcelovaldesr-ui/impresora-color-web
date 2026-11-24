@@ -200,11 +200,11 @@ export default function PagoPage() {
           />
           <span className="text-sm text-gray-600 leading-relaxed">
             He revisado mi archivo y acepto los{' '}
-            <Link href="/terminos" target="_blank" className="text-[#2D3E9F] underline hover:text-[#E91E8F]">
+            <Link href="/terminos" target="_blank" className="text-[#2D3E9F] underline hover:text-[#D11A80]">
               Términos y Condiciones
             </Link>{' '}
             y la{' '}
-            <Link href="/privacidad" target="_blank" className="text-[#2D3E9F] underline hover:text-[#E91E8F]">
+            <Link href="/privacidad" target="_blank" className="text-[#2D3E9F] underline hover:text-[#D11A80]">
               Política de Privacidad
             </Link>
             . Entiendo que se trata de productos personalizados que se imprimen tal como los envío.
@@ -220,7 +220,7 @@ export default function PagoPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[#E91E8F] hover:bg-[#c8186e] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold py-4 rounded-full text-base transition-colors shadow-lg shadow-[#E91E8F]/20 cursor-pointer"
+          className="w-full bg-[#D11A80] hover:bg-[#c8186e] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold py-4 rounded-full text-base transition-colors shadow-lg shadow-[#E91E8F]/20 cursor-pointer"
         >
           {loading ? 'Redirigiendo al pago…' : `Pagar ${formatCLP(totalPrecio)} →`}
         </button>

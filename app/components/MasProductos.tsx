@@ -49,7 +49,7 @@ export default function MasProductos() {
                 href={waLink(producto.wa)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-gray-700 hover:text-[#E91E8F] transition-colors"
+                className="flex items-center gap-2 text-sm text-gray-700 hover:text-[#D11A80] transition-colors"
               >
               <span className="flex-shrink-0 w-4 h-4 rounded-full bg-[#47B7E8]/15 flex items-center justify-center">
                 <svg

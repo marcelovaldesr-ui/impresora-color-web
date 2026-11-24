@@ -44,11 +44,4 @@ export const NAV_SERVICIOS: NavCategoria[] = [
       { label: "Calendarios", href: "/#servicio-calendarios" },
     ],
   },
-  {
-    categoria: "Digital",
-    color: "#47B7E8",
-    items: [
-      { label: "Diseño de Páginas Web", href: "/#paginas-web" },
-    ],
-  },
 ];

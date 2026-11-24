@@ -126,7 +126,7 @@ export default function PaginasWeb() {
               <h3 className={`font-black text-lg mb-1 ${p.destacado ? "text-[#2D3E9F]" : "text-white"}`}>
                 {p.nombre}
               </h3>
-              <p className={`font-black text-2xl mb-2 ${p.destacado ? "text-[#E91E8F]" : "text-[#47B7E8]"}`}>
+              <p className={`font-black text-2xl mb-2 ${p.destacado ? "text-[#D11A80]" : "text-[#47B7E8]"}`}>
                 {p.precioDesde}
               </p>
               <p className={`text-sm mb-4 flex-1 ${p.destacado ? "text-gray-600" : "text-gray-300"}`}>
@@ -157,7 +157,7 @@ export default function PaginasWeb() {
                 rel="noopener noreferrer"
                 className={`flex items-center justify-center gap-2 font-bold text-sm py-2.5 px-4 rounded-xl transition-colors duration-200 ${
                   p.destacado
-                    ? "bg-[#E91E8F] hover:bg-[#c8186e] text-white"
+                    ? "bg-[#D11A80] hover:bg-[#c8186e] text-white"
                     : "bg-white/10 hover:bg-white/20 text-white"
                 }`}
               >

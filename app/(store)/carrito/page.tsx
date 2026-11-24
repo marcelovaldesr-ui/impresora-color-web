@@ -116,7 +116,7 @@ export default function CarritoPage() {
         <button
           type="button"
           onClick={() => router.push('/pago')}
-          className="w-full bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold py-4 rounded-full text-base transition-colors shadow-lg shadow-[#E91E8F]/20"
+          className="w-full bg-[#D11A80] hover:bg-[#c8186e] text-white font-bold py-4 rounded-full text-base transition-colors shadow-lg shadow-[#E91E8F]/20"
         >
           Ir a pagar →
         </button>

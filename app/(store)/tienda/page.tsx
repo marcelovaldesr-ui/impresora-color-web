@@ -52,7 +52,7 @@ export default function TiendaPage() {
           ¿Necesitas diseño o algo diferente?{' '}
           <a
             href="https://wa.me/56998441157?text=Hola%2C%20necesito%20cotizar%20un%20trabajo"
-            className="text-[#E91E8F] font-medium underline"
+            className="text-[#D11A80] font-medium underline"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -79,7 +79,7 @@ export default function TiendaPage() {
 
       {/* Products grid */}
       <div className="grid sm:grid-cols-2 gap-6">
-        {PRODUCTOS.map((producto) => {
+        {PRODUCTOS.map((producto, idx) => {
           const precioMinimo = precioDesde(producto)
           const unitario = unitarioDesde(producto)
 
@@ -92,9 +92,11 @@ export default function TiendaPage() {
               <div className="relative aspect-[4/3] bg-[#F5F6FB] border-b border-gray-100">
                 <Image
                   src={producto.imagen}
-                  alt={producto.nombre}
+                  alt={`${producto.nombre} impresos en Chillán`}
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
+                  // La primera foto es lo primero que ve el celular: se carga ya (LCP).
+                  priority={idx === 0}
                   className={`object-contain p-6 group-hover:scale-[1.03] transition-transform duration-300 ${
                     producto.disponible === false ? 'opacity-40 grayscale' : ''
                   }`}

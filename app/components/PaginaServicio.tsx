@@ -72,16 +72,16 @@ export default function PaginaServicio(p: ServicioPageProps) {
         <div className="max-w-3xl mx-auto px-4 py-14">
           {/* Breadcrumb */}
           <nav aria-label="Ruta de navegación" className="text-xs text-gray-400 mb-8">
-            <Link href="/" className="hover:text-[#E91E8F] transition-colors">Inicio</Link>
+            <Link href="/" className="hover:text-[#D11A80] transition-colors">Inicio</Link>
             <span className="mx-2">/</span>
             <span className="text-[#2D3E9F] font-semibold">{p.serviceName}</span>
           </nav>
 
-          <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#E91E8F] mb-4">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#D11A80] mb-4">
             {p.eyebrow}
           </p>
           <h1 className="text-3xl sm:text-5xl font-black text-[#111827] leading-[1.1] mb-6 text-balance">
-            {p.h1} <span className="text-[#E91E8F]">{p.h1Acento}</span>
+            {p.h1} <span className="text-[#D11A80]">{p.h1Acento}</span>
           </h1>
           <p className="text-gray-600 text-lg leading-relaxed mb-10 text-pretty">{p.intro}</p>
 
@@ -91,7 +91,7 @@ export default function PaginaServicio(p: ServicioPageProps) {
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#D11A80] hover:bg-[#c8186e] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-colors duration-200"
             >
               <WAIcon className="w-5 h-5" />
               {p.waLabel}
@@ -132,7 +132,7 @@ export default function PaginaServicio(p: ServicioPageProps) {
           <ul className="space-y-3 mb-12">
             {p.queHacemos.map((item) => (
               <li key={item} className="flex items-start gap-3 text-gray-600 leading-relaxed">
-                <span className="mt-2 w-1.5 h-1.5 bg-[#E91E8F] rounded-full shrink-0" />
+                <span className="mt-2 w-1.5 h-1.5 bg-[#D11A80] rounded-full shrink-0" />
                 {item}
               </li>
             ))}
@@ -145,7 +145,7 @@ export default function PaginaServicio(p: ServicioPageProps) {
               <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
                 {p.specs.map((s) => (
                   <div key={s.label} className="bg-[#F6F8FC] border border-gray-100 rounded-2xl p-5">
-                    <dt className="text-xs font-bold uppercase tracking-widest text-[#E91E8F] mb-1.5">{s.label}</dt>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-[#D11A80] mb-1.5">{s.label}</dt>
                     <dd className="text-[#2D3E9F] font-bold text-sm leading-relaxed">{s.valor}</dd>
                   </div>
                 ))}
@@ -174,7 +174,7 @@ export default function PaginaServicio(p: ServicioPageProps) {
               <details key={item.q} className="group bg-white border border-gray-200 rounded-2xl px-6 py-4">
                 <summary className="cursor-pointer list-none flex items-center justify-between gap-4 font-bold text-sm text-[#2D3E9F]">
                   {item.q}
-                  <span className="text-[#E91E8F] transition-transform duration-200 group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
+                  <span className="text-[#D11A80] transition-transform duration-200 group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
                 </summary>
                 <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
               </details>
@@ -192,7 +192,7 @@ export default function PaginaServicio(p: ServicioPageProps) {
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2.5 bg-[#D11A80] hover:bg-[#c8186e] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg transition-colors duration-200"
               >
                 <WAIcon className="w-5 h-5" />
                 {p.waLabel}

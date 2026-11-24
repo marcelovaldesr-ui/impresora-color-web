@@ -118,7 +118,7 @@ export default function EmpresasClientes() {
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-3">
             Empresas que{" "}
-            <span className="text-[#E91E8F]">confían en nosotros</span>
+            <span className="text-[#D11A80]">confían en nosotros</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto text-sm">
             Trabajando con empresas, instituciones y negocios de la región desde 1991

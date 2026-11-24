@@ -11,6 +11,7 @@ import Beneficios from "./components/Beneficios";
 import Testimonios from "./components/Testimonios";
 import EmpresasClientes from "./components/EmpresasClientes";
 import Galeria from "./components/Galeria";
+import CtaDoble from "./components/CtaDoble";
 import Ubicacion from "./components/Ubicacion";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
@@ -49,7 +50,8 @@ export default function Home() {
         <Reveal><Beneficios /></Reveal>
         <Reveal><EmpresasClientes /></Reveal>
         <Reveal><Testimonios /></Reveal>
-        <Reveal><Galeria /></Reveal>
+        <CtaDoble />
+        <Reveal><Galeria soloInstagram /></Reveal>
         <Reveal><Ubicacion /></Reveal>
         <Reveal><FAQ /></Reveal>
       </main>
