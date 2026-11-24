@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import GoogleAds from "./components/GoogleAds";
 import MetaPixel from "./components/MetaPixel";
+import MarcaOrigenWhatsApp from "./components/MarcaOrigenWhatsApp";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -109,6 +110,7 @@ export default function RootLayout({
         {children}
         <GoogleAds />
         <MetaPixel />
+        <MarcaOrigenWhatsApp />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
