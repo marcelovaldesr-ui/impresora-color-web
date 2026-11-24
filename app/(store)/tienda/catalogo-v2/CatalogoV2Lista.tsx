@@ -88,7 +88,7 @@ function Tarjeta({ item, base }: { item: ItemLista; base: string }) {
               <p className="text-[11px] text-gray-500">IVA incluido</p>
             </>
           )}
-          <span className="mt-3 block text-center text-sm font-bold rounded-full py-2 bg-[#E91E8F]/10 text-[#E91E8F] group-hover:bg-[#E91E8F] group-hover:text-white transition-colors">
+          <span className="mt-3 block text-center text-sm font-bold rounded-full py-2 bg-[#E91E8F]/10 text-[#D11A80] group-hover:bg-[#E91E8F] group-hover:text-white transition-colors">
             Ver opciones →
           </span>
         </div>
@@ -198,7 +198,7 @@ export default function CatalogoV2Lista({
                 href="https://wa.me/56998441157?text=Hola%2C%20necesito%20cotizar%20un%20trabajo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#E91E8F] font-medium underline"
+                className="text-[#D11A80] font-medium underline"
               >
                 cotiza por WhatsApp
               </a>

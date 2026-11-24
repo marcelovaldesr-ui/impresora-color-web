@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 function Acordeon({ titulo, abierto = false, children }: { titulo: string; abierto?: boolean; children: React.ReactNode }) {
   return (
     <details open={abierto} className="group border-b border-gray-200 py-4">
-      <summary className="cursor-pointer list-none flex items-center gap-3 text-lg font-bold text-gray-900 group-open:text-[#E91E8F] hover:text-[#2D3E9F] transition-colors [&::-webkit-details-marker]:hidden">
+      <summary className="cursor-pointer list-none flex items-center gap-3 text-lg font-bold text-gray-900 group-open:text-[#D11A80] hover:text-[#2D3E9F] transition-colors [&::-webkit-details-marker]:hidden">
         <span aria-hidden="true" className="text-xs transition-transform group-open:rotate-90">▶</span>
         {titulo}
       </summary>
@@ -101,7 +101,7 @@ export default function DevolucionesPage() {
           </ul>
           <p>
             Para iniciar el reclamo escríbenos por{' '}
-            <a href="https://wa.me/56998441157" target="_blank" rel="noopener noreferrer" className="text-[#E91E8F] hover:underline font-medium">
+            <a href="https://wa.me/56998441157" target="_blank" rel="noopener noreferrer" className="text-[#D11A80] hover:underline font-medium">
               WhatsApp
             </a>{' '}
             o a{' '}

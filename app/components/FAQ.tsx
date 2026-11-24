@@ -11,12 +11,12 @@ export default function FAQ() {
       <div className="max-w-3xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-14">
-          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#D11A80] font-bold text-sm uppercase tracking-widest">
             Preguntas frecuentes
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
             ¿Tienes dudas?{" "}
-            <span className="text-[#E91E8F]">Aquí las respondemos</span>
+            <span className="text-[#D11A80]">Aquí las respondemos</span>
           </h2>
         </div>
 
@@ -42,7 +42,7 @@ export default function FAQ() {
                 <span
                   className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 ${
                     abierto === i
-                      ? "bg-[#E91E8F] text-white rotate-180"
+                      ? "bg-[#D11A80] text-white rotate-180"
                       : "bg-gray-100 text-gray-500"
                   }`}
                 >
@@ -70,7 +70,7 @@ export default function FAQ() {
             href="https://wa.me/56998441157?text=Hola%2C%20tengo%20una%20consulta%20sobre%20sus%20servicios."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#E91E8F] hover:bg-[#d4166c] text-white font-bold px-8 py-4 rounded-full transition-colors shadow-lg shadow-[#E91E8F]/25"
+            className="inline-flex items-center gap-2 bg-[#D11A80] hover:bg-[#d4166c] text-white font-bold px-8 py-4 rounded-full transition-colors shadow-lg shadow-[#E91E8F]/25"
           >
             <WAIcon />
             Preguntarnos por WhatsApp

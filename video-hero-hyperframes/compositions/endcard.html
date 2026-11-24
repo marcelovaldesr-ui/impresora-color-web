@@ -1,0 +1,45 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; overflow:hidden; font-family:Montserrat, sans-serif; }
+    #e-ground { position:absolute; inset:0; background:#47B7E8; z-index:0; }
+    #e-stripe { position:absolute; left:0; right:0; top:0; height:14px; display:flex; z-index:50; }
+    #e-stripe span { flex:1; }
+    #e-wrap { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:26px; z-index:5; }
+    #e-logo { width:360px; height:360px; border-radius:50%; overflow:hidden; }
+    #e-logo img { width:100%; height:100%; object-fit:cover; display:block; }
+    #e-cta { font-weight:900; font-size:76px; color:#111827; letter-spacing:-0.02em; }
+    #e-cta b { color:#E91E8F; }
+    #e-info { font-weight:700; font-size:36px; color:#2D3E9F; }
+    .l-name { position:absolute; left:130px; top:0; bottom:0; width:760px; display:flex; flex-direction:column; justify-content:center; font-weight:900; font-size:100px; line-height:1; letter-spacing:-0.03em; color:#fff; z-index:6; }
+    .l-card { position:absolute; left:930px; top:150px; width:860px; height:780px; border-radius:32px; overflow:hidden; background:#fff; box-shadow:0 40px 80px rgba(15,23,48,0.28); border:10px solid #fff; z-index:6; }
+    .l-card img { width:100%; height:100%; object-fit:cover; object-position:50% 30%; display:block; transform:scale(1.03); }
+    #e-tag { position:absolute; left:130px; bottom:90px; z-index:60; background:#fff; color:#0F1730; font-weight:800; font-size:30px; padding:14px 26px; border-radius:999px; box-shadow:0 10px 30px rgba(15,23,48,0.18); }
+  </style>
+  <div id="root" data-composition-id="endcard" data-width="1920" data-height="1080">
+    <div id="e-ground"></div>
+    <div id="e-stripe"><span style="background:#E91E8F"></span><span style="background:#47B7E8"></span><span style="background:#7DBA2F"></span><span style="background:#F5C51B"></span><span style="background:#F47A20"></span><span style="background:#2D3E9F"></span></div>
+    <div id="e-wrap" class="clip" data-start="0" data-duration="3.2" data-track-index="1">
+      <div id="e-logo"><img src="assets/logo.jpg" alt="Impresora Color Chillán" /></div>
+      <div id="e-cta">Cotiza hoy por <b>WhatsApp</b></div>
+      <div id="e-info">+56 9 9844 1157 · Arauco 1060, Chillán</div>
+    </div>
+    <div id="e-loop" class="clip" data-start="2.7" data-duration="0.5" data-track-index="2" style="position:absolute;inset:0;z-index:6">
+      <div id="e-lname" class="l-name">Flyers</div>
+      <div id="e-lcard" class="l-card"><img src="assets/flyers.jpg" alt="Flyers" /></div>
+      <div id="e-tag">Impresora Color · Chillán · Desde 1991</div>
+    </div>
+  </div>
+  <script>
+  const tl = gsap.timeline({ paused: true });
+  tl.to("#e-ground",{backgroundColor:"#FAFBFF",duration:0.35,ease:"power2.inOut"},0);
+  tl.fromTo("#e-logo",{scale:0.6,opacity:0,filter:"blur(10px)"},{scale:1,opacity:1,filter:"blur(0px)",duration:0.5,ease:"back.out(1.4)"},0.12);
+  tl.fromTo("#e-cta",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.18,ease:"power4.out"},0.42);
+  tl.fromTo("#e-info",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.18,ease:"power4.out"},0.55);
+  tl.to(["#e-logo","#e-cta","#e-info"],{opacity:0,filter:"blur(8px)",duration:0.18,ease:"power3.in",stagger:0.03},2.4);
+  tl.to("#e-ground",{backgroundColor:"#E91E8F",duration:0.3,ease:"power2.inOut"},2.5);
+  tl.fromTo("#e-lcard",{x:340,opacity:0,filter:"blur(14px)"},{x:0,opacity:1,filter:"blur(0px)",duration:0.42,ease:"expo.out"},2.72);
+  tl.fromTo("#e-lname",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"},2.84);
+  tl.fromTo("#e-tag",{opacity:0},{opacity:1,duration:0.2,ease:"power2.out"},2.72);
+  window.__timelines["endcard"] = tl;
+  </script>
+</template>

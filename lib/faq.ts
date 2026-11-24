@@ -22,8 +22,8 @@ export const PREGUNTAS = [
     a: "Sí, puedes cotizar etiquetas para envases, bolsas, frascos, cajas, botellas y packaging. Te orientamos con tamaño, cantidad y material.",
   },
   {
-    q: "¿Hacen páginas web?",
-    a: "Sí, diseñamos páginas web para negocios locales: sitios de presentación, sitios con varias secciones y tiendas online. Planes desde $150.000 con dominio y hosting incluidos el primer año.",
+    q: "¿Puedo comprar online?",
+    a: "Sí. En impresoracolor.cl/tienda eliges el producto, subes tu diseño y pagas online con Flow. Te avisamos por WhatsApp cuando está listo para retirar en Arauco 1060, Chillán.",
   },
   {
     q: "¿Tienen diseño gráfico?",

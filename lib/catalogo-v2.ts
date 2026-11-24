@@ -44,7 +44,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 100,
   "tiempoEntrega": "1-3 días hábiles",
-  "imagen": "/images/tarjetas-crop.png",
+  "imagen": "/images/tarjetas-crop.webp",
   "grupos": [
    {
     "id": "acabado",
@@ -215,7 +215,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 100,
   "tiempoEntrega": "1-3 días hábiles",
-  "imagen": "/images/FLYER.jpg",
+  "imagen": "/images/FLYER.webp",
   "grupos": [
    {
     "id": "medida",
@@ -394,7 +394,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 100,
   "tiempoEntrega": "1-3 días hábiles",
-  "imagen": "/images/sitkers.png",
+  "imagen": "/images/sitkers.webp",
   "grupos": [
    {
     "id": "medida",
@@ -508,7 +508,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": null,
   "tiempoEntrega": "1-3 días hábiles",
-  "imagen": "/images/roller-producto-crop.jpg",
+  "imagen": "/images/pendon2.webp",
   "grupos": [
    {
     "id": "medida",
@@ -564,7 +564,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": null,
   "tiempoEntrega": "1-3 días hábiles",
-  "imagen": "/images/tela-pvc-impresa.jpg",
+  "imagen": "/images/tela-pvc-impresa.webp",
   "grupos": [
    {
     "id": "medida",
@@ -621,7 +621,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 1,
   "tiempoEntrega": "1-3 días hábiles",
-  "imagen": "/images/tarjetaspvc.png",
+  "imagen": "/images/tarjetaspvc.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -684,7 +684,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": null,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/paloma-publicitaria.jpg",
+  "imagen": "/images/paloma-publicitaria.webp",
   "grupos": [
    {
     "id": "medida",
@@ -765,7 +765,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 100,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/calendario-mural.jpg",
+  "imagen": "/images/calendario-mural.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -821,7 +821,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 100,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/calendario-iman.jpg",
+  "imagen": "/images/calendario-iman.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -877,7 +877,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 100,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/calendario-comercial.jpg",
+  "imagen": "/images/calendario-comercial.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -934,7 +934,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 50,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/calendario-escritorio.jpg",
+  "imagen": "/images/calendario-escritorio.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -1001,7 +1001,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 1,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/diplomas.jpg",
+  "imagen": "/images/diplomas.webp",
   "grupos": [
    {
     "id": "medida",
@@ -1106,7 +1106,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 1,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/resmas-carta-oficio.jpg",
+  "imagen": "/images/resmas-carta-oficio.webp",
   "grupos": [
    {
     "id": "medida",
@@ -1161,7 +1161,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 200,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/individuales.jpg",
+  "imagen": "/images/individuales.webp",
   "grupos": [
    {
     "id": "acabado",
@@ -1307,7 +1307,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 50,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/triptico.png",
+  "imagen": "/images/triptico.webp",
   "grupos": [
    {
     "id": "medida",
@@ -1420,7 +1420,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 5000,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/etiquetas.png",
+  "imagen": "/images/etiquetas.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -1463,7 +1463,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 5000,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/etiqueta-vino-15x4.jpg",
+  "imagen": "/images/etiqueta-vino-15x4.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -1505,7 +1505,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 200,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/etiqueta-botella-10x12.jpg",
+  "imagen": "/images/etiqueta-botella-10x12.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -1555,7 +1555,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 300,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/etiqueta-vino-12x15.jpg",
+  "imagen": "/images/etiqueta-vino-12x15.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -1605,7 +1605,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 500,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/agenda-espiral.jpg",
+  "imagen": "/images/agenda-espiral.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -1648,7 +1648,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 300,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/agenda-corcheteada.jpg",
+  "imagen": "/images/agenda-corcheteada.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -1697,7 +1697,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": 1000,
   "tiempoEntrega": "Por confirmar",
-  "imagen": "/images/etiquetas.png",
+  "imagen": "/images/etiquetas.webp",
   "grupos": [
    {
     "id": "cantidad",
@@ -1746,7 +1746,7 @@ const DATOS: DatosProductoV2[] = [
   ],
   "desdeCantidad": null,
   "tiempoEntrega": "1-3 días hábiles",
-  "imagen": "/images/timbres.png",
+  "imagen": "/images/timbres.webp",
   "grupos": [
    {
     "id": "modelo",

@@ -9,12 +9,12 @@ export default function Etiquetas() {
 
       <div className="max-w-3xl mx-auto relative z-10">
         <div className="text-center mb-10">
-          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#D11A80] font-bold text-sm uppercase tracking-widest">
             Productos locales
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-3">
             Etiquetas para productos que{" "}
-            <span className="text-[#E91E8F]">necesitan verse profesionales</span>
+            <span className="text-[#D11A80]">necesitan verse profesionales</span>
           </h2>
         </div>
 
@@ -29,7 +29,7 @@ export default function Etiquetas() {
             href={WA_ETIQUETAS}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-[#E91E8F] hover:bg-[#c8186e] active:scale-95 text-white font-black px-8 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-all duration-200"
+            className="inline-flex items-center gap-3 bg-[#D11A80] hover:bg-[#c8186e] active:scale-95 text-white font-black px-8 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-all duration-200"
           >
             <WAIcon />
             Cotizar etiquetas

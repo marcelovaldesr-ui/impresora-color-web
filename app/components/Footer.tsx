@@ -35,19 +35,19 @@ export default function Footer() {
   return (
     <footer className="bg-[#2D3E9F]">
       {/* Banda CTA superior */}
-      <div className="bg-[#E91E8F] py-12 px-4">
+      <div className="bg-[#D11A80] py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-white font-black text-2xl sm:text-3xl mb-2">
             ¿Listo para mejorar la imagen de tu negocio?
           </h3>
-          <p className="text-pink-100 mb-7 text-sm sm:text-base">
+          <p className="text-white mb-7 text-sm sm:text-base">
             Atención rápida por WhatsApp · Imprenta en Chillán · Trabajos para negocios, productos y emprendedores
           </p>
           <a
             href={INFO.waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-white text-[#E91E8F] hover:bg-gray-100 font-black text-lg px-8 py-4 rounded-full shadow-xl transition-colors"
+            className="inline-flex items-center gap-3 bg-white text-[#D11A80] hover:bg-gray-100 font-black text-lg px-8 py-4 rounded-full shadow-xl transition-colors"
           >
             <WAIcon className="w-6 h-6" />
             Cotizar por WhatsApp
@@ -62,14 +62,14 @@ export default function Footer() {
           {/* Logo */}
           <div className="mb-5">
             <Image
-              src="/brand/logo-impresora-color.jpg.jpeg"
+              src="/brand/logo-impresora-color.webp"
               alt="Impresora Color Ltda"
               width={60}
               height={60}
               className="rounded-xl object-cover"
             />
           </div>
-          <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
+          <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-xs">
             Imprenta en Chillán. Flyers, stickers, tarjetas, pendones, menús,
             imanes, etiquetas y material gráfico para tu negocio.
           </p>
@@ -82,7 +82,7 @@ export default function Footer() {
             ].map((b) => (
               <span
                 key={b}
-                className="bg-white/10 text-gray-400 text-xs font-medium px-3 py-1 rounded-full border border-white/10"
+                className="bg-white/10 text-gray-300 text-xs font-medium px-3 py-1 rounded-full border border-white/10"
               >
                 {b}
               </span>
@@ -130,9 +130,9 @@ export default function Footer() {
               <li key={s.label}>
                 <a
                   href={s.href}
-                  className="text-gray-400 hover:text-[#E91E8F] text-sm transition-colors flex items-center gap-2"
+                  className="text-gray-300 hover:text-[#D11A80] text-sm transition-colors flex items-center gap-2"
                 >
-                  <span className="w-1 h-1 bg-[#E91E8F] rounded-full shrink-0" />
+                  <span className="w-1 h-1 bg-[#D11A80] rounded-full shrink-0" />
                   {s.label}
                 </a>
               </li>
@@ -153,7 +153,7 @@ export default function Footer() {
                 href={INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-[#E91E8F] text-sm transition-colors"
+                className="text-gray-300 hover:text-[#D11A80] text-sm transition-colors"
               >
                 {INFO.direccion}
               </a>
@@ -164,7 +164,7 @@ export default function Footer() {
                 href={INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#47B7E8] hover:text-[#E91E8F] text-sm transition-colors font-medium"
+                className="text-[#47B7E8] hover:text-[#D11A80] text-sm transition-colors font-medium"
               >
                 Encuéntranos en Google Maps →
               </a>
@@ -176,7 +176,7 @@ export default function Footer() {
                 href={INFO.waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-[#E91E8F] text-sm transition-colors"
+                className="text-gray-300 hover:text-[#D11A80] text-sm transition-colors"
               >
                 {INFO.whatsapp}
               </a>
@@ -188,7 +188,7 @@ export default function Footer() {
                 href={INFO.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-[#E91E8F] text-sm transition-colors"
+                className="text-gray-300 hover:text-[#D11A80] text-sm transition-colors"
               >
                 {INFO.instagram}
               </a>
@@ -202,10 +202,10 @@ export default function Footer() {
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
           <span>© {new Date().getFullYear()} {INFO.nombre} · Chillán, Chile</span>
           <div className="flex items-center gap-4">
-            <a href="/terminos" className="hover:text-[#E91E8F] transition-colors">
+            <a href="/terminos" className="hover:text-[#D11A80] transition-colors">
               Términos y Condiciones
             </a>
-            <a href="/privacidad" className="hover:text-[#E91E8F] transition-colors">
+            <a href="/privacidad" className="hover:text-[#D11A80] transition-colors">
               Política de Privacidad
             </a>
           </div>

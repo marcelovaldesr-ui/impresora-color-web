@@ -1,7 +1,7 @@
 // EDITABLE: Cambia los beneficios en el array BENEFICIOS
 const BENEFICIOS = [
   {
-    color: "bg-[#E91E8F]/10 text-[#E91E8F]",
+    color: "bg-[#E91E8F]/10 text-[#D11A80]",
     icon: "⚡",
     titulo: "Atención rápida por WhatsApp",
     descripcion: "Cotiza en minutos enviándonos tu idea, medidas y cantidad directamente por WhatsApp.",
@@ -19,7 +19,7 @@ const BENEFICIOS = [
     descripcion: "Atendemos restaurantes, tiendas, ferias, food trucks y todo tipo de negocio local.",
   },
   {
-    color: "bg-[#E91E8F]/10 text-[#E91E8F]",
+    color: "bg-[#E91E8F]/10 text-[#D11A80]",
     icon: "🏷️",
     titulo: "Etiquetas para todo tipo de productos",
     descripcion: "Alimentos, cecinas, vinos, conservas, miel, envases y más. Listo para vender.",
@@ -61,7 +61,7 @@ export default function Beneficios() {
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
             ¿Por qué elegir{" "}
-            <span className="text-[#E91E8F]">Impresora Color</span>{" "}
+            <span className="text-[#D11A80]">Impresora Color</span>{" "}
             <span className="text-[#7DBA2F]">Ltda?</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">

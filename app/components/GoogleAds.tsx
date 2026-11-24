@@ -166,7 +166,10 @@ export default function GoogleAds() {
     <>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
-        strategy="afterInteractive"
+        // lazyOnload (24-nov-2026): era la tarea mas larga del celular (~360 ms).
+        // gtag-init sigue afterInteractive y define dataLayer/gtag desde el inicio,
+        // asi que un clic antes de que cargue la libreria queda en cola, no se pierde.
+        strategy="lazyOnload"
       />
       <Script id="gtag-init" strategy="afterInteractive">{`
         window.dataLayer = window.dataLayer || [];

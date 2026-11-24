@@ -69,11 +69,11 @@ export default function Promociones() {
       <div className="max-w-6xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-14">
-          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#D11A80] font-bold text-sm uppercase tracking-widest">
             Promociones
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
-            Packs <span className="text-[#E91E8F]">especiales</span> para tu negocio
+            Packs <span className="text-[#D11A80]">especiales</span> para tu negocio
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
             Elige el pack que más se adapta o escríbenos para armar uno a tu medida.
@@ -158,7 +158,7 @@ export default function Promociones() {
             href={waLink("Hola, quiero cotizar un pack personalizado para mi negocio.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border-2 border-[#E91E8F] text-[#E91E8F] hover:bg-[#E91E8F] hover:text-white font-bold px-7 py-3 rounded-full transition-all duration-200 text-sm"
+            className="inline-flex items-center gap-2 border-2 border-[#E91E8F] text-[#D11A80] hover:bg-[#E91E8F] hover:text-white font-bold px-7 py-3 rounded-full transition-all duration-200 text-sm"
           >
             <WAIcon />
             Cotizar pack personalizado

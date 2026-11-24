@@ -55,7 +55,7 @@ export default function Navbar() {
         {/* Logo / Marca */}
         <Link href="/" className="flex items-center gap-2.5 select-none">
           <Image
-            src="/brand/logo-impresora-color.jpg.jpeg"
+            src="/brand/logo-impresora-color.webp"
             alt="Impresora Color Ltda"
             width={40}
             height={40}
@@ -65,7 +65,7 @@ export default function Navbar() {
           <span className="font-black text-lg tracking-tight text-[#2D3E9F]">
             Impresora
           </span>
-          <span className="font-black text-lg text-[#E91E8F] tracking-tight -ml-1.5">
+          <span className="font-black text-lg text-[#D11A80] tracking-tight -ml-1.5">
             Color
           </span>
         </Link>
@@ -84,7 +84,7 @@ export default function Navbar() {
               aria-haspopup="true"
               onFocus={() => setServOpen(true)}
               className={`flex items-center gap-1 transition-colors py-5 ${
-                activeId === "servicios" ? "text-[#E91E8F] font-bold" : "text-gray-600 hover:text-[#E91E8F]"
+                activeId === "servicios" ? "text-[#D11A80] font-bold" : "text-gray-600 hover:text-[#D11A80]"
               }`}
             >
               Servicios
@@ -108,7 +108,7 @@ export default function Navbar() {
                           <Link
                             href={item.href}
                             onClick={() => setServOpen(false)}
-                            className="block text-[13px] text-gray-600 hover:text-[#E91E8F] py-1 transition-colors"
+                            className="block text-[13px] text-gray-600 hover:text-[#D11A80] py-1 transition-colors"
                           >
                             {item.label}
                           </Link>
@@ -120,7 +120,7 @@ export default function Navbar() {
                 <Link
                   href="/#servicios"
                   onClick={() => setServOpen(false)}
-                  className="col-span-3 text-center text-xs font-bold text-[#2D3E9F] hover:text-[#E91E8F] border-t border-gray-100 pt-3 transition-colors"
+                  className="col-span-3 text-center text-xs font-bold text-[#2D3E9F] hover:text-[#D11A80] border-t border-gray-100 pt-3 transition-colors"
                 >
                   Ver todos los servicios →
                 </Link>
@@ -130,7 +130,7 @@ export default function Navbar() {
           {/* Temporada: quitar en enero */}
           <Link
             href="/calendarios-2027"
-            className="text-[#E91E8F] font-bold hover:text-[#c8186e] transition-colors"
+            className="text-[#D11A80] font-bold hover:text-[#c8186e] transition-colors"
           >
             Calendarios 2027
           </Link>
@@ -145,7 +145,7 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={`transition-colors ${
-                  activeId === id ? "text-[#E91E8F] font-bold" : "text-gray-600 hover:text-[#E91E8F]"
+                  activeId === id ? "text-[#D11A80] font-bold" : "text-gray-600 hover:text-[#D11A80]"
                 }`}
               >
                 {item.label}
@@ -154,7 +154,7 @@ export default function Navbar() {
           })}
           <Link
             href="/tienda"
-            className="text-[#2D3E9F] font-bold hover:text-[#E91E8F] transition-colors border-b-2 border-[#2D3E9F] pb-0.5"
+            className="text-[#2D3E9F] font-bold hover:text-[#D11A80] transition-colors border-b-2 border-[#2D3E9F] pb-0.5"
           >
             Tienda
           </Link>
@@ -168,13 +168,13 @@ export default function Navbar() {
             rel="noopener noreferrer"
             aria-label={`Instagram ${INSTAGRAM_USUARIO}`}
             title={`Síguenos en Instagram ${INSTAGRAM_USUARIO}`}
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-[#E91E8F] hover:bg-[#E91E8F] hover:border-[#E91E8F] hover:text-white transition-colors"
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-[#D11A80] hover:bg-[#E91E8F] hover:border-[#E91E8F] hover:text-white transition-colors"
           >
             <InstagramIcon className="w-[18px] h-[18px] fill-current" />
           </a>
           <Link
             href="/#cotizar"
-            className="flex items-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25"
+            className="flex items-center gap-2 bg-[#D11A80] hover:bg-[#c8186e] text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors shadow-lg shadow-[#E91E8F]/25"
           >
             Cotizar ahora
           </Link>
@@ -237,7 +237,7 @@ export default function Navbar() {
           <Link
             href="/calendarios-2027"
             onClick={() => setOpen(false)}
-            className="flex items-center py-3.5 text-[#E91E8F] font-bold border-b border-gray-100 text-sm transition-colors"
+            className="flex items-center py-3.5 text-[#D11A80] font-bold border-b border-gray-100 text-sm transition-colors"
           >
             📅 Calendarios 2027 para empresas
           </Link>
@@ -250,7 +250,7 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="flex items-center py-3.5 text-gray-700 hover:text-[#E91E8F] border-b border-gray-100 text-sm font-medium transition-colors"
+              className="flex items-center py-3.5 text-gray-700 hover:text-[#D11A80] border-b border-gray-100 text-sm font-medium transition-colors"
             >
               {item.label}
             </Link>
@@ -266,7 +266,7 @@ export default function Navbar() {
             <Link
               href="/#cotizar"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center gap-2 bg-[#E91E8F] text-white font-bold py-3.5 rounded-full text-sm"
+              className="flex items-center justify-center gap-2 bg-[#D11A80] text-white font-bold py-3.5 rounded-full text-sm"
             >
               Cotizar ahora
             </Link>

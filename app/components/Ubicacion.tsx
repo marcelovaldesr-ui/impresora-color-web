@@ -14,12 +14,12 @@ export default function Ubicacion() {
       <div className="max-w-5xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-14">
-          <span className="text-[#E91E8F] font-bold text-sm uppercase tracking-widest">
+          <span className="text-[#D11A80] font-bold text-sm uppercase tracking-widest">
             Ubicación
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-[#2D3E9F] mt-2 mb-4">
             Estamos en el{" "}
-            <span className="text-[#E91E8F]">centro de Chillán</span>
+            <span className="text-[#D11A80]">centro de Chillán</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto text-lg">
             Estamos en{" "}
@@ -48,7 +48,7 @@ export default function Ubicacion() {
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#E91E8F]/20 rounded-lg flex items-center justify-center shrink-0">
-                    <svg className="w-4 h-4 text-[#E91E8F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-[#D11A80]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                         d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -80,7 +80,7 @@ export default function Ubicacion() {
                 href={MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold py-3 rounded-xl text-sm transition-colors"
+                className="flex items-center justify-center gap-2 bg-[#D11A80] hover:bg-[#c8186e] text-white font-bold py-3 rounded-xl text-sm transition-colors"
               >
                 Encuéntranos en Google Maps
               </a>
@@ -107,7 +107,7 @@ export default function Ubicacion() {
                   "Recibe tu cotización rápido",
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-2.5 text-sm text-gray-700">
-                    <span className="w-5 h-5 bg-[#E91E8F] text-white rounded-full flex items-center justify-center text-[10px] font-black shrink-0">
+                    <span className="w-5 h-5 bg-[#D11A80] text-white rounded-full flex items-center justify-center text-[10px] font-black shrink-0">
                       {i + 1}
                     </span>
                     {item}
@@ -118,7 +118,7 @@ export default function Ubicacion() {
                 href={WA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-[#E91E8F] hover:bg-[#c8186e] text-white font-bold py-3.5 rounded-xl text-sm transition-colors"
+                className="flex items-center justify-center gap-2 bg-[#D11A80] hover:bg-[#c8186e] text-white font-bold py-3.5 rounded-xl text-sm transition-colors"
               >
                 <WAIcon />
                 Cotizar por WhatsApp ahora
@@ -139,7 +139,7 @@ export default function Ubicacion() {
                   href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#E91E8F] text-sm font-semibold hover:underline"
+                  className="text-[#D11A80] text-sm font-semibold hover:underline"
                 >
                   {INSTAGRAM_USUARIO}
                 </a>

@@ -1,0 +1,105 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; overflow:hidden; font-family:Montserrat, sans-serif; }
+    #m-ground { position:absolute; inset:0; background:#E91E8F; z-index:0; }
+    #m-stripe { position:absolute; left:0; right:0; top:0; height:14px; display:flex; z-index:50; }
+    #m-stripe span { flex:1; }
+    #m-tag { position:absolute; left:130px; bottom:90px; z-index:60; background:#fff; color:#0F1730; font-weight:800; font-size:30px; padding:14px 26px; border-radius:999px; box-shadow:0 10px 30px rgba(15,23,48,0.18); }
+    .shot { position:absolute; inset:0; }
+    .name { position:absolute; left:130px; top:0; bottom:0; width:760px; display:flex; flex-direction:column; justify-content:center; gap:22px; }
+    .big { font-weight:900; font-size:100px; line-height:1.0; letter-spacing:-0.03em; }
+    .sub { font-weight:700; font-size:34px; opacity:0.85; letter-spacing:0.01em; }
+    .card { position:absolute; left:930px; top:150px; width:860px; height:780px; border-radius:32px; overflow:hidden; background:#fff; box-shadow:0 40px 80px rgba(15,23,48,0.28); border:10px solid #fff; }
+    .kb { position:absolute; inset:0; }
+    .kb img { width:100%; height:100%; object-fit:cover; display:block; }
+  </style>
+  <div id="root" data-composition-id="montage" data-width="1920" data-height="1080">
+    <div id="m-ground"></div>
+    <div id="m-tag">Impresora Color · Chillán · Desde 1991</div>
+    <div id="m-stripe"><span style="background:#E91E8F"></span><span style="background:#47B7E8"></span><span style="background:#7DBA2F"></span><span style="background:#F5C51B"></span><span style="background:#F47A20"></span><span style="background:#2D3E9F"></span></div>
+    <div id="s-flyers" class="clip shot" data-start="0.0" data-duration="1.2" data-track-index="1" style="z-index:2">
+      <div id="n-flyers" class="name" style="color:#fff"><span class="big">Flyers</span></div>
+      <div id="c-flyers" class="card"><div id="k-flyers" class="kb"><img id="i-flyers" src="assets/flyers.jpg" style="object-position:50% 30%" alt="Flyers" /></div></div>
+    </div>
+    <div id="s-stickers" class="clip shot" data-start="1.2" data-duration="1.2" data-track-index="2" style="z-index:3">
+      <div id="n-stickers" class="name" style="color:#0F1730"><span class="big">Stickers</span></div>
+      <div id="c-stickers" class="card"><div id="k-stickers" class="kb"><img id="i-stickers" src="assets/stickers.jpg" style="object-position:50% 50%" alt="Stickers" /></div></div>
+    </div>
+    <div id="s-etiquetas" class="clip shot" data-start="2.4" data-duration="1.2" data-track-index="3" style="z-index:4">
+      <div id="n-etiquetas" class="name" style="color:#0F1730"><span class="big">Etiquetas</span></div>
+      <div id="c-etiquetas" class="card"><div id="k-etiquetas" class="kb"><img id="i-etiquetas" src="assets/etiquetas.jpg" style="object-position:50% 50%" alt="Etiquetas" /></div></div>
+    </div>
+    <div id="s-imanes" class="clip shot" data-start="3.6" data-duration="1.2" data-track-index="4" style="z-index:5">
+      <div id="n-imanes" class="name" style="color:#111827"><span class="big">Imanes</span></div>
+      <div id="c-imanes" class="card"><div id="k-imanes" class="kb"><img id="i-imanes" src="assets/imanes.jpg" style="object-position:50% 50%" alt="Imanes" /></div></div>
+    </div>
+    <div id="s-tarjetas" class="clip shot" data-start="4.8" data-duration="1.2" data-track-index="5" style="z-index:6">
+      <div id="n-tarjetas" class="name" style="color:#0F1730"><span class="big">Tarjetas</span></div>
+      <div id="c-tarjetas" class="card"><div id="k-tarjetas" class="kb"><img id="i-tarjetas" src="assets/tarjetas.jpg" style="object-position:50% 50%" alt="Tarjetas" /></div></div>
+    </div>
+    <div id="s-pendones" class="clip shot" data-start="6.0" data-duration="1.2" data-track-index="6" style="z-index:7">
+      <div id="n-pendones" class="name" style="color:#fff"><span class="big">Pendones</span></div>
+      <div id="c-pendones" class="card"><div id="k-pendones" class="kb"><img id="i-pendones" src="assets/pendones.jpg" style="object-position:50% 35%" alt="Pendones" /></div></div>
+    </div>
+    <div id="s-calendarios" class="clip shot" data-start="7.2" data-duration="1.2" data-track-index="7" style="z-index:8">
+      <div id="n-calendarios" class="name" style="color:#fff"><span class="big">Calendarios 2027</span></div>
+      <div id="c-calendarios" class="card"><div id="k-calendarios" class="kb"><img id="i-calendarios" src="assets/calendarios.jpg" style="object-position:30% 40%" alt="Calendarios 2027" /></div></div>
+    </div>
+    <div id="s-credenciales" class="clip shot" data-start="8.4" data-duration="1.2" data-track-index="8" style="z-index:9">
+      <div id="n-credenciales" class="name" style="color:#0F1730"><span class="big">Credenciales</span></div>
+      <div id="c-credenciales" class="card"><div id="k-credenciales" class="kb"><img id="i-credenciales" src="assets/credenciales.jpg" style="object-position:50% 50%" alt="Credenciales" /></div></div>
+    </div>
+  </div>
+  <script>
+  const tl = gsap.timeline({ paused: true });
+  tl.to("#m-ground",{backgroundColor:"#E91E8F",duration:0.35,ease:"power2.inOut"},0);
+  tl.set("#c-flyers",{x:0,opacity:1},0);
+  tl.fromTo("#k-flyers",{scale:1.03},{scale:1.0,duration:1.2,ease:"power2.out"},0.0);
+  tl.set("#n-flyers",{opacity:1},0);
+  tl.to("#c-flyers",{x:-300,opacity:0,filter:"blur(12px)",duration:0.22,ease:"power3.in"},0.95);
+  tl.to("#n-flyers",{opacity:0,filter:"blur(6px)",duration:0.14,ease:"power3.in"},1.0);
+  tl.to("#m-ground",{backgroundColor:"#47B7E8",duration:0.35,ease:"power2.inOut"},1.0);
+  tl.fromTo("#c-stickers",{x:340,opacity:0,filter:"blur(14px)"},{x:0,opacity:1,filter:"blur(0px)",duration:0.42,ease:"expo.out"},1.22);
+  tl.fromTo("#k-stickers",{scale:1.08},{scale:1.0,duration:1.2,ease:"power2.out"},1.2);
+  tl.fromTo("#n-stickers",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"},1.3);
+  tl.to("#c-stickers",{x:-300,opacity:0,filter:"blur(12px)",duration:0.22,ease:"power3.in"},2.15);
+  tl.to("#n-stickers",{opacity:0,filter:"blur(6px)",duration:0.14,ease:"power3.in"},2.2);
+  tl.to("#m-ground",{backgroundColor:"#7DBA2F",duration:0.35,ease:"power2.inOut"},2.1999999999999997);
+  tl.fromTo("#c-etiquetas",{x:340,opacity:0,filter:"blur(14px)"},{x:0,opacity:1,filter:"blur(0px)",duration:0.42,ease:"expo.out"},2.42);
+  tl.fromTo("#k-etiquetas",{scale:1.08},{scale:1.0,duration:1.2,ease:"power2.out"},2.4);
+  tl.fromTo("#n-etiquetas",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"},2.5);
+  tl.to("#c-etiquetas",{x:-300,opacity:0,filter:"blur(12px)",duration:0.22,ease:"power3.in"},3.35);
+  tl.to("#n-etiquetas",{opacity:0,filter:"blur(6px)",duration:0.14,ease:"power3.in"},3.4);
+  tl.to("#m-ground",{backgroundColor:"#F5C51B",duration:0.35,ease:"power2.inOut"},3.4);
+  tl.fromTo("#c-imanes",{x:340,opacity:0,filter:"blur(14px)"},{x:0,opacity:1,filter:"blur(0px)",duration:0.42,ease:"expo.out"},3.62);
+  tl.fromTo("#k-imanes",{scale:1.08},{scale:1.0,duration:1.2,ease:"power2.out"},3.6);
+  tl.fromTo("#n-imanes",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"},3.7);
+  tl.to("#c-imanes",{x:-300,opacity:0,filter:"blur(12px)",duration:0.22,ease:"power3.in"},4.55);
+  tl.to("#n-imanes",{opacity:0,filter:"blur(6px)",duration:0.14,ease:"power3.in"},4.6);
+  tl.to("#m-ground",{backgroundColor:"#F47A20",duration:0.35,ease:"power2.inOut"},4.6);
+  tl.fromTo("#c-tarjetas",{x:340,opacity:0,filter:"blur(14px)"},{x:0,opacity:1,filter:"blur(0px)",duration:0.42,ease:"expo.out"},4.819999999999999);
+  tl.fromTo("#k-tarjetas",{scale:1.08},{scale:1.0,duration:1.2,ease:"power2.out"},4.8);
+  tl.fromTo("#n-tarjetas",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"},4.8999999999999995);
+  tl.to("#c-tarjetas",{x:-300,opacity:0,filter:"blur(12px)",duration:0.22,ease:"power3.in"},5.75);
+  tl.to("#n-tarjetas",{opacity:0,filter:"blur(6px)",duration:0.14,ease:"power3.in"},5.8);
+  tl.to("#m-ground",{backgroundColor:"#2D3E9F",duration:0.35,ease:"power2.inOut"},5.8);
+  tl.fromTo("#c-pendones",{x:340,opacity:0,filter:"blur(14px)"},{x:0,opacity:1,filter:"blur(0px)",duration:0.42,ease:"expo.out"},6.02);
+  tl.fromTo("#k-pendones",{scale:1.08},{scale:1.0,duration:1.2,ease:"power2.out"},6.0);
+  tl.fromTo("#n-pendones",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"},6.1);
+  tl.to("#c-pendones",{x:-300,opacity:0,filter:"blur(12px)",duration:0.22,ease:"power3.in"},6.95);
+  tl.to("#n-pendones",{opacity:0,filter:"blur(6px)",duration:0.14,ease:"power3.in"},7.0);
+  tl.to("#m-ground",{backgroundColor:"#E91E8F",duration:0.35,ease:"power2.inOut"},7.0);
+  tl.fromTo("#c-calendarios",{x:340,opacity:0,filter:"blur(14px)"},{x:0,opacity:1,filter:"blur(0px)",duration:0.42,ease:"expo.out"},7.22);
+  tl.fromTo("#k-calendarios",{scale:1.08},{scale:1.0,duration:1.2,ease:"power2.out"},7.2);
+  tl.fromTo("#n-calendarios",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"},7.3);
+  tl.to("#c-calendarios",{x:-300,opacity:0,filter:"blur(12px)",duration:0.22,ease:"power3.in"},8.15);
+  tl.to("#n-calendarios",{opacity:0,filter:"blur(6px)",duration:0.14,ease:"power3.in"},8.2);
+  tl.to("#m-ground",{backgroundColor:"#47B7E8",duration:0.35,ease:"power2.inOut"},8.200000000000001);
+  tl.fromTo("#c-credenciales",{x:340,opacity:0,filter:"blur(14px)"},{x:0,opacity:1,filter:"blur(0px)",duration:0.42,ease:"expo.out"},8.42);
+  tl.fromTo("#k-credenciales",{scale:1.08},{scale:1.0,duration:1.2,ease:"power2.out"},8.4);
+  tl.fromTo("#n-credenciales",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"},8.5);
+  tl.to("#c-credenciales",{x:-300,opacity:0,filter:"blur(12px)",duration:0.22,ease:"power3.in"},9.35);
+  tl.to("#n-credenciales",{opacity:0,filter:"blur(6px)",duration:0.14,ease:"power3.in"},9.4);
+  window.__timelines["montage"] = tl;
+  </script>
+</template>

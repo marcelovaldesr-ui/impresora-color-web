@@ -41,7 +41,7 @@ export default function PaginaLegal({
               href="https://wa.me/56998441157"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#E91E8F] hover:underline font-medium"
+              className="text-[#D11A80] hover:underline font-medium"
             >
               Consultar por WhatsApp
             </a>
@@ -57,7 +57,7 @@ export function Seccion({ n, titulo, children }: { n: number; titulo: string; ch
   return (
     <section>
       <h2 className="text-lg font-black text-gray-900 mb-3 flex gap-2.5">
-        <span className="text-[#E91E8F] shrink-0">{n}.</span>
+        <span className="text-[#D11A80] shrink-0">{n}.</span>
         <span>{titulo}</span>
       </h2>
       <div className="space-y-3 pl-0 sm:pl-7">{children}</div>

@@ -243,7 +243,7 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
                       href={pedido.archivo_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-[#2D3E9F] underline hover:text-[#E91E8F] transition-colors"
+                      className="text-xs text-[#2D3E9F] underline hover:text-[#D11A80] transition-colors"
                     >
                       ↓ Descargar archivo
                     </a>
@@ -282,7 +282,7 @@ export default function AdminPedidosClient({ pedidosIniciales }: { pedidosInicia
                       type="button"
                       onClick={() => avanzarEstado(pedido)}
                       disabled={actualizando === pedido.id}
-                      className="bg-[#E91E8F] hover:bg-[#c8186e] disabled:bg-gray-200 text-white text-xs font-bold px-4 py-2 rounded-full transition-colors"
+                      className="bg-[#D11A80] hover:bg-[#c8186e] disabled:bg-gray-200 text-white text-xs font-bold px-4 py-2 rounded-full transition-colors"
                     >
                       {actualizando === pedido.id ? '…' : `→ ${siguienteLabel}`}
                     </button>

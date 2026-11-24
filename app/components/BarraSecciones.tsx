@@ -2,6 +2,7 @@
 // Barra rápida de navegación por secciones — aparece al scrollear y deja
 // saltar directo a cualquier sección de la portada sin tener que bajar todo.
 import { useEffect, useState } from "react";
+import { textoLegible } from "@/lib/color-legible";
 
 const SECCIONES = [
   { id: "servicios", label: "Servicios", color: "#E91E8F" },
@@ -9,7 +10,7 @@ const SECCIONES = [
   { id: "beneficios", label: "Beneficios", color: "#F5C51B" },
   { id: "clientes", label: "Clientes", color: "#F47A20" },
   { id: "testimonios", label: "Testimonios", color: "#2D3E9F" },
-  { id: "galeria", label: "Galería", color: "#E91E8F" },
+  { id: "galeria", label: "Instagram", color: "#E91E8F" },
   { id: "ubicacion", label: "Ubicación", color: "#47B7E8" },
   { id: "faq", label: "FAQ", color: "#7DBA2F" },
 ];
@@ -50,6 +51,7 @@ export default function BarraSecciones() {
   return (
     <div
       aria-hidden={!visible}
+      inert={!visible}
       className={`fixed top-16 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm transition-all duration-300 motion-reduce:transition-none ${
         visible ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0 pointer-events-none"
       }`}
@@ -63,7 +65,7 @@ export default function BarraSecciones() {
               className={`shrink-0 text-xs font-semibold px-3.5 py-1.5 rounded-full transition-colors duration-200 ${
                 activeId === s.id ? "text-white" : "text-gray-600 hover:bg-gray-100"
               }`}
-              style={activeId === s.id ? { backgroundColor: s.color } : undefined}
+              style={activeId === s.id ? { backgroundColor: textoLegible(s.color) } : undefined}
             >
               {s.label}
             </a>

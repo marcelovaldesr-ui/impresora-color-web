@@ -150,7 +150,7 @@ const PRODUCTOS_BASE: Producto[] = [
     descripcion:
       'Tarjetas profesionales para hacer crecer tu red de contactos. Tamaño 9 x 5 cm, papel couché 300 grs.',
     tiempoEntrega: '1-3 días hábiles',
-    imagen: '/images/tarjetas-crop.png',
+    imagen: '/images/tarjetas-crop.webp',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'acabado', nombre: 'Impresión', valores: ['4x0 color (1 cara)', '4x4 color (2 caras)'] },
@@ -169,7 +169,7 @@ const PRODUCTOS_BASE: Producto[] = [
     descripcion:
       'Volantes de alta calidad para promocionar tu negocio. Papel couché 90g, 1 o 2 caras.',
     tiempoEntrega: '1-3 días hábiles',
-    imagen: '/images/FLYER.jpg',
+    imagen: '/images/FLYER.webp',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'tamano', nombre: 'Tamaño', valores: ['A6 (10,5 x 14,8 cm)', 'A5 (14,8 x 21 cm)'] },
@@ -193,7 +193,7 @@ const PRODUCTOS_BASE: Producto[] = [
     descripcion:
       'Stickers en vinilo brillante para packaging, branding y decoración. Mismo precio en forma circular, rectangular o cuadrada.',
     tiempoEntrega: '1-3 días hábiles',
-    imagen: '/images/sitkers.png',
+    imagen: '/images/sitkers.webp',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'forma', nombre: 'Forma', valores: ['Circular', 'Rectangular', 'Cuadrado'] },
@@ -217,7 +217,7 @@ const PRODUCTOS_BASE: Producto[] = [
     descripcion:
       'Pendones con estructura enrollable y estuche de transporte incluido. Ideales para eventos, ferias y puntos de venta.',
     tiempoEntrega: '1-3 días hábiles',
-    imagen: '/images/roller-producto-crop.jpg',
+    imagen: '/images/pendon2.webp',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'tamano', nombre: 'Tamaño', valores: ['80 x 200 cm', '90 x 200 cm', '100 x 200 cm', '120 x 200 cm'], valoresNoDisponibles: ['120 x 200 cm'] },
@@ -237,7 +237,7 @@ const PRODUCTOS_BASE: Producto[] = [
     descripcion:
       'Lona impresa en PVC, sin ojetillos, ideal para publicidad exterior y de gran formato.',
     tiempoEntrega: '1-3 días hábiles',
-    imagen: '/images/tela-pvc-impresa.jpg',
+    imagen: '/images/tela-pvc-impresa.webp',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'tamano', nombre: 'Tamaño', valores: ['80 x 60 cm', '100 x 80 cm', '150 x 100 cm', '150 x 200 cm'] },
@@ -257,7 +257,7 @@ const PRODUCTOS_BASE: Producto[] = [
     descripcion:
       'Credencial tipo carne en PVC blanco, impresion full color. Tamaño estándar 8,5 x 5,5 cm. Valor $2.500 por unidad (hasta 5 unidades); para mayores cantidades, cotiza por privado.',
     tiempoEntrega: '1-3 días hábiles',
-    imagen: '/images/tarjetaspvc.png',
+    imagen: '/images/tarjetaspvc.webp',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
       { id: 'cantidad', nombre: 'Cantidad', valores: ['1', '2', '3', '4', '5'] },

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { textoLegible } from "@/lib/color-legible";
 import TiltCard from "./TiltCard";
 import Parallax from "./Parallax";
 
@@ -60,18 +60,18 @@ export default function Hero() {
         {/* Columna izquierda */}
         <div>
           {/* Eyebrow — año de fundación como dato estructural */}
-          <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#E91E8F] mb-5 opacity-0 animate-[fade-in-up_0.7s_ease-out_0.05s_both]">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#D11A80] mb-5 opacity-0 animate-[fade-in-up_0.7s_ease-out_0.05s_both]">
             Imprenta en Chillán · Desde 1991
           </p>
 
           {/* H1 — un solo color base, un solo acento */}
           <h1 className="text-4xl sm:text-5xl xl:text-[56px] font-black text-[#111827] leading-[1.08] mb-6 text-balance opacity-0 animate-[fade-in-up_0.7s_ease-out_0.15s_both]">
             Flyers, stickers y etiquetas que{" "}
-            <span className="relative inline-block text-[#E91E8F]">
+            <span className="relative inline-block text-[#D11A80]">
               hacen vender
               <span
                 aria-hidden="true"
-                className="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#E91E8F] rounded-full"
+                className="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#D11A80] rounded-full"
               />
             </span>
           </h1>
@@ -87,7 +87,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-3 mb-10 opacity-0 animate-[fade-in-up_0.7s_ease-out_0.35s_both]">
             <Link
               href="/tienda"
-              className="inline-flex items-center justify-center gap-2.5 bg-[#E91E8F] hover:bg-[#c8186e] active:scale-[0.98] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-[background-color,transform] duration-200 animate-[pulse-glow_2.8s_ease-in-out_infinite] motion-reduce:animate-none hover:scale-[1.03]"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#D11A80] hover:bg-[#c8186e] active:scale-[0.98] text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-[background-color,transform] duration-200 animate-[pulse-glow_2.8s_ease-in-out_infinite] motion-reduce:animate-none hover:scale-[1.03]"
             >
               Comprar en Tienda Online →
             </Link>
@@ -132,13 +132,21 @@ export default function Hero() {
           <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#E91E8F]/8 via-[#47B7E8]/6 to-[#2D3E9F]/8" />
 
           <TiltCard maxTilt={3.5} className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#2D3E9F]/10">
-            <Image
-              src="/brand/banner-hero-categorias-v2.png"
-              alt="Servicios de Impresora Color Ltda en Chillán: pendones, etiquetas, stickers, flyers, tarjetas, credenciales y más"
-              width={1672}
-              height={941}
-              className="w-full h-auto block"
-              priority
+            {/* Video del hero hecho con HyperFrames (fotos reales de productos).
+                Mudo + autoplay + loop: los navegadores solo reproducen solos
+                los videos sin sonido. El poster es su primer cuadro. */}
+            <video
+              src="/videos/hero-impresora-color.mp4"
+              poster="/videos/hero-impresora-color-poster.jpg"
+              aria-label="Productos de Impresora Color Ltda en Chillán: flyers, stickers, etiquetas, imanes, tarjetas, pendones, calendarios 2027 y credenciales"
+              width={1280}
+              height={720}
+              className="w-full h-auto block aspect-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
             />
             {/* Barra de colores CMYK en el borde inferior de la imagen */}
             <div
@@ -162,7 +170,7 @@ export default function Hero() {
               href={p.href}
               className="text-xs font-bold px-3.5 py-1.5 rounded-full border transition-opacity duration-150 hover:opacity-80"
               style={{
-                color: p.color,
+                color: textoLegible(p.color),
                 borderColor: `${p.color}40`,
                 backgroundColor: `${p.color}10`,
               }}

@@ -65,7 +65,7 @@ export default function CursorGlow() {
       <div
         ref={dotRef}
         aria-hidden="true"
-        className="fixed top-0 left-0 z-[90] w-2 h-2 rounded-full bg-[#E91E8F] pointer-events-none opacity-0 hidden lg:block"
+        className="fixed top-0 left-0 z-[90] w-2 h-2 rounded-full bg-[#D11A80] pointer-events-none opacity-0 hidden lg:block"
         style={{ transition: "opacity 0.3s" }}
       />
       <div

@@ -110,7 +110,7 @@ export default function FormularioCalendarios({ waUrl }: { waUrl: string }) {
   if (estado === "ok") {
     return (
       <div className="bg-white rounded-3xl border border-gray-100 shadow-xl shadow-[#2D3E9F]/5 p-8 sm:p-10 text-center">
-        <div className="mx-auto mb-5 w-14 h-14 rounded-full bg-[#E91E8F]/10 text-[#E91E8F] flex items-center justify-center text-2xl font-black">✓</div>
+        <div className="mx-auto mb-5 w-14 h-14 rounded-full bg-[#E91E8F]/10 text-[#D11A80] flex items-center justify-center text-2xl font-black">✓</div>
         <h3 className="text-2xl font-black text-[#111827] mb-3">¡Recibimos tu solicitud!</h3>
         <p className="text-gray-600 leading-relaxed mb-7 max-w-md mx-auto">
           Te enviaremos la cotización dentro de 24 horas hábiles. Si quieres adelantar, mándanos tu logo por WhatsApp.
@@ -223,7 +223,7 @@ export default function FormularioCalendarios({ waUrl }: { waUrl: string }) {
       <button
         type="submit"
         disabled={estado === "enviando"}
-        className="w-full bg-[#E91E8F] hover:bg-[#c8186e] disabled:opacity-60 text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-colors"
+        className="w-full bg-[#D11A80] hover:bg-[#c8186e] disabled:opacity-60 text-white font-bold text-base px-7 py-4 rounded-full shadow-lg shadow-[#E91E8F]/25 transition-colors"
       >
         {estado === "enviando" ? "Enviando…" : "Pedir cotización de calendarios"}
       </button>
