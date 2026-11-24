@@ -10,7 +10,7 @@ export const NAV_SERVICIOS: NavCategoria[] = [
     color: "#E91E8F",
     items: [
       { label: "Flyers publicitarios", href: "/#servicio-flyers" },
-      { label: "Afiches", href: "/#servicio-afiches" },
+      { label: "Afiches en tela PVC", href: "/#servicio-afiches" },
       { label: "Bolsas Sublimación", href: "/#servicio-bolsas-sublimacion" },
       { label: "Tarjetas de presentación", href: "/#servicio-tarjetas" },
       { label: "Pendones y Rollers", href: "/pendones-chillan" },
