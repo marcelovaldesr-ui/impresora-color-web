@@ -1,10 +1,10 @@
 # Genera 3 variantes 9:16 (mismo cuerpo, distinto gancho). python3 gen.py A|B|C
 import sys, os
 V = sys.argv[1]
-P = [("flyers","Flyers","#E91E8F","#fff","50% 30%"),("stickers","Stickers","#47B7E8","#0F1730","50% 50%"),("etiquetas","Etiquetas","#7DBA2F","#0F1730","50% 50%"),("imanes","Imanes","#F5C51B","#111827","50% 50%"),("tarjetas","Tarjetas","#F47A20","#0F1730","50% 50%"),("pendones","Pendones","#2D3E9F","#fff","50% 40%"),("calendarios","Calendarios 2027","#E91E8F","#fff","30% 40%"),("credenciales","Credenciales","#47B7E8","#0F1730","50% 50%")]
+P = [("flyers","Flyers","#E91E8F","#fff","50% 30%"),("afiches","Afiches en tela PVC","#F47A20","#fff","50% 40%"),("stickers","Stickers","#47B7E8","#0F1730","50% 50%"),("etiquetas","Etiquetas","#7DBA2F","#0F1730","50% 50%"),("pendones","Pendones","#2D3E9F","#fff","50% 40%"),("calendarios","Calendarios 2027","#E91E8F","#fff","30% 40%"),("credenciales","Credenciales y lanyards","#47B7E8","#0F1730","60% 50%"),("talonarios","Talonarios","#F5C51B","#0F1730","50% 50%")]
 HOOK = {
  "A": ("¿Necesitas imprimir<br>para tu negocio?", "En Chillán lo hacemos<br><b>todo en un solo lugar</b>", "#0F1730", None),
- "B": ("Así se ve<br>tu marca impresa", "Flyers, etiquetas, pendones<br><b>y mucho más</b>", "#0F1730", "assets/cal2027-mural.jpg"),
+ "B": ("Así se ve<br>tu marca impresa", "Todo lo que tu negocio<br><b>necesita imprimir</b>", "#0F1730", "assets/cal2027-mural.jpg"),
  "C": ("Desde 1991<br>imprimiendo Chillán", "Más de 30 años<br><b>haciendo crecer negocios</b>", "#2D3E9F", None),
 }[V]
 T0, D = 2.6, 1.0
