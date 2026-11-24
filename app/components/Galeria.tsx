@@ -32,7 +32,7 @@ const TRABAJOS: Trabajo[] = [
   },
   {
     imagenUrl: "/images/sitkers.webp",
-    imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
+    imagenAlt: "Stickers personalizados pegados en vasos y bolsas de una cafetería",
     bg: "from-[#47B7E8] to-[#2D3E9F]",
     acento: "#47B7E8",
     nombre: "Stickers personalizados",

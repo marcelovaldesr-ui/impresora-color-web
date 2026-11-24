@@ -44,6 +44,17 @@ const PUBLICIDAD: Servicio[] = [
     bg: "bg-[#f8f8f8]",
   },
   {
+    imagen: "afiches",
+    imagenUrl: "/images/afiches.webp",
+    imagenAlt: "Afiche impreso colgado en una panadería de barrio en Chillán, promocionando un desayuno",
+    titulo: "Afiches",
+    descripcion: "Afiches para tu vitrina, mesón o evento, en papel o tamaño grande. De lo más pedido por WhatsApp.",
+    boton: "Cotizar afiches",
+    wa: "Hola, quiero cotizar afiches.",
+    acento: "#E91E8F",
+    bg: "from-[#E91E8F] to-[#F47A20]",
+  },
+  {
     imagen: "bolsas-sublimacion",
     imagenUrl: "/images/bolsas-sublimacion.webp",
     imagenAlt: "Bolsas personalizadas con estampado a color por sublimación para merchandising y eventos en Chillán",
@@ -115,6 +126,28 @@ const PUBLICIDAD: Servicio[] = [
     acento: "#E91E8F",
     bg: "from-[#E91E8F] to-[#47B7E8]",
   },
+  {
+    imagen: "senaletica",
+    imagenUrl: "/images/senaletica.webp",
+    imagenAlt: "Señalética impresa instalada en una oficina: recepción, baños, salida de emergencia y extintor",
+    titulo: "Señalética",
+    descripcion: "Letreros para oficinas, locales y empresas: baños, salidas, extintores, recepción y más.",
+    boton: "Cotizar señalética",
+    wa: "Hola, quiero cotizar señalética.",
+    acento: "#2D3E9F",
+    bg: "from-[#2D3E9F] to-[#47B7E8]",
+  },
+  {
+    imagen: "invitaciones",
+    imagenUrl: "/images/invitaciones-entradas.webp",
+    imagenAlt: "Entradas numeradas e invitaciones impresas para una fiesta de graduación",
+    titulo: "Invitaciones y entradas",
+    descripcion: "Invitaciones para matrimonios, cumpleaños y eventos, y entradas numeradas con talón.",
+    boton: "Cotizar invitaciones",
+    wa: "Hola, quiero cotizar invitaciones o entradas.",
+    acento: "#F47A20",
+    bg: "from-[#F47A20] to-[#E91E8F]",
+  },
 ];
 
 // ── Categoría 2: Etiquetas y packaging ──────────────────────────────────────
@@ -133,7 +166,7 @@ const ETIQUETAS_PACKAGING: Servicio[] = [
   {
     imagen: "stickers",
     imagenUrl: "/images/sitkers.webp",
-    imagenAlt: "Stickers personalizados para marca, emprendimiento o producto",
+    imagenAlt: "Stickers personalizados pegados en vasos y bolsas de una cafetería",
     titulo: "Stickers personalizados",
     tienda: "stickers",
     descripcion: "Para tu marca, producto o emprendimiento.",
@@ -158,6 +191,17 @@ const ETIQUETAS_PACKAGING: Servicio[] = [
 
 // ── Categoría 3: Documentos y oficina ───────────────────────────────────────
 const OFICINA: Servicio[] = [
+  {
+    imagen: "talonarios",
+    imagenUrl: "/images/talonarios.webp",
+    imagenAlt: "Talonario autocopiativo numerado sobre el mesón de una ferretería, con original y copia",
+    titulo: "Talonarios autocopiativos",
+    descripcion: "Notas de venta, comprobantes y guías numeradas con original y copias. Ideal para tu mesón.",
+    boton: "Cotizar talonarios",
+    wa: "Hola, quiero cotizar talonarios autocopiativos.",
+    acento: "#47B7E8",
+    bg: "from-[#47B7E8] to-[#2D3E9F]",
+  },
   {
     imagen: "credenciales-fargo",
     imagenUrl: "/images/tarjetaspvc.webp",
