@@ -29,7 +29,10 @@ export default function Reveal({ children, className = "", delay = 0, y = 24 }: 
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -80px 0px" }
+      // threshold 0 (24-nov-2026): con 0.12 una seccion mas alta que ~8 pantallas
+      // (Servicios en celular) NUNCA llegaba a mostrar el 12% de su altura y quedaba
+      // invisible; tambien al entrar directo por un enlace (/#servicio-...).
+      { threshold: 0, rootMargin: "0px 0px -60px 0px" }
     );
 
     observer.observe(el);
