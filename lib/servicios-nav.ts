@@ -11,7 +11,7 @@ export const NAV_SERVICIOS: NavCategoria[] = [
     items: [
       { label: "Flyers publicitarios", href: "/#servicio-flyers" },
       { label: "Afiches en tela PVC", href: "/#servicio-afiches" },
-      { label: "Bolsas Sublimación", href: "/#servicio-bolsas-sublimacion" },
+      { label: "Sublimación: bolsas y poleras", href: "/#servicio-bolsas-sublimacion" },
       { label: "Tarjetas de presentación", href: "/#servicio-tarjetas" },
       { label: "Pendones y Rollers", href: "/pendones-chillan" },
       { label: "Menús para locales", href: "/#servicio-menus" },
@@ -36,6 +36,7 @@ export const NAV_SERVICIOS: NavCategoria[] = [
     items: [
       { label: "Talonarios", href: "/#servicio-talonarios" },
       { label: "Tarjetas y Credenciales", href: "/#servicio-credenciales-fargo" },
+      { label: "Lanyards", href: "/#servicio-lanyards" },
       { label: "Fotocopias", href: "/#servicio-fotocopias" },
       { label: "Impresiones", href: "/#servicio-impresiones" },
       { label: "Anillados", href: "/#servicio-anillados" },
