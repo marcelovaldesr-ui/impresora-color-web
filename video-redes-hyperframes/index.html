@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8" /><meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box} html,body{width:1080px;height:1920px;overflow:hidden;background:#FAFBFF}
+#root{position:absolute;inset:0;overflow:hidden;font-family:Montserrat,sans-serif}
+#ground{position:absolute;inset:0;background:#FAFBFF;z-index:0}
+#stripe{position:absolute;left:0;right:0;top:0;height:18px;display:flex;z-index:50} #stripe span{flex:1}
+.shot{position:absolute;inset:0}
+.card{position:absolute;left:140px;top:400px;width:800px;height:800px;border-radius:40px;overflow:hidden;background:#fff;box-shadow:0 40px 90px rgba(15,23,48,.3);border:12px solid #fff}
+.kb{position:absolute;inset:0} .kb img{width:100%;height:100%;object-fit:cover;display:block}
+.name{position:absolute;left:0;right:0;top:1240px;text-align:center;font-weight:900;font-size:88px;letter-spacing:-.03em;line-height:1.05}
+#tag{position:absolute;left:50%;top:300px;transform:translateX(-50%);z-index:60;background:#fff;color:#0F1730;font-weight:800;font-size:34px;padding:16px 30px;border-radius:999px;white-space:nowrap;box-shadow:0 10px 30px rgba(15,23,48,.18)}
+#hook{position:absolute;inset:0;z-index:40}
+#h1{position:absolute;left:140px;right:140px;top:420px;text-align:center;font-weight:900;font-size:92px;line-height:1.04;letter-spacing:-.035em;color:#0F1730}
+#h2{position:absolute;left:140px;right:140px;top:1000px;text-align:center;font-weight:700;font-size:52px;line-height:1.18;color:#0F1730} #h2 b{color:#E91E8F}
+.hcard{top:360px;height:640px}
+#end{position:absolute;inset:0;z-index:45;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px}
+#e-logo{width:340px;height:340px;border-radius:50%;overflow:hidden} #e-logo img{width:100%;height:100%;object-fit:cover}
+#e-cta{font-weight:900;font-size:76px;color:#111827;text-align:center;line-height:1.05;letter-spacing:-.03em} #e-cta b{color:#E91E8F}
+#e-btn{background:#25D366;color:#fff;font-weight:900;font-size:52px;padding:26px 50px;border-radius:999px}
+#e-info{font-weight:700;font-size:40px;color:#2D3E9F;text-align:center}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+<div id="ground"></div>
+<div id="stripe"><span style="background:#E91E8F"></span><span style="background:#47B7E8"></span><span style="background:#7DBA2F"></span><span style="background:#F5C51B"></span><span style="background:#F47A20"></span><span style="background:#2D3E9F"></span></div>
+<div id="hook" class="clip" data-start="0" data-duration="2.6" data-track-index="1">
+  
+  <div id="h1" >¿Necesitas imprimir<br>para tu negocio?</div>
+  <div id="h2" >En Chillán lo hacemos<br><b>todo en un solo lugar</b></div>
+</div>
+<div id="body" class="clip" data-start="2.6" data-duration="8.00" data-track-index="2" style="position:absolute;inset:0;z-index:30">
+  <div id="tag">Impresora Color · Chillán</div>
+  <div id="s-flyers" class="clip shot" data-start="2.60" data-duration="1.0" data-track-index="3" style="z-index:3">
+  <div id="c-flyers" class="card"><div id="k-flyers" class="kb"><img src="assets/flyers.jpg" style="object-position:50% 30%" alt="Flyers" /></div></div>
+  <div id="n-flyers" class="name" style="color:#fff">Flyers</div></div><div id="s-stickers" class="clip shot" data-start="3.60" data-duration="1.0" data-track-index="4" style="z-index:4">
+  <div id="c-stickers" class="card"><div id="k-stickers" class="kb"><img src="assets/stickers.jpg" style="object-position:50% 50%" alt="Stickers" /></div></div>
+  <div id="n-stickers" class="name" style="color:#0F1730">Stickers</div></div><div id="s-etiquetas" class="clip shot" data-start="4.60" data-duration="1.0" data-track-index="5" style="z-index:5">
+  <div id="c-etiquetas" class="card"><div id="k-etiquetas" class="kb"><img src="assets/etiquetas.jpg" style="object-position:50% 50%" alt="Etiquetas" /></div></div>
+  <div id="n-etiquetas" class="name" style="color:#0F1730">Etiquetas</div></div><div id="s-imanes" class="clip shot" data-start="5.60" data-duration="1.0" data-track-index="6" style="z-index:6">
+  <div id="c-imanes" class="card"><div id="k-imanes" class="kb"><img src="assets/imanes.jpg" style="object-position:50% 50%" alt="Imanes" /></div></div>
+  <div id="n-imanes" class="name" style="color:#111827">Imanes</div></div><div id="s-tarjetas" class="clip shot" data-start="6.60" data-duration="1.0" data-track-index="7" style="z-index:7">
+  <div id="c-tarjetas" class="card"><div id="k-tarjetas" class="kb"><img src="assets/tarjetas.jpg" style="object-position:50% 50%" alt="Tarjetas" /></div></div>
+  <div id="n-tarjetas" class="name" style="color:#0F1730">Tarjetas</div></div><div id="s-pendones" class="clip shot" data-start="7.60" data-duration="1.0" data-track-index="8" style="z-index:8">
+  <div id="c-pendones" class="card"><div id="k-pendones" class="kb"><img src="assets/pendones.jpg" style="object-position:50% 40%" alt="Pendones" /></div></div>
+  <div id="n-pendones" class="name" style="color:#fff">Pendones</div></div><div id="s-calendarios" class="clip shot" data-start="8.60" data-duration="1.0" data-track-index="9" style="z-index:9">
+  <div id="c-calendarios" class="card"><div id="k-calendarios" class="kb"><img src="assets/calendarios.jpg" style="object-position:30% 40%" alt="Calendarios 2027" /></div></div>
+  <div id="n-calendarios" class="name" style="color:#fff">Calendarios 2027</div></div><div id="s-credenciales" class="clip shot" data-start="9.60" data-duration="1.0" data-track-index="10" style="z-index:10">
+  <div id="c-credenciales" class="card"><div id="k-credenciales" class="kb"><img src="assets/credenciales.jpg" style="object-position:50% 50%" alt="Credenciales" /></div></div>
+  <div id="n-credenciales" class="name" style="color:#0F1730">Credenciales</div></div>
+</div>
+<div id="end" class="clip" data-start="10.60" data-duration="4.40" data-track-index="20">
+  <div id="e-logo"><img src="assets/logo.jpg" alt="Impresora Color Chillán" /></div>
+  <div id="e-cta">Cotiza hoy por<br><b>WhatsApp</b></div>
+  <div id="e-btn">+56 9 9844 1157</div>
+  <div id="e-info">Arauco 1060, Chillán<br>impresoracolor.cl</div>
+</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo("#h1",{opacity:0,y:60,scale:.94},{opacity:1,y:0,scale:1,duration:0.45,ease:"expo.out"},0.05);
+tl.fromTo("#h2",{opacity:0,y:40},{opacity:1,y:0,duration:0.35,ease:"power3.out"},0.9);
+tl.to(["#h1","#h2"],{opacity:0,y:-80,duration:0.22,ease:"power3.in"},2.35);
+tl.fromTo("#tag",{opacity:0,y:-20},{opacity:1,y:0,duration:0.3,ease:"power3.out"},2.60);
+tl.to("#ground",{backgroundColor:"#E91E8F",duration:0.3,ease:"power2.inOut"},2.45);
+tl.fromTo("#c-flyers",{y:260,opacity:0,scale:0.92},{y:0,opacity:1,scale:1,duration:0.38,ease:"expo.out"},2.62);
+tl.fromTo("#k-flyers",{scale:1.08},{scale:1,duration:1.0,ease:"power2.out"},2.60);
+tl.fromTo("#n-flyers",{opacity:0,y:30},{opacity:1,y:0,duration:0.2,ease:"power4.out"},2.70);
+tl.to(["#c-flyers","#n-flyers"],{y:-220,opacity:0,duration:0.2,ease:"power3.in"},3.38);
+tl.to("#ground",{backgroundColor:"#47B7E8",duration:0.3,ease:"power2.inOut"},3.45);
+tl.fromTo("#c-stickers",{y:260,opacity:0,scale:0.92},{y:0,opacity:1,scale:1,duration:0.38,ease:"expo.out"},3.62);
+tl.fromTo("#k-stickers",{scale:1.08},{scale:1,duration:1.0,ease:"power2.out"},3.60);
+tl.fromTo("#n-stickers",{opacity:0,y:30},{opacity:1,y:0,duration:0.2,ease:"power4.out"},3.70);
+tl.to(["#c-stickers","#n-stickers"],{y:-220,opacity:0,duration:0.2,ease:"power3.in"},4.38);
+tl.to("#ground",{backgroundColor:"#7DBA2F",duration:0.3,ease:"power2.inOut"},4.45);
+tl.fromTo("#c-etiquetas",{y:260,opacity:0,scale:0.92},{y:0,opacity:1,scale:1,duration:0.38,ease:"expo.out"},4.62);
+tl.fromTo("#k-etiquetas",{scale:1.08},{scale:1,duration:1.0,ease:"power2.out"},4.60);
+tl.fromTo("#n-etiquetas",{opacity:0,y:30},{opacity:1,y:0,duration:0.2,ease:"power4.out"},4.70);
+tl.to(["#c-etiquetas","#n-etiquetas"],{y:-220,opacity:0,duration:0.2,ease:"power3.in"},5.38);
+tl.to("#ground",{backgroundColor:"#F5C51B",duration:0.3,ease:"power2.inOut"},5.45);
+tl.fromTo("#c-imanes",{y:260,opacity:0,scale:0.92},{y:0,opacity:1,scale:1,duration:0.38,ease:"expo.out"},5.62);
+tl.fromTo("#k-imanes",{scale:1.08},{scale:1,duration:1.0,ease:"power2.out"},5.60);
+tl.fromTo("#n-imanes",{opacity:0,y:30},{opacity:1,y:0,duration:0.2,ease:"power4.out"},5.70);
+tl.to(["#c-imanes","#n-imanes"],{y:-220,opacity:0,duration:0.2,ease:"power3.in"},6.38);
+tl.to("#ground",{backgroundColor:"#F47A20",duration:0.3,ease:"power2.inOut"},6.45);
+tl.fromTo("#c-tarjetas",{y:260,opacity:0,scale:0.92},{y:0,opacity:1,scale:1,duration:0.38,ease:"expo.out"},6.62);
+tl.fromTo("#k-tarjetas",{scale:1.08},{scale:1,duration:1.0,ease:"power2.out"},6.60);
+tl.fromTo("#n-tarjetas",{opacity:0,y:30},{opacity:1,y:0,duration:0.2,ease:"power4.out"},6.70);
+tl.to(["#c-tarjetas","#n-tarjetas"],{y:-220,opacity:0,duration:0.2,ease:"power3.in"},7.38);
+tl.to("#ground",{backgroundColor:"#2D3E9F",duration:0.3,ease:"power2.inOut"},7.45);
+tl.fromTo("#c-pendones",{y:260,opacity:0,scale:0.92},{y:0,opacity:1,scale:1,duration:0.38,ease:"expo.out"},7.62);
+tl.fromTo("#k-pendones",{scale:1.08},{scale:1,duration:1.0,ease:"power2.out"},7.60);
+tl.fromTo("#n-pendones",{opacity:0,y:30},{opacity:1,y:0,duration:0.2,ease:"power4.out"},7.70);
+tl.to(["#c-pendones","#n-pendones"],{y:-220,opacity:0,duration:0.2,ease:"power3.in"},8.38);
+tl.to("#ground",{backgroundColor:"#E91E8F",duration:0.3,ease:"power2.inOut"},8.45);
+tl.fromTo("#c-calendarios",{y:260,opacity:0,scale:0.92},{y:0,opacity:1,scale:1,duration:0.38,ease:"expo.out"},8.62);
+tl.fromTo("#k-calendarios",{scale:1.08},{scale:1,duration:1.0,ease:"power2.out"},8.60);
+tl.fromTo("#n-calendarios",{opacity:0,y:30},{opacity:1,y:0,duration:0.2,ease:"power4.out"},8.70);
+tl.to(["#c-calendarios","#n-calendarios"],{y:-220,opacity:0,duration:0.2,ease:"power3.in"},9.38);
+tl.to("#ground",{backgroundColor:"#47B7E8",duration:0.3,ease:"power2.inOut"},9.45);
+tl.fromTo("#c-credenciales",{y:260,opacity:0,scale:0.92},{y:0,opacity:1,scale:1,duration:0.38,ease:"expo.out"},9.62);
+tl.fromTo("#k-credenciales",{scale:1.08},{scale:1,duration:1.0,ease:"power2.out"},9.60);
+tl.fromTo("#n-credenciales",{opacity:0,y:30},{opacity:1,y:0,duration:0.2,ease:"power4.out"},9.70);
+tl.to(["#c-credenciales","#n-credenciales"],{y:-220,opacity:0,duration:0.2,ease:"power3.in"},10.38);
+tl.to("#ground",{backgroundColor:"#FAFBFF",duration:0.35,ease:"power2.inOut"},10.50);
+tl.fromTo("#e-logo",{scale:.6,opacity:0},{scale:1,opacity:1,duration:0.5,ease:"back.out(1.4)"},10.65);
+tl.fromTo("#e-cta",{opacity:0,y:30},{opacity:1,y:0,duration:0.3,ease:"power4.out"},10.95);
+tl.fromTo("#e-btn",{opacity:0,scale:.8},{opacity:1,scale:1,duration:0.35,ease:"back.out(1.6)"},11.15);
+tl.to("#e-btn",{scale:1.06,duration:0.4,ease:"sine.inOut",yoyo:true,repeat:3},11.80);
+tl.fromTo("#e-info",{opacity:0},{opacity:1,duration:0.3},11.40);
+window.__timelines["main"] = tl;
+</script></body></html>
