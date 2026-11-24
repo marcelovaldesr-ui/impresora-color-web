@@ -66,9 +66,9 @@ export default function Hero() {
 
           {/* H1 — un solo color base, un solo acento */}
           <h1 className="text-4xl sm:text-5xl xl:text-[56px] font-black text-[#111827] leading-[1.08] mb-6 text-balance opacity-0 animate-[fade-in-up_0.7s_ease-out_0.15s_both]">
-            Flyers, stickers y etiquetas que{" "}
+            Todo lo que tu negocio necesita imprimir,{" "}
             <span className="relative inline-block text-[#D11A80]">
-              hacen vender
+              en un solo lugar
               <span
                 aria-hidden="true"
                 className="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#D11A80] rounded-full"
@@ -78,9 +78,9 @@ export default function Hero() {
 
           {/* Subtítulo — específico, no genérico */}
           <p className="text-gray-600 text-lg leading-relaxed mb-9 max-w-lg text-pretty opacity-0 animate-[fade-in-up_0.7s_ease-out_0.25s_both]">
-            Imprimimos para emprendedores, productores locales y negocios de Chillán
-            que necesitan materiales de calidad{" "}
-            <strong className="text-[#2D3E9F] font-semibold">sin esperar semanas ni gastar de más.</strong>
+            Flyers, afiches en tela PVC, pendones, stickers, etiquetas, talonarios, credenciales y mucho más,
+            para emprendedores, empresas e instituciones de Chillán y Ñuble.{" "}
+            <strong className="text-[#2D3E9F] font-semibold">Sin ir de imprenta en imprenta.</strong>
           </p>
 
           {/* CTAs con jerarquía clara */}
