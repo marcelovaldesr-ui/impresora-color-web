@@ -2,6 +2,7 @@ import { supabase } from '@/lib/supabase'
 import { verificarPago } from '@/lib/flow'
 import { Resend } from 'resend'
 import { escapeHtml } from '@/lib/escapeHtml'
+import { enviarVentaAGestion } from '@/lib/ventaGestion'
 
 // Remitente: DEBE ser una dirección de un dominio verificado en Resend.
 // La tienda usa su propio remitente (pedidos@) para no mezclarse con las
@@ -176,8 +177,12 @@ export async function procesarPagoFlow(token: string): Promise<RespuestaProceso>
         } catch (err) {
           console.error('[confirmar] emails', err)
         }
+        await enviarVentaAGestion(filas, String(flowData.flowOrder ?? '') || null)
         return { status: 200, texto: 'ok', resultado: 'pagado', estadoFlow, flowData }
       } else {
+        // Reintento natural: si la primera copia a Gestión falló, el siguiente aviso
+        // de Flow (o "Consultar Flow" del panel) la vuelve a mandar. Gestión no duplica.
+        await enviarVentaAGestion(filas, String(flowData.flowOrder ?? '') || null)
         return { status: 200, texto: 'ok', resultado: 'ya_pagado', estadoFlow, flowData }
       }
     } else if (estadoFlow === 3 || estadoFlow === 4) {
