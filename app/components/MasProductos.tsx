@@ -6,7 +6,6 @@ const PRODUCTOS: { label: string; wa: string }[] = [
   { label: "Recetarios", wa: "recetarios" },
   { label: "Carnets veterinarios", wa: "carnets veterinarios" },
   { label: "Palomas publicitarias", wa: "palomas publicitarias" },
-  { label: "Lonas de PVC", wa: "lonas de PVC" },
   { label: "Etiquetas para botellas de agua", wa: "etiquetas para botellas de agua" },
   { label: "Stickers transparentes", wa: "stickers transparentes" },
   { label: "Adhesivo impreso por m²", wa: "adhesivo impreso por metro cuadrado" },
