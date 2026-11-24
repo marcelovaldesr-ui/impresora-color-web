@@ -10,12 +10,15 @@ export const NAV_SERVICIOS: NavCategoria[] = [
     color: "#E91E8F",
     items: [
       { label: "Flyers publicitarios", href: "/#servicio-flyers" },
+      { label: "Afiches", href: "/#servicio-afiches" },
       { label: "Bolsas Sublimación", href: "/#servicio-bolsas-sublimacion" },
       { label: "Tarjetas de presentación", href: "/#servicio-tarjetas" },
       { label: "Pendones y Rollers", href: "/pendones-chillan" },
       { label: "Menús para locales", href: "/#servicio-menus" },
       { label: "Imanes publicitarios", href: "/#servicio-imanes" },
       { label: "Dípticos y trípticos", href: "/#servicio-dipticos" },
+      { label: "Señalética", href: "/#servicio-senaletica" },
+      { label: "Invitaciones y entradas", href: "/#servicio-invitaciones" },
     ],
   },
   {
@@ -31,6 +34,7 @@ export const NAV_SERVICIOS: NavCategoria[] = [
     categoria: "Documentos y oficina",
     color: "#47B7E8",
     items: [
+      { label: "Talonarios", href: "/#servicio-talonarios" },
       { label: "Tarjetas y Credenciales", href: "/#servicio-credenciales-fargo" },
       { label: "Fotocopias", href: "/#servicio-fotocopias" },
       { label: "Impresiones", href: "/#servicio-impresiones" },

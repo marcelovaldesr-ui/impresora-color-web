@@ -1,17 +1,12 @@
 // Sin duplicados con las cards de Servicios (dípticos y pendón roller ya tienen card propia).
 // Cada ítem es cotizable por WhatsApp con mensaje precargado.
 const PRODUCTOS: { label: string; wa: string }[] = [
-  { label: "Afiches", wa: "afiches" },
-  { label: "Talonarios autocopiativos", wa: "talonarios autocopiativos" },
-  { label: "Entradas personalizadas", wa: "entradas personalizadas" },
-  { label: "Invitaciones", wa: "invitaciones" },
   { label: "Cuadernos corporativos", wa: "cuadernos corporativos" },
   { label: "Libretas personalizadas", wa: "libretas personalizadas" },
   { label: "Recetarios", wa: "recetarios" },
   { label: "Carnets veterinarios", wa: "carnets veterinarios" },
   { label: "Palomas publicitarias", wa: "palomas publicitarias" },
   { label: "Lonas de PVC", wa: "lonas de PVC" },
-  { label: "Señaléticas", wa: "señaléticas" },
   { label: "Etiquetas para botellas de agua", wa: "etiquetas para botellas de agua" },
   { label: "Stickers transparentes", wa: "stickers transparentes" },
   { label: "Adhesivo impreso por m²", wa: "adhesivo impreso por metro cuadrado" },
