@@ -135,7 +135,6 @@ export default function Navbar() {
             Calendarios 2027
           </Link>
           {[
-            { href: "/#galeria", label: "Galería" },
             { href: "/#ubicacion", label: "Ubicación" },
             { href: "/#faq", label: "FAQ" },
           ].map((item) => {
@@ -242,7 +241,6 @@ export default function Navbar() {
             📅 Calendarios 2027 para empresas
           </Link>
           {[
-            { href: "/#galeria", label: "Galería" },
             { href: "/#ubicacion", label: "Ubicación" },
             { href: "/#faq", label: "Preguntas Frecuentes" },
           ].map((item) => (
