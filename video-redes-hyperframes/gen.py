@@ -33,7 +33,7 @@ html = f'''<!doctype html>
 .shot{{position:absolute;inset:0}}
 .card{{position:absolute;left:140px;top:400px;width:800px;height:800px;border-radius:40px;overflow:hidden;background:#fff;box-shadow:0 40px 90px rgba(15,23,48,.3);border:12px solid #fff}}
 .kb{{position:absolute;inset:0}} .kb img{{width:100%;height:100%;object-fit:cover;display:block}}
-.name{{position:absolute;left:0;right:0;top:1240px;text-align:center;font-weight:900;font-size:88px;letter-spacing:-.03em;line-height:1.05}}
+.name{{position:absolute;left:90px;right:90px;top:1240px;text-align:center;font-weight:900;font-size:88px;letter-spacing:-.03em;line-height:1.05}}
 #tag{{position:absolute;left:50%;top:300px;transform:translateX(-50%);z-index:60;background:#fff;color:#0F1730;font-weight:800;font-size:34px;padding:16px 30px;border-radius:999px;white-space:nowrap;box-shadow:0 10px 30px rgba(15,23,48,.18)}}
 #hook{{position:absolute;inset:0;z-index:40}}
 #h1{{position:absolute;left:140px;right:140px;top:420px;text-align:center;font-weight:900;font-size:92px;line-height:1.04;letter-spacing:-.035em;color:{hc}}}
