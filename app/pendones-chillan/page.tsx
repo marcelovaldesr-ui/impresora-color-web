@@ -57,7 +57,7 @@ export default function Page() {
       tiendaProducto={{
         slug: "pendon-roller",
         nombre: "Pendón Roller Retráctil",
-        precioDesde: "desde $39.140",
+        precioDesde: "desde $38.000",
       }}
     />
   );

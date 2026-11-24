@@ -57,7 +57,7 @@ export default function Page() {
       tiendaProducto={{
         slug: "stickers",
         nombre: "Stickers / Calcomanías",
-        precioDesde: "desde $8.240",
+        precioDesde: "desde $9.000",
       }}
     />
   );

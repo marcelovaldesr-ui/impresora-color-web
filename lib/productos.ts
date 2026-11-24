@@ -93,6 +93,8 @@ export function calcularIVA(precioConIVA: number) {
 // Precios cargados desde catalogo_tienda_onlineV2.xlsx (filas marcadas "Si"/"Si").
 // Precios FINALES con IVA incluido (19%). Actualizar solo desde el Excel maestro.
 // 22-nov-2026: tarjetas y stickers actualizados con los precios base que confirmó Cecilia.
+// 24-nov-2026: igualados a la lista que confirmó Cecilia (la misma con que cotiza Tino): flyers A6
+// 1 cara 100 = $16.000, roller 80 x 200 = $38.000, roller 120 x 200 no disponible por ahora.
 
 // TARJETAS DE PRESENTACION — 9 x 5 cm, couche 300 grs
 const TARJETAS: Record<string, Record<number, number>> = {
@@ -103,7 +105,7 @@ const TARJETAS: Record<string, Record<number, number>> = {
 // FLYERS / VOLANTES — Couche 90g. Precios finales por fila (1 y 2 caras fijados a mano en el catalogo).
 const FLYERS: Record<string, Record<string, Record<number, number>>> = {
   'A6 (10,5 x 14,8 cm)': {
-    '1 cara': { 100: 15000, 200: 22000, 500: 42000 },
+    '1 cara': { 100: 16000, 200: 22000, 500: 42000 },
     '2 caras': { 100: 22000, 200: 32000, 500: 58000 },
   },
   'A5 (14,8 x 21 cm)': {
@@ -123,7 +125,7 @@ const STICKERS: Record<string, Record<number, number>> = {
 
 // PENDON ROLLER RETRACTIL — todos los tamanos incluyen estuche de transporte
 const PENDON: Record<string, number> = {
-  '80 x 200 cm': 35000,
+  '80 x 200 cm': 38000,
   '90 x 200 cm': 40000,
   '100 x 200 cm': 45000,
   '120 x 200 cm': 50000,
@@ -218,7 +220,7 @@ const PRODUCTOS_BASE: Producto[] = [
     imagen: '/images/roller-producto-crop.jpg',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
     opcionGrupos: [
-      { id: 'tamano', nombre: 'Tamaño', valores: ['80 x 200 cm', '90 x 200 cm', '100 x 200 cm', '120 x 200 cm'] },
+      { id: 'tamano', nombre: 'Tamaño', valores: ['80 x 200 cm', '90 x 200 cm', '100 x 200 cm', '120 x 200 cm'], valoresNoDisponibles: ['120 x 200 cm'] },
     ],
     calcularPrecio: (opciones) => {
       const tamano = opciones.tamano ?? '80 x 200 cm'
@@ -253,7 +255,7 @@ const PRODUCTOS_BASE: Producto[] = [
     slug: 'credencial-pvc',
     nombre: 'Credencial PVC',
     descripcion:
-      'Credencial tipo carne en PVC blanco, impresion full color. Tamaño estándar 8,5 x 5,5 cm. Valor $2.580 por unidad (hasta 5 unidades); para mayores cantidades, cotiza por privado.',
+      'Credencial tipo carne en PVC blanco, impresion full color. Tamaño estándar 8,5 x 5,5 cm. Valor $2.500 por unidad (hasta 5 unidades); para mayores cantidades, cotiza por privado.',
     tiempoEntrega: '1-3 días hábiles',
     imagen: '/images/tarjetaspvc.png',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
