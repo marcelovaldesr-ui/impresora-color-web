@@ -144,6 +144,12 @@ const TELA_PVC: Record<string, number> = {
 // Precio por unidad, fijo hasta 5 unidades. Sobre 5 unidades se cotiza por privado.
 const CREDENCIAL_PVC_UNITARIO = 2500
 
+/** Cantidad elegida (cantidad libre), acotada a 1..max. */
+function cantidadDe(opciones: Record<string, string>, max: number): number {
+  const n = parseInt(opciones.cantidad ?? '1', 10)
+  return Number.isInteger(n) ? Math.min(max, Math.max(1, n)) : 1
+}
+
 const PRODUCTOS_BASE: Producto[] = [
   {
     slug: 'tarjetas-presentacion',
@@ -272,6 +278,109 @@ const PRODUCTOS_BASE: Producto[] = [
       return precioCatalogo('credencial', 1, CREDENCIAL_PVC_UNITARIO) * cantidad
     },
     dimensiones: () => ({ anchoCm: 8.5, altoCm: 5.5, granFormato: false }),
+  },
+  // --- Agregados el 25-nov-2026 (pedido de Marcelo): productos de la lista de Cecilia con precio fijo
+  // que el cliente puede comprar solo subiendo su archivo. Precio = catálogo de la imprenta + 4 %.
+  // Plazo «1-3 días hábiles» como el resto de la tienda [DATO A CONFIRMAR con Cecilia por producto].
+  {
+    slug: 'paloma-publicitaria',
+    nombre: 'Paloma Publicitaria',
+    descripcion: 'Paloma publicitaria de 70 x 120 cm para la vereda de tu local, impresa a todo color por una o por las dos caras.',
+    tiempoEntrega: '1-3 días hábiles',
+    imagen: '/images/paloma-publicitaria.webp',
+    formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
+    opcionGrupos: [
+      { id: 'caras', nombre: 'Impresión', valores: ['1 cara', '2 caras'] },
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['1'], cantidadLibre: { min: 1, max: 5 } },
+    ],
+    calcularPrecio: (opciones) => {
+      const dos = (opciones.caras ?? '1 cara').startsWith('2')
+      return precioCatalogo(dos ? 'paloma2' : 'paloma1', 1, dos ? 38000 : 28000) * cantidadDe(opciones, 5)
+    },
+    dimensiones: () => ({ anchoCm: 70, altoCm: 120, granFormato: true }),
+  },
+  {
+    slug: 'poster-papel-sintetico',
+    nombre: 'Póster en Papel Sintético',
+    descripcion: 'Póster impreso a todo color en papel sintético, resistente y sin arrugas. Ideal para vitrinas, mostradores y paredes.',
+    tiempoEntrega: '1-3 días hábiles',
+    imagen: '/images/poster-papel-sintetico.webp',
+    formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
+    opcionGrupos: [
+      { id: 'tamano', nombre: 'Tamaño', valores: ['40 x 50 cm', '90 x 120 cm'] },
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['1'], cantidadLibre: { min: 1, max: 10 } },
+    ],
+    calcularPrecio: (opciones) => {
+      const grande = (opciones.tamano ?? '40 x 50 cm').startsWith('90')
+      return precioCatalogo(grande ? 'poster90x120' : 'poster40x50', 1, grande ? 12000 : 7000) * cantidadDe(opciones, 10)
+    },
+    dimensiones: (opciones) => {
+      const m = medidasDeTexto(opciones.tamano ?? '') ?? { anchoCm: 40, altoCm: 50 }
+      return { ...m, granFormato: m.anchoCm >= 90 }
+    },
+  },
+  {
+    slug: 'adhesivo-impreso',
+    nombre: 'Adhesivo Impreso 100 x 100 cm',
+    descripcion: 'Adhesivo de 100 x 100 cm impreso a todo color, en papel o en vinilo PVC. Para vitrinas, muros y puntos de venta.',
+    tiempoEntrega: '1-3 días hábiles',
+    imagen: '/images/adhesivo-vinilo-vitrina.webp',
+    formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
+    opcionGrupos: [
+      { id: 'material', nombre: 'Material', valores: ['Papel', 'Vinilo PVC'] },
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['1'], cantidadLibre: { min: 1, max: 10 } },
+    ],
+    calcularPrecio: (opciones) => {
+      const vinilo = (opciones.material ?? 'Papel').startsWith('Vinilo')
+      return precioCatalogo(vinilo ? 'adh_vinilo100' : 'adh_papel100', 1, vinilo ? 15000 : 13000) * cantidadDe(opciones, 10)
+    },
+    dimensiones: () => ({ anchoCm: 100, altoCm: 100, granFormato: true }),
+  },
+  {
+    slug: 'letreros',
+    nombre: 'Letreros para tu Local',
+    descripcion: 'Letrero de trovicel de 100 x 100 cm impreso, o letrero de tela PVC de 100 x 80 cm con marco de madera.',
+    tiempoEntrega: '1-3 días hábiles',
+    imagen: '/images/letrero-trovicel.webp',
+    formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
+    opcionGrupos: [
+      { id: 'tipo', nombre: 'Tipo', valores: ['Trovicel 100 x 100 cm', 'Tela PVC con marco de madera 100 x 80 cm'] },
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['1'], cantidadLibre: { min: 1, max: 5 } },
+    ],
+    calcularPrecio: (opciones) => {
+      const marco = (opciones.tipo ?? '').includes('marco')
+      return precioCatalogo(marco ? 'letrero100x80' : 'trovicel100', 1, marco ? 25000 : 22000) * cantidadDe(opciones, 5)
+    },
+    dimensiones: (opciones) => {
+      const m = medidasDeTexto(opciones.tipo ?? '') ?? { anchoCm: 100, altoCm: 100 }
+      return { ...m, granFormato: true }
+    },
+  },
+  {
+    slug: 'foto-30x40',
+    nombre: 'Foto en Papel Fotográfico 30 x 40 cm',
+    descripcion: 'Impresión de tu foto en papel fotográfico de 30 x 40 cm, a todo color.',
+    tiempoEntrega: '1-3 días hábiles',
+    imagen: '/images/IMPRESIONES.webp',
+    formatosAceptados: ['JPG', 'PNG', 'PDF', 'TIFF'],
+    opcionGrupos: [
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['1'], cantidadLibre: { min: 1, max: 10 } },
+    ],
+    calcularPrecio: (opciones) => precioCatalogo('foto30x40', 1, 6000) * cantidadDe(opciones, 10),
+    dimensiones: () => ({ anchoCm: 30, altoCm: 40, granFormato: false }),
+  },
+  {
+    slug: 'plano-a1',
+    nombre: 'Impresión de Planos A1',
+    descripcion: 'Plano tamaño A1 (59,4 x 84,1 cm) impreso en blanco y negro. Para arquitectura, construcción e ingeniería.',
+    tiempoEntrega: '1-3 días hábiles',
+    imagen: '/images/plano-a1.webp',
+    formatosAceptados: ['PDF', 'DWG en PDF', 'PNG', 'JPG', 'TIFF'],
+    opcionGrupos: [
+      { id: 'cantidad', nombre: 'Cantidad', valores: ['1'], cantidadLibre: { min: 1, max: 20 } },
+    ],
+    calcularPrecio: (opciones) => precioCatalogo('plano_a1', 1, 3000) * cantidadDe(opciones, 20),
+    dimensiones: () => ({ anchoCm: 59.4, altoCm: 84.1, granFormato: true }),
   },
 ]
 
