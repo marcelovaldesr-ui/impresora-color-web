@@ -1,4 +1,5 @@
 import { conAjuste } from './precios'
+import { precioCatalogo } from './precios-catalogo'
 import { CATALOGO_V2_EN_TIENDA } from './config'
 import { PRODUCTOS_V2_PUBLICOS } from './catalogo-v2'
 
@@ -159,7 +160,8 @@ const PRODUCTOS_BASE: Producto[] = [
     calcularPrecio: (opciones) => {
       const acabado = opciones.acabado ?? '4x0 color (1 cara)'
       const cantidad = parseInt(opciones.cantidad ?? '100', 10)
-      return TARJETAS[acabado]?.[cantidad] ?? 0
+      const codigo = acabado.includes('2 caras') ? 'tarj2' : 'tarj1'
+      return precioCatalogo(codigo, cantidad, TARJETAS[acabado]?.[cantidad])
     },
     dimensiones: () => ({ anchoCm: 9, altoCm: 5, granFormato: false }),
   },
@@ -180,7 +182,8 @@ const PRODUCTOS_BASE: Producto[] = [
       const tamano = opciones.tamano ?? 'A6 (10,5 x 14,8 cm)'
       const caras = opciones.caras ?? '1 cara'
       const cantidad = parseInt(opciones.cantidad ?? '100', 10)
-      return FLYERS[tamano]?.[caras]?.[cantidad] ?? 0
+      const codigo = `${tamano.startsWith('A5') ? 'fa5' : 'fa6'}_${caras.startsWith('2') ? 2 : 1}`
+      return FLYERS[tamano]?.[caras] ? precioCatalogo(codigo, cantidad, FLYERS[tamano][caras][cantidad]) : 0
     },
     dimensiones: (opciones) => {
       const m = medidasDeTexto(opciones.tamano ?? '') ?? { anchoCm: 10.5, altoCm: 14.8 }
@@ -203,7 +206,7 @@ const PRODUCTOS_BASE: Producto[] = [
     calcularPrecio: (opciones) => {
       const tamano = opciones.tamano ?? '3 cm'
       const cantidad = parseInt(opciones.cantidad ?? '100', 10)
-      return STICKERS[tamano]?.[cantidad] ?? 0
+      return STICKERS[tamano] ? precioCatalogo(`stk${parseInt(tamano, 10)}`, cantidad, STICKERS[tamano][cantidad]) : 0
     },
     dimensiones: (opciones) => {
       const lado = parseFloat((opciones.tamano ?? '3 cm').replace(/[^\d.,]/g, '').replace(',', '.'))
@@ -224,7 +227,7 @@ const PRODUCTOS_BASE: Producto[] = [
     ],
     calcularPrecio: (opciones) => {
       const tamano = opciones.tamano ?? '80 x 200 cm'
-      return PENDON[tamano] ?? 0
+      return PENDON[tamano] ? precioCatalogo(`roller${parseInt(tamano, 10)}`, 1, PENDON[tamano]) : 0
     },
     dimensiones: (opciones) => {
       const m = medidasDeTexto(opciones.tamano ?? '') ?? { anchoCm: 80, altoCm: 200 }
@@ -244,7 +247,8 @@ const PRODUCTOS_BASE: Producto[] = [
     ],
     calcularPrecio: (opciones) => {
       const tamano = opciones.tamano ?? '80 x 60 cm'
-      return TELA_PVC[tamano] ?? 0
+      const [a, b] = tamano.match(/\d+/g) ?? []
+      return TELA_PVC[tamano] ? precioCatalogo(`pvc${a}x${b}`, 1, TELA_PVC[tamano]) : 0
     },
     dimensiones: (opciones) => {
       const m = medidasDeTexto(opciones.tamano ?? '') ?? { anchoCm: 80, altoCm: 60 }
@@ -265,7 +269,7 @@ const PRODUCTOS_BASE: Producto[] = [
     calcularPrecio: (opciones) => {
       // Precio por unidad, fijo hasta 5 unidades. Sobre 5: cotizar por privado.
       const cantidad = parseInt(opciones.cantidad ?? '1', 10)
-      return CREDENCIAL_PVC_UNITARIO * cantidad
+      return precioCatalogo('credencial', 1, CREDENCIAL_PVC_UNITARIO) * cantidad
     },
     dimensiones: () => ({ anchoCm: 8.5, altoCm: 5.5, granFormato: false }),
   },

@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { cookies } from 'next/headers'
 import { CarritoProvider } from '@/lib/carrito'
+import { cargarPreciosCatalogo } from '@/lib/precios-catalogo'
+import PreciosCatalogo from './PreciosCatalogo'
 import CarritoIcono from './CarritoIcono'
 import Footer from '@/app/components/Footer'
 import WhatsAppFloat from '@/app/components/WhatsAppFloat'
@@ -57,8 +59,10 @@ export default async function StoreLayout({ children }: { children: React.ReactN
   const jar = await cookies()
   const tienePreview = jar.get(TIENDA_PREVIEW_COOKIE)?.value === buildTiendaPreviewToken()
   const mostrarProximamente = EN_CONSTRUCCION && !tienePreview
+  const precios = await cargarPreciosCatalogo()
 
   return (
+    <PreciosCatalogo valores={precios}>
     <CarritoProvider>
       <div className="min-h-screen flex flex-col">
         <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-100">
@@ -99,5 +103,6 @@ export default async function StoreLayout({ children }: { children: React.ReactN
       </div>
       <WhatsAppFloat subirEnMovil />
     </CarritoProvider>
+    </PreciosCatalogo>
   )
 }

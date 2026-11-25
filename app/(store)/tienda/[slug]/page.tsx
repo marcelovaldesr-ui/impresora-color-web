@@ -1,6 +1,7 @@
 import { getProducto, PRODUCTOS, precioDesde } from '@/lib/productos'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { cargarPreciosCatalogo } from '@/lib/precios-catalogo'
 import ProductoClient from './ProductoClient'
 import { TIENDA_EN_CONSTRUCCION } from '@/lib/config'
 
@@ -16,6 +17,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
+  await cargarPreciosCatalogo()
   const producto = getProducto(slug)
   if (!producto) return {}
   return {
@@ -41,6 +43,7 @@ export default async function ProductoPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
+  await cargarPreciosCatalogo()
   const producto = getProducto(slug)
   if (!producto) notFound()
 
