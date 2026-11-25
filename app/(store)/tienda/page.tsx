@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { PRODUCTOS, formatCLP, formatUnitario, precioDesde, unitarioDesde } from '@/lib/productos'
 import type { Metadata } from 'next'
+import { cargarPreciosCatalogo } from '@/lib/precios-catalogo'
 import { TIENDA_EN_CONSTRUCCION, CATALOGO_V2_EN_TIENDA } from '@/lib/config'
 import { CATALOGO_PUBLICO } from '@/lib/catalogo-v2'
 import CatalogoV2Lista from './catalogo-v2/CatalogoV2Lista'
@@ -15,7 +16,8 @@ export const metadata: Metadata = {
   robots: TIENDA_EN_CONSTRUCCION ? { index: false, follow: true } : undefined,
 }
 
-export default function TiendaPage() {
+export default async function TiendaPage() {
+  await cargarPreciosCatalogo()
   if (CATALOGO_V2_EN_TIENDA) {
     return (
       <CatalogoV2Lista

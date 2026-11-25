@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import { telefonoValidoCL, MENSAJE_TELEFONO_INVALIDO } from '@/lib/telefono'
 import { precioServidor } from '@/lib/productos'
+import { cargarPreciosCatalogo } from '@/lib/precios-catalogo'
 import { NextRequest } from 'next/server'
 import { obtenerIp, verificarLimite, registrarSolicitud, respuestaLimiteExcedido } from '@/lib/publicRateLimit'
 
@@ -44,6 +45,8 @@ function urlArchivoValida(v: unknown): string | null {
 }
 
 export async function POST(req: NextRequest) {
+  // Mismos precios que vio el cliente: el catálogo de la imprenta + el recargo de la tienda.
+  await cargarPreciosCatalogo()
   const ip = obtenerIp(req)
   const limite = await verificarLimite(ip, 'pedidos')
   if (limite.excedido) return respuestaLimiteExcedido(limite.segundosRestantes)
