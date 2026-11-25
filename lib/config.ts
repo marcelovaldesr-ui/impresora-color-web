@@ -27,4 +27,6 @@ export const TIENDA_COMPRA_HABILITADA = true
 //         con las mismas direcciones de siempre para tarjetas, flyers, stickers, pendón,
 //         tela PVC y credencial. Los productos "en revisión" no se publican.
 // Antes de pasarlo a true: hacer una compra de prueba de un producto nuevo (resma, calendario).
+// 25-nov-2026 (Marcelo): el v2 queda como BORRADOR. Sus precios son más viejos que la lista de Cecilia
+// (la del catálogo de BrainRoot/Tino) y nunca se terminaron de aprobar: NO encender sin rehacerlos.
 export const CATALOGO_V2_EN_TIENDA = false
