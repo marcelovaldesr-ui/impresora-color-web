@@ -259,7 +259,7 @@ const PRODUCTOS_BASE: Producto[] = [
     slug: 'credencial-pvc',
     nombre: 'Credencial PVC',
     descripcion:
-      'Credencial tipo carne en PVC blanco, impresion full color. Tamaño estándar 8,5 x 5,5 cm. Valor $2.500 por unidad (hasta 5 unidades); para mayores cantidades, cotiza por privado.',
+      'Credencial tipo carne en PVC blanco, impresion full color. Tamaño estándar 8,5 x 5,5 cm. Precio por unidad, hasta 5 unidades; para mayores cantidades, cotiza por privado.',
     tiempoEntrega: '1-3 días hábiles',
     imagen: '/images/tarjetaspvc.webp',
     formatosAceptados: ['PDF', 'AI', 'EPS', 'PNG', 'JPG', 'TIFF'],
